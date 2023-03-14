@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SizeRange 
 type SizeRange struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The maximum size (in kilobytes) that an incoming message must have in order for a condition or exception to apply.
     maximumSize *int32
     // The minimum size (in kilobytes) that an incoming message must have in order for a condition or exception to apply.
@@ -20,7 +19,7 @@ type SizeRange struct {
 func NewSizeRange()(*SizeRange) {
     m := &SizeRange{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSizeRangeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateSizeRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
     return NewSizeRange(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SizeRange) GetAdditionalData()(map[string]interface{}) {
+func (m *SizeRange) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SizeRange) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["maximumSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMaximumSize)
-    res["minimumSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMinimumSize)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["maximumSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMaximumSize(val)
+        }
+        return nil
+    }
+    res["minimumSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMinimumSize(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMaximumSize gets the maximumSize property value. The maximum size (in kilobytes) that an incoming message must have in order for a condition or exception to apply.
@@ -80,7 +106,7 @@ func (m *SizeRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SizeRange) SetAdditionalData(value map[string]interface{})() {
+func (m *SizeRange) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetMaximumSize sets the maximumSize property value. The maximum size (in kilobytes) that an incoming message must have in order for a condition or exception to apply.

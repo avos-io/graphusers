@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,6 +11,8 @@ type PolicyRoot struct {
     activityBasedTimeoutPolicies []ActivityBasedTimeoutPolicyable
     // The policy by which consent requests are created and managed for the entire tenant.
     adminConsentRequestPolicy AdminConsentRequestPolicyable
+    // The appManagementPolicies property
+    appManagementPolicies []AppManagementPolicyable
     // The policy configuration of the self-service sign-up experience of external users.
     authenticationFlowsPolicy AuthenticationFlowsPolicyable
     // The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
@@ -24,6 +25,8 @@ type PolicyRoot struct {
     conditionalAccessPolicies []ConditionalAccessPolicyable
     // The custom rules that define an access scenario when interacting with external Azure AD tenants.
     crossTenantAccessPolicy CrossTenantAccessPolicyable
+    // The defaultAppManagementPolicy property
+    defaultAppManagementPolicy TenantAppManagementPolicyable
     // The feature rollout policy associated with a directory object.
     featureRolloutPolicies []FeatureRolloutPolicyable
     // The policy to control Azure AD authentication behavior for federated users.
@@ -60,6 +63,10 @@ func (m *PolicyRoot) GetActivityBasedTimeoutPolicies()([]ActivityBasedTimeoutPol
 func (m *PolicyRoot) GetAdminConsentRequestPolicy()(AdminConsentRequestPolicyable) {
     return m.adminConsentRequestPolicy
 }
+// GetAppManagementPolicies gets the appManagementPolicies property value. The appManagementPolicies property
+func (m *PolicyRoot) GetAppManagementPolicies()([]AppManagementPolicyable) {
+    return m.appManagementPolicies
+}
 // GetAuthenticationFlowsPolicy gets the authenticationFlowsPolicy property value. The policy configuration of the self-service sign-up experience of external users.
 func (m *PolicyRoot) GetAuthenticationFlowsPolicy()(AuthenticationFlowsPolicyable) {
     return m.authenticationFlowsPolicy
@@ -84,6 +91,10 @@ func (m *PolicyRoot) GetConditionalAccessPolicies()([]ConditionalAccessPolicyabl
 func (m *PolicyRoot) GetCrossTenantAccessPolicy()(CrossTenantAccessPolicyable) {
     return m.crossTenantAccessPolicy
 }
+// GetDefaultAppManagementPolicy gets the defaultAppManagementPolicy property value. The defaultAppManagementPolicy property
+func (m *PolicyRoot) GetDefaultAppManagementPolicy()(TenantAppManagementPolicyable) {
+    return m.defaultAppManagementPolicy
+}
 // GetFeatureRolloutPolicies gets the featureRolloutPolicies property value. The feature rollout policy associated with a directory object.
 func (m *PolicyRoot) GetFeatureRolloutPolicies()([]FeatureRolloutPolicyable) {
     return m.featureRolloutPolicies
@@ -91,22 +102,230 @@ func (m *PolicyRoot) GetFeatureRolloutPolicies()([]FeatureRolloutPolicyable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["activityBasedTimeoutPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateActivityBasedTimeoutPolicyFromDiscriminatorValue , m.SetActivityBasedTimeoutPolicies)
-    res["adminConsentRequestPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAdminConsentRequestPolicyFromDiscriminatorValue , m.SetAdminConsentRequestPolicy)
-    res["authenticationFlowsPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthenticationFlowsPolicyFromDiscriminatorValue , m.SetAuthenticationFlowsPolicy)
-    res["authenticationMethodsPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthenticationMethodsPolicyFromDiscriminatorValue , m.SetAuthenticationMethodsPolicy)
-    res["authorizationPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthorizationPolicyFromDiscriminatorValue , m.SetAuthorizationPolicy)
-    res["claimsMappingPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateClaimsMappingPolicyFromDiscriminatorValue , m.SetClaimsMappingPolicies)
-    res["conditionalAccessPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateConditionalAccessPolicyFromDiscriminatorValue , m.SetConditionalAccessPolicies)
-    res["crossTenantAccessPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateCrossTenantAccessPolicyFromDiscriminatorValue , m.SetCrossTenantAccessPolicy)
-    res["featureRolloutPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateFeatureRolloutPolicyFromDiscriminatorValue , m.SetFeatureRolloutPolicies)
-    res["homeRealmDiscoveryPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateHomeRealmDiscoveryPolicyFromDiscriminatorValue , m.SetHomeRealmDiscoveryPolicies)
-    res["identitySecurityDefaultsEnforcementPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue , m.SetIdentitySecurityDefaultsEnforcementPolicy)
-    res["permissionGrantPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreatePermissionGrantPolicyFromDiscriminatorValue , m.SetPermissionGrantPolicies)
-    res["roleManagementPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateUnifiedRoleManagementPolicyFromDiscriminatorValue , m.SetRoleManagementPolicies)
-    res["roleManagementPolicyAssignments"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateUnifiedRoleManagementPolicyAssignmentFromDiscriminatorValue , m.SetRoleManagementPolicyAssignments)
-    res["tokenIssuancePolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateTokenIssuancePolicyFromDiscriminatorValue , m.SetTokenIssuancePolicies)
-    res["tokenLifetimePolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateTokenLifetimePolicyFromDiscriminatorValue , m.SetTokenLifetimePolicies)
+    res["activityBasedTimeoutPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateActivityBasedTimeoutPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ActivityBasedTimeoutPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(ActivityBasedTimeoutPolicyable)
+            }
+            m.SetActivityBasedTimeoutPolicies(res)
+        }
+        return nil
+    }
+    res["adminConsentRequestPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAdminConsentRequestPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAdminConsentRequestPolicy(val.(AdminConsentRequestPolicyable))
+        }
+        return nil
+    }
+    res["appManagementPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAppManagementPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AppManagementPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(AppManagementPolicyable)
+            }
+            m.SetAppManagementPolicies(res)
+        }
+        return nil
+    }
+    res["authenticationFlowsPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationFlowsPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthenticationFlowsPolicy(val.(AuthenticationFlowsPolicyable))
+        }
+        return nil
+    }
+    res["authenticationMethodsPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationMethodsPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthenticationMethodsPolicy(val.(AuthenticationMethodsPolicyable))
+        }
+        return nil
+    }
+    res["authorizationPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthorizationPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthorizationPolicy(val.(AuthorizationPolicyable))
+        }
+        return nil
+    }
+    res["claimsMappingPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateClaimsMappingPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ClaimsMappingPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(ClaimsMappingPolicyable)
+            }
+            m.SetClaimsMappingPolicies(res)
+        }
+        return nil
+    }
+    res["conditionalAccessPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateConditionalAccessPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ConditionalAccessPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(ConditionalAccessPolicyable)
+            }
+            m.SetConditionalAccessPolicies(res)
+        }
+        return nil
+    }
+    res["crossTenantAccessPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateCrossTenantAccessPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCrossTenantAccessPolicy(val.(CrossTenantAccessPolicyable))
+        }
+        return nil
+    }
+    res["defaultAppManagementPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTenantAppManagementPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultAppManagementPolicy(val.(TenantAppManagementPolicyable))
+        }
+        return nil
+    }
+    res["featureRolloutPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateFeatureRolloutPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]FeatureRolloutPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(FeatureRolloutPolicyable)
+            }
+            m.SetFeatureRolloutPolicies(res)
+        }
+        return nil
+    }
+    res["homeRealmDiscoveryPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateHomeRealmDiscoveryPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]HomeRealmDiscoveryPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(HomeRealmDiscoveryPolicyable)
+            }
+            m.SetHomeRealmDiscoveryPolicies(res)
+        }
+        return nil
+    }
+    res["identitySecurityDefaultsEnforcementPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySecurityDefaultsEnforcementPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIdentitySecurityDefaultsEnforcementPolicy(val.(IdentitySecurityDefaultsEnforcementPolicyable))
+        }
+        return nil
+    }
+    res["permissionGrantPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreatePermissionGrantPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]PermissionGrantPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(PermissionGrantPolicyable)
+            }
+            m.SetPermissionGrantPolicies(res)
+        }
+        return nil
+    }
+    res["roleManagementPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateUnifiedRoleManagementPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]UnifiedRoleManagementPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(UnifiedRoleManagementPolicyable)
+            }
+            m.SetRoleManagementPolicies(res)
+        }
+        return nil
+    }
+    res["roleManagementPolicyAssignments"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateUnifiedRoleManagementPolicyAssignmentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]UnifiedRoleManagementPolicyAssignmentable, len(val))
+            for i, v := range val {
+                res[i] = v.(UnifiedRoleManagementPolicyAssignmentable)
+            }
+            m.SetRoleManagementPolicyAssignments(res)
+        }
+        return nil
+    }
+    res["tokenIssuancePolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateTokenIssuancePolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]TokenIssuancePolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(TokenIssuancePolicyable)
+            }
+            m.SetTokenIssuancePolicies(res)
+        }
+        return nil
+    }
+    res["tokenLifetimePolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateTokenLifetimePolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]TokenLifetimePolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(TokenLifetimePolicyable)
+            }
+            m.SetTokenLifetimePolicies(res)
+        }
+        return nil
+    }
     return res
 }
 // GetHomeRealmDiscoveryPolicies gets the homeRealmDiscoveryPolicies property value. The policy to control Azure AD authentication behavior for federated users.
@@ -144,7 +363,10 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         return err
     }
     if m.GetActivityBasedTimeoutPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetActivityBasedTimeoutPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetActivityBasedTimeoutPolicies()))
+        for i, v := range m.GetActivityBasedTimeoutPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("activityBasedTimeoutPolicies", cast)
         if err != nil {
             return err
@@ -152,6 +374,16 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     {
         err = writer.WriteObjectValue("adminConsentRequestPolicy", m.GetAdminConsentRequestPolicy())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetAppManagementPolicies() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppManagementPolicies()))
+        for i, v := range m.GetAppManagementPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
+        err = writer.WriteCollectionOfObjectValues("appManagementPolicies", cast)
         if err != nil {
             return err
         }
@@ -175,14 +407,20 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     if m.GetClaimsMappingPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetClaimsMappingPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClaimsMappingPolicies()))
+        for i, v := range m.GetClaimsMappingPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("claimsMappingPolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetConditionalAccessPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetConditionalAccessPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetConditionalAccessPolicies()))
+        for i, v := range m.GetConditionalAccessPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("conditionalAccessPolicies", cast)
         if err != nil {
             return err
@@ -194,15 +432,27 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
+    {
+        err = writer.WriteObjectValue("defaultAppManagementPolicy", m.GetDefaultAppManagementPolicy())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetFeatureRolloutPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetFeatureRolloutPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFeatureRolloutPolicies()))
+        for i, v := range m.GetFeatureRolloutPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("featureRolloutPolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetHomeRealmDiscoveryPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetHomeRealmDiscoveryPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHomeRealmDiscoveryPolicies()))
+        for i, v := range m.GetHomeRealmDiscoveryPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("homeRealmDiscoveryPolicies", cast)
         if err != nil {
             return err
@@ -215,35 +465,50 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     if m.GetPermissionGrantPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetPermissionGrantPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissionGrantPolicies()))
+        for i, v := range m.GetPermissionGrantPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("permissionGrantPolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetRoleManagementPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetRoleManagementPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoleManagementPolicies()))
+        for i, v := range m.GetRoleManagementPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("roleManagementPolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetRoleManagementPolicyAssignments() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetRoleManagementPolicyAssignments())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoleManagementPolicyAssignments()))
+        for i, v := range m.GetRoleManagementPolicyAssignments() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("roleManagementPolicyAssignments", cast)
         if err != nil {
             return err
         }
     }
     if m.GetTokenIssuancePolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetTokenIssuancePolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenIssuancePolicies()))
+        for i, v := range m.GetTokenIssuancePolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("tokenIssuancePolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetTokenLifetimePolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetTokenLifetimePolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenLifetimePolicies()))
+        for i, v := range m.GetTokenLifetimePolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("tokenLifetimePolicies", cast)
         if err != nil {
             return err
@@ -258,6 +523,10 @@ func (m *PolicyRoot) SetActivityBasedTimeoutPolicies(value []ActivityBasedTimeou
 // SetAdminConsentRequestPolicy sets the adminConsentRequestPolicy property value. The policy by which consent requests are created and managed for the entire tenant.
 func (m *PolicyRoot) SetAdminConsentRequestPolicy(value AdminConsentRequestPolicyable)() {
     m.adminConsentRequestPolicy = value
+}
+// SetAppManagementPolicies sets the appManagementPolicies property value. The appManagementPolicies property
+func (m *PolicyRoot) SetAppManagementPolicies(value []AppManagementPolicyable)() {
+    m.appManagementPolicies = value
 }
 // SetAuthenticationFlowsPolicy sets the authenticationFlowsPolicy property value. The policy configuration of the self-service sign-up experience of external users.
 func (m *PolicyRoot) SetAuthenticationFlowsPolicy(value AuthenticationFlowsPolicyable)() {
@@ -282,6 +551,10 @@ func (m *PolicyRoot) SetConditionalAccessPolicies(value []ConditionalAccessPolic
 // SetCrossTenantAccessPolicy sets the crossTenantAccessPolicy property value. The custom rules that define an access scenario when interacting with external Azure AD tenants.
 func (m *PolicyRoot) SetCrossTenantAccessPolicy(value CrossTenantAccessPolicyable)() {
     m.crossTenantAccessPolicy = value
+}
+// SetDefaultAppManagementPolicy sets the defaultAppManagementPolicy property value. The defaultAppManagementPolicy property
+func (m *PolicyRoot) SetDefaultAppManagementPolicy(value TenantAppManagementPolicyable)() {
+    m.defaultAppManagementPolicy = value
 }
 // SetFeatureRolloutPolicies sets the featureRolloutPolicies property value. The feature rollout policy associated with a directory object.
 func (m *PolicyRoot) SetFeatureRolloutPolicies(value []FeatureRolloutPolicyable)() {

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // RecurrencePattern 
 type RecurrencePattern struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The day of the month on which the event occurs. Required if type is absoluteMonthly or absoluteYearly.
     dayOfMonth *int32
     // A collection of the days of the week on which the event occurs. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday. If type is relativeMonthly or relativeYearly, and daysOfWeek specifies more than one day, the event falls on the first day that satisfies the pattern.  Required if type is weekly, relativeMonthly, or relativeYearly.
@@ -24,13 +23,13 @@ type RecurrencePattern struct {
     // The OdataType property
     odataType *string
     // The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required. For more information, see values of type property.
-    type_escaped *RecurrencePatternType
+    typeEscaped *RecurrencePatternType
 }
 // NewRecurrencePattern instantiates a new recurrencePattern and sets the default values.
 func NewRecurrencePattern()(*RecurrencePattern) {
     m := &RecurrencePattern{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateRecurrencePatternFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +37,7 @@ func CreateRecurrencePatternFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewRecurrencePattern(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RecurrencePattern) GetAdditionalData()(map[string]interface{}) {
+func (m *RecurrencePattern) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDayOfMonth gets the dayOfMonth property value. The day of the month on which the event occurs. Required if type is absoluteMonthly or absoluteYearly.
@@ -52,14 +51,90 @@ func (m *RecurrencePattern) GetDaysOfWeek()([]DayOfWeek) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RecurrencePattern) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["dayOfMonth"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDayOfMonth)
-    res["daysOfWeek"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParseDayOfWeek , m.SetDaysOfWeek)
-    res["firstDayOfWeek"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDayOfWeek , m.SetFirstDayOfWeek)
-    res["index"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseWeekIndex , m.SetIndex)
-    res["interval"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetInterval)
-    res["month"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMonth)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseRecurrencePatternType , m.SetType)
+    res["dayOfMonth"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDayOfMonth(val)
+        }
+        return nil
+    }
+    res["daysOfWeek"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParseDayOfWeek)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]DayOfWeek, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*DayOfWeek))
+            }
+            m.SetDaysOfWeek(res)
+        }
+        return nil
+    }
+    res["firstDayOfWeek"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDayOfWeek)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFirstDayOfWeek(val.(*DayOfWeek))
+        }
+        return nil
+    }
+    res["index"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseWeekIndex)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIndex(val.(*WeekIndex))
+        }
+        return nil
+    }
+    res["interval"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInterval(val)
+        }
+        return nil
+    }
+    res["month"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMonth(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRecurrencePatternType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val.(*RecurrencePatternType))
+        }
+        return nil
+    }
     return res
 }
 // GetFirstDayOfWeek gets the firstDayOfWeek property value. The first day of the week. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday, saturday. Default is sunday. Required if type is weekly.
@@ -84,7 +159,7 @@ func (m *RecurrencePattern) GetOdataType()(*string) {
 }
 // GetType gets the type property value. The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required. For more information, see values of type property.
 func (m *RecurrencePattern) GetType()(*RecurrencePatternType) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *RecurrencePattern) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -148,7 +223,7 @@ func (m *RecurrencePattern) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RecurrencePattern) SetAdditionalData(value map[string]interface{})() {
+func (m *RecurrencePattern) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDayOfMonth sets the dayOfMonth property value. The day of the month on which the event occurs. Required if type is absoluteMonthly or absoluteYearly.
@@ -181,5 +256,5 @@ func (m *RecurrencePattern) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. The recurrence pattern type: daily, weekly, absoluteMonthly, relativeMonthly, absoluteYearly, relativeYearly. Required. For more information, see values of type property.
 func (m *RecurrencePattern) SetType(value *RecurrencePatternType)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }

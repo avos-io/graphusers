@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Win32LobAppInstallExperience contains installation experience properties for a Win32 App
 type Win32LobAppInstallExperience struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates the type of restart action.
     deviceRestartBehavior *Win32LobAppRestartBehavior
     // The OdataType property
@@ -20,7 +19,7 @@ type Win32LobAppInstallExperience struct {
 func NewWin32LobAppInstallExperience()(*Win32LobAppInstallExperience) {
     m := &Win32LobAppInstallExperience{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWin32LobAppInstallExperienceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateWin32LobAppInstallExperienceFromDiscriminatorValue(parseNode i878a80d
     return NewWin32LobAppInstallExperience(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Win32LobAppInstallExperience) GetAdditionalData()(map[string]interface{}) {
+func (m *Win32LobAppInstallExperience) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDeviceRestartBehavior gets the deviceRestartBehavior property value. Indicates the type of restart action.
@@ -38,9 +37,36 @@ func (m *Win32LobAppInstallExperience) GetDeviceRestartBehavior()(*Win32LobAppRe
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Win32LobAppInstallExperience) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deviceRestartBehavior"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseWin32LobAppRestartBehavior , m.SetDeviceRestartBehavior)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["runAsAccount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseRunAsAccountType , m.SetRunAsAccount)
+    res["deviceRestartBehavior"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseWin32LobAppRestartBehavior)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeviceRestartBehavior(val.(*Win32LobAppRestartBehavior))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["runAsAccount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRunAsAccountType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRunAsAccount(val.(*RunAsAccountType))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -82,7 +108,7 @@ func (m *Win32LobAppInstallExperience) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Win32LobAppInstallExperience) SetAdditionalData(value map[string]interface{})() {
+func (m *Win32LobAppInstallExperience) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDeviceRestartBehavior sets the deviceRestartBehavior property value. Indicates the type of restart action.

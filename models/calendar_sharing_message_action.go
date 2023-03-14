@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,7 +11,7 @@ type CalendarSharingMessageAction struct {
     // The actionType property
     actionType *CalendarSharingActionType
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The importance property
     importance *CalendarSharingActionImportance
     // The OdataType property
@@ -22,7 +21,7 @@ type CalendarSharingMessageAction struct {
 func NewCalendarSharingMessageAction()(*CalendarSharingMessageAction) {
     m := &CalendarSharingMessageAction{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateCalendarSharingMessageActionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -38,16 +37,52 @@ func (m *CalendarSharingMessageAction) GetActionType()(*CalendarSharingActionTyp
     return m.actionType
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CalendarSharingMessageAction) GetAdditionalData()(map[string]interface{}) {
+func (m *CalendarSharingMessageAction) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *CalendarSharingMessageAction) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["action"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseCalendarSharingAction , m.SetAction)
-    res["actionType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseCalendarSharingActionType , m.SetActionType)
-    res["importance"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseCalendarSharingActionImportance , m.SetImportance)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["action"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCalendarSharingAction)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAction(val.(*CalendarSharingAction))
+        }
+        return nil
+    }
+    res["actionType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCalendarSharingActionType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetActionType(val.(*CalendarSharingActionType))
+        }
+        return nil
+    }
+    res["importance"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseCalendarSharingActionImportance)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetImportance(val.(*CalendarSharingActionImportance))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetImportance gets the importance property value. The importance property
@@ -104,7 +139,7 @@ func (m *CalendarSharingMessageAction) SetActionType(value *CalendarSharingActio
     m.actionType = value
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CalendarSharingMessageAction) SetAdditionalData(value map[string]interface{})() {
+func (m *CalendarSharingMessageAction) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetImportance sets the importance property value. The importance property

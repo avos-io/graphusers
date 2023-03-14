@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -10,7 +9,7 @@ type OutlookGeoCoordinates struct {
     // The accuracy of the latitude and longitude. As an example, the accuracy can be measured in meters, such as the latitude and longitude are accurate to within 50 meters.
     accuracy *float64
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The altitude of the location.
     altitude *float64
     // The accuracy of the altitude.
@@ -26,7 +25,7 @@ type OutlookGeoCoordinates struct {
 func NewOutlookGeoCoordinates()(*OutlookGeoCoordinates) {
     m := &OutlookGeoCoordinates{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateOutlookGeoCoordinatesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +37,7 @@ func (m *OutlookGeoCoordinates) GetAccuracy()(*float64) {
     return m.accuracy
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OutlookGeoCoordinates) GetAdditionalData()(map[string]interface{}) {
+func (m *OutlookGeoCoordinates) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAltitude gets the altitude property value. The altitude of the location.
@@ -52,12 +51,66 @@ func (m *OutlookGeoCoordinates) GetAltitudeAccuracy()(*float64) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OutlookGeoCoordinates) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accuracy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetAccuracy)
-    res["altitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetAltitude)
-    res["altitudeAccuracy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetAltitudeAccuracy)
-    res["latitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetLatitude)
-    res["longitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetLongitude)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["accuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccuracy(val)
+        }
+        return nil
+    }
+    res["altitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAltitude(val)
+        }
+        return nil
+    }
+    res["altitudeAccuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAltitudeAccuracy(val)
+        }
+        return nil
+    }
+    res["latitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLatitude(val)
+        }
+        return nil
+    }
+    res["longitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLongitude(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLatitude gets the latitude property value. The latitude of the location.
@@ -123,7 +176,7 @@ func (m *OutlookGeoCoordinates) SetAccuracy(value *float64)() {
     m.accuracy = value
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OutlookGeoCoordinates) SetAdditionalData(value map[string]interface{})() {
+func (m *OutlookGeoCoordinates) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAltitude sets the altitude property value. The altitude of the location.

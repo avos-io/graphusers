@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AlteredQueryToken 
 type AlteredQueryToken struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Defines the length of a changed segment.
     length *int32
     // The OdataType property
@@ -22,7 +21,7 @@ type AlteredQueryToken struct {
 func NewAlteredQueryToken()(*AlteredQueryToken) {
     m := &AlteredQueryToken{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAlteredQueryTokenFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateAlteredQueryTokenFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewAlteredQueryToken(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AlteredQueryToken) GetAdditionalData()(map[string]interface{}) {
+func (m *AlteredQueryToken) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AlteredQueryToken) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["length"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetLength)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["offset"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetOffset)
-    res["suggestion"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSuggestion)
+    res["length"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLength(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["offset"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOffset(val)
+        }
+        return nil
+    }
+    res["suggestion"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSuggestion(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLength gets the length property value. Defines the length of a changed segment.
@@ -93,7 +128,7 @@ func (m *AlteredQueryToken) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AlteredQueryToken) SetAdditionalData(value map[string]interface{})() {
+func (m *AlteredQueryToken) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetLength sets the length property value. Defines the length of a changed segment.

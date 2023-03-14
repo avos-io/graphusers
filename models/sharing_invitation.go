@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SharingInvitation 
 type SharingInvitation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The email address provided for the recipient of the sharing invitation. Read-only.
     email *string
     // Provides information about who sent the invitation that created this permission, if that information is available. Read-only.
@@ -24,7 +23,7 @@ type SharingInvitation struct {
 func NewSharingInvitation()(*SharingInvitation) {
     m := &SharingInvitation{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSharingInvitationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreateSharingInvitationFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewSharingInvitation(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharingInvitation) GetAdditionalData()(map[string]interface{}) {
+func (m *SharingInvitation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetEmail gets the email property value. The email address provided for the recipient of the sharing invitation. Read-only.
@@ -42,11 +41,56 @@ func (m *SharingInvitation) GetEmail()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SharingInvitation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["email"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetEmail)
-    res["invitedBy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySetFromDiscriminatorValue , m.SetInvitedBy)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["redeemedBy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRedeemedBy)
-    res["signInRequired"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetSignInRequired)
+    res["email"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEmail(val)
+        }
+        return nil
+    }
+    res["invitedBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInvitedBy(val.(IdentitySetable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["redeemedBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRedeemedBy(val)
+        }
+        return nil
+    }
+    res["signInRequired"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSignInRequired(val)
+        }
+        return nil
+    }
     return res
 }
 // GetInvitedBy gets the invitedBy property value. Provides information about who sent the invitation that created this permission, if that information is available. Read-only.
@@ -106,7 +150,7 @@ func (m *SharingInvitation) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharingInvitation) SetAdditionalData(value map[string]interface{})() {
+func (m *SharingInvitation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetEmail sets the email property value. The email address provided for the recipient of the sharing invitation. Read-only.

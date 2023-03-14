@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ChatMessagePolicyViolation 
 type ChatMessagePolicyViolation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The action taken by the DLP provider on the message with sensitive content. Supported values are: NoneNotifySender -- Inform the sender of the violation but allow readers to read the message.BlockAccess -- Block readers from reading the message.BlockAccessExternal -- Block users outside the organization from reading the message, while allowing users within the organization to read the message.
     dlpAction *ChatMessagePolicyViolationDlpActionTypes
     // Justification text provided by the sender of the message when overriding a policy violation.
@@ -26,7 +25,7 @@ type ChatMessagePolicyViolation struct {
 func NewChatMessagePolicyViolation()(*ChatMessagePolicyViolation) {
     m := &ChatMessagePolicyViolation{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateChatMessagePolicyViolationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateChatMessagePolicyViolationFromDiscriminatorValue(parseNode i878a80d23
     return NewChatMessagePolicyViolation(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessagePolicyViolation) GetAdditionalData()(map[string]interface{}) {
+func (m *ChatMessagePolicyViolation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDlpAction gets the dlpAction property value. The action taken by the DLP provider on the message with sensitive content. Supported values are: NoneNotifySender -- Inform the sender of the violation but allow readers to read the message.BlockAccess -- Block readers from reading the message.BlockAccessExternal -- Block users outside the organization from reading the message, while allowing users within the organization to read the message.
@@ -44,12 +43,66 @@ func (m *ChatMessagePolicyViolation) GetDlpAction()(*ChatMessagePolicyViolationD
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ChatMessagePolicyViolation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["dlpAction"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseChatMessagePolicyViolationDlpActionTypes , m.SetDlpAction)
-    res["justificationText"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetJustificationText)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["policyTip"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateChatMessagePolicyViolationPolicyTipFromDiscriminatorValue , m.SetPolicyTip)
-    res["userAction"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseChatMessagePolicyViolationUserActionTypes , m.SetUserAction)
-    res["verdictDetails"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseChatMessagePolicyViolationVerdictDetailsTypes , m.SetVerdictDetails)
+    res["dlpAction"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseChatMessagePolicyViolationDlpActionTypes)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDlpAction(val.(*ChatMessagePolicyViolationDlpActionTypes))
+        }
+        return nil
+    }
+    res["justificationText"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJustificationText(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["policyTip"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateChatMessagePolicyViolationPolicyTipFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPolicyTip(val.(ChatMessagePolicyViolationPolicyTipable))
+        }
+        return nil
+    }
+    res["userAction"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseChatMessagePolicyViolationUserActionTypes)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUserAction(val.(*ChatMessagePolicyViolationUserActionTypes))
+        }
+        return nil
+    }
+    res["verdictDetails"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseChatMessagePolicyViolationVerdictDetailsTypes)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVerdictDetails(val.(*ChatMessagePolicyViolationVerdictDetailsTypes))
+        }
+        return nil
+    }
     return res
 }
 // GetJustificationText gets the justificationText property value. Justification text provided by the sender of the message when overriding a policy violation.
@@ -122,7 +175,7 @@ func (m *ChatMessagePolicyViolation) Serialize(writer i878a80d2330e89d26896388a3
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessagePolicyViolation) SetAdditionalData(value map[string]interface{})() {
+func (m *ChatMessagePolicyViolation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDlpAction sets the dlpAction property value. The action taken by the DLP provider on the message with sensitive content. Supported values are: NoneNotifySender -- Inform the sender of the violation but allow readers to read the message.BlockAccess -- Block readers from reading the message.BlockAccessExternal -- Block users outside the organization from reading the message, while allowing users within the organization to read the message.

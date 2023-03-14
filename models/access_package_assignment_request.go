@@ -2,15 +2,16 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// AccessPackageAssignmentRequest provides operations to manage the collection of user entities.
+// AccessPackageAssignmentRequest 
 type AccessPackageAssignmentRequest struct {
     Entity
     // The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.  Supports $expand.
     accessPackage AccessPackageable
+    // Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
+    answers []AccessPackageAnswerable
     // For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created.  For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.
     assignment AccessPackageAssignmentable
     // The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
@@ -19,7 +20,7 @@ type AccessPackageAssignmentRequest struct {
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
     requestor AccessPackageSubjectable
-    // The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd, unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+    // The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
     requestType *AccessPackageRequestType
     // The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.
     schedule EntitlementManagementScheduleable
@@ -43,6 +44,10 @@ func CreateAccessPackageAssignmentRequestFromDiscriminatorValue(parseNode i878a8
 func (m *AccessPackageAssignmentRequest) GetAccessPackage()(AccessPackageable) {
     return m.accessPackage
 }
+// GetAnswers gets the answers property value. Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
+func (m *AccessPackageAssignmentRequest) GetAnswers()([]AccessPackageAnswerable) {
+    return m.answers
+}
 // GetAssignment gets the assignment property value. For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created.  For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.
 func (m *AccessPackageAssignmentRequest) GetAssignment()(AccessPackageAssignmentable) {
     return m.assignment
@@ -58,22 +63,117 @@ func (m *AccessPackageAssignmentRequest) GetCreatedDateTime()(*i336074805fc85398
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessPackageAssignmentRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["accessPackage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAccessPackageFromDiscriminatorValue , m.SetAccessPackage)
-    res["assignment"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAccessPackageAssignmentFromDiscriminatorValue , m.SetAssignment)
-    res["completedDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCompletedDateTime)
-    res["createdDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCreatedDateTime)
-    res["requestor"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAccessPackageSubjectFromDiscriminatorValue , m.SetRequestor)
-    res["requestType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAccessPackageRequestType , m.SetRequestType)
-    res["schedule"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateEntitlementManagementScheduleFromDiscriminatorValue , m.SetSchedule)
-    res["state"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAccessPackageRequestState , m.SetState)
-    res["status"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetStatus)
+    res["accessPackage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccessPackageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccessPackage(val.(AccessPackageable))
+        }
+        return nil
+    }
+    res["answers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAccessPackageAnswerFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AccessPackageAnswerable, len(val))
+            for i, v := range val {
+                res[i] = v.(AccessPackageAnswerable)
+            }
+            m.SetAnswers(res)
+        }
+        return nil
+    }
+    res["assignment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccessPackageAssignmentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAssignment(val.(AccessPackageAssignmentable))
+        }
+        return nil
+    }
+    res["completedDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompletedDateTime(val)
+        }
+        return nil
+    }
+    res["createdDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["requestor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccessPackageSubjectFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRequestor(val.(AccessPackageSubjectable))
+        }
+        return nil
+    }
+    res["requestType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAccessPackageRequestType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRequestType(val.(*AccessPackageRequestType))
+        }
+        return nil
+    }
+    res["schedule"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateEntitlementManagementScheduleFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSchedule(val.(EntitlementManagementScheduleable))
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAccessPackageRequestState)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val.(*AccessPackageRequestState))
+        }
+        return nil
+    }
+    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStatus(val)
+        }
+        return nil
+    }
     return res
 }
 // GetRequestor gets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
 func (m *AccessPackageAssignmentRequest) GetRequestor()(AccessPackageSubjectable) {
     return m.requestor
 }
-// GetRequestType gets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd, unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+// GetRequestType gets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
 func (m *AccessPackageAssignmentRequest) GetRequestType()(*AccessPackageRequestType) {
     return m.requestType
 }
@@ -97,6 +197,16 @@ func (m *AccessPackageAssignmentRequest) Serialize(writer i878a80d2330e89d268963
     }
     {
         err = writer.WriteObjectValue("accessPackage", m.GetAccessPackage())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetAnswers() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAnswers()))
+        for i, v := range m.GetAnswers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
+        err = writer.WriteCollectionOfObjectValues("answers", cast)
         if err != nil {
             return err
         }
@@ -157,6 +267,10 @@ func (m *AccessPackageAssignmentRequest) Serialize(writer i878a80d2330e89d268963
 func (m *AccessPackageAssignmentRequest) SetAccessPackage(value AccessPackageable)() {
     m.accessPackage = value
 }
+// SetAnswers sets the answers property value. Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
+func (m *AccessPackageAssignmentRequest) SetAnswers(value []AccessPackageAnswerable)() {
+    m.answers = value
+}
 // SetAssignment sets the assignment property value. For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created.  For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.
 func (m *AccessPackageAssignmentRequest) SetAssignment(value AccessPackageAssignmentable)() {
     m.assignment = value
@@ -173,7 +287,7 @@ func (m *AccessPackageAssignmentRequest) SetCreatedDateTime(value *i336074805fc8
 func (m *AccessPackageAssignmentRequest) SetRequestor(value AccessPackageSubjectable)() {
     m.requestor = value
 }
-// SetRequestType sets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd, unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+// SetRequestType sets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
 func (m *AccessPackageAssignmentRequest) SetRequestType(value *AccessPackageRequestType)() {
     m.requestType = value
 }

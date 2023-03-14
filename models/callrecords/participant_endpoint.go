@@ -1,7 +1,6 @@
 package callrecords
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390 "github.com/avos-io/graphusers/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -19,8 +18,8 @@ func NewParticipantEndpoint()(*ParticipantEndpoint) {
     m := &ParticipantEndpoint{
         Endpoint: *NewEndpoint(),
     }
-    odataTypeValue := "#microsoft.graph.callRecords.participantEndpoint";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.callRecords.participantEndpoint"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateParticipantEndpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,8 +33,26 @@ func (m *ParticipantEndpoint) GetFeedback()(UserFeedbackable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ParticipantEndpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Endpoint.GetFieldDeserializers()
-    res["feedback"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateUserFeedbackFromDiscriminatorValue , m.SetFeedback)
-    res["identity"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.CreateIdentitySetFromDiscriminatorValue , m.SetIdentity)
+    res["feedback"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateUserFeedbackFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFeedback(val.(UserFeedbackable))
+        }
+        return nil
+    }
+    res["identity"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIdentity(val.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable))
+        }
+        return nil
+    }
     return res
 }
 // GetIdentity gets the identity property value. Identity associated with the endpoint.

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AlternativeSecurityId 
 type AlternativeSecurityId struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // For internal use only
     identityProvider *string
     // For internal use only
@@ -16,13 +15,13 @@ type AlternativeSecurityId struct {
     // The OdataType property
     odataType *string
     // For internal use only
-    type_escaped *int32
+    typeEscaped *int32
 }
 // NewAlternativeSecurityId instantiates a new alternativeSecurityId and sets the default values.
 func NewAlternativeSecurityId()(*AlternativeSecurityId) {
     m := &AlternativeSecurityId{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAlternativeSecurityIdFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateAlternativeSecurityIdFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewAlternativeSecurityId(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AlternativeSecurityId) GetAdditionalData()(map[string]interface{}) {
+func (m *AlternativeSecurityId) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AlternativeSecurityId) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["identityProvider"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIdentityProvider)
-    res["key"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetByteArrayValue(m.SetKey)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetType)
+    res["identityProvider"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIdentityProvider(val)
+        }
+        return nil
+    }
+    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetByteArrayValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKey(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIdentityProvider gets the identityProvider property value. For internal use only
@@ -56,7 +91,7 @@ func (m *AlternativeSecurityId) GetOdataType()(*string) {
 }
 // GetType gets the type property value. For internal use only
 func (m *AlternativeSecurityId) GetType()(*int32) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *AlternativeSecurityId) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -93,7 +128,7 @@ func (m *AlternativeSecurityId) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AlternativeSecurityId) SetAdditionalData(value map[string]interface{})() {
+func (m *AlternativeSecurityId) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIdentityProvider sets the identityProvider property value. For internal use only
@@ -110,5 +145,5 @@ func (m *AlternativeSecurityId) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. For internal use only
 func (m *AlternativeSecurityId) SetType(value *int32)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }

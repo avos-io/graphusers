@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // CallParticipantInfo 
 type CallParticipantInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // Identity of the call participant.
@@ -18,7 +17,7 @@ type CallParticipantInfo struct {
 func NewCallParticipantInfo()(*CallParticipantInfo) {
     m := &CallParticipantInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateCallParticipantInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,14 +25,32 @@ func CreateCallParticipantInfoFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewCallParticipantInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CallParticipantInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *CallParticipantInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *CallParticipantInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["participant"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySetFromDiscriminatorValue , m.SetParticipant)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["participant"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetParticipant(val.(IdentitySetable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -67,7 +84,7 @@ func (m *CallParticipantInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CallParticipantInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *CallParticipantInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property

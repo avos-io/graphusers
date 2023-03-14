@@ -1,11 +1,10 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// PolicyBase provides operations to manage the collection of user entities.
+// PolicyBase 
 type PolicyBase struct {
     DirectoryObject
     // Description for this policy. Required.
@@ -18,8 +17,8 @@ func NewPolicyBase()(*PolicyBase) {
     m := &PolicyBase{
         DirectoryObject: *NewDirectoryObject(),
     }
-    odataTypeValue := "#microsoft.graph.policyBase";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.policyBase"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreatePolicyBaseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -38,6 +37,8 @@ func CreatePolicyBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
                 switch *mappingValue {
                     case "#microsoft.graph.activityBasedTimeoutPolicy":
                         return NewActivityBasedTimeoutPolicy(), nil
+                    case "#microsoft.graph.appManagementPolicy":
+                        return NewAppManagementPolicy(), nil
                     case "#microsoft.graph.authorizationPolicy":
                         return NewAuthorizationPolicy(), nil
                     case "#microsoft.graph.claimsMappingPolicy":
@@ -52,6 +53,8 @@ func CreatePolicyBaseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
                         return NewPermissionGrantPolicy(), nil
                     case "#microsoft.graph.stsPolicy":
                         return NewStsPolicy(), nil
+                    case "#microsoft.graph.tenantAppManagementPolicy":
+                        return NewTenantAppManagementPolicy(), nil
                     case "#microsoft.graph.tokenIssuancePolicy":
                         return NewTokenIssuancePolicy(), nil
                     case "#microsoft.graph.tokenLifetimePolicy":
@@ -73,8 +76,26 @@ func (m *PolicyBase) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PolicyBase) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DirectoryObject.GetFieldDeserializers()
-    res["description"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDescription)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
     return res
 }
 // Serialize serializes information the current object

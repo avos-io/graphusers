@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // LicenseUnitsDetail 
 type LicenseUnitsDetail struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The number of units that are enabled for the active subscription of the service SKU.
     enabled *int32
     // The OdataType property
@@ -22,7 +21,7 @@ type LicenseUnitsDetail struct {
 func NewLicenseUnitsDetail()(*LicenseUnitsDetail) {
     m := &LicenseUnitsDetail{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateLicenseUnitsDetailFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateLicenseUnitsDetailFromDiscriminatorValue(parseNode i878a80d2330e89d26
     return NewLicenseUnitsDetail(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *LicenseUnitsDetail) GetAdditionalData()(map[string]interface{}) {
+func (m *LicenseUnitsDetail) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetEnabled gets the enabled property value. The number of units that are enabled for the active subscription of the service SKU.
@@ -40,10 +39,46 @@ func (m *LicenseUnitsDetail) GetEnabled()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *LicenseUnitsDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["enabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["suspended"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetSuspended)
-    res["warning"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetWarning)
+    res["enabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["suspended"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSuspended(val)
+        }
+        return nil
+    }
+    res["warning"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWarning(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -93,7 +128,7 @@ func (m *LicenseUnitsDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *LicenseUnitsDetail) SetAdditionalData(value map[string]interface{})() {
+func (m *LicenseUnitsDetail) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetEnabled sets the enabled property value. The number of units that are enabled for the active subscription of the service SKU.

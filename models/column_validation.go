@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ColumnValidation 
 type ColumnValidation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Default BCP 47 language tag for the description.
     defaultLanguage *string
     // Localized messages that explain what is needed for this column's value to be considered valid. User will be prompted with this message if validation fails.
@@ -22,7 +21,7 @@ type ColumnValidation struct {
 func NewColumnValidation()(*ColumnValidation) {
     m := &ColumnValidation{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateColumnValidationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateColumnValidationFromDiscriminatorValue(parseNode i878a80d2330e89d2689
     return NewColumnValidation(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ColumnValidation) GetAdditionalData()(map[string]interface{}) {
+func (m *ColumnValidation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDefaultLanguage gets the defaultLanguage property value. Default BCP 47 language tag for the description.
@@ -44,10 +43,50 @@ func (m *ColumnValidation) GetDescriptions()([]DisplayNameLocalizationable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ColumnValidation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["defaultLanguage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDefaultLanguage)
-    res["descriptions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateDisplayNameLocalizationFromDiscriminatorValue , m.SetDescriptions)
-    res["formula"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetFormula)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["defaultLanguage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultLanguage(val)
+        }
+        return nil
+    }
+    res["descriptions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateDisplayNameLocalizationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]DisplayNameLocalizationable, len(val))
+            for i, v := range val {
+                res[i] = v.(DisplayNameLocalizationable)
+            }
+            m.SetDescriptions(res)
+        }
+        return nil
+    }
+    res["formula"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFormula(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFormula gets the formula property value. The formula to validate column value. For examples, see Examples of common formulas in lists.
@@ -67,7 +106,10 @@ func (m *ColumnValidation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     if m.GetDescriptions() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetDescriptions())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDescriptions()))
+        for i, v := range m.GetDescriptions() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("descriptions", cast)
         if err != nil {
             return err
@@ -94,7 +136,7 @@ func (m *ColumnValidation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ColumnValidation) SetAdditionalData(value map[string]interface{})() {
+func (m *ColumnValidation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDefaultLanguage sets the defaultLanguage property value. Default BCP 47 language tag for the description.

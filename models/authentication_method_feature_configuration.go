@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AuthenticationMethodFeatureConfiguration 
 type AuthenticationMethodFeatureConfiguration struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // A single entity that is excluded from this feature.
     excludeTarget FeatureTargetable
     // A single entity that is included in this feature.
@@ -22,7 +21,7 @@ type AuthenticationMethodFeatureConfiguration struct {
 func NewAuthenticationMethodFeatureConfiguration()(*AuthenticationMethodFeatureConfiguration) {
     m := &AuthenticationMethodFeatureConfiguration{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue(parseN
     return NewAuthenticationMethodFeatureConfiguration(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AuthenticationMethodFeatureConfiguration) GetAdditionalData()(map[string]interface{}) {
+func (m *AuthenticationMethodFeatureConfiguration) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetExcludeTarget gets the excludeTarget property value. A single entity that is excluded from this feature.
@@ -40,10 +39,46 @@ func (m *AuthenticationMethodFeatureConfiguration) GetExcludeTarget()(FeatureTar
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AuthenticationMethodFeatureConfiguration) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["excludeTarget"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateFeatureTargetFromDiscriminatorValue , m.SetExcludeTarget)
-    res["includeTarget"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateFeatureTargetFromDiscriminatorValue , m.SetIncludeTarget)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["state"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAdvancedConfigState , m.SetState)
+    res["excludeTarget"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateFeatureTargetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExcludeTarget(val.(FeatureTargetable))
+        }
+        return nil
+    }
+    res["includeTarget"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateFeatureTargetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIncludeTarget(val.(FeatureTargetable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAdvancedConfigState)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val.(*AdvancedConfigState))
+        }
+        return nil
+    }
     return res
 }
 // GetIncludeTarget gets the includeTarget property value. A single entity that is included in this feature.
@@ -94,7 +129,7 @@ func (m *AuthenticationMethodFeatureConfiguration) Serialize(writer i878a80d2330
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AuthenticationMethodFeatureConfiguration) SetAdditionalData(value map[string]interface{})() {
+func (m *AuthenticationMethodFeatureConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetExcludeTarget sets the excludeTarget property value. A single entity that is excluded from this feature.

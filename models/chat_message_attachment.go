@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ChatMessageAttachment 
 type ChatMessageAttachment struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The content of the attachment. If the attachment is a rich card, set the property to the rich card object. This property and contentUrl are mutually exclusive.
     content *string
     // The media type of the content attachment. It can have the following values: reference: Attachment is a link to another file. Populate the contentURL with the link to the object.Any contentTypes supported by the Bot Framework's Attachment objectapplication/vnd.microsoft.card.codesnippet: A code snippet. application/vnd.microsoft.card.announcement: An announcement header.
@@ -21,6 +20,8 @@ type ChatMessageAttachment struct {
     name *string
     // The OdataType property
     odataType *string
+    // The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+    teamsAppId *string
     // URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
     thumbnailUrl *string
 }
@@ -28,7 +29,7 @@ type ChatMessageAttachment struct {
 func NewChatMessageAttachment()(*ChatMessageAttachment) {
     m := &ChatMessageAttachment{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateChatMessageAttachmentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +37,7 @@ func CreateChatMessageAttachmentFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewChatMessageAttachment(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessageAttachment) GetAdditionalData()(map[string]interface{}) {
+func (m *ChatMessageAttachment) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetContent gets the content property value. The content of the attachment. If the attachment is a rich card, set the property to the rich card object. This property and contentUrl are mutually exclusive.
@@ -54,13 +55,86 @@ func (m *ChatMessageAttachment) GetContentUrl()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ChatMessageAttachment) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["content"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetContent)
-    res["contentType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetContentType)
-    res["contentUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetContentUrl)
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["name"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["thumbnailUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetThumbnailUrl)
+    res["content"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContent(val)
+        }
+        return nil
+    }
+    res["contentType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentType(val)
+        }
+        return nil
+    }
+    res["contentUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentUrl(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["teamsAppId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTeamsAppId(val)
+        }
+        return nil
+    }
+    res["thumbnailUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetThumbnailUrl(val)
+        }
+        return nil
+    }
     return res
 }
 // GetId gets the id property value. Read-only. Unique id of the attachment.
@@ -74,6 +148,10 @@ func (m *ChatMessageAttachment) GetName()(*string) {
 // GetOdataType gets the @odata.type property value. The OdataType property
 func (m *ChatMessageAttachment) GetOdataType()(*string) {
     return m.odataType
+}
+// GetTeamsAppId gets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+func (m *ChatMessageAttachment) GetTeamsAppId()(*string) {
+    return m.teamsAppId
 }
 // GetThumbnailUrl gets the thumbnailUrl property value. URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
 func (m *ChatMessageAttachment) GetThumbnailUrl()(*string) {
@@ -118,6 +196,12 @@ func (m *ChatMessageAttachment) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     {
+        err := writer.WriteStringValue("teamsAppId", m.GetTeamsAppId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("thumbnailUrl", m.GetThumbnailUrl())
         if err != nil {
             return err
@@ -132,7 +216,7 @@ func (m *ChatMessageAttachment) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessageAttachment) SetAdditionalData(value map[string]interface{})() {
+func (m *ChatMessageAttachment) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetContent sets the content property value. The content of the attachment. If the attachment is a rich card, set the property to the rich card object. This property and contentUrl are mutually exclusive.
@@ -158,6 +242,10 @@ func (m *ChatMessageAttachment) SetName(value *string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ChatMessageAttachment) SetOdataType(value *string)() {
     m.odataType = value
+}
+// SetTeamsAppId sets the teamsAppId property value. The ID of the Teams app that is associated with the attachment. The property is specifically used to attribute a Teams message card to the specified app.
+func (m *ChatMessageAttachment) SetTeamsAppId(value *string)() {
+    m.teamsAppId = value
 }
 // SetThumbnailUrl sets the thumbnailUrl property value. URL to a thumbnail image that the channel can use if it supports using an alternative, smaller form of content or contentUrl. For example, if you set contentType to application/word and set contentUrl to the location of the Word document, you might include a thumbnail image that represents the document. The channel could display the thumbnail image instead of the document. When the user clicks the image, the channel would open the document.
 func (m *ChatMessageAttachment) SetThumbnailUrl(value *string)() {

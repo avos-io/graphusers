@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ScoredEmailAddress 
 type ScoredEmailAddress struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The email address.
     address *string
     // The itemId property
@@ -24,7 +23,7 @@ type ScoredEmailAddress struct {
 func NewScoredEmailAddress()(*ScoredEmailAddress) {
     m := &ScoredEmailAddress{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateScoredEmailAddressFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreateScoredEmailAddressFromDiscriminatorValue(parseNode i878a80d2330e89d26
     return NewScoredEmailAddress(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ScoredEmailAddress) GetAdditionalData()(map[string]interface{}) {
+func (m *ScoredEmailAddress) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAddress gets the address property value. The email address.
@@ -42,11 +41,56 @@ func (m *ScoredEmailAddress) GetAddress()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ScoredEmailAddress) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["address"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAddress)
-    res["itemId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetItemId)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["relevanceScore"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetRelevanceScore)
-    res["selectionLikelihood"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseSelectionLikelihoodInfo , m.SetSelectionLikelihood)
+    res["address"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAddress(val)
+        }
+        return nil
+    }
+    res["itemId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetItemId(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["relevanceScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRelevanceScore(val)
+        }
+        return nil
+    }
+    res["selectionLikelihood"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseSelectionLikelihoodInfo)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSelectionLikelihood(val.(*SelectionLikelihoodInfo))
+        }
+        return nil
+    }
     return res
 }
 // GetItemId gets the itemId property value. The itemId property
@@ -107,7 +151,7 @@ func (m *ScoredEmailAddress) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ScoredEmailAddress) SetAdditionalData(value map[string]interface{})() {
+func (m *ScoredEmailAddress) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAddress sets the address property value. The email address.

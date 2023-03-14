@@ -1,7 +1,7 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -23,15 +23,15 @@ type IosVppEBook struct {
     // The Vpp token's organization name.
     vppOrganizationName *string
     // The Vpp token ID.
-    vppTokenId *string
+    vppTokenId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
 // NewIosVppEBook instantiates a new IosVppEBook and sets the default values.
 func NewIosVppEBook()(*IosVppEBook) {
     m := &IosVppEBook{
         ManagedEBook: *NewManagedEBook(),
     }
-    odataTypeValue := "#microsoft.graph.iosVppEBook";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.iosVppEBook"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateIosVppEBookFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -45,14 +45,90 @@ func (m *IosVppEBook) GetAppleId()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *IosVppEBook) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.ManagedEBook.GetFieldDeserializers()
-    res["appleId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAppleId)
-    res["genres"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetGenres)
-    res["language"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLanguage)
-    res["seller"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSeller)
-    res["totalLicenseCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTotalLicenseCount)
-    res["usedLicenseCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetUsedLicenseCount)
-    res["vppOrganizationName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVppOrganizationName)
-    res["vppTokenId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVppTokenId)
+    res["appleId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAppleId(val)
+        }
+        return nil
+    }
+    res["genres"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetGenres(res)
+        }
+        return nil
+    }
+    res["language"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLanguage(val)
+        }
+        return nil
+    }
+    res["seller"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSeller(val)
+        }
+        return nil
+    }
+    res["totalLicenseCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTotalLicenseCount(val)
+        }
+        return nil
+    }
+    res["usedLicenseCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUsedLicenseCount(val)
+        }
+        return nil
+    }
+    res["vppOrganizationName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVppOrganizationName(val)
+        }
+        return nil
+    }
+    res["vppTokenId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVppTokenId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGenres gets the genres property value. Genres.
@@ -80,7 +156,7 @@ func (m *IosVppEBook) GetVppOrganizationName()(*string) {
     return m.vppOrganizationName
 }
 // GetVppTokenId gets the vppTokenId property value. The Vpp token ID.
-func (m *IosVppEBook) GetVppTokenId()(*string) {
+func (m *IosVppEBook) GetVppTokenId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.vppTokenId
 }
 // Serialize serializes information the current object
@@ -132,7 +208,7 @@ func (m *IosVppEBook) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err = writer.WriteStringValue("vppTokenId", m.GetVppTokenId())
+        err = writer.WriteUUIDValue("vppTokenId", m.GetVppTokenId())
         if err != nil {
             return err
         }
@@ -168,6 +244,6 @@ func (m *IosVppEBook) SetVppOrganizationName(value *string)() {
     m.vppOrganizationName = value
 }
 // SetVppTokenId sets the vppTokenId property value. The Vpp token ID.
-func (m *IosVppEBook) SetVppTokenId(value *string)() {
+func (m *IosVppEBook) SetVppTokenId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.vppTokenId = value
 }

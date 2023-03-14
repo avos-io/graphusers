@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // EntitlementManagementSchedule 
 type EntitlementManagementSchedule struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // When the access should expire.
     expiration ExpirationPatternable
     // The OdataType property
@@ -23,7 +22,7 @@ type EntitlementManagementSchedule struct {
 func NewEntitlementManagementSchedule()(*EntitlementManagementSchedule) {
     m := &EntitlementManagementSchedule{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateEntitlementManagementScheduleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -31,7 +30,7 @@ func CreateEntitlementManagementScheduleFromDiscriminatorValue(parseNode i878a80
     return NewEntitlementManagementSchedule(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *EntitlementManagementSchedule) GetAdditionalData()(map[string]interface{}) {
+func (m *EntitlementManagementSchedule) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetExpiration gets the expiration property value. When the access should expire.
@@ -41,10 +40,46 @@ func (m *EntitlementManagementSchedule) GetExpiration()(ExpirationPatternable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *EntitlementManagementSchedule) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["expiration"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateExpirationPatternFromDiscriminatorValue , m.SetExpiration)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["recurrence"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreatePatternedRecurrenceFromDiscriminatorValue , m.SetRecurrence)
-    res["startDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetStartDateTime)
+    res["expiration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateExpirationPatternFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExpiration(val.(ExpirationPatternable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["recurrence"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePatternedRecurrenceFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecurrence(val.(PatternedRecurrenceable))
+        }
+        return nil
+    }
+    res["startDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartDateTime(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -94,7 +129,7 @@ func (m *EntitlementManagementSchedule) Serialize(writer i878a80d2330e89d2689638
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *EntitlementManagementSchedule) SetAdditionalData(value map[string]interface{})() {
+func (m *EntitlementManagementSchedule) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetExpiration sets the expiration property value. When the access should expire.

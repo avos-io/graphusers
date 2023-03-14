@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // IosNetworkUsageRule network Usage Rules allow enterprises to specify how managed apps use networks, such as cellular data networks.
 type IosNetworkUsageRule struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // If set to true, corresponding managed apps will not be allowed to use cellular data at any time.
     cellularDataBlocked *bool
     // If set to true, corresponding managed apps will not be allowed to use cellular data when roaming.
@@ -22,7 +21,7 @@ type IosNetworkUsageRule struct {
 func NewIosNetworkUsageRule()(*IosNetworkUsageRule) {
     m := &IosNetworkUsageRule{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateIosNetworkUsageRuleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateIosNetworkUsageRuleFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewIosNetworkUsageRule(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IosNetworkUsageRule) GetAdditionalData()(map[string]interface{}) {
+func (m *IosNetworkUsageRule) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCellularDataBlocked gets the cellularDataBlocked property value. If set to true, corresponding managed apps will not be allowed to use cellular data at any time.
@@ -44,10 +43,50 @@ func (m *IosNetworkUsageRule) GetCellularDataBlockWhenRoaming()(*bool) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *IosNetworkUsageRule) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["cellularDataBlocked"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetCellularDataBlocked)
-    res["cellularDataBlockWhenRoaming"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetCellularDataBlockWhenRoaming)
-    res["managedApps"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateAppListItemFromDiscriminatorValue , m.SetManagedApps)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["cellularDataBlocked"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCellularDataBlocked(val)
+        }
+        return nil
+    }
+    res["cellularDataBlockWhenRoaming"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCellularDataBlockWhenRoaming(val)
+        }
+        return nil
+    }
+    res["managedApps"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAppListItemFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AppListItemable, len(val))
+            for i, v := range val {
+                res[i] = v.(AppListItemable)
+            }
+            m.SetManagedApps(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetManagedApps gets the managedApps property value. Information about the managed apps that this rule is going to apply to. This collection can contain a maximum of 500 elements.
@@ -73,7 +112,10 @@ func (m *IosNetworkUsageRule) Serialize(writer i878a80d2330e89d26896388a3f487eef
         }
     }
     if m.GetManagedApps() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetManagedApps())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetManagedApps()))
+        for i, v := range m.GetManagedApps() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("managedApps", cast)
         if err != nil {
             return err
@@ -94,7 +136,7 @@ func (m *IosNetworkUsageRule) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IosNetworkUsageRule) SetAdditionalData(value map[string]interface{})() {
+func (m *IosNetworkUsageRule) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCellularDataBlocked sets the cellularDataBlocked property value. If set to true, corresponding managed apps will not be allowed to use cellular data at any time.

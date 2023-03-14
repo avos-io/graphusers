@@ -1,14 +1,13 @@
 package security
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // OcrSettings 
 type OcrSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates whether or not OCR is enabled for the case.
     isEnabled *bool
     // Maximum image size that will be processed in KB).
@@ -22,7 +21,7 @@ type OcrSettings struct {
 func NewOcrSettings()(*OcrSettings) {
     m := &OcrSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateOcrSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateOcrSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewOcrSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OcrSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *OcrSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OcrSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["isEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsEnabled)
-    res["maxImageSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMaxImageSize)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["timeout"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetTimeout)
+    res["isEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsEnabled(val)
+        }
+        return nil
+    }
+    res["maxImageSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMaxImageSize(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["timeout"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTimeout(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsEnabled gets the isEnabled property value. Indicates whether or not OCR is enabled for the case.
@@ -93,7 +128,7 @@ func (m *OcrSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OcrSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *OcrSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIsEnabled sets the isEnabled property value. Indicates whether or not OCR is enabled for the case.

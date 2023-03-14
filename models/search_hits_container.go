@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SearchHitsContainer 
 type SearchHitsContainer struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The aggregations property
     aggregations []SearchAggregationable
     // A collection of the search results.
@@ -24,7 +23,7 @@ type SearchHitsContainer struct {
 func NewSearchHitsContainer()(*SearchHitsContainer) {
     m := &SearchHitsContainer{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSearchHitsContainerFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreateSearchHitsContainerFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewSearchHitsContainer(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SearchHitsContainer) GetAdditionalData()(map[string]interface{}) {
+func (m *SearchHitsContainer) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAggregations gets the aggregations property value. The aggregations property
@@ -42,11 +41,64 @@ func (m *SearchHitsContainer) GetAggregations()([]SearchAggregationable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SearchHitsContainer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["aggregations"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSearchAggregationFromDiscriminatorValue , m.SetAggregations)
-    res["hits"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSearchHitFromDiscriminatorValue , m.SetHits)
-    res["moreResultsAvailable"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetMoreResultsAvailable)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["total"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTotal)
+    res["aggregations"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSearchAggregationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SearchAggregationable, len(val))
+            for i, v := range val {
+                res[i] = v.(SearchAggregationable)
+            }
+            m.SetAggregations(res)
+        }
+        return nil
+    }
+    res["hits"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSearchHitFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SearchHitable, len(val))
+            for i, v := range val {
+                res[i] = v.(SearchHitable)
+            }
+            m.SetHits(res)
+        }
+        return nil
+    }
+    res["moreResultsAvailable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMoreResultsAvailable(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["total"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTotal(val)
+        }
+        return nil
+    }
     return res
 }
 // GetHits gets the hits property value. A collection of the search results.
@@ -68,14 +120,20 @@ func (m *SearchHitsContainer) GetTotal()(*int32) {
 // Serialize serializes information the current object
 func (m *SearchHitsContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     if m.GetAggregations() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetAggregations())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAggregations()))
+        for i, v := range m.GetAggregations() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("aggregations", cast)
         if err != nil {
             return err
         }
     }
     if m.GetHits() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetHits())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHits()))
+        for i, v := range m.GetHits() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("hits", cast)
         if err != nil {
             return err
@@ -108,7 +166,7 @@ func (m *SearchHitsContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SearchHitsContainer) SetAdditionalData(value map[string]interface{})() {
+func (m *SearchHitsContainer) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAggregations sets the aggregations property value. The aggregations property

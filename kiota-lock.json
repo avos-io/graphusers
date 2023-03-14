@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "23B3EB973DDBC522E1BCE6E5C5CEE85F69F55E707C59C731E5B66268D495FC5CED5214B0A3E02F193434A6F29BB82710C733C73CEDE9B5F6A5EC841AE79406DC",
+  "descriptionHash": "FE18C5A9B666C084A1C30A1198705ECF9932E8EBE5AD65F61F7593C5AFEBF45FF51975E9087092F1452864BD3596F7FAFED6313C6341C8563D61AAE567EC1CB8",
   "descriptionLocation": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.0.0.0",
+  "kiotaVersion": "0.11.1-preview",
   "clientClassName": "Client",
   "clientNamespaceName": "github.com/avos-io/graphusers",
   "language": "Go",
@@ -10,11 +10,13 @@
   "includeAdditionalData": true,
   "serializers": [
     "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
-    "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory"
+    "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory"
   ],
   "deserializers": [
     "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
-    "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory"
+    "Microsoft.Kiota.Serialization.Text.TextParseNodeFactory",
+    "Microsoft.Kiota.Serialization.Form.FormParseNodeFactory"
   ],
   "structuredMimeTypes": [
     "application/json",
@@ -24,8 +26,9 @@
     "text/yaml"
   ],
   "includePatterns": [
-    "/users",
-    "/users/*"
+    "/users/**",
+    "/groups/*/*"
   ],
-  "excludePatterns": null
+  "excludePatterns": [],
+  "disabledValidationRules": []
 }

@@ -1,20 +1,19 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ResourceReference 
 type ResourceReference struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The item's unique identifier.
     id *string
     // The OdataType property
     odataType *string
     // A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
-    type_escaped *string
+    typeEscaped *string
     // A URL leading to the referenced item.
     webUrl *string
 }
@@ -22,7 +21,7 @@ type ResourceReference struct {
 func NewResourceReference()(*ResourceReference) {
     m := &ResourceReference{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateResourceReferenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateResourceReferenceFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewResourceReference(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ResourceReference) GetAdditionalData()(map[string]interface{}) {
+func (m *ResourceReference) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ResourceReference) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
-    res["webUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetWebUrl)
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
+    res["webUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWebUrl(val)
+        }
+        return nil
+    }
     return res
 }
 // GetId gets the id property value. The item's unique identifier.
@@ -52,7 +87,7 @@ func (m *ResourceReference) GetOdataType()(*string) {
 }
 // GetType gets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
 func (m *ResourceReference) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // GetWebUrl gets the webUrl property value. A URL leading to the referenced item.
 func (m *ResourceReference) GetWebUrl()(*string) {
@@ -93,7 +128,7 @@ func (m *ResourceReference) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ResourceReference) SetAdditionalData(value map[string]interface{})() {
+func (m *ResourceReference) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetId sets the id property value. The item's unique identifier.
@@ -106,7 +141,7 @@ func (m *ResourceReference) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
 func (m *ResourceReference) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }
 // SetWebUrl sets the webUrl property value. A URL leading to the referenced item.
 func (m *ResourceReference) SetWebUrl(value *string)() {

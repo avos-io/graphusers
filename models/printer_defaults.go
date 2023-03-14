@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PrinterDefaults 
 type PrinterDefaults struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The default color mode to use when printing the document. Valid values are described in the following table.
     colorMode *PrintColorMode
     // The default content (MIME) type to use when processing documents.
@@ -50,7 +49,7 @@ type PrinterDefaults struct {
 func NewPrinterDefaults()(*PrinterDefaults) {
     m := &PrinterDefaults{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePrinterDefaultsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -58,7 +57,7 @@ func CreatePrinterDefaultsFromDiscriminatorValue(parseNode i878a80d2330e89d26896
     return NewPrinterDefaults(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrinterDefaults) GetAdditionalData()(map[string]interface{}) {
+func (m *PrinterDefaults) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetColorMode gets the colorMode property value. The default color mode to use when printing the document. Valid values are described in the following table.
@@ -84,24 +83,190 @@ func (m *PrinterDefaults) GetDuplexMode()(*PrintDuplexMode) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PrinterDefaults) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["colorMode"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintColorMode , m.SetColorMode)
-    res["contentType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetContentType)
-    res["copiesPerJob"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCopiesPerJob)
-    res["dpi"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDpi)
-    res["duplexMode"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintDuplexMode , m.SetDuplexMode)
-    res["finishings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParsePrintFinishing , m.SetFinishings)
-    res["fitPdfToPage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetFitPdfToPage)
-    res["inputBin"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetInputBin)
-    res["mediaColor"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMediaColor)
-    res["mediaSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMediaSize)
-    res["mediaType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMediaType)
-    res["multipageLayout"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintMultipageLayout , m.SetMultipageLayout)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["orientation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintOrientation , m.SetOrientation)
-    res["outputBin"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOutputBin)
-    res["pagesPerSheet"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetPagesPerSheet)
-    res["quality"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintQuality , m.SetQuality)
-    res["scaling"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrintScaling , m.SetScaling)
+    res["colorMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintColorMode)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetColorMode(val.(*PrintColorMode))
+        }
+        return nil
+    }
+    res["contentType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentType(val)
+        }
+        return nil
+    }
+    res["copiesPerJob"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCopiesPerJob(val)
+        }
+        return nil
+    }
+    res["dpi"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDpi(val)
+        }
+        return nil
+    }
+    res["duplexMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintDuplexMode)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDuplexMode(val.(*PrintDuplexMode))
+        }
+        return nil
+    }
+    res["finishings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParsePrintFinishing)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]PrintFinishing, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*PrintFinishing))
+            }
+            m.SetFinishings(res)
+        }
+        return nil
+    }
+    res["fitPdfToPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFitPdfToPage(val)
+        }
+        return nil
+    }
+    res["inputBin"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInputBin(val)
+        }
+        return nil
+    }
+    res["mediaColor"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMediaColor(val)
+        }
+        return nil
+    }
+    res["mediaSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMediaSize(val)
+        }
+        return nil
+    }
+    res["mediaType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMediaType(val)
+        }
+        return nil
+    }
+    res["multipageLayout"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintMultipageLayout)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMultipageLayout(val.(*PrintMultipageLayout))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["orientation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintOrientation)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOrientation(val.(*PrintOrientation))
+        }
+        return nil
+    }
+    res["outputBin"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOutputBin(val)
+        }
+        return nil
+    }
+    res["pagesPerSheet"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPagesPerSheet(val)
+        }
+        return nil
+    }
+    res["quality"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintQuality)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetQuality(val.(*PrintQuality))
+        }
+        return nil
+    }
+    res["scaling"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrintScaling)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScaling(val.(*PrintScaling))
+        }
+        return nil
+    }
     return res
 }
 // GetFinishings gets the finishings property value. The default set of finishings to apply to print jobs. Valid values are described in the following table.
@@ -281,7 +446,7 @@ func (m *PrinterDefaults) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrinterDefaults) SetAdditionalData(value map[string]interface{})() {
+func (m *PrinterDefaults) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetColorMode sets the colorMode property value. The default color mode to use when printing the document. Valid values are described in the following table.

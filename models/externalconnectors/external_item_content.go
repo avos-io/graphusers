@@ -1,18 +1,17 @@
 package externalconnectors
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ExternalItemContent 
 type ExternalItemContent struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // The type property
-    type_escaped *ExternalItemContentType
+    typeEscaped *ExternalItemContentType
     // The content for the externalItem. Required.
     value *string
 }
@@ -20,7 +19,7 @@ type ExternalItemContent struct {
 func NewExternalItemContent()(*ExternalItemContent) {
     m := &ExternalItemContent{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateExternalItemContentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateExternalItemContentFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewExternalItemContent(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ExternalItemContent) GetAdditionalData()(map[string]interface{}) {
+func (m *ExternalItemContent) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ExternalItemContent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseExternalItemContentType , m.SetType)
-    res["value"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetValue)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseExternalItemContentType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val.(*ExternalItemContentType))
+        }
+        return nil
+    }
+    res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetValue(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -45,7 +71,7 @@ func (m *ExternalItemContent) GetOdataType()(*string) {
 }
 // GetType gets the type property value. The type property
 func (m *ExternalItemContent) GetType()(*ExternalItemContentType) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // GetValue gets the value property value. The content for the externalItem. Required.
 func (m *ExternalItemContent) GetValue()(*string) {
@@ -81,7 +107,7 @@ func (m *ExternalItemContent) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ExternalItemContent) SetAdditionalData(value map[string]interface{})() {
+func (m *ExternalItemContent) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
@@ -90,7 +116,7 @@ func (m *ExternalItemContent) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. The type property
 func (m *ExternalItemContent) SetType(value *ExternalItemContentType)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }
 // SetValue sets the value property value. The content for the externalItem. Required.
 func (m *ExternalItemContent) SetValue(value *string)() {

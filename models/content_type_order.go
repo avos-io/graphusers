@@ -1,16 +1,15 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ContentTypeOrder 
 type ContentTypeOrder struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Whether this is the default Content Type
-    default_escaped *bool
+    defaultEscaped *bool
     // The OdataType property
     odataType *string
     // Specifies the position in which the Content Type appears in the selection UI.
@@ -20,7 +19,7 @@ type ContentTypeOrder struct {
 func NewContentTypeOrder()(*ContentTypeOrder) {
     m := &ContentTypeOrder{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateContentTypeOrderFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,19 +27,46 @@ func CreateContentTypeOrderFromDiscriminatorValue(parseNode i878a80d2330e89d2689
     return NewContentTypeOrder(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ContentTypeOrder) GetAdditionalData()(map[string]interface{}) {
+func (m *ContentTypeOrder) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDefault gets the default property value. Whether this is the default Content Type
 func (m *ContentTypeOrder) GetDefault()(*bool) {
-    return m.default_escaped
+    return m.defaultEscaped
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ContentTypeOrder) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["default"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetDefault)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["position"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetPosition)
+    res["default"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefault(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["position"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPosition(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -80,12 +106,12 @@ func (m *ContentTypeOrder) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ContentTypeOrder) SetAdditionalData(value map[string]interface{})() {
+func (m *ContentTypeOrder) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDefault sets the default property value. Whether this is the default Content Type
 func (m *ContentTypeOrder) SetDefault(value *bool)() {
-    m.default_escaped = value
+    m.defaultEscaped = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ContentTypeOrder) SetOdataType(value *string)() {

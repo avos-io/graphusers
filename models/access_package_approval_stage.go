@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AccessPackageApprovalStage 
 type AccessPackageApprovalStage struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The number of days that a request can be pending a response before it is automatically denied.
     durationBeforeAutomaticDenial *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
     // If escalation is required, the time a request can be pending a response from a primary approver.
@@ -32,7 +31,7 @@ type AccessPackageApprovalStage struct {
 func NewAccessPackageApprovalStage()(*AccessPackageApprovalStage) {
     m := &AccessPackageApprovalStage{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAccessPackageApprovalStageFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -40,7 +39,7 @@ func CreateAccessPackageApprovalStageFromDiscriminatorValue(parseNode i878a80d23
     return NewAccessPackageApprovalStage(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessPackageApprovalStage) GetAdditionalData()(map[string]interface{}) {
+func (m *AccessPackageApprovalStage) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDurationBeforeAutomaticDenial gets the durationBeforeAutomaticDenial property value. The number of days that a request can be pending a response before it is automatically denied.
@@ -66,15 +65,112 @@ func (m *AccessPackageApprovalStage) GetFallbackPrimaryApprovers()([]SubjectSeta
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessPackageApprovalStage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["durationBeforeAutomaticDenial"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetDurationBeforeAutomaticDenial)
-    res["durationBeforeEscalation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetDurationBeforeEscalation)
-    res["escalationApprovers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue , m.SetEscalationApprovers)
-    res["fallbackEscalationApprovers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue , m.SetFallbackEscalationApprovers)
-    res["fallbackPrimaryApprovers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue , m.SetFallbackPrimaryApprovers)
-    res["isApproverJustificationRequired"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsApproverJustificationRequired)
-    res["isEscalationEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsEscalationEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["primaryApprovers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue , m.SetPrimaryApprovers)
+    res["durationBeforeAutomaticDenial"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDurationBeforeAutomaticDenial(val)
+        }
+        return nil
+    }
+    res["durationBeforeEscalation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDurationBeforeEscalation(val)
+        }
+        return nil
+    }
+    res["escalationApprovers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SubjectSetable, len(val))
+            for i, v := range val {
+                res[i] = v.(SubjectSetable)
+            }
+            m.SetEscalationApprovers(res)
+        }
+        return nil
+    }
+    res["fallbackEscalationApprovers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SubjectSetable, len(val))
+            for i, v := range val {
+                res[i] = v.(SubjectSetable)
+            }
+            m.SetFallbackEscalationApprovers(res)
+        }
+        return nil
+    }
+    res["fallbackPrimaryApprovers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SubjectSetable, len(val))
+            for i, v := range val {
+                res[i] = v.(SubjectSetable)
+            }
+            m.SetFallbackPrimaryApprovers(res)
+        }
+        return nil
+    }
+    res["isApproverJustificationRequired"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsApproverJustificationRequired(val)
+        }
+        return nil
+    }
+    res["isEscalationEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsEscalationEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["primaryApprovers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateSubjectSetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]SubjectSetable, len(val))
+            for i, v := range val {
+                res[i] = v.(SubjectSetable)
+            }
+            m.SetPrimaryApprovers(res)
+        }
+        return nil
+    }
     return res
 }
 // GetIsApproverJustificationRequired gets the isApproverJustificationRequired property value. Indicates whether the approver is required to provide a justification for approving a request.
@@ -108,21 +204,30 @@ func (m *AccessPackageApprovalStage) Serialize(writer i878a80d2330e89d26896388a3
         }
     }
     if m.GetEscalationApprovers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetEscalationApprovers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetEscalationApprovers()))
+        for i, v := range m.GetEscalationApprovers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("escalationApprovers", cast)
         if err != nil {
             return err
         }
     }
     if m.GetFallbackEscalationApprovers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetFallbackEscalationApprovers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFallbackEscalationApprovers()))
+        for i, v := range m.GetFallbackEscalationApprovers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("fallbackEscalationApprovers", cast)
         if err != nil {
             return err
         }
     }
     if m.GetFallbackPrimaryApprovers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetFallbackPrimaryApprovers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFallbackPrimaryApprovers()))
+        for i, v := range m.GetFallbackPrimaryApprovers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("fallbackPrimaryApprovers", cast)
         if err != nil {
             return err
@@ -147,7 +252,10 @@ func (m *AccessPackageApprovalStage) Serialize(writer i878a80d2330e89d26896388a3
         }
     }
     if m.GetPrimaryApprovers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetPrimaryApprovers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPrimaryApprovers()))
+        for i, v := range m.GetPrimaryApprovers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("primaryApprovers", cast)
         if err != nil {
             return err
@@ -162,7 +270,7 @@ func (m *AccessPackageApprovalStage) Serialize(writer i878a80d2330e89d26896388a3
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessPackageApprovalStage) SetAdditionalData(value map[string]interface{})() {
+func (m *AccessPackageApprovalStage) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDurationBeforeAutomaticDenial sets the durationBeforeAutomaticDenial property value. The number of days that a request can be pending a response before it is automatically denied.

@@ -11,7 +11,9 @@ type Directoryable interface {
     GetAdministrativeUnits()([]AdministrativeUnitable)
     GetDeletedItems()([]DirectoryObjectable)
     GetFederationConfigurations()([]IdentityProviderBaseable)
+    GetOnPremisesSynchronization()([]OnPremisesDirectorySynchronizationable)
     SetAdministrativeUnits(value []AdministrativeUnitable)()
     SetDeletedItems(value []DirectoryObjectable)()
     SetFederationConfigurations(value []IdentityProviderBaseable)()
+    SetOnPremisesSynchronization(value []OnPremisesDirectorySynchronizationable)()
 }

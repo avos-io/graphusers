@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // VerifiedDomain 
 type VerifiedDomain struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // For example, Email, OfficeCommunicationsOnline.
     capabilities *string
     // true if this is the default domain associated with the tenant; otherwise, false.
@@ -20,13 +19,13 @@ type VerifiedDomain struct {
     // The OdataType property
     odataType *string
     // For example, Managed.
-    type_escaped *string
+    typeEscaped *string
 }
 // NewVerifiedDomain instantiates a new verifiedDomain and sets the default values.
 func NewVerifiedDomain()(*VerifiedDomain) {
     m := &VerifiedDomain{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateVerifiedDomainFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateVerifiedDomainFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewVerifiedDomain(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *VerifiedDomain) GetAdditionalData()(map[string]interface{}) {
+func (m *VerifiedDomain) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCapabilities gets the capabilities property value. For example, Email, OfficeCommunicationsOnline.
@@ -44,12 +43,66 @@ func (m *VerifiedDomain) GetCapabilities()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *VerifiedDomain) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["capabilities"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCapabilities)
-    res["isDefault"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsDefault)
-    res["isInitial"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsInitial)
-    res["name"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
+    res["capabilities"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCapabilities(val)
+        }
+        return nil
+    }
+    res["isDefault"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsDefault(val)
+        }
+        return nil
+    }
+    res["isInitial"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsInitial(val)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsDefault gets the isDefault property value. true if this is the default domain associated with the tenant; otherwise, false.
@@ -70,7 +123,7 @@ func (m *VerifiedDomain) GetOdataType()(*string) {
 }
 // GetType gets the type property value. For example, Managed.
 func (m *VerifiedDomain) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *VerifiedDomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -119,7 +172,7 @@ func (m *VerifiedDomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *VerifiedDomain) SetAdditionalData(value map[string]interface{})() {
+func (m *VerifiedDomain) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCapabilities sets the capabilities property value. For example, Email, OfficeCommunicationsOnline.
@@ -144,5 +197,5 @@ func (m *VerifiedDomain) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. For example, Managed.
 func (m *VerifiedDomain) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }

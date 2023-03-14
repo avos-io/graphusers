@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // CertificateAuthority 
 type CertificateAuthority struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Required. The base64 encoded string representing the public certificate.
     certificate []byte
     // The URL of the certificate revocation list.
@@ -28,7 +27,7 @@ type CertificateAuthority struct {
 func NewCertificateAuthority()(*CertificateAuthority) {
     m := &CertificateAuthority{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateCertificateAuthorityFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateCertificateAuthorityFromDiscriminatorValue(parseNode i878a80d2330e89d
     return NewCertificateAuthority(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CertificateAuthority) GetAdditionalData()(map[string]interface{}) {
+func (m *CertificateAuthority) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCertificate gets the certificate property value. Required. The base64 encoded string representing the public certificate.
@@ -54,13 +53,76 @@ func (m *CertificateAuthority) GetDeltaCertificateRevocationListUrl()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *CertificateAuthority) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["certificate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetByteArrayValue(m.SetCertificate)
-    res["certificateRevocationListUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCertificateRevocationListUrl)
-    res["deltaCertificateRevocationListUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDeltaCertificateRevocationListUrl)
-    res["isRootAuthority"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsRootAuthority)
-    res["issuer"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIssuer)
-    res["issuerSki"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIssuerSki)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["certificate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetByteArrayValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertificate(val)
+        }
+        return nil
+    }
+    res["certificateRevocationListUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertificateRevocationListUrl(val)
+        }
+        return nil
+    }
+    res["deltaCertificateRevocationListUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeltaCertificateRevocationListUrl(val)
+        }
+        return nil
+    }
+    res["isRootAuthority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRootAuthority(val)
+        }
+        return nil
+    }
+    res["issuer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuer(val)
+        }
+        return nil
+    }
+    res["issuerSki"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuerSki(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsRootAuthority gets the isRootAuthority property value. Required. true if the trusted certificate is a root authority, false if the trusted certificate is an intermediate authority.
@@ -132,7 +194,7 @@ func (m *CertificateAuthority) Serialize(writer i878a80d2330e89d26896388a3f487ee
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *CertificateAuthority) SetAdditionalData(value map[string]interface{})() {
+func (m *CertificateAuthority) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCertificate sets the certificate property value. Required. The base64 encoded string representing the public certificate.

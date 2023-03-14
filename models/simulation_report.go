@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SimulationReport 
 type SimulationReport struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // Overview of an attack simulation and training campaign.
@@ -20,7 +19,7 @@ type SimulationReport struct {
 func NewSimulationReport()(*SimulationReport) {
     m := &SimulationReport{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSimulationReportFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,46 @@ func CreateSimulationReportFromDiscriminatorValue(parseNode i878a80d2330e89d2689
     return NewSimulationReport(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SimulationReport) GetAdditionalData()(map[string]interface{}) {
+func (m *SimulationReport) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SimulationReport) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["overview"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateSimulationReportOverviewFromDiscriminatorValue , m.SetOverview)
-    res["simulationUsers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateUserSimulationDetailsFromDiscriminatorValue , m.SetSimulationUsers)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["overview"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSimulationReportOverviewFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOverview(val.(SimulationReportOverviewable))
+        }
+        return nil
+    }
+    res["simulationUsers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateUserSimulationDetailsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]UserSimulationDetailsable, len(val))
+            for i, v := range val {
+                res[i] = v.(UserSimulationDetailsable)
+            }
+            m.SetSimulationUsers(res)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -66,7 +96,10 @@ func (m *SimulationReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
         }
     }
     if m.GetSimulationUsers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetSimulationUsers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSimulationUsers()))
+        for i, v := range m.GetSimulationUsers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("simulationUsers", cast)
         if err != nil {
             return err
@@ -81,7 +114,7 @@ func (m *SimulationReport) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SimulationReport) SetAdditionalData(value map[string]interface{})() {
+func (m *SimulationReport) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property

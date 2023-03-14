@@ -1,28 +1,27 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // TeamSummary 
 type TeamSummary struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // The guestsCount property
+    additionalData map[string]any
+    // Count of guests in a team.
     guestsCount *int32
-    // The membersCount property
+    // Count of members in a team.
     membersCount *int32
     // The OdataType property
     odataType *string
-    // The ownersCount property
+    // Count of owners in a team.
     ownersCount *int32
 }
 // NewTeamSummary instantiates a new teamSummary and sets the default values.
 func NewTeamSummary()(*TeamSummary) {
     m := &TeamSummary{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateTeamSummaryFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,23 +29,59 @@ func CreateTeamSummaryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewTeamSummary(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamSummary) GetAdditionalData()(map[string]interface{}) {
+func (m *TeamSummary) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TeamSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["guestsCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetGuestsCount)
-    res["membersCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMembersCount)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["ownersCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetOwnersCount)
+    res["guestsCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGuestsCount(val)
+        }
+        return nil
+    }
+    res["membersCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMembersCount(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["ownersCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOwnersCount(val)
+        }
+        return nil
+    }
     return res
 }
-// GetGuestsCount gets the guestsCount property value. The guestsCount property
+// GetGuestsCount gets the guestsCount property value. Count of guests in a team.
 func (m *TeamSummary) GetGuestsCount()(*int32) {
     return m.guestsCount
 }
-// GetMembersCount gets the membersCount property value. The membersCount property
+// GetMembersCount gets the membersCount property value. Count of members in a team.
 func (m *TeamSummary) GetMembersCount()(*int32) {
     return m.membersCount
 }
@@ -54,7 +89,7 @@ func (m *TeamSummary) GetMembersCount()(*int32) {
 func (m *TeamSummary) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOwnersCount gets the ownersCount property value. The ownersCount property
+// GetOwnersCount gets the ownersCount property value. Count of owners in a team.
 func (m *TeamSummary) GetOwnersCount()(*int32) {
     return m.ownersCount
 }
@@ -93,14 +128,14 @@ func (m *TeamSummary) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamSummary) SetAdditionalData(value map[string]interface{})() {
+func (m *TeamSummary) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetGuestsCount sets the guestsCount property value. The guestsCount property
+// SetGuestsCount sets the guestsCount property value. Count of guests in a team.
 func (m *TeamSummary) SetGuestsCount(value *int32)() {
     m.guestsCount = value
 }
-// SetMembersCount sets the membersCount property value. The membersCount property
+// SetMembersCount sets the membersCount property value. Count of members in a team.
 func (m *TeamSummary) SetMembersCount(value *int32)() {
     m.membersCount = value
 }
@@ -108,7 +143,7 @@ func (m *TeamSummary) SetMembersCount(value *int32)() {
 func (m *TeamSummary) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOwnersCount sets the ownersCount property value. The ownersCount property
+// SetOwnersCount sets the ownersCount property value. Count of owners in a team.
 func (m *TeamSummary) SetOwnersCount(value *int32)() {
     m.ownersCount = value
 }

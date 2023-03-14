@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // UserTrainingContentEventInfo 
 type UserTrainingContentEventInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Browser of the user from where the training event was generated.
     browser *string
     // Date and time of the training content playback by the user.
@@ -27,7 +26,7 @@ type UserTrainingContentEventInfo struct {
 func NewUserTrainingContentEventInfo()(*UserTrainingContentEventInfo) {
     m := &UserTrainingContentEventInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateUserTrainingContentEventInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +34,7 @@ func CreateUserTrainingContentEventInfoFromDiscriminatorValue(parseNode i878a80d
     return NewUserTrainingContentEventInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserTrainingContentEventInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *UserTrainingContentEventInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetBrowser gets the browser property value. Browser of the user from where the training event was generated.
@@ -49,12 +48,66 @@ func (m *UserTrainingContentEventInfo) GetContentDateTime()(*i336074805fc853987a
 // GetFieldDeserializers the deserialization information for the current model
 func (m *UserTrainingContentEventInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["browser"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetBrowser)
-    res["contentDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetContentDateTime)
-    res["ipAddress"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIpAddress)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["osPlatformDeviceDetails"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOsPlatformDeviceDetails)
-    res["potentialScoreImpact"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetPotentialScoreImpact)
+    res["browser"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBrowser(val)
+        }
+        return nil
+    }
+    res["contentDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentDateTime(val)
+        }
+        return nil
+    }
+    res["ipAddress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIpAddress(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["osPlatformDeviceDetails"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOsPlatformDeviceDetails(val)
+        }
+        return nil
+    }
+    res["potentialScoreImpact"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPotentialScoreImpact(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIpAddress gets the ipAddress property value. IP address of the user for the training event.
@@ -120,7 +173,7 @@ func (m *UserTrainingContentEventInfo) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserTrainingContentEventInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *UserTrainingContentEventInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetBrowser sets the browser property value. Browser of the user from where the training event was generated.

@@ -1,26 +1,25 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PatternedRecurrence 
 type PatternedRecurrence struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // The frequency of an event.  For access reviews: Do not specify this property for a one-time access review.  Only interval, dayOfMonth, and type (weekly, absoluteMonthly) properties of recurrencePattern are supported.
     pattern RecurrencePatternable
     // The duration of an event.
-    range_escaped RecurrenceRangeable
+    rangeEscaped RecurrenceRangeable
 }
 // NewPatternedRecurrence instantiates a new patternedRecurrence and sets the default values.
 func NewPatternedRecurrence()(*PatternedRecurrence) {
     m := &PatternedRecurrence{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePatternedRecurrenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreatePatternedRecurrenceFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewPatternedRecurrence(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PatternedRecurrence) GetAdditionalData()(map[string]interface{}) {
+func (m *PatternedRecurrence) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PatternedRecurrence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["pattern"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateRecurrencePatternFromDiscriminatorValue , m.SetPattern)
-    res["range"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateRecurrenceRangeFromDiscriminatorValue , m.SetRange)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["pattern"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateRecurrencePatternFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPattern(val.(RecurrencePatternable))
+        }
+        return nil
+    }
+    res["range"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateRecurrenceRangeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRange(val.(RecurrenceRangeable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -49,7 +75,7 @@ func (m *PatternedRecurrence) GetPattern()(RecurrencePatternable) {
 }
 // GetRange gets the range property value. The duration of an event.
 func (m *PatternedRecurrence) GetRange()(RecurrenceRangeable) {
-    return m.range_escaped
+    return m.rangeEscaped
 }
 // Serialize serializes information the current object
 func (m *PatternedRecurrence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -80,7 +106,7 @@ func (m *PatternedRecurrence) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PatternedRecurrence) SetAdditionalData(value map[string]interface{})() {
+func (m *PatternedRecurrence) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
@@ -93,5 +119,5 @@ func (m *PatternedRecurrence) SetPattern(value RecurrencePatternable)() {
 }
 // SetRange sets the range property value. The duration of an event.
 func (m *PatternedRecurrence) SetRange(value RecurrenceRangeable)() {
-    m.range_escaped = value
+    m.rangeEscaped = value
 }

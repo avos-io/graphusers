@@ -1,7 +1,7 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -19,7 +19,7 @@ type SubscribedSku struct {
     // Information about the service plans that are available with the SKU. Not nullable
     servicePlans []ServicePlanInfoable
     // The unique identifier (GUID) for the service SKU.
-    skuId *string
+    skuId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.
     skuPartNumber *string
 }
@@ -49,13 +49,80 @@ func (m *SubscribedSku) GetConsumedUnits()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SubscribedSku) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["appliesTo"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAppliesTo)
-    res["capabilityStatus"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCapabilityStatus)
-    res["consumedUnits"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetConsumedUnits)
-    res["prepaidUnits"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateLicenseUnitsDetailFromDiscriminatorValue , m.SetPrepaidUnits)
-    res["servicePlans"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateServicePlanInfoFromDiscriminatorValue , m.SetServicePlans)
-    res["skuId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSkuId)
-    res["skuPartNumber"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSkuPartNumber)
+    res["appliesTo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAppliesTo(val)
+        }
+        return nil
+    }
+    res["capabilityStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCapabilityStatus(val)
+        }
+        return nil
+    }
+    res["consumedUnits"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConsumedUnits(val)
+        }
+        return nil
+    }
+    res["prepaidUnits"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateLicenseUnitsDetailFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPrepaidUnits(val.(LicenseUnitsDetailable))
+        }
+        return nil
+    }
+    res["servicePlans"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateServicePlanInfoFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ServicePlanInfoable, len(val))
+            for i, v := range val {
+                res[i] = v.(ServicePlanInfoable)
+            }
+            m.SetServicePlans(res)
+        }
+        return nil
+    }
+    res["skuId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSkuId(val)
+        }
+        return nil
+    }
+    res["skuPartNumber"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSkuPartNumber(val)
+        }
+        return nil
+    }
     return res
 }
 // GetPrepaidUnits gets the prepaidUnits property value. Information about the number and status of prepaid licenses.
@@ -67,7 +134,7 @@ func (m *SubscribedSku) GetServicePlans()([]ServicePlanInfoable) {
     return m.servicePlans
 }
 // GetSkuId gets the skuId property value. The unique identifier (GUID) for the service SKU.
-func (m *SubscribedSku) GetSkuId()(*string) {
+func (m *SubscribedSku) GetSkuId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.skuId
 }
 // GetSkuPartNumber gets the skuPartNumber property value. The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.
@@ -105,14 +172,17 @@ func (m *SubscribedSku) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     if m.GetServicePlans() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetServicePlans())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetServicePlans()))
+        for i, v := range m.GetServicePlans() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("servicePlans", cast)
         if err != nil {
             return err
         }
     }
     {
-        err = writer.WriteStringValue("skuId", m.GetSkuId())
+        err = writer.WriteUUIDValue("skuId", m.GetSkuId())
         if err != nil {
             return err
         }
@@ -146,7 +216,7 @@ func (m *SubscribedSku) SetServicePlans(value []ServicePlanInfoable)() {
     m.servicePlans = value
 }
 // SetSkuId sets the skuId property value. The unique identifier (GUID) for the service SKU.
-func (m *SubscribedSku) SetSkuId(value *string)() {
+func (m *SubscribedSku) SetSkuId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.skuId = value
 }
 // SetSkuPartNumber sets the skuPartNumber property value. The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.

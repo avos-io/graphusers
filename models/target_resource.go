@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // TargetResource 
 type TargetResource struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates the visible name defined for the resource. Typically specified when the resource is created.
     displayName *string
     // When type is set to Group, this indicates the group type. Possible values are: unifiedGroups, azureAD, and unknownFutureValue
@@ -20,7 +19,7 @@ type TargetResource struct {
     // The OdataType property
     odataType *string
     // Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
-    type_escaped *string
+    typeEscaped *string
     // When type is set to User, this includes the user name that initiated the action; null for other types.
     userPrincipalName *string
 }
@@ -28,7 +27,7 @@ type TargetResource struct {
 func NewTargetResource()(*TargetResource) {
     m := &TargetResource{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateTargetResourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateTargetResourceFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewTargetResource(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TargetResource) GetAdditionalData()(map[string]interface{}) {
+func (m *TargetResource) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDisplayName gets the displayName property value. Indicates the visible name defined for the resource. Typically specified when the resource is created.
@@ -46,13 +45,80 @@ func (m *TargetResource) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TargetResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["groupType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseGroupType , m.SetGroupType)
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["modifiedProperties"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateModifiedPropertyFromDiscriminatorValue , m.SetModifiedProperties)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
-    res["userPrincipalName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUserPrincipalName)
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["groupType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseGroupType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGroupType(val.(*GroupType))
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["modifiedProperties"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateModifiedPropertyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ModifiedPropertyable, len(val))
+            for i, v := range val {
+                res[i] = v.(ModifiedPropertyable)
+            }
+            m.SetModifiedProperties(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
+    res["userPrincipalName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUserPrincipalName(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGroupType gets the groupType property value. When type is set to Group, this indicates the group type. Possible values are: unifiedGroups, azureAD, and unknownFutureValue
@@ -73,7 +139,7 @@ func (m *TargetResource) GetOdataType()(*string) {
 }
 // GetType gets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
 func (m *TargetResource) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // GetUserPrincipalName gets the userPrincipalName property value. When type is set to User, this includes the user name that initiated the action; null for other types.
 func (m *TargetResource) GetUserPrincipalName()(*string) {
@@ -101,7 +167,10 @@ func (m *TargetResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     if m.GetModifiedProperties() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetModifiedProperties())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetModifiedProperties()))
+        for i, v := range m.GetModifiedProperties() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("modifiedProperties", cast)
         if err != nil {
             return err
@@ -134,7 +203,7 @@ func (m *TargetResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TargetResource) SetAdditionalData(value map[string]interface{})() {
+func (m *TargetResource) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDisplayName sets the displayName property value. Indicates the visible name defined for the resource. Typically specified when the resource is created.
@@ -159,7 +228,7 @@ func (m *TargetResource) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
 func (m *TargetResource) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }
 // SetUserPrincipalName sets the userPrincipalName property value. When type is set to User, this includes the user name that initiated the action; null for other types.
 func (m *TargetResource) SetUserPrincipalName(value *string)() {

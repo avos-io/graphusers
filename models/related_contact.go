@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -10,7 +9,7 @@ type RelatedContact struct {
     // Indicates whether the user has been consented to access student data.
     accessConsent *bool
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Name of the contact. Required.
     displayName *string
     // Primary email address of the contact. Required.
@@ -26,7 +25,7 @@ type RelatedContact struct {
 func NewRelatedContact()(*RelatedContact) {
     m := &RelatedContact{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateRelatedContactFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +37,7 @@ func (m *RelatedContact) GetAccessConsent()(*bool) {
     return m.accessConsent
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RelatedContact) GetAdditionalData()(map[string]interface{}) {
+func (m *RelatedContact) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDisplayName gets the displayName property value. Name of the contact. Required.
@@ -52,12 +51,66 @@ func (m *RelatedContact) GetEmailAddress()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RelatedContact) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accessConsent"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAccessConsent)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["emailAddress"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetEmailAddress)
-    res["mobilePhone"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMobilePhone)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["relationship"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseContactRelationship , m.SetRelationship)
+    res["accessConsent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccessConsent(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["emailAddress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEmailAddress(val)
+        }
+        return nil
+    }
+    res["mobilePhone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMobilePhone(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["relationship"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseContactRelationship)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRelationship(val.(*ContactRelationship))
+        }
+        return nil
+    }
     return res
 }
 // GetMobilePhone gets the mobilePhone property value. Mobile phone number of the contact.
@@ -124,7 +177,7 @@ func (m *RelatedContact) SetAccessConsent(value *bool)() {
     m.accessConsent = value
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RelatedContact) SetAdditionalData(value map[string]interface{})() {
+func (m *RelatedContact) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDisplayName sets the displayName property value. Name of the contact. Required.

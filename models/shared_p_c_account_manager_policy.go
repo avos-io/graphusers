@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -10,7 +9,7 @@ type SharedPCAccountManagerPolicy struct {
     // Possible values for when accounts are deleted on a shared PC.
     accountDeletionPolicy *SharedPCAccountDeletionPolicyType
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Sets the percentage of available disk space a PC should have before it stops deleting cached shared PC accounts. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100
     cacheAccountsAboveDiskFreePercentage *int32
     // Specifies when the accounts will start being deleted when they have not been logged on during the specified period, given as number of days. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold.
@@ -24,7 +23,7 @@ type SharedPCAccountManagerPolicy struct {
 func NewSharedPCAccountManagerPolicy()(*SharedPCAccountManagerPolicy) {
     m := &SharedPCAccountManagerPolicy{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSharedPCAccountManagerPolicyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func (m *SharedPCAccountManagerPolicy) GetAccountDeletionPolicy()(*SharedPCAccou
     return m.accountDeletionPolicy
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharedPCAccountManagerPolicy) GetAdditionalData()(map[string]interface{}) {
+func (m *SharedPCAccountManagerPolicy) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCacheAccountsAboveDiskFreePercentage gets the cacheAccountsAboveDiskFreePercentage property value. Sets the percentage of available disk space a PC should have before it stops deleting cached shared PC accounts. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100
@@ -46,11 +45,56 @@ func (m *SharedPCAccountManagerPolicy) GetCacheAccountsAboveDiskFreePercentage()
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SharedPCAccountManagerPolicy) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["accountDeletionPolicy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseSharedPCAccountDeletionPolicyType , m.SetAccountDeletionPolicy)
-    res["cacheAccountsAboveDiskFreePercentage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCacheAccountsAboveDiskFreePercentage)
-    res["inactiveThresholdDays"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetInactiveThresholdDays)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["removeAccountsBelowDiskFreePercentage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetRemoveAccountsBelowDiskFreePercentage)
+    res["accountDeletionPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseSharedPCAccountDeletionPolicyType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccountDeletionPolicy(val.(*SharedPCAccountDeletionPolicyType))
+        }
+        return nil
+    }
+    res["cacheAccountsAboveDiskFreePercentage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCacheAccountsAboveDiskFreePercentage(val)
+        }
+        return nil
+    }
+    res["inactiveThresholdDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInactiveThresholdDays(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["removeAccountsBelowDiskFreePercentage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRemoveAccountsBelowDiskFreePercentage(val)
+        }
+        return nil
+    }
     return res
 }
 // GetInactiveThresholdDays gets the inactiveThresholdDays property value. Specifies when the accounts will start being deleted when they have not been logged on during the specified period, given as number of days. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold.
@@ -111,7 +155,7 @@ func (m *SharedPCAccountManagerPolicy) SetAccountDeletionPolicy(value *SharedPCA
     m.accountDeletionPolicy = value
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharedPCAccountManagerPolicy) SetAdditionalData(value map[string]interface{})() {
+func (m *SharedPCAccountManagerPolicy) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCacheAccountsAboveDiskFreePercentage sets the cacheAccountsAboveDiskFreePercentage property value. Sets the percentage of available disk space a PC should have before it stops deleting cached shared PC accounts. Only applies when AccountDeletionPolicy is DiskSpaceThreshold or DiskSpaceThresholdOrInactiveThreshold. Valid values 0 to 100
