@@ -15,7 +15,7 @@ type ExternalItem struct {
     // A property bag with the properties of the item. The properties MUST conform to the schema defined for the externalConnection. Required.
     properties Propertiesable
 }
-// NewExternalItem instantiates a new externalItem and sets the default values.
+// NewExternalItem instantiates a new ExternalItem and sets the default values.
 func NewExternalItem()(*ExternalItem) {
     m := &ExternalItem{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),

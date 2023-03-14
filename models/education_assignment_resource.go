@@ -12,7 +12,7 @@ type EducationAssignmentResource struct {
     // Resource object that has been associated with this assignment.
     resource EducationResourceable
 }
-// NewEducationAssignmentResource instantiates a new educationAssignmentResource and sets the default values.
+// NewEducationAssignmentResource instantiates a new EducationAssignmentResource and sets the default values.
 func NewEducationAssignmentResource()(*EducationAssignmentResource) {
     m := &EducationAssignmentResource{
         Entity: *NewEntity(),

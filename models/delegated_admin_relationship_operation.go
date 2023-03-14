@@ -19,7 +19,7 @@ type DelegatedAdminRelationshipOperation struct {
     // The status property
     status *LongRunningOperationStatus
 }
-// NewDelegatedAdminRelationshipOperation instantiates a new delegatedAdminRelationshipOperation and sets the default values.
+// NewDelegatedAdminRelationshipOperation instantiates a new DelegatedAdminRelationshipOperation and sets the default values.
 func NewDelegatedAdminRelationshipOperation()(*DelegatedAdminRelationshipOperation) {
     m := &DelegatedAdminRelationshipOperation{
         Entity: *NewEntity(),

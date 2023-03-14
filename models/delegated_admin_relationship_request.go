@@ -17,7 +17,7 @@ type DelegatedAdminRelationshipRequest struct {
     // The status of the request. Read-only. The possible values are: created, pending, succeeded, failed, unknownFutureValue.
     status *DelegatedAdminRelationshipRequestStatus
 }
-// NewDelegatedAdminRelationshipRequest instantiates a new delegatedAdminRelationshipRequest and sets the default values.
+// NewDelegatedAdminRelationshipRequest instantiates a new DelegatedAdminRelationshipRequest and sets the default values.
 func NewDelegatedAdminRelationshipRequest()(*DelegatedAdminRelationshipRequest) {
     m := &DelegatedAdminRelationshipRequest{
         Entity: *NewEntity(),

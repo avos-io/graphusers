@@ -15,7 +15,7 @@ type ExternalGroup struct {
     // A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
     members []Identityable
 }
-// NewExternalGroup instantiates a new externalGroup and sets the default values.
+// NewExternalGroup instantiates a new ExternalGroup and sets the default values.
 func NewExternalGroup()(*ExternalGroup) {
     m := &ExternalGroup{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),

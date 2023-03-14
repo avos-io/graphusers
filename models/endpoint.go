@@ -18,7 +18,7 @@ type Endpoint struct {
     // The uri property
     uri *string
 }
-// NewEndpoint instantiates a new Endpoint and sets the default values.
+// NewEndpoint instantiates a new endpoint and sets the default values.
 func NewEndpoint()(*Endpoint) {
     m := &Endpoint{
         DirectoryObject: *NewDirectoryObject(),

@@ -20,7 +20,7 @@ type WorkbookRangeFont struct {
     // Type of underline applied to the font. The possible values are: None, Single, Double, SingleAccountant, DoubleAccountant.
     underline *string
 }
-// NewWorkbookRangeFont instantiates a new workbookRangeFont and sets the default values.
+// NewWorkbookRangeFont instantiates a new WorkbookRangeFont and sets the default values.
 func NewWorkbookRangeFont()(*WorkbookRangeFont) {
     m := &WorkbookRangeFont{
         Entity: *NewEntity(),

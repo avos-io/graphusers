@@ -12,7 +12,7 @@ type UnifiedRoleEligibilitySchedule struct {
     // The period of the role eligibility.
     scheduleInfo RequestScheduleable
 }
-// NewUnifiedRoleEligibilitySchedule instantiates a new unifiedRoleEligibilitySchedule and sets the default values.
+// NewUnifiedRoleEligibilitySchedule instantiates a new UnifiedRoleEligibilitySchedule and sets the default values.
 func NewUnifiedRoleEligibilitySchedule()(*UnifiedRoleEligibilitySchedule) {
     m := &UnifiedRoleEligibilitySchedule{
         UnifiedRoleScheduleBase: *NewUnifiedRoleScheduleBase(),

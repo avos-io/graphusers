@@ -38,7 +38,7 @@ func NewClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7
     m.pathParameters["baseurl"] = m.requestAdapter.GetBaseUrl()
     return m
 }
-// Groups the groups property
+// Groups provides operations to manage the collection of group entities.
 func (m *Client) Groups()(*iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.GroupsRequestBuilder) {
     return iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.NewGroupsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
@@ -53,7 +53,7 @@ func (m *Client) GroupsById(id string)(*iec5f2438c41fe292e9cdda62cf2ddf63215212b
     }
     return iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.NewGroupItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
-// Users the users property
+// Users provides operations to manage the collection of user entities.
 func (m *Client) Users()(*ia61ecdcc3fa2ab2cf62124fbb2909069ac54c44228e3555ad521c3217c49f1b1.UsersRequestBuilder) {
     return ia61ecdcc3fa2ab2cf62124fbb2909069ac54c44228e3555ad521c3217c49f1b1.NewUsersRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
