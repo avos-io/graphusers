@@ -10,7 +10,7 @@ type AgreementFileLocalization struct {
     // Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.
     versions []AgreementFileVersionable
 }
-// NewAgreementFileLocalization instantiates a new AgreementFileLocalization and sets the default values.
+// NewAgreementFileLocalization instantiates a new agreementFileLocalization and sets the default values.
 func NewAgreementFileLocalization()(*AgreementFileLocalization) {
     m := &AgreementFileLocalization{
         AgreementFileProperties: *NewAgreementFileProperties(),
