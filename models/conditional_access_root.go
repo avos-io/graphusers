@@ -16,7 +16,7 @@ type ConditionalAccessRoot struct {
     // Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
     templates []ConditionalAccessTemplateable
 }
-// NewConditionalAccessRoot instantiates a new ConditionalAccessRoot and sets the default values.
+// NewConditionalAccessRoot instantiates a new conditionalAccessRoot and sets the default values.
 func NewConditionalAccessRoot()(*ConditionalAccessRoot) {
     m := &ConditionalAccessRoot{
         Entity: *NewEntity(),

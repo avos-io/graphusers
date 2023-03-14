@@ -29,7 +29,7 @@ type AccessPackageAssignmentRequest struct {
     // More information on the request processing status. Read-only.
     status *string
 }
-// NewAccessPackageAssignmentRequest instantiates a new accessPackageAssignmentRequest and sets the default values.
+// NewAccessPackageAssignmentRequest instantiates a new AccessPackageAssignmentRequest and sets the default values.
 func NewAccessPackageAssignmentRequest()(*AccessPackageAssignmentRequest) {
     m := &AccessPackageAssignmentRequest{
         Entity: *NewEntity(),

@@ -16,7 +16,7 @@ type IdentityUserFlowAttribute struct {
     // The userFlowAttributeType property
     userFlowAttributeType *IdentityUserFlowAttributeType
 }
-// NewIdentityUserFlowAttribute instantiates a new IdentityUserFlowAttribute and sets the default values.
+// NewIdentityUserFlowAttribute instantiates a new identityUserFlowAttribute and sets the default values.
 func NewIdentityUserFlowAttribute()(*IdentityUserFlowAttribute) {
     m := &IdentityUserFlowAttribute{
         Entity: *NewEntity(),

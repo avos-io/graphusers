@@ -14,7 +14,7 @@ type PrintDocument struct {
     // The document's size in bytes. Read-only.
     size *int64
 }
-// NewPrintDocument instantiates a new printDocument and sets the default values.
+// NewPrintDocument instantiates a new PrintDocument and sets the default values.
 func NewPrintDocument()(*PrintDocument) {
     m := &PrintDocument{
         Entity: *NewEntity(),

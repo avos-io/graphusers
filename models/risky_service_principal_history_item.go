@@ -12,7 +12,7 @@ type RiskyServicePrincipalHistoryItem struct {
     // The identifier of the actor of the operation.
     initiatedBy *string
 }
-// NewRiskyServicePrincipalHistoryItem instantiates a new RiskyServicePrincipalHistoryItem and sets the default values.
+// NewRiskyServicePrincipalHistoryItem instantiates a new riskyServicePrincipalHistoryItem and sets the default values.
 func NewRiskyServicePrincipalHistoryItem()(*RiskyServicePrincipalHistoryItem) {
     m := &RiskyServicePrincipalHistoryItem{
         RiskyServicePrincipal: *NewRiskyServicePrincipal(),

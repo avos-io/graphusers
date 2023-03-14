@@ -25,7 +25,7 @@ type ConnectedOrganization struct {
     // The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not.  The possible values are: configured, proposed, unknownFutureValue.
     state *ConnectedOrganizationState
 }
-// NewConnectedOrganization instantiates a new ConnectedOrganization and sets the default values.
+// NewConnectedOrganization instantiates a new connectedOrganization and sets the default values.
 func NewConnectedOrganization()(*ConnectedOrganization) {
     m := &ConnectedOrganization{
         Entity: *NewEntity(),

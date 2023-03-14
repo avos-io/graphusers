@@ -20,7 +20,7 @@ type ContactFolder struct {
     // The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.
     singleValueExtendedProperties []SingleValueLegacyExtendedPropertyable
 }
-// NewContactFolder instantiates a new ContactFolder and sets the default values.
+// NewContactFolder instantiates a new contactFolder and sets the default values.
 func NewContactFolder()(*ContactFolder) {
     m := &ContactFolder{
         Entity: *NewEntity(),
