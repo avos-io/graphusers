@@ -66,3 +66,10 @@ func (m *AccessPackageQuestionCollectionResponse) Serialize(writer i878a80d2330e
 func (m *AccessPackageQuestionCollectionResponse) SetValue(value []AccessPackageQuestionable)() {
     m.value = value
 }
+// AccessPackageQuestionCollectionResponseable 
+type AccessPackageQuestionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AccessPackageQuestionable)
+    SetValue(value []AccessPackageQuestionable)()
+}

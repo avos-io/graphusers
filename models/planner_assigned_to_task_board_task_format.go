@@ -84,3 +84,12 @@ func (m *PlannerAssignedToTaskBoardTaskFormat) SetOrderHintsByAssignee(value Pla
 func (m *PlannerAssignedToTaskBoardTaskFormat) SetUnassignedOrderHint(value *string)() {
     m.unassignedOrderHint = value
 }
+// PlannerAssignedToTaskBoardTaskFormatable 
+type PlannerAssignedToTaskBoardTaskFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOrderHintsByAssignee()(PlannerOrderHintsByAssigneeable)
+    GetUnassignedOrderHint()(*string)
+    SetOrderHintsByAssignee(value PlannerOrderHintsByAssigneeable)()
+    SetUnassignedOrderHint(value *string)()
+}

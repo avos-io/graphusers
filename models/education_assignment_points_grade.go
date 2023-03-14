@@ -60,3 +60,10 @@ func (m *EducationAssignmentPointsGrade) Serialize(writer i878a80d2330e89d268963
 func (m *EducationAssignmentPointsGrade) SetPoints(value *float32)() {
     m.points = value
 }
+// EducationAssignmentPointsGradeable 
+type EducationAssignmentPointsGradeable interface {
+    EducationAssignmentGradeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPoints()(*float32)
+    SetPoints(value *float32)()
+}

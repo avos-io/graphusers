@@ -58,3 +58,10 @@ func (m *TimeOffItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *TimeOffItem) SetTimeOffReasonId(value *string)() {
     m.timeOffReasonId = value
 }
+// TimeOffItemable 
+type TimeOffItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    ScheduleEntityable
+    GetTimeOffReasonId()(*string)
+    SetTimeOffReasonId(value *string)()
+}

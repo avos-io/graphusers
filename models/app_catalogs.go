@@ -66,3 +66,10 @@ func (m *AppCatalogs) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *AppCatalogs) SetTeamsApps(value []TeamsAppable)() {
     m.teamsApps = value
 }
+// AppCatalogsable 
+type AppCatalogsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetTeamsApps()([]TeamsAppable)
+    SetTeamsApps(value []TeamsAppable)()
+}

@@ -44,6 +44,10 @@ type ItemSitesRequestBuilderGetRequestConfiguration struct {
     // Request query parameters
     QueryParameters *ItemSitesRequestBuilderGetQueryParameters
 }
+// Add provides operations to call the add method.
+func (m *ItemSitesRequestBuilder) Add()(*ItemSitesAddRequestBuilder) {
+    return NewItemSitesAddRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // NewItemSitesRequestBuilderInternal instantiates a new SitesRequestBuilder and sets the default values.
 func NewItemSitesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemSitesRequestBuilder) {
     m := &ItemSitesRequestBuilder{
@@ -63,6 +67,10 @@ func NewItemSitesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemSitesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemSitesRequestBuilder) Count()(*ItemSitesCountRequestBuilder) {
+    return NewItemSitesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the list of SharePoint sites in this group. Access the default site with /sites/root.
 func (m *ItemSitesRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemSitesRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.SiteCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -81,6 +89,10 @@ func (m *ItemSitesRequestBuilder) Get(ctx context.Context, requestConfiguration 
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.SiteCollectionResponseable), nil
+}
+// Remove provides operations to call the remove method.
+func (m *ItemSitesRequestBuilder) Remove()(*ItemSitesRemoveRequestBuilder) {
+    return NewItemSitesRemoveRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation the list of SharePoint sites in this group. Access the default site with /sites/root.
 func (m *ItemSitesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemSitesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

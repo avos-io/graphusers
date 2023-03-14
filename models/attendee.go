@@ -86,3 +86,12 @@ func (m *Attendee) SetProposedNewTime(value TimeSlotable)() {
 func (m *Attendee) SetStatus(value ResponseStatusable)() {
     m.status = value
 }
+// Attendeeable 
+type Attendeeable interface {
+    AttendeeBaseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetProposedNewTime()(TimeSlotable)
+    GetStatus()(ResponseStatusable)
+    SetProposedNewTime(value TimeSlotable)()
+    SetStatus(value ResponseStatusable)()
+}

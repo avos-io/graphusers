@@ -66,3 +66,10 @@ func (m *MicrosoftAuthenticatorAuthenticationMethodTargetCollectionResponse) Ser
 func (m *MicrosoftAuthenticatorAuthenticationMethodTargetCollectionResponse) SetValue(value []MicrosoftAuthenticatorAuthenticationMethodTargetable)() {
     m.value = value
 }
+// MicrosoftAuthenticatorAuthenticationMethodTargetCollectionResponseable 
+type MicrosoftAuthenticatorAuthenticationMethodTargetCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]MicrosoftAuthenticatorAuthenticationMethodTargetable)
+    SetValue(value []MicrosoftAuthenticatorAuthenticationMethodTargetable)()
+}

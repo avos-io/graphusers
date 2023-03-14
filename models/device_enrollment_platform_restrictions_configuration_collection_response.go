@@ -66,3 +66,10 @@ func (m *DeviceEnrollmentPlatformRestrictionsConfigurationCollectionResponse) Se
 func (m *DeviceEnrollmentPlatformRestrictionsConfigurationCollectionResponse) SetValue(value []DeviceEnrollmentPlatformRestrictionsConfigurationable)() {
     m.value = value
 }
+// DeviceEnrollmentPlatformRestrictionsConfigurationCollectionResponseable 
+type DeviceEnrollmentPlatformRestrictionsConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DeviceEnrollmentPlatformRestrictionsConfigurationable)
+    SetValue(value []DeviceEnrollmentPlatformRestrictionsConfigurationable)()
+}

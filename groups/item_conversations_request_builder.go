@@ -68,6 +68,10 @@ func NewItemConversationsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7
     urlParams["request-raw-url"] = rawUrl
     return NewItemConversationsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemConversationsRequestBuilder) Count()(*ItemConversationsCountRequestBuilder) {
+    return NewItemConversationsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve the list of conversations in this group.
 // [Find more info here]
 // 

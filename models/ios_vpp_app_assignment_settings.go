@@ -86,3 +86,12 @@ func (m *IosVppAppAssignmentSettings) SetUseDeviceLicensing(value *bool)() {
 func (m *IosVppAppAssignmentSettings) SetVpnConfigurationId(value *string)() {
     m.vpnConfigurationId = value
 }
+// IosVppAppAssignmentSettingsable 
+type IosVppAppAssignmentSettingsable interface {
+    MobileAppAssignmentSettingsable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetUseDeviceLicensing()(*bool)
+    GetVpnConfigurationId()(*string)
+    SetUseDeviceLicensing(value *bool)()
+    SetVpnConfigurationId(value *string)()
+}

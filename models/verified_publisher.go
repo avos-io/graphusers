@@ -148,3 +148,16 @@ func (m *VerifiedPublisher) SetOdataType(value *string)() {
 func (m *VerifiedPublisher) SetVerifiedPublisherId(value *string)() {
     m.verifiedPublisherId = value
 }
+// VerifiedPublisherable 
+type VerifiedPublisherable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAddedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDisplayName()(*string)
+    GetOdataType()(*string)
+    GetVerifiedPublisherId()(*string)
+    SetAddedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDisplayName(value *string)()
+    SetOdataType(value *string)()
+    SetVerifiedPublisherId(value *string)()
+}

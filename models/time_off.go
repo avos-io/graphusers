@@ -112,3 +112,14 @@ func (m *TimeOff) SetSharedTimeOff(value TimeOffItemable)() {
 func (m *TimeOff) SetUserId(value *string)() {
     m.userId = value
 }
+// TimeOffable 
+type TimeOffable interface {
+    ChangeTrackedEntityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDraftTimeOff()(TimeOffItemable)
+    GetSharedTimeOff()(TimeOffItemable)
+    GetUserId()(*string)
+    SetDraftTimeOff(value TimeOffItemable)()
+    SetSharedTimeOff(value TimeOffItemable)()
+    SetUserId(value *string)()
+}

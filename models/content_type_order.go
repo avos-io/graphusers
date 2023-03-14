@@ -121,3 +121,14 @@ func (m *ContentTypeOrder) SetOdataType(value *string)() {
 func (m *ContentTypeOrder) SetPosition(value *int32)() {
     m.position = value
 }
+// ContentTypeOrderable 
+type ContentTypeOrderable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefault()(*bool)
+    GetOdataType()(*string)
+    GetPosition()(*int32)
+    SetDefault(value *bool)()
+    SetOdataType(value *string)()
+    SetPosition(value *int32)()
+}

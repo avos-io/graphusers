@@ -55,7 +55,7 @@ func (m *ApiApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         return nil
     }
     res["knownClientApplications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-        val, err := n.GetCollectionOfPrimitiveValues("i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID")
+        val, err := n.GetCollectionOfPrimitiveValues("uuid")
         if err != nil {
             return err
         }
@@ -219,4 +219,21 @@ func (m *ApiApplication) SetPreAuthorizedApplications(value []PreAuthorizedAppli
 // SetRequestedAccessTokenVersion sets the requestedAccessTokenVersion property value. Specifies the access token version expected by this resource. This changes the version and format of the JWT produced independent of the endpoint or client used to request the access token.  The endpoint used, v1.0 or v2.0, is chosen by the client and only impacts the version of id_tokens. Resources need to explicitly configure requestedAccessTokenVersion to indicate the supported access token format.  Possible values for requestedAccessTokenVersion are 1, 2, or null. If the value is null, this defaults to 1, which corresponds to the v1.0 endpoint.  If signInAudience on the application is configured as AzureADandPersonalMicrosoftAccount, the value for this property must be 2
 func (m *ApiApplication) SetRequestedAccessTokenVersion(value *int32)() {
     m.requestedAccessTokenVersion = value
+}
+// ApiApplicationable 
+type ApiApplicationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAcceptMappedClaims()(*bool)
+    GetKnownClientApplications()([]i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetOauth2PermissionScopes()([]PermissionScopeable)
+    GetOdataType()(*string)
+    GetPreAuthorizedApplications()([]PreAuthorizedApplicationable)
+    GetRequestedAccessTokenVersion()(*int32)
+    SetAcceptMappedClaims(value *bool)()
+    SetKnownClientApplications(value []i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetOauth2PermissionScopes(value []PermissionScopeable)()
+    SetOdataType(value *string)()
+    SetPreAuthorizedApplications(value []PreAuthorizedApplicationable)()
+    SetRequestedAccessTokenVersion(value *int32)()
 }

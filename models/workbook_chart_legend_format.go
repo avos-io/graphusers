@@ -84,3 +84,12 @@ func (m *WorkbookChartLegendFormat) SetFill(value WorkbookChartFillable)() {
 func (m *WorkbookChartLegendFormat) SetFont(value WorkbookChartFontable)() {
     m.font = value
 }
+// WorkbookChartLegendFormatable 
+type WorkbookChartLegendFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFill()(WorkbookChartFillable)
+    GetFont()(WorkbookChartFontable)
+    SetFill(value WorkbookChartFillable)()
+    SetFont(value WorkbookChartFontable)()
+}

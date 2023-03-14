@@ -58,3 +58,10 @@ func (m *EducationAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a
 func (m *EducationAssignmentSettings) SetSubmissionAnimationDisabled(value *bool)() {
     m.submissionAnimationDisabled = value
 }
+// EducationAssignmentSettingsable 
+type EducationAssignmentSettingsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSubmissionAnimationDisabled()(*bool)
+    SetSubmissionAnimationDisabled(value *bool)()
+}

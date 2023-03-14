@@ -170,3 +170,16 @@ func (m *EducationRubricOutcome) SetRubricQualityFeedback(value []RubricQualityF
 func (m *EducationRubricOutcome) SetRubricQualitySelectedLevels(value []RubricQualitySelectedColumnModelable)() {
     m.rubricQualitySelectedLevels = value
 }
+// EducationRubricOutcomeable 
+type EducationRubricOutcomeable interface {
+    EducationOutcomeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPublishedRubricQualityFeedback()([]RubricQualityFeedbackModelable)
+    GetPublishedRubricQualitySelectedLevels()([]RubricQualitySelectedColumnModelable)
+    GetRubricQualityFeedback()([]RubricQualityFeedbackModelable)
+    GetRubricQualitySelectedLevels()([]RubricQualitySelectedColumnModelable)
+    SetPublishedRubricQualityFeedback(value []RubricQualityFeedbackModelable)()
+    SetPublishedRubricQualitySelectedLevels(value []RubricQualitySelectedColumnModelable)()
+    SetRubricQualityFeedback(value []RubricQualityFeedbackModelable)()
+    SetRubricQualitySelectedLevels(value []RubricQualitySelectedColumnModelable)()
+}

@@ -58,3 +58,10 @@ func (m *WorkbookFilter) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *WorkbookFilter) SetCriteria(value WorkbookFilterCriteriaable)() {
     m.criteria = value
 }
+// WorkbookFilterable 
+type WorkbookFilterable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCriteria()(WorkbookFilterCriteriaable)
+    SetCriteria(value WorkbookFilterCriteriaable)()
+}

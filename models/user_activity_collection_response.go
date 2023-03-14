@@ -66,3 +66,10 @@ func (m *UserActivityCollectionResponse) Serialize(writer i878a80d2330e89d268963
 func (m *UserActivityCollectionResponse) SetValue(value []UserActivityable)() {
     m.value = value
 }
+// UserActivityCollectionResponseable 
+type UserActivityCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]UserActivityable)
+    SetValue(value []UserActivityable)()
+}

@@ -123,3 +123,14 @@ func (m *MediaContentRatingNewZealand) SetOdataType(value *string)() {
 func (m *MediaContentRatingNewZealand) SetTvRating(value *RatingNewZealandTelevisionType)() {
     m.tvRating = value
 }
+// MediaContentRatingNewZealandable 
+type MediaContentRatingNewZealandable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMovieRating()(*RatingNewZealandMoviesType)
+    GetOdataType()(*string)
+    GetTvRating()(*RatingNewZealandTelevisionType)
+    SetMovieRating(value *RatingNewZealandMoviesType)()
+    SetOdataType(value *string)()
+    SetTvRating(value *RatingNewZealandTelevisionType)()
+}

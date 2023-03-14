@@ -66,3 +66,10 @@ func (m *OAuth2PermissionGrantCollectionResponse) Serialize(writer i878a80d2330e
 func (m *OAuth2PermissionGrantCollectionResponse) SetValue(value []OAuth2PermissionGrantable)() {
     m.value = value
 }
+// OAuth2PermissionGrantCollectionResponseable 
+type OAuth2PermissionGrantCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]OAuth2PermissionGrantable)
+    SetValue(value []OAuth2PermissionGrantable)()
+}

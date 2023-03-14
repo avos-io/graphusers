@@ -116,3 +116,14 @@ func (m *ConversationMemberRoleUpdatedEventMessageDetail) SetConversationMemberU
 func (m *ConversationMemberRoleUpdatedEventMessageDetail) SetInitiator(value IdentitySetable)() {
     m.initiator = value
 }
+// ConversationMemberRoleUpdatedEventMessageDetailable 
+type ConversationMemberRoleUpdatedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConversationMemberRoles()([]string)
+    GetConversationMemberUser()(TeamworkUserIdentityable)
+    GetInitiator()(IdentitySetable)
+    SetConversationMemberRoles(value []string)()
+    SetConversationMemberUser(value TeamworkUserIdentityable)()
+    SetInitiator(value IdentitySetable)()
+}

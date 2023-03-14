@@ -119,6 +119,21 @@ func (m *ItemPlannerRequestBuilder) Patch(ctx context.Context, body i43734bed85a
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.PlannerGroupable), nil
 }
+// Plans provides operations to manage the plans property of the microsoft.graph.plannerGroup entity.
+func (m *ItemPlannerRequestBuilder) Plans()(*ItemPlannerPlansRequestBuilder) {
+    return NewItemPlannerPlansRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// PlansById provides operations to manage the plans property of the microsoft.graph.plannerGroup entity.
+func (m *ItemPlannerRequestBuilder) PlansById(id string)(*ItemPlannerPlansPlannerPlanItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["plannerPlan%2Did"] = id
+    }
+    return NewItemPlannerPlansPlannerPlanItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // ToDeleteRequestInformation delete navigation property planner for groups
 func (m *ItemPlannerRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemPlannerRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()

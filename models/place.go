@@ -16,7 +16,7 @@ type Place struct {
     // The phone number of the place.
     phone *string
 }
-// NewPlace instantiates a new Place and sets the default values.
+// NewPlace instantiates a new place and sets the default values.
 func NewPlace()(*Place) {
     m := &Place{
         Entity: *NewEntity(),
@@ -155,4 +155,17 @@ func (m *Place) SetGeoCoordinates(value OutlookGeoCoordinatesable)() {
 // SetPhone sets the phone property value. The phone number of the place.
 func (m *Place) SetPhone(value *string)() {
     m.phone = value
+}
+// Placeable 
+type Placeable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAddress()(PhysicalAddressable)
+    GetDisplayName()(*string)
+    GetGeoCoordinates()(OutlookGeoCoordinatesable)
+    GetPhone()(*string)
+    SetAddress(value PhysicalAddressable)()
+    SetDisplayName(value *string)()
+    SetGeoCoordinates(value OutlookGeoCoordinatesable)()
+    SetPhone(value *string)()
 }

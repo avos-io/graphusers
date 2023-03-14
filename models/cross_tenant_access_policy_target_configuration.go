@@ -130,3 +130,14 @@ func (m *CrossTenantAccessPolicyTargetConfiguration) SetOdataType(value *string)
 func (m *CrossTenantAccessPolicyTargetConfiguration) SetTargets(value []CrossTenantAccessPolicyTargetable)() {
     m.targets = value
 }
+// CrossTenantAccessPolicyTargetConfigurationable 
+type CrossTenantAccessPolicyTargetConfigurationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAccessType()(*CrossTenantAccessPolicyTargetConfigurationAccessType)
+    GetOdataType()(*string)
+    GetTargets()([]CrossTenantAccessPolicyTargetable)
+    SetAccessType(value *CrossTenantAccessPolicyTargetConfigurationAccessType)()
+    SetOdataType(value *string)()
+    SetTargets(value []CrossTenantAccessPolicyTargetable)()
+}

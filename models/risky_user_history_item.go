@@ -14,7 +14,7 @@ type RiskyUserHistoryItem struct {
     // The ID of the user.
     userId *string
 }
-// NewRiskyUserHistoryItem instantiates a new riskyUserHistoryItem and sets the default values.
+// NewRiskyUserHistoryItem instantiates a new RiskyUserHistoryItem and sets the default values.
 func NewRiskyUserHistoryItem()(*RiskyUserHistoryItem) {
     m := &RiskyUserHistoryItem{
         RiskyUser: *NewRiskyUser(),
@@ -109,4 +109,15 @@ func (m *RiskyUserHistoryItem) SetInitiatedBy(value *string)() {
 // SetUserId sets the userId property value. The ID of the user.
 func (m *RiskyUserHistoryItem) SetUserId(value *string)() {
     m.userId = value
+}
+// RiskyUserHistoryItemable 
+type RiskyUserHistoryItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    RiskyUserable
+    GetActivity()(RiskUserActivityable)
+    GetInitiatedBy()(*string)
+    GetUserId()(*string)
+    SetActivity(value RiskUserActivityable)()
+    SetInitiatedBy(value *string)()
+    SetUserId(value *string)()
 }

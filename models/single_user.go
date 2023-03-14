@@ -86,3 +86,12 @@ func (m *SingleUser) SetDescription(value *string)() {
 func (m *SingleUser) SetUserId(value *string)() {
     m.userId = value
 }
+// SingleUserable 
+type SingleUserable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    SubjectSetable
+    GetDescription()(*string)
+    GetUserId()(*string)
+    SetDescription(value *string)()
+    SetUserId(value *string)()
+}

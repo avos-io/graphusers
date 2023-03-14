@@ -147,3 +147,16 @@ func (m *WindowsMinimumOperatingSystem) SetV80(value *bool)() {
 func (m *WindowsMinimumOperatingSystem) SetV81(value *bool)() {
     m.v8_1 = value
 }
+// WindowsMinimumOperatingSystemable 
+type WindowsMinimumOperatingSystemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetV100()(*bool)
+    GetV80()(*bool)
+    GetV81()(*bool)
+    SetOdataType(value *string)()
+    SetV100(value *bool)()
+    SetV80(value *bool)()
+    SetV81(value *bool)()
+}

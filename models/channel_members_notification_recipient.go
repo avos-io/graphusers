@@ -86,3 +86,12 @@ func (m *ChannelMembersNotificationRecipient) SetChannelId(value *string)() {
 func (m *ChannelMembersNotificationRecipient) SetTeamId(value *string)() {
     m.teamId = value
 }
+// ChannelMembersNotificationRecipientable 
+type ChannelMembersNotificationRecipientable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    TeamworkNotificationRecipientable
+    GetChannelId()(*string)
+    GetTeamId()(*string)
+    SetChannelId(value *string)()
+    SetTeamId(value *string)()
+}

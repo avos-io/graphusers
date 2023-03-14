@@ -199,3 +199,20 @@ func (m *EducationCourse) SetOdataType(value *string)() {
 func (m *EducationCourse) SetSubject(value *string)() {
     m.subject = value
 }
+// EducationCourseable 
+type EducationCourseable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCourseNumber()(*string)
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetExternalId()(*string)
+    GetOdataType()(*string)
+    GetSubject()(*string)
+    SetCourseNumber(value *string)()
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetExternalId(value *string)()
+    SetOdataType(value *string)()
+    SetSubject(value *string)()
+}

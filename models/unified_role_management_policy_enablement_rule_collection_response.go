@@ -66,3 +66,10 @@ func (m *UnifiedRoleManagementPolicyEnablementRuleCollectionResponse) Serialize(
 func (m *UnifiedRoleManagementPolicyEnablementRuleCollectionResponse) SetValue(value []UnifiedRoleManagementPolicyEnablementRuleable)() {
     m.value = value
 }
+// UnifiedRoleManagementPolicyEnablementRuleCollectionResponseable 
+type UnifiedRoleManagementPolicyEnablementRuleCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]UnifiedRoleManagementPolicyEnablementRuleable)
+    SetValue(value []UnifiedRoleManagementPolicyEnablementRuleable)()
+}

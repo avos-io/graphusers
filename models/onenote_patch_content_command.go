@@ -175,3 +175,18 @@ func (m *OnenotePatchContentCommand) SetPosition(value *OnenotePatchInsertPositi
 func (m *OnenotePatchContentCommand) SetTarget(value *string)() {
     m.target = value
 }
+// OnenotePatchContentCommandable 
+type OnenotePatchContentCommandable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAction()(*OnenotePatchActionType)
+    GetContent()(*string)
+    GetOdataType()(*string)
+    GetPosition()(*OnenotePatchInsertPosition)
+    GetTarget()(*string)
+    SetAction(value *OnenotePatchActionType)()
+    SetContent(value *string)()
+    SetOdataType(value *string)()
+    SetPosition(value *OnenotePatchInsertPosition)()
+    SetTarget(value *string)()
+}

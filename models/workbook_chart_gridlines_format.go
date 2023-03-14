@@ -58,3 +58,10 @@ func (m *WorkbookChartGridlinesFormat) Serialize(writer i878a80d2330e89d26896388
 func (m *WorkbookChartGridlinesFormat) SetLine(value WorkbookChartLineFormatable)() {
     m.line = value
 }
+// WorkbookChartGridlinesFormatable 
+type WorkbookChartGridlinesFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetLine()(WorkbookChartLineFormatable)
+    SetLine(value WorkbookChartLineFormatable)()
+}

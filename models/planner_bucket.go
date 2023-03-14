@@ -144,3 +144,16 @@ func (m *PlannerBucket) SetPlanId(value *string)() {
 func (m *PlannerBucket) SetTasks(value []PlannerTaskable)() {
     m.tasks = value
 }
+// PlannerBucketable 
+type PlannerBucketable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetName()(*string)
+    GetOrderHint()(*string)
+    GetPlanId()(*string)
+    GetTasks()([]PlannerTaskable)
+    SetName(value *string)()
+    SetOrderHint(value *string)()
+    SetPlanId(value *string)()
+    SetTasks(value []PlannerTaskable)()
+}

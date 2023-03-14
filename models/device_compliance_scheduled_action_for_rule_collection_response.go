@@ -66,3 +66,10 @@ func (m *DeviceComplianceScheduledActionForRuleCollectionResponse) Serialize(wri
 func (m *DeviceComplianceScheduledActionForRuleCollectionResponse) SetValue(value []DeviceComplianceScheduledActionForRuleable)() {
     m.value = value
 }
+// DeviceComplianceScheduledActionForRuleCollectionResponseable 
+type DeviceComplianceScheduledActionForRuleCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DeviceComplianceScheduledActionForRuleable)
+    SetValue(value []DeviceComplianceScheduledActionForRuleable)()
+}

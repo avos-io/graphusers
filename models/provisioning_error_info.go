@@ -200,3 +200,20 @@ func (m *ProvisioningErrorInfo) SetReason(value *string)() {
 func (m *ProvisioningErrorInfo) SetRecommendedAction(value *string)() {
     m.recommendedAction = value
 }
+// ProvisioningErrorInfoable 
+type ProvisioningErrorInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAdditionalDetails()(*string)
+    GetErrorCategory()(*ProvisioningStatusErrorCategory)
+    GetErrorCode()(*string)
+    GetOdataType()(*string)
+    GetReason()(*string)
+    GetRecommendedAction()(*string)
+    SetAdditionalDetails(value *string)()
+    SetErrorCategory(value *ProvisioningStatusErrorCategory)()
+    SetErrorCode(value *string)()
+    SetOdataType(value *string)()
+    SetReason(value *string)()
+    SetRecommendedAction(value *string)()
+}

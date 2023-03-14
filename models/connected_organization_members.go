@@ -86,3 +86,12 @@ func (m *ConnectedOrganizationMembers) SetConnectedOrganizationId(value *string)
 func (m *ConnectedOrganizationMembers) SetDescription(value *string)() {
     m.description = value
 }
+// ConnectedOrganizationMembersable 
+type ConnectedOrganizationMembersable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    SubjectSetable
+    GetConnectedOrganizationId()(*string)
+    GetDescription()(*string)
+    SetConnectedOrganizationId(value *string)()
+    SetDescription(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *PlannerGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 func (m *PlannerGroup) SetPlans(value []PlannerPlanable)() {
     m.plans = value
 }
+// PlannerGroupable 
+type PlannerGroupable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPlans()([]PlannerPlanable)
+    SetPlans(value []PlannerPlanable)()
+}

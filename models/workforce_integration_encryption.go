@@ -122,3 +122,14 @@ func (m *WorkforceIntegrationEncryption) SetProtocol(value *WorkforceIntegration
 func (m *WorkforceIntegrationEncryption) SetSecret(value *string)() {
     m.secret = value
 }
+// WorkforceIntegrationEncryptionable 
+type WorkforceIntegrationEncryptionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetProtocol()(*WorkforceIntegrationEncryptionProtocol)
+    GetSecret()(*string)
+    SetOdataType(value *string)()
+    SetProtocol(value *WorkforceIntegrationEncryptionProtocol)()
+    SetSecret(value *string)()
+}

@@ -155,3 +155,16 @@ func (m *UnifiedRolePermission) SetExcludedResourceActions(value []string)() {
 func (m *UnifiedRolePermission) SetOdataType(value *string)() {
     m.odataType = value
 }
+// UnifiedRolePermissionable 
+type UnifiedRolePermissionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowedResourceActions()([]string)
+    GetCondition()(*string)
+    GetExcludedResourceActions()([]string)
+    GetOdataType()(*string)
+    SetAllowedResourceActions(value []string)()
+    SetCondition(value *string)()
+    SetExcludedResourceActions(value []string)()
+    SetOdataType(value *string)()
+}

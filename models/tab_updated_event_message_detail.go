@@ -86,3 +86,12 @@ func (m *TabUpdatedEventMessageDetail) SetInitiator(value IdentitySetable)() {
 func (m *TabUpdatedEventMessageDetail) SetTabId(value *string)() {
     m.tabId = value
 }
+// TabUpdatedEventMessageDetailable 
+type TabUpdatedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInitiator()(IdentitySetable)
+    GetTabId()(*string)
+    SetInitiator(value IdentitySetable)()
+    SetTabId(value *string)()
+}

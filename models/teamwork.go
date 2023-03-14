@@ -100,3 +100,12 @@ func (m *Teamwork) SetDeletedTeams(value []DeletedTeamable)() {
 func (m *Teamwork) SetWorkforceIntegrations(value []WorkforceIntegrationable)() {
     m.workforceIntegrations = value
 }
+// Teamworkable 
+type Teamworkable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeletedTeams()([]DeletedTeamable)
+    GetWorkforceIntegrations()([]WorkforceIntegrationable)
+    SetDeletedTeams(value []DeletedTeamable)()
+    SetWorkforceIntegrations(value []WorkforceIntegrationable)()
+}

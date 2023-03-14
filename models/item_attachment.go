@@ -60,3 +60,10 @@ func (m *ItemAttachment) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *ItemAttachment) SetItem(value OutlookItemable)() {
     m.item = value
 }
+// ItemAttachmentable 
+type ItemAttachmentable interface {
+    Attachmentable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetItem()(OutlookItemable)
+    SetItem(value OutlookItemable)()
+}

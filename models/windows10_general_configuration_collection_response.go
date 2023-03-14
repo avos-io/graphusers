@@ -66,3 +66,10 @@ func (m *Windows10GeneralConfigurationCollectionResponse) Serialize(writer i878a
 func (m *Windows10GeneralConfigurationCollectionResponse) SetValue(value []Windows10GeneralConfigurationable)() {
     m.value = value
 }
+// Windows10GeneralConfigurationCollectionResponseable 
+type Windows10GeneralConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Windows10GeneralConfigurationable)
+    SetValue(value []Windows10GeneralConfigurationable)()
+}

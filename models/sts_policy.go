@@ -150,3 +150,14 @@ func (m *StsPolicy) SetDefinition(value []string)() {
 func (m *StsPolicy) SetIsOrganizationDefault(value *bool)() {
     m.isOrganizationDefault = value
 }
+// StsPolicyable 
+type StsPolicyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    PolicyBaseable
+    GetAppliesTo()([]DirectoryObjectable)
+    GetDefinition()([]string)
+    GetIsOrganizationDefault()(*bool)
+    SetAppliesTo(value []DirectoryObjectable)()
+    SetDefinition(value []string)()
+    SetIsOrganizationDefault(value *bool)()
+}

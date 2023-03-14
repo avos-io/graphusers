@@ -66,3 +66,10 @@ func (m *BookingQuestionAssignmentCollectionResponse) Serialize(writer i878a80d2
 func (m *BookingQuestionAssignmentCollectionResponse) SetValue(value []BookingQuestionAssignmentable)() {
     m.value = value
 }
+// BookingQuestionAssignmentCollectionResponseable 
+type BookingQuestionAssignmentCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]BookingQuestionAssignmentable)
+    SetValue(value []BookingQuestionAssignmentable)()
+}

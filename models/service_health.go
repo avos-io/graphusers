@@ -119,3 +119,14 @@ func (m *ServiceHealth) SetService(value *string)() {
 func (m *ServiceHealth) SetStatus(value *ServiceHealthStatus)() {
     m.status = value
 }
+// ServiceHealthable 
+type ServiceHealthable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIssues()([]ServiceHealthIssueable)
+    GetService()(*string)
+    GetStatus()(*ServiceHealthStatus)
+    SetIssues(value []ServiceHealthIssueable)()
+    SetService(value *string)()
+    SetStatus(value *ServiceHealthStatus)()
+}

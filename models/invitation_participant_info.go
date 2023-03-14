@@ -199,3 +199,20 @@ func (m *InvitationParticipantInfo) SetRemoveFromDefaultAudioRoutingGroup(value 
 func (m *InvitationParticipantInfo) SetReplacesCallId(value *string)() {
     m.replacesCallId = value
 }
+// InvitationParticipantInfoable 
+type InvitationParticipantInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetHidden()(*bool)
+    GetIdentity()(IdentitySetable)
+    GetOdataType()(*string)
+    GetParticipantId()(*string)
+    GetRemoveFromDefaultAudioRoutingGroup()(*bool)
+    GetReplacesCallId()(*string)
+    SetHidden(value *bool)()
+    SetIdentity(value IdentitySetable)()
+    SetOdataType(value *string)()
+    SetParticipantId(value *string)()
+    SetRemoveFromDefaultAudioRoutingGroup(value *bool)()
+    SetReplacesCallId(value *string)()
+}

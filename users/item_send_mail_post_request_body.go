@@ -96,3 +96,12 @@ func (m *ItemSendMailPostRequestBody) SetMessage(value i43734bed85aefb0f6a3d313b
 func (m *ItemSendMailPostRequestBody) SetSaveToSentItems(value *bool)() {
     m.saveToSentItems = value
 }
+// ItemSendMailPostRequestBodyable 
+type ItemSendMailPostRequestBodyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMessage()(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Messageable)
+    GetSaveToSentItems()(*bool)
+    SetMessage(value i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Messageable)()
+    SetSaveToSentItems(value *bool)()
+}

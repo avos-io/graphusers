@@ -66,3 +66,10 @@ func (m *StsPolicyCollectionResponse) Serialize(writer i878a80d2330e89d26896388a
 func (m *StsPolicyCollectionResponse) SetValue(value []StsPolicyable)() {
     m.value = value
 }
+// StsPolicyCollectionResponseable 
+type StsPolicyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]StsPolicyable)
+    SetValue(value []StsPolicyable)()
+}

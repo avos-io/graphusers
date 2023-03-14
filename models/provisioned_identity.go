@@ -86,3 +86,12 @@ func (m *ProvisionedIdentity) SetDetails(value DetailsInfoable)() {
 func (m *ProvisionedIdentity) SetIdentityType(value *string)() {
     m.identityType = value
 }
+// ProvisionedIdentityable 
+type ProvisionedIdentityable interface {
+    Identityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDetails()(DetailsInfoable)
+    GetIdentityType()(*string)
+    SetDetails(value DetailsInfoable)()
+    SetIdentityType(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *ChatMessageMentionCollectionResponse) Serialize(writer i878a80d2330e89d
 func (m *ChatMessageMentionCollectionResponse) SetValue(value []ChatMessageMentionable)() {
     m.value = value
 }
+// ChatMessageMentionCollectionResponseable 
+type ChatMessageMentionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ChatMessageMentionable)
+    SetValue(value []ChatMessageMentionable)()
+}

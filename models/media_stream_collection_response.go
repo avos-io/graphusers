@@ -66,3 +66,10 @@ func (m *MediaStreamCollectionResponse) Serialize(writer i878a80d2330e89d2689638
 func (m *MediaStreamCollectionResponse) SetValue(value []MediaStreamable)() {
     m.value = value
 }
+// MediaStreamCollectionResponseable 
+type MediaStreamCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]MediaStreamable)
+    SetValue(value []MediaStreamable)()
+}

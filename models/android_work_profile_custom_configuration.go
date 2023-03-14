@@ -68,3 +68,10 @@ func (m *AndroidWorkProfileCustomConfiguration) Serialize(writer i878a80d2330e89
 func (m *AndroidWorkProfileCustomConfiguration) SetOmaSettings(value []OmaSettingable)() {
     m.omaSettings = value
 }
+// AndroidWorkProfileCustomConfigurationable 
+type AndroidWorkProfileCustomConfigurationable interface {
+    DeviceConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOmaSettings()([]OmaSettingable)
+    SetOmaSettings(value []OmaSettingable)()
+}

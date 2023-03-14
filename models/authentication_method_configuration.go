@@ -10,7 +10,7 @@ type AuthenticationMethodConfiguration struct {
     // The state of the policy. Possible values are: enabled, disabled.
     state *AuthenticationMethodState
 }
-// NewAuthenticationMethodConfiguration instantiates a new AuthenticationMethodConfiguration and sets the default values.
+// NewAuthenticationMethodConfiguration instantiates a new authenticationMethodConfiguration and sets the default values.
 func NewAuthenticationMethodConfiguration()(*AuthenticationMethodConfiguration) {
     m := &AuthenticationMethodConfiguration{
         Entity: *NewEntity(),
@@ -84,4 +84,11 @@ func (m *AuthenticationMethodConfiguration) Serialize(writer i878a80d2330e89d268
 // SetState sets the state property value. The state of the policy. Possible values are: enabled, disabled.
 func (m *AuthenticationMethodConfiguration) SetState(value *AuthenticationMethodState)() {
     m.state = value
+}
+// AuthenticationMethodConfigurationable 
+type AuthenticationMethodConfigurationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetState()(*AuthenticationMethodState)
+    SetState(value *AuthenticationMethodState)()
 }

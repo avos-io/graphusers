@@ -66,3 +66,10 @@ func (m *PrinterCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *PrinterCollectionResponse) SetValue(value []Printerable)() {
     m.value = value
 }
+// PrinterCollectionResponseable 
+type PrinterCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Printerable)
+    SetValue(value []Printerable)()
+}

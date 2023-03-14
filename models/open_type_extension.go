@@ -60,3 +60,10 @@ func (m *OpenTypeExtension) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 func (m *OpenTypeExtension) SetExtensionName(value *string)() {
     m.extensionName = value
 }
+// OpenTypeExtensionable 
+type OpenTypeExtensionable interface {
+    Extensionable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExtensionName()(*string)
+    SetExtensionName(value *string)()
+}

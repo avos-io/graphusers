@@ -66,3 +66,10 @@ func (m *IdentityProviderCollectionResponse) Serialize(writer i878a80d2330e89d26
 func (m *IdentityProviderCollectionResponse) SetValue(value []IdentityProviderable)() {
     m.value = value
 }
+// IdentityProviderCollectionResponseable 
+type IdentityProviderCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]IdentityProviderable)
+    SetValue(value []IdentityProviderable)()
+}

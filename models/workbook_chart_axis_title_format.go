@@ -58,3 +58,10 @@ func (m *WorkbookChartAxisTitleFormat) Serialize(writer i878a80d2330e89d26896388
 func (m *WorkbookChartAxisTitleFormat) SetFont(value WorkbookChartFontable)() {
     m.font = value
 }
+// WorkbookChartAxisTitleFormatable 
+type WorkbookChartAxisTitleFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFont()(WorkbookChartFontable)
+    SetFont(value WorkbookChartFontable)()
+}

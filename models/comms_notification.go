@@ -122,3 +122,14 @@ func (m *CommsNotification) SetOdataType(value *string)() {
 func (m *CommsNotification) SetResourceUrl(value *string)() {
     m.resourceUrl = value
 }
+// CommsNotificationable 
+type CommsNotificationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetChangeType()(*ChangeType)
+    GetOdataType()(*string)
+    GetResourceUrl()(*string)
+    SetChangeType(value *ChangeType)()
+    SetOdataType(value *string)()
+    SetResourceUrl(value *string)()
+}

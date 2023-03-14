@@ -118,3 +118,14 @@ func (m *GroupSetting) SetTemplateId(value *string)() {
 func (m *GroupSetting) SetValues(value []SettingValueable)() {
     m.values = value
 }
+// GroupSettingable 
+type GroupSettingable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    GetTemplateId()(*string)
+    GetValues()([]SettingValueable)
+    SetDisplayName(value *string)()
+    SetTemplateId(value *string)()
+    SetValues(value []SettingValueable)()
+}

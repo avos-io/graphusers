@@ -66,3 +66,10 @@ func (m *ThreatAssessmentRequestCollectionResponse) Serialize(writer i878a80d233
 func (m *ThreatAssessmentRequestCollectionResponse) SetValue(value []ThreatAssessmentRequestable)() {
     m.value = value
 }
+// ThreatAssessmentRequestCollectionResponseable 
+type ThreatAssessmentRequestCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ThreatAssessmentRequestable)
+    SetValue(value []ThreatAssessmentRequestable)()
+}

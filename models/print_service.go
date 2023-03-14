@@ -10,7 +10,7 @@ type PrintService struct {
     // Endpoints that can be used to access the service. Read-only. Nullable.
     endpoints []PrintServiceEndpointable
 }
-// NewPrintService instantiates a new PrintService and sets the default values.
+// NewPrintService instantiates a new printService and sets the default values.
 func NewPrintService()(*PrintService) {
     m := &PrintService{
         Entity: *NewEntity(),
@@ -65,4 +65,11 @@ func (m *PrintService) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
 // SetEndpoints sets the endpoints property value. Endpoints that can be used to access the service. Read-only. Nullable.
 func (m *PrintService) SetEndpoints(value []PrintServiceEndpointable)() {
     m.endpoints = value
+}
+// PrintServiceable 
+type PrintServiceable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetEndpoints()([]PrintServiceEndpointable)
+    SetEndpoints(value []PrintServiceEndpointable)()
 }

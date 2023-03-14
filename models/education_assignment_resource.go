@@ -12,7 +12,7 @@ type EducationAssignmentResource struct {
     // Resource object that has been associated with this assignment.
     resource EducationResourceable
 }
-// NewEducationAssignmentResource instantiates a new educationAssignmentResource and sets the default values.
+// NewEducationAssignmentResource instantiates a new EducationAssignmentResource and sets the default values.
 func NewEducationAssignmentResource()(*EducationAssignmentResource) {
     m := &EducationAssignmentResource{
         Entity: *NewEntity(),
@@ -83,4 +83,13 @@ func (m *EducationAssignmentResource) SetDistributeForStudentWork(value *bool)()
 // SetResource sets the resource property value. Resource object that has been associated with this assignment.
 func (m *EducationAssignmentResource) SetResource(value EducationResourceable)() {
     m.resource = value
+}
+// EducationAssignmentResourceable 
+type EducationAssignmentResourceable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDistributeForStudentWork()(*bool)
+    GetResource()(EducationResourceable)
+    SetDistributeForStudentWork(value *bool)()
+    SetResource(value EducationResourceable)()
 }

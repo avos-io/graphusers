@@ -66,3 +66,10 @@ func (m *OutlookCategoryCollectionResponse) Serialize(writer i878a80d2330e89d268
 func (m *OutlookCategoryCollectionResponse) SetValue(value []OutlookCategoryable)() {
     m.value = value
 }
+// OutlookCategoryCollectionResponseable 
+type OutlookCategoryCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]OutlookCategoryable)
+    SetValue(value []OutlookCategoryable)()
+}

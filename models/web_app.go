@@ -86,3 +86,12 @@ func (m *WebApp) SetAppUrl(value *string)() {
 func (m *WebApp) SetUseManagedBrowser(value *bool)() {
     m.useManagedBrowser = value
 }
+// WebAppable 
+type WebAppable interface {
+    MobileAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppUrl()(*string)
+    GetUseManagedBrowser()(*bool)
+    SetAppUrl(value *string)()
+    SetUseManagedBrowser(value *bool)()
+}

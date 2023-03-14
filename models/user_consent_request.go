@@ -84,3 +84,12 @@ func (m *UserConsentRequest) SetApproval(value Approvalable)() {
 func (m *UserConsentRequest) SetReason(value *string)() {
     m.reason = value
 }
+// UserConsentRequestable 
+type UserConsentRequestable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    Requestable
+    GetApproval()(Approvalable)
+    GetReason()(*string)
+    SetApproval(value Approvalable)()
+    SetReason(value *string)()
+}

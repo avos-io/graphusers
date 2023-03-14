@@ -173,3 +173,18 @@ func (m *RubricLevel) SetLevelId(value *string)() {
 func (m *RubricLevel) SetOdataType(value *string)() {
     m.odataType = value
 }
+// RubricLevelable 
+type RubricLevelable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(EducationItemBodyable)
+    GetDisplayName()(*string)
+    GetGrading()(EducationAssignmentGradeTypeable)
+    GetLevelId()(*string)
+    GetOdataType()(*string)
+    SetDescription(value EducationItemBodyable)()
+    SetDisplayName(value *string)()
+    SetGrading(value EducationAssignmentGradeTypeable)()
+    SetLevelId(value *string)()
+    SetOdataType(value *string)()
+}

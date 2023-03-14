@@ -66,3 +66,10 @@ func (m *AlertHistoryStateCollectionResponse) Serialize(writer i878a80d2330e89d2
 func (m *AlertHistoryStateCollectionResponse) SetValue(value []AlertHistoryStateable)() {
     m.value = value
 }
+// AlertHistoryStateCollectionResponseable 
+type AlertHistoryStateCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AlertHistoryStateable)
+    SetValue(value []AlertHistoryStateable)()
+}

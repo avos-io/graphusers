@@ -58,3 +58,10 @@ func (m *EnrollmentConfigurationAssignment) Serialize(writer i878a80d2330e89d268
 func (m *EnrollmentConfigurationAssignment) SetTarget(value DeviceAndAppManagementAssignmentTargetable)() {
     m.target = value
 }
+// EnrollmentConfigurationAssignmentable 
+type EnrollmentConfigurationAssignmentable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetTarget()(DeviceAndAppManagementAssignmentTargetable)
+    SetTarget(value DeviceAndAppManagementAssignmentTargetable)()
+}

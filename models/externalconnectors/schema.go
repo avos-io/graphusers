@@ -13,7 +13,7 @@ type Schema struct {
     // The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
     properties []Propertyable
 }
-// NewSchema instantiates a new schema and sets the default values.
+// NewSchema instantiates a new Schema and sets the default values.
 func NewSchema()(*Schema) {
     m := &Schema{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),
@@ -92,4 +92,13 @@ func (m *Schema) SetBaseType(value *string)() {
 // SetProperties sets the properties property value. The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
 func (m *Schema) SetProperties(value []Propertyable)() {
     m.properties = value
+}
+// Schemaable 
+type Schemaable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBaseType()(*string)
+    GetProperties()([]Propertyable)
+    SetBaseType(value *string)()
+    SetProperties(value []Propertyable)()
 }

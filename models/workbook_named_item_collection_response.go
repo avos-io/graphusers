@@ -66,3 +66,10 @@ func (m *WorkbookNamedItemCollectionResponse) Serialize(writer i878a80d2330e89d2
 func (m *WorkbookNamedItemCollectionResponse) SetValue(value []WorkbookNamedItemable)() {
     m.value = value
 }
+// WorkbookNamedItemCollectionResponseable 
+type WorkbookNamedItemCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]WorkbookNamedItemable)
+    SetValue(value []WorkbookNamedItemable)()
+}

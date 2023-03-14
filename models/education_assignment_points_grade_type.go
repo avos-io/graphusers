@@ -60,3 +60,10 @@ func (m *EducationAssignmentPointsGradeType) Serialize(writer i878a80d2330e89d26
 func (m *EducationAssignmentPointsGradeType) SetMaxPoints(value *float32)() {
     m.maxPoints = value
 }
+// EducationAssignmentPointsGradeTypeable 
+type EducationAssignmentPointsGradeTypeable interface {
+    EducationAssignmentGradeTypeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMaxPoints()(*float32)
+    SetMaxPoints(value *float32)()
+}

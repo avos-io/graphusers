@@ -121,3 +121,14 @@ func (m *LocaleInfo) SetLocale(value *string)() {
 func (m *LocaleInfo) SetOdataType(value *string)() {
     m.odataType = value
 }
+// LocaleInfoable 
+type LocaleInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    GetLocale()(*string)
+    GetOdataType()(*string)
+    SetDisplayName(value *string)()
+    SetLocale(value *string)()
+    SetOdataType(value *string)()
+}

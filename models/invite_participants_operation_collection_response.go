@@ -66,3 +66,10 @@ func (m *InviteParticipantsOperationCollectionResponse) Serialize(writer i878a80
 func (m *InviteParticipantsOperationCollectionResponse) SetValue(value []InviteParticipantsOperationable)() {
     m.value = value
 }
+// InviteParticipantsOperationCollectionResponseable 
+type InviteParticipantsOperationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]InviteParticipantsOperationable)
+    SetValue(value []InviteParticipantsOperationable)()
+}

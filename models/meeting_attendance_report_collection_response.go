@@ -66,3 +66,10 @@ func (m *MeetingAttendanceReportCollectionResponse) Serialize(writer i878a80d233
 func (m *MeetingAttendanceReportCollectionResponse) SetValue(value []MeetingAttendanceReportable)() {
     m.value = value
 }
+// MeetingAttendanceReportCollectionResponseable 
+type MeetingAttendanceReportCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]MeetingAttendanceReportable)
+    SetValue(value []MeetingAttendanceReportable)()
+}

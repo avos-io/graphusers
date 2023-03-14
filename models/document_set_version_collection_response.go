@@ -66,3 +66,10 @@ func (m *DocumentSetVersionCollectionResponse) Serialize(writer i878a80d2330e89d
 func (m *DocumentSetVersionCollectionResponse) SetValue(value []DocumentSetVersionable)() {
     m.value = value
 }
+// DocumentSetVersionCollectionResponseable 
+type DocumentSetVersionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DocumentSetVersionable)
+    SetValue(value []DocumentSetVersionable)()
+}

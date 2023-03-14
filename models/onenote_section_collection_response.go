@@ -66,3 +66,10 @@ func (m *OnenoteSectionCollectionResponse) Serialize(writer i878a80d2330e89d2689
 func (m *OnenoteSectionCollectionResponse) SetValue(value []OnenoteSectionable)() {
     m.value = value
 }
+// OnenoteSectionCollectionResponseable 
+type OnenoteSectionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]OnenoteSectionable)
+    SetValue(value []OnenoteSectionable)()
+}

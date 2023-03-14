@@ -13,7 +13,7 @@ type ConnectionOperation struct {
     // Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.
     status *ConnectionOperationStatus
 }
-// NewConnectionOperation instantiates a new ConnectionOperation and sets the default values.
+// NewConnectionOperation instantiates a new connectionOperation and sets the default values.
 func NewConnectionOperation()(*ConnectionOperation) {
     m := &ConnectionOperation{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),
@@ -85,4 +85,13 @@ func (m *ConnectionOperation) SetError(value i43734bed85aefb0f6a3d313be76230963d
 // SetStatus sets the status property value. Indicates the status of the asynchronous operation. Possible values are: unspecified, inprogress, completed, failed, unknownFutureValue.
 func (m *ConnectionOperation) SetStatus(value *ConnectionOperationStatus)() {
     m.status = value
+}
+// ConnectionOperationable 
+type ConnectionOperationable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetError()(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.PublicErrorable)
+    GetStatus()(*ConnectionOperationStatus)
+    SetError(value i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.PublicErrorable)()
+    SetStatus(value *ConnectionOperationStatus)()
 }

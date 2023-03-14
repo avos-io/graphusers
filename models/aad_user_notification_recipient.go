@@ -60,3 +60,10 @@ func (m *AadUserNotificationRecipient) Serialize(writer i878a80d2330e89d26896388
 func (m *AadUserNotificationRecipient) SetUserId(value *string)() {
     m.userId = value
 }
+// AadUserNotificationRecipientable 
+type AadUserNotificationRecipientable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    TeamworkNotificationRecipientable
+    GetUserId()(*string)
+    SetUserId(value *string)()
+}

@@ -103,3 +103,12 @@ func (m *AuthenticationMethodTarget) SetIsRegistrationRequired(value *bool)() {
 func (m *AuthenticationMethodTarget) SetTargetType(value *AuthenticationMethodTargetType)() {
     m.targetType = value
 }
+// AuthenticationMethodTargetable 
+type AuthenticationMethodTargetable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsRegistrationRequired()(*bool)
+    GetTargetType()(*AuthenticationMethodTargetType)
+    SetIsRegistrationRequired(value *bool)()
+    SetTargetType(value *AuthenticationMethodTargetType)()
+}

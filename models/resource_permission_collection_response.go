@@ -66,3 +66,10 @@ func (m *ResourcePermissionCollectionResponse) Serialize(writer i878a80d2330e89d
 func (m *ResourcePermissionCollectionResponse) SetValue(value []ResourcePermissionable)() {
     m.value = value
 }
+// ResourcePermissionCollectionResponseable 
+type ResourcePermissionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ResourcePermissionable)
+    SetValue(value []ResourcePermissionable)()
+}

@@ -60,3 +60,10 @@ func (m *ServicePrincipalIdentity) Serialize(writer i878a80d2330e89d26896388a3f4
 func (m *ServicePrincipalIdentity) SetAppId(value *string)() {
     m.appId = value
 }
+// ServicePrincipalIdentityable 
+type ServicePrincipalIdentityable interface {
+    Identityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppId()(*string)
+    SetAppId(value *string)()
+}

@@ -174,3 +174,18 @@ func (m *AttachmentInfo) SetOdataType(value *string)() {
 func (m *AttachmentInfo) SetSize(value *int64)() {
     m.size = value
 }
+// AttachmentInfoable 
+type AttachmentInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAttachmentType()(*AttachmentType)
+    GetContentType()(*string)
+    GetName()(*string)
+    GetOdataType()(*string)
+    GetSize()(*int64)
+    SetAttachmentType(value *AttachmentType)()
+    SetContentType(value *string)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+    SetSize(value *int64)()
+}

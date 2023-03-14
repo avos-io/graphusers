@@ -103,3 +103,12 @@ func (m *ManagedEBookAssignment) SetInstallIntent(value *InstallIntent)() {
 func (m *ManagedEBookAssignment) SetTarget(value DeviceAndAppManagementAssignmentTargetable)() {
     m.target = value
 }
+// ManagedEBookAssignmentable 
+type ManagedEBookAssignmentable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInstallIntent()(*InstallIntent)
+    GetTarget()(DeviceAndAppManagementAssignmentTargetable)
+    SetInstallIntent(value *InstallIntent)()
+    SetTarget(value DeviceAndAppManagementAssignmentTargetable)()
+}

@@ -66,3 +66,10 @@ func (m *SoftwareOathAuthenticationMethodCollectionResponse) Serialize(writer i8
 func (m *SoftwareOathAuthenticationMethodCollectionResponse) SetValue(value []SoftwareOathAuthenticationMethodable)() {
     m.value = value
 }
+// SoftwareOathAuthenticationMethodCollectionResponseable 
+type SoftwareOathAuthenticationMethodCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SoftwareOathAuthenticationMethodable)
+    SetValue(value []SoftwareOathAuthenticationMethodable)()
+}

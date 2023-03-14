@@ -134,3 +134,14 @@ func (m *CloudCommunications) SetOnlineMeetings(value []OnlineMeetingable)() {
 func (m *CloudCommunications) SetPresences(value []Presenceable)() {
     m.presences = value
 }
+// CloudCommunicationsable 
+type CloudCommunicationsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCalls()([]Callable)
+    GetOnlineMeetings()([]OnlineMeetingable)
+    GetPresences()([]Presenceable)
+    SetCalls(value []Callable)()
+    SetOnlineMeetings(value []OnlineMeetingable)()
+    SetPresences(value []Presenceable)()
+}

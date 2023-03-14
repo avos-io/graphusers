@@ -66,3 +66,10 @@ func (m *NotificationMessageTemplateCollectionResponse) Serialize(writer i878a80
 func (m *NotificationMessageTemplateCollectionResponse) SetValue(value []NotificationMessageTemplateable)() {
     m.value = value
 }
+// NotificationMessageTemplateCollectionResponseable 
+type NotificationMessageTemplateCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]NotificationMessageTemplateable)
+    SetValue(value []NotificationMessageTemplateable)()
+}

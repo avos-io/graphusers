@@ -174,3 +174,16 @@ func (m *MobileLobApp) SetFileName(value *string)() {
 func (m *MobileLobApp) SetSize(value *int64)() {
     m.size = value
 }
+// MobileLobAppable 
+type MobileLobAppable interface {
+    MobileAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCommittedContentVersion()(*string)
+    GetContentVersions()([]MobileAppContentable)
+    GetFileName()(*string)
+    GetSize()(*int64)
+    SetCommittedContentVersion(value *string)()
+    SetContentVersions(value []MobileAppContentable)()
+    SetFileName(value *string)()
+    SetSize(value *int64)()
+}

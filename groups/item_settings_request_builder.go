@@ -70,6 +70,10 @@ func NewItemSettingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
     urlParams["request-raw-url"] = rawUrl
     return NewItemSettingsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemSettingsRequestBuilder) Count()(*ItemSettingsCountRequestBuilder) {
+    return NewItemSettingsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a list of tenant-level or group-specific group settings objects.
 // [Find more info here]
 // 

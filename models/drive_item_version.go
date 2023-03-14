@@ -86,3 +86,12 @@ func (m *DriveItemVersion) SetContent(value []byte)() {
 func (m *DriveItemVersion) SetSize(value *int64)() {
     m.size = value
 }
+// DriveItemVersionable 
+type DriveItemVersionable interface {
+    BaseItemVersionable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetContent()([]byte)
+    GetSize()(*int64)
+    SetContent(value []byte)()
+    SetSize(value *int64)()
+}

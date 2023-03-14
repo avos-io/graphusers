@@ -66,3 +66,10 @@ func (m *ProvisionedPlanCollectionResponse) Serialize(writer i878a80d2330e89d268
 func (m *ProvisionedPlanCollectionResponse) SetValue(value []ProvisionedPlanable)() {
     m.value = value
 }
+// ProvisionedPlanCollectionResponseable 
+type ProvisionedPlanCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ProvisionedPlanable)
+    SetValue(value []ProvisionedPlanable)()
+}

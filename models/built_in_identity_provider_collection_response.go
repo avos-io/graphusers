@@ -66,3 +66,10 @@ func (m *BuiltInIdentityProviderCollectionResponse) Serialize(writer i878a80d233
 func (m *BuiltInIdentityProviderCollectionResponse) SetValue(value []BuiltInIdentityProviderable)() {
     m.value = value
 }
+// BuiltInIdentityProviderCollectionResponseable 
+type BuiltInIdentityProviderCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]BuiltInIdentityProviderable)
+    SetValue(value []BuiltInIdentityProviderable)()
+}

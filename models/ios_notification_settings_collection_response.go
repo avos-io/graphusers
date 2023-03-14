@@ -66,3 +66,10 @@ func (m *IosNotificationSettingsCollectionResponse) Serialize(writer i878a80d233
 func (m *IosNotificationSettingsCollectionResponse) SetValue(value []IosNotificationSettingsable)() {
     m.value = value
 }
+// IosNotificationSettingsCollectionResponseable 
+type IosNotificationSettingsCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]IosNotificationSettingsable)
+    SetValue(value []IosNotificationSettingsable)()
+}

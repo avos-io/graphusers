@@ -66,3 +66,10 @@ func (m *IdentityUserFlowAttributeAssignmentCollectionResponse) Serialize(writer
 func (m *IdentityUserFlowAttributeAssignmentCollectionResponse) SetValue(value []IdentityUserFlowAttributeAssignmentable)() {
     m.value = value
 }
+// IdentityUserFlowAttributeAssignmentCollectionResponseable 
+type IdentityUserFlowAttributeAssignmentCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]IdentityUserFlowAttributeAssignmentable)
+    SetValue(value []IdentityUserFlowAttributeAssignmentable)()
+}

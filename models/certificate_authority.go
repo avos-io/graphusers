@@ -225,3 +225,22 @@ func (m *CertificateAuthority) SetIssuerSki(value *string)() {
 func (m *CertificateAuthority) SetOdataType(value *string)() {
     m.odataType = value
 }
+// CertificateAuthorityable 
+type CertificateAuthorityable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCertificate()([]byte)
+    GetCertificateRevocationListUrl()(*string)
+    GetDeltaCertificateRevocationListUrl()(*string)
+    GetIsRootAuthority()(*bool)
+    GetIssuer()(*string)
+    GetIssuerSki()(*string)
+    GetOdataType()(*string)
+    SetCertificate(value []byte)()
+    SetCertificateRevocationListUrl(value *string)()
+    SetDeltaCertificateRevocationListUrl(value *string)()
+    SetIsRootAuthority(value *bool)()
+    SetIssuer(value *string)()
+    SetIssuerSki(value *string)()
+    SetOdataType(value *string)()
+}

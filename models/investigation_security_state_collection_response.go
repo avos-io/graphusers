@@ -66,3 +66,10 @@ func (m *InvestigationSecurityStateCollectionResponse) Serialize(writer i878a80d
 func (m *InvestigationSecurityStateCollectionResponse) SetValue(value []InvestigationSecurityStateable)() {
     m.value = value
 }
+// InvestigationSecurityStateCollectionResponseable 
+type InvestigationSecurityStateCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]InvestigationSecurityStateable)
+    SetValue(value []InvestigationSecurityStateable)()
+}

@@ -66,3 +66,10 @@ func (m *AuthenticationContextClassReferenceCollectionResponse) Serialize(writer
 func (m *AuthenticationContextClassReferenceCollectionResponse) SetValue(value []AuthenticationContextClassReferenceable)() {
     m.value = value
 }
+// AuthenticationContextClassReferenceCollectionResponseable 
+type AuthenticationContextClassReferenceCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AuthenticationContextClassReferenceable)
+    SetValue(value []AuthenticationContextClassReferenceable)()
+}

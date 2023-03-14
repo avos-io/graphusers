@@ -66,3 +66,10 @@ func (m *RequiredResourceAccessCollectionResponse) Serialize(writer i878a80d2330
 func (m *RequiredResourceAccessCollectionResponse) SetValue(value []RequiredResourceAccessable)() {
     m.value = value
 }
+// RequiredResourceAccessCollectionResponseable 
+type RequiredResourceAccessCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]RequiredResourceAccessable)
+    SetValue(value []RequiredResourceAccessable)()
+}

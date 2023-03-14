@@ -61,3 +61,10 @@ func (m *CloudAppSecuritySessionControl) Serialize(writer i878a80d2330e89d268963
 func (m *CloudAppSecuritySessionControl) SetCloudAppSecurityType(value *CloudAppSecuritySessionControlType)() {
     m.cloudAppSecurityType = value
 }
+// CloudAppSecuritySessionControlable 
+type CloudAppSecuritySessionControlable interface {
+    ConditionalAccessSessionControlable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCloudAppSecurityType()(*CloudAppSecuritySessionControlType)
+    SetCloudAppSecurityType(value *CloudAppSecuritySessionControlType)()
+}

@@ -84,3 +84,12 @@ func (m *WindowsInformationProtectionNetworkLearningSummary) SetDeviceCount(valu
 func (m *WindowsInformationProtectionNetworkLearningSummary) SetUrl(value *string)() {
     m.url = value
 }
+// WindowsInformationProtectionNetworkLearningSummaryable 
+type WindowsInformationProtectionNetworkLearningSummaryable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeviceCount()(*int32)
+    GetUrl()(*string)
+    SetDeviceCount(value *int32)()
+    SetUrl(value *string)()
+}

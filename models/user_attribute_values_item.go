@@ -147,3 +147,16 @@ func (m *UserAttributeValuesItem) SetOdataType(value *string)() {
 func (m *UserAttributeValuesItem) SetValue(value *string)() {
     m.value = value
 }
+// UserAttributeValuesItemable 
+type UserAttributeValuesItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsDefault()(*bool)
+    GetName()(*string)
+    GetOdataType()(*string)
+    GetValue()(*string)
+    SetIsDefault(value *bool)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+    SetValue(value *string)()
+}

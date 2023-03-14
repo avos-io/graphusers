@@ -66,3 +66,10 @@ func (m *ExtensionSchemaPropertyCollectionResponse) Serialize(writer i878a80d233
 func (m *ExtensionSchemaPropertyCollectionResponse) SetValue(value []ExtensionSchemaPropertyable)() {
     m.value = value
 }
+// ExtensionSchemaPropertyCollectionResponseable 
+type ExtensionSchemaPropertyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ExtensionSchemaPropertyable)
+    SetValue(value []ExtensionSchemaPropertyable)()
+}

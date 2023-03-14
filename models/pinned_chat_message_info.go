@@ -58,3 +58,10 @@ func (m *PinnedChatMessageInfo) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *PinnedChatMessageInfo) SetMessage(value ChatMessageable)() {
     m.message = value
 }
+// PinnedChatMessageInfoable 
+type PinnedChatMessageInfoable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMessage()(ChatMessageable)
+    SetMessage(value ChatMessageable)()
+}

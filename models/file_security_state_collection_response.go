@@ -66,3 +66,10 @@ func (m *FileSecurityStateCollectionResponse) Serialize(writer i878a80d2330e89d2
 func (m *FileSecurityStateCollectionResponse) SetValue(value []FileSecurityStateable)() {
     m.value = value
 }
+// FileSecurityStateCollectionResponseable 
+type FileSecurityStateCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]FileSecurityStateable)
+    SetValue(value []FileSecurityStateable)()
+}

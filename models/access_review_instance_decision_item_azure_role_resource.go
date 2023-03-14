@@ -60,3 +60,10 @@ func (m *AccessReviewInstanceDecisionItemAzureRoleResource) Serialize(writer i87
 func (m *AccessReviewInstanceDecisionItemAzureRoleResource) SetScope(value AccessReviewInstanceDecisionItemResourceable)() {
     m.scope = value
 }
+// AccessReviewInstanceDecisionItemAzureRoleResourceable 
+type AccessReviewInstanceDecisionItemAzureRoleResourceable interface {
+    AccessReviewInstanceDecisionItemResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetScope()(AccessReviewInstanceDecisionItemResourceable)
+    SetScope(value AccessReviewInstanceDecisionItemResourceable)()
+}

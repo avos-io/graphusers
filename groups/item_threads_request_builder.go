@@ -66,6 +66,10 @@ func NewItemThreadsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewItemThreadsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemThreadsRequestBuilder) Count()(*ItemThreadsCountRequestBuilder) {
+    return NewItemThreadsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get all the threads of a group.
 // [Find more info here]
 // 

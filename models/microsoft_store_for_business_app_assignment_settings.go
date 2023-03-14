@@ -60,3 +60,10 @@ func (m *MicrosoftStoreForBusinessAppAssignmentSettings) Serialize(writer i878a8
 func (m *MicrosoftStoreForBusinessAppAssignmentSettings) SetUseDeviceContext(value *bool)() {
     m.useDeviceContext = value
 }
+// MicrosoftStoreForBusinessAppAssignmentSettingsable 
+type MicrosoftStoreForBusinessAppAssignmentSettingsable interface {
+    MobileAppAssignmentSettingsable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetUseDeviceContext()(*bool)
+    SetUseDeviceContext(value *bool)()
+}

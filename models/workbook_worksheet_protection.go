@@ -84,3 +84,12 @@ func (m *WorkbookWorksheetProtection) SetOptions(value WorkbookWorksheetProtecti
 func (m *WorkbookWorksheetProtection) SetProtected(value *bool)() {
     m.protected = value
 }
+// WorkbookWorksheetProtectionable 
+type WorkbookWorksheetProtectionable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOptions()(WorkbookWorksheetProtectionOptionsable)
+    GetProtected()(*bool)
+    SetOptions(value WorkbookWorksheetProtectionOptionsable)()
+    SetProtected(value *bool)()
+}

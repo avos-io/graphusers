@@ -66,6 +66,14 @@ func NewItemEventsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemEventsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemEventsRequestBuilder) Count()(*ItemEventsCountRequestBuilder) {
+    return NewItemEventsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Delta provides operations to call the delta method.
+func (m *ItemEventsRequestBuilder) Delta()(*ItemEventsDeltaRequestBuilder) {
+    return NewItemEventsDeltaRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a list of event objects.
 // [Find more info here]
 // 

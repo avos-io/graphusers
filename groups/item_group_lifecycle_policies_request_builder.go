@@ -70,6 +70,10 @@ func NewItemGroupLifecyclePoliciesRequestBuilder(rawUrl string, requestAdapter i
     urlParams["request-raw-url"] = rawUrl
     return NewItemGroupLifecyclePoliciesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemGroupLifecyclePoliciesRequestBuilder) Count()(*ItemGroupLifecyclePoliciesCountRequestBuilder) {
+    return NewItemGroupLifecyclePoliciesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieves a list of groupLifecyclePolicy objects to which a group belongs.
 // [Find more info here]
 // 

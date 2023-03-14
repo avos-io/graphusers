@@ -95,3 +95,12 @@ func (m *EmailAuthenticationMethodConfiguration) SetAllowExternalIdToUseEmailOtp
 func (m *EmailAuthenticationMethodConfiguration) SetIncludeTargets(value []AuthenticationMethodTargetable)() {
     m.includeTargets = value
 }
+// EmailAuthenticationMethodConfigurationable 
+type EmailAuthenticationMethodConfigurationable interface {
+    AuthenticationMethodConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowExternalIdToUseEmailOtp()(*ExternalEmailOtpState)
+    GetIncludeTargets()([]AuthenticationMethodTargetable)
+    SetAllowExternalIdToUseEmailOtp(value *ExternalEmailOtpState)()
+    SetIncludeTargets(value []AuthenticationMethodTargetable)()
+}

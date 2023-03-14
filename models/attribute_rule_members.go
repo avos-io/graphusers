@@ -86,3 +86,12 @@ func (m *AttributeRuleMembers) SetDescription(value *string)() {
 func (m *AttributeRuleMembers) SetMembershipRule(value *string)() {
     m.membershipRule = value
 }
+// AttributeRuleMembersable 
+type AttributeRuleMembersable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    SubjectSetable
+    GetDescription()(*string)
+    GetMembershipRule()(*string)
+    SetDescription(value *string)()
+    SetMembershipRule(value *string)()
+}

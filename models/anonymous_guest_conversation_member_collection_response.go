@@ -66,3 +66,10 @@ func (m *AnonymousGuestConversationMemberCollectionResponse) Serialize(writer i8
 func (m *AnonymousGuestConversationMemberCollectionResponse) SetValue(value []AnonymousGuestConversationMemberable)() {
     m.value = value
 }
+// AnonymousGuestConversationMemberCollectionResponseable 
+type AnonymousGuestConversationMemberCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AnonymousGuestConversationMemberable)
+    SetValue(value []AnonymousGuestConversationMemberable)()
+}

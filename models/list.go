@@ -28,7 +28,7 @@ type List struct {
     // If present, indicates that this is a system-managed list. Read-only.
     system SystemFacetable
 }
-// NewList instantiates a new list and sets the default values.
+// NewList instantiates a new List and sets the default values.
 func NewList()(*List) {
     m := &List{
         BaseItem: *NewBaseItem(),
@@ -333,4 +333,29 @@ func (m *List) SetSubscriptions(value []Subscriptionable)() {
 // SetSystem sets the system property value. If present, indicates that this is a system-managed list. Read-only.
 func (m *List) SetSystem(value SystemFacetable)() {
     m.system = value
+}
+// Listable 
+type Listable interface {
+    BaseItemable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetColumns()([]ColumnDefinitionable)
+    GetContentTypes()([]ContentTypeable)
+    GetDisplayName()(*string)
+    GetDrive()(Driveable)
+    GetItems()([]ListItemable)
+    GetList()(ListInfoable)
+    GetOperations()([]RichLongRunningOperationable)
+    GetSharepointIds()(SharepointIdsable)
+    GetSubscriptions()([]Subscriptionable)
+    GetSystem()(SystemFacetable)
+    SetColumns(value []ColumnDefinitionable)()
+    SetContentTypes(value []ContentTypeable)()
+    SetDisplayName(value *string)()
+    SetDrive(value Driveable)()
+    SetItems(value []ListItemable)()
+    SetList(value ListInfoable)()
+    SetOperations(value []RichLongRunningOperationable)()
+    SetSharepointIds(value SharepointIdsable)()
+    SetSubscriptions(value []Subscriptionable)()
+    SetSystem(value SystemFacetable)()
 }

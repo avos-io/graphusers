@@ -66,3 +66,10 @@ func (m *Windows81CompliancePolicyCollectionResponse) Serialize(writer i878a80d2
 func (m *Windows81CompliancePolicyCollectionResponse) SetValue(value []Windows81CompliancePolicyable)() {
     m.value = value
 }
+// Windows81CompliancePolicyCollectionResponseable 
+type Windows81CompliancePolicyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Windows81CompliancePolicyable)
+    SetValue(value []Windows81CompliancePolicyable)()
+}

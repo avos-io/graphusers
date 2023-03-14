@@ -180,3 +180,18 @@ func (m *TargetedManagedAppConfiguration) SetDeploymentSummary(value ManagedAppP
 func (m *TargetedManagedAppConfiguration) SetIsAssigned(value *bool)() {
     m.isAssigned = value
 }
+// TargetedManagedAppConfigurationable 
+type TargetedManagedAppConfigurationable interface {
+    ManagedAppConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetApps()([]ManagedMobileAppable)
+    GetAssignments()([]TargetedManagedAppPolicyAssignmentable)
+    GetDeployedAppCount()(*int32)
+    GetDeploymentSummary()(ManagedAppPolicyDeploymentSummaryable)
+    GetIsAssigned()(*bool)
+    SetApps(value []ManagedMobileAppable)()
+    SetAssignments(value []TargetedManagedAppPolicyAssignmentable)()
+    SetDeployedAppCount(value *int32)()
+    SetDeploymentSummary(value ManagedAppPolicyDeploymentSummaryable)()
+    SetIsAssigned(value *bool)()
+}

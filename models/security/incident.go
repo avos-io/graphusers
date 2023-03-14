@@ -422,3 +422,36 @@ func (m *Incident) SetStatus(value *IncidentStatus)() {
 func (m *Incident) SetTenantId(value *string)() {
     m.tenantId = value
 }
+// Incidentable 
+type Incidentable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAlerts()([]Alertable)
+    GetAssignedTo()(*string)
+    GetClassification()(*AlertClassification)
+    GetComments()([]AlertCommentable)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCustomTags()([]string)
+    GetDetermination()(*AlertDetermination)
+    GetDisplayName()(*string)
+    GetIncidentWebUrl()(*string)
+    GetLastUpdateDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetRedirectIncidentId()(*string)
+    GetSeverity()(*AlertSeverity)
+    GetStatus()(*IncidentStatus)
+    GetTenantId()(*string)
+    SetAlerts(value []Alertable)()
+    SetAssignedTo(value *string)()
+    SetClassification(value *AlertClassification)()
+    SetComments(value []AlertCommentable)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCustomTags(value []string)()
+    SetDetermination(value *AlertDetermination)()
+    SetDisplayName(value *string)()
+    SetIncidentWebUrl(value *string)()
+    SetLastUpdateDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetRedirectIncidentId(value *string)()
+    SetSeverity(value *AlertSeverity)()
+    SetStatus(value *IncidentStatus)()
+    SetTenantId(value *string)()
+}

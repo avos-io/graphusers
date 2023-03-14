@@ -87,3 +87,12 @@ func (m *WindowsMicrosoftEdgeApp) SetChannel(value *MicrosoftEdgeChannel)() {
 func (m *WindowsMicrosoftEdgeApp) SetDisplayLanguageLocale(value *string)() {
     m.displayLanguageLocale = value
 }
+// WindowsMicrosoftEdgeAppable 
+type WindowsMicrosoftEdgeAppable interface {
+    MobileAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetChannel()(*MicrosoftEdgeChannel)
+    GetDisplayLanguageLocale()(*string)
+    SetChannel(value *MicrosoftEdgeChannel)()
+    SetDisplayLanguageLocale(value *string)()
+}

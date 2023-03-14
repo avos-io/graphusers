@@ -68,3 +68,10 @@ func (m *Windows10CustomConfiguration) Serialize(writer i878a80d2330e89d26896388
 func (m *Windows10CustomConfiguration) SetOmaSettings(value []OmaSettingable)() {
     m.omaSettings = value
 }
+// Windows10CustomConfigurationable 
+type Windows10CustomConfigurationable interface {
+    DeviceConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOmaSettings()([]OmaSettingable)
+    SetOmaSettings(value []OmaSettingable)()
+}

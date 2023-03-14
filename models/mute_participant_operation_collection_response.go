@@ -66,3 +66,10 @@ func (m *MuteParticipantOperationCollectionResponse) Serialize(writer i878a80d23
 func (m *MuteParticipantOperationCollectionResponse) SetValue(value []MuteParticipantOperationable)() {
     m.value = value
 }
+// MuteParticipantOperationCollectionResponseable 
+type MuteParticipantOperationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]MuteParticipantOperationable)
+    SetValue(value []MuteParticipantOperationable)()
+}

@@ -60,3 +60,10 @@ func (m *WindowsUniversalAppXAppAssignmentSettings) Serialize(writer i878a80d233
 func (m *WindowsUniversalAppXAppAssignmentSettings) SetUseDeviceContext(value *bool)() {
     m.useDeviceContext = value
 }
+// WindowsUniversalAppXAppAssignmentSettingsable 
+type WindowsUniversalAppXAppAssignmentSettingsable interface {
+    MobileAppAssignmentSettingsable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetUseDeviceContext()(*bool)
+    SetUseDeviceContext(value *bool)()
+}

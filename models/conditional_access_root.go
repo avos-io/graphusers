@@ -16,7 +16,7 @@ type ConditionalAccessRoot struct {
     // Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
     templates []ConditionalAccessTemplateable
 }
-// NewConditionalAccessRoot instantiates a new conditionalAccessRoot and sets the default values.
+// NewConditionalAccessRoot instantiates a new ConditionalAccessRoot and sets the default values.
 func NewConditionalAccessRoot()(*ConditionalAccessRoot) {
     m := &ConditionalAccessRoot{
         Entity: *NewEntity(),
@@ -167,4 +167,17 @@ func (m *ConditionalAccessRoot) SetPolicies(value []ConditionalAccessPolicyable)
 // SetTemplates sets the templates property value. Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
 func (m *ConditionalAccessRoot) SetTemplates(value []ConditionalAccessTemplateable)() {
     m.templates = value
+}
+// ConditionalAccessRootable 
+type ConditionalAccessRootable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAuthenticationContextClassReferences()([]AuthenticationContextClassReferenceable)
+    GetNamedLocations()([]NamedLocationable)
+    GetPolicies()([]ConditionalAccessPolicyable)
+    GetTemplates()([]ConditionalAccessTemplateable)
+    SetAuthenticationContextClassReferences(value []AuthenticationContextClassReferenceable)()
+    SetNamedLocations(value []NamedLocationable)()
+    SetPolicies(value []ConditionalAccessPolicyable)()
+    SetTemplates(value []ConditionalAccessTemplateable)()
 }

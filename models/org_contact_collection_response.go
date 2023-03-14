@@ -66,3 +66,10 @@ func (m *OrgContactCollectionResponse) Serialize(writer i878a80d2330e89d26896388
 func (m *OrgContactCollectionResponse) SetValue(value []OrgContactable)() {
     m.value = value
 }
+// OrgContactCollectionResponseable 
+type OrgContactCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]OrgContactable)
+    SetValue(value []OrgContactable)()
+}

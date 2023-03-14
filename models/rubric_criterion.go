@@ -95,3 +95,12 @@ func (m *RubricCriterion) SetDescription(value EducationItemBodyable)() {
 func (m *RubricCriterion) SetOdataType(value *string)() {
     m.odataType = value
 }
+// RubricCriterionable 
+type RubricCriterionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(EducationItemBodyable)
+    GetOdataType()(*string)
+    SetDescription(value EducationItemBodyable)()
+    SetOdataType(value *string)()
+}

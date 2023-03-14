@@ -60,3 +60,10 @@ func (m *TargetManager) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 func (m *TargetManager) SetManagerLevel(value *int32)() {
     m.managerLevel = value
 }
+// TargetManagerable 
+type TargetManagerable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    SubjectSetable
+    GetManagerLevel()(*int32)
+    SetManagerLevel(value *int32)()
+}

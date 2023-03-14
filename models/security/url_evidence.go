@@ -58,3 +58,10 @@ func (m *UrlEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *UrlEvidence) SetUrl(value *string)() {
     m.url = value
 }
+// UrlEvidenceable 
+type UrlEvidenceable interface {
+    AlertEvidenceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetUrl()(*string)
+    SetUrl(value *string)()
+}

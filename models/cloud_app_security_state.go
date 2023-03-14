@@ -147,3 +147,16 @@ func (m *CloudAppSecurityState) SetOdataType(value *string)() {
 func (m *CloudAppSecurityState) SetRiskScore(value *string)() {
     m.riskScore = value
 }
+// CloudAppSecurityStateable 
+type CloudAppSecurityStateable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDestinationServiceIp()(*string)
+    GetDestinationServiceName()(*string)
+    GetOdataType()(*string)
+    GetRiskScore()(*string)
+    SetDestinationServiceIp(value *string)()
+    SetDestinationServiceName(value *string)()
+    SetOdataType(value *string)()
+    SetRiskScore(value *string)()
+}

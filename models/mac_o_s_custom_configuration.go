@@ -112,3 +112,14 @@ func (m *MacOSCustomConfiguration) SetPayloadFileName(value *string)() {
 func (m *MacOSCustomConfiguration) SetPayloadName(value *string)() {
     m.payloadName = value
 }
+// MacOSCustomConfigurationable 
+type MacOSCustomConfigurationable interface {
+    DeviceConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPayload()([]byte)
+    GetPayloadFileName()(*string)
+    GetPayloadName()(*string)
+    SetPayload(value []byte)()
+    SetPayloadFileName(value *string)()
+    SetPayloadName(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *WindowsAutopilotDeviceIdentityCollectionResponse) Serialize(writer i878
 func (m *WindowsAutopilotDeviceIdentityCollectionResponse) SetValue(value []WindowsAutopilotDeviceIdentityable)() {
     m.value = value
 }
+// WindowsAutopilotDeviceIdentityCollectionResponseable 
+type WindowsAutopilotDeviceIdentityCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]WindowsAutopilotDeviceIdentityable)
+    SetValue(value []WindowsAutopilotDeviceIdentityable)()
+}

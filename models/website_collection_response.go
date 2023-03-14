@@ -66,3 +66,10 @@ func (m *WebsiteCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *WebsiteCollectionResponse) SetValue(value []Websiteable)() {
     m.value = value
 }
+// WebsiteCollectionResponseable 
+type WebsiteCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Websiteable)
+    SetValue(value []Websiteable)()
+}

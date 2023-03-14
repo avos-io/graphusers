@@ -66,3 +66,10 @@ func (m *AuthenticationMethodTargetCollectionResponse) Serialize(writer i878a80d
 func (m *AuthenticationMethodTargetCollectionResponse) SetValue(value []AuthenticationMethodTargetable)() {
     m.value = value
 }
+// AuthenticationMethodTargetCollectionResponseable 
+type AuthenticationMethodTargetCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AuthenticationMethodTargetable)
+    SetValue(value []AuthenticationMethodTargetable)()
+}

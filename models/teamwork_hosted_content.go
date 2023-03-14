@@ -102,3 +102,12 @@ func (m *TeamworkHostedContent) SetContentBytes(value []byte)() {
 func (m *TeamworkHostedContent) SetContentType(value *string)() {
     m.contentType = value
 }
+// TeamworkHostedContentable 
+type TeamworkHostedContentable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetContentBytes()([]byte)
+    GetContentType()(*string)
+    SetContentBytes(value []byte)()
+    SetContentType(value *string)()
+}

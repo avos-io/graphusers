@@ -110,3 +110,14 @@ func (m *PrintDocument) SetDisplayName(value *string)() {
 func (m *PrintDocument) SetSize(value *int64)() {
     m.size = value
 }
+// PrintDocumentable 
+type PrintDocumentable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetContentType()(*string)
+    GetDisplayName()(*string)
+    GetSize()(*int64)
+    SetContentType(value *string)()
+    SetDisplayName(value *string)()
+    SetSize(value *int64)()
+}

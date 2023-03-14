@@ -66,3 +66,10 @@ func (m *WindowsPhone81CustomConfigurationCollectionResponse) Serialize(writer i
 func (m *WindowsPhone81CustomConfigurationCollectionResponse) SetValue(value []WindowsPhone81CustomConfigurationable)() {
     m.value = value
 }
+// WindowsPhone81CustomConfigurationCollectionResponseable 
+type WindowsPhone81CustomConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]WindowsPhone81CustomConfigurationable)
+    SetValue(value []WindowsPhone81CustomConfigurationable)()
+}

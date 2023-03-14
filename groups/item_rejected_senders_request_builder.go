@@ -59,6 +59,10 @@ func NewItemRejectedSendersRequestBuilder(rawUrl string, requestAdapter i2ae4187
     urlParams["request-raw-url"] = rawUrl
     return NewItemRejectedSendersRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemRejectedSendersRequestBuilder) Count()(*ItemRejectedSendersCountRequestBuilder) {
+    return NewItemRejectedSendersCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
 // [Find more info here]
 // 
@@ -80,6 +84,10 @@ func (m *ItemRejectedSendersRequestBuilder) Get(ctx context.Context, requestConf
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// Ref provides operations to manage the collection of group entities.
+func (m *ItemRejectedSendersRequestBuilder) Ref()(*ItemRejectedSendersRefRequestBuilder) {
+    return NewItemRejectedSendersRefRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation users in the rejected senders list cannot post to conversations of the group (identified in the GET request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
 func (m *ItemRejectedSendersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemRejectedSendersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

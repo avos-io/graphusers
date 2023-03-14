@@ -66,3 +66,10 @@ func (m *SchemaExtensionCollectionResponse) Serialize(writer i878a80d2330e89d268
 func (m *SchemaExtensionCollectionResponse) SetValue(value []SchemaExtensionable)() {
     m.value = value
 }
+// SchemaExtensionCollectionResponseable 
+type SchemaExtensionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SchemaExtensionable)
+    SetValue(value []SchemaExtensionable)()
+}

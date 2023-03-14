@@ -150,3 +150,16 @@ func (m *CalendarSharingMessageAction) SetImportance(value *CalendarSharingActio
 func (m *CalendarSharingMessageAction) SetOdataType(value *string)() {
     m.odataType = value
 }
+// CalendarSharingMessageActionable 
+type CalendarSharingMessageActionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAction()(*CalendarSharingAction)
+    GetActionType()(*CalendarSharingActionType)
+    GetImportance()(*CalendarSharingActionImportance)
+    GetOdataType()(*string)
+    SetAction(value *CalendarSharingAction)()
+    SetActionType(value *CalendarSharingActionType)()
+    SetImportance(value *CalendarSharingActionImportance)()
+    SetOdataType(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *AccessReviewStageSettingsCollectionResponse) Serialize(writer i878a80d2
 func (m *AccessReviewStageSettingsCollectionResponse) SetValue(value []AccessReviewStageSettingsable)() {
     m.value = value
 }
+// AccessReviewStageSettingsCollectionResponseable 
+type AccessReviewStageSettingsCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AccessReviewStageSettingsable)
+    SetValue(value []AccessReviewStageSettingsable)()
+}

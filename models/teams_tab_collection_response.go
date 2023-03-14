@@ -66,3 +66,10 @@ func (m *TeamsTabCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3
 func (m *TeamsTabCollectionResponse) SetValue(value []TeamsTabable)() {
     m.value = value
 }
+// TeamsTabCollectionResponseable 
+type TeamsTabCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]TeamsTabable)
+    SetValue(value []TeamsTabable)()
+}

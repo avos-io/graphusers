@@ -112,3 +112,14 @@ func (m *TenantAppManagementPolicy) SetIsEnabled(value *bool)() {
 func (m *TenantAppManagementPolicy) SetServicePrincipalRestrictions(value AppManagementConfigurationable)() {
     m.servicePrincipalRestrictions = value
 }
+// TenantAppManagementPolicyable 
+type TenantAppManagementPolicyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    PolicyBaseable
+    GetApplicationRestrictions()(AppManagementConfigurationable)
+    GetIsEnabled()(*bool)
+    GetServicePrincipalRestrictions()(AppManagementConfigurationable)
+    SetApplicationRestrictions(value AppManagementConfigurationable)()
+    SetIsEnabled(value *bool)()
+    SetServicePrincipalRestrictions(value AppManagementConfigurationable)()
+}

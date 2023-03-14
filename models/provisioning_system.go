@@ -60,3 +60,10 @@ func (m *ProvisioningSystem) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *ProvisioningSystem) SetDetails(value DetailsInfoable)() {
     m.details = value
 }
+// ProvisioningSystemable 
+type ProvisioningSystemable interface {
+    Identityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDetails()(DetailsInfoable)
+    SetDetails(value DetailsInfoable)()
+}

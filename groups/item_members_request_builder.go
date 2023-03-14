@@ -63,6 +63,10 @@ func NewItemMembersRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26
     urlParams["request-raw-url"] = rawUrl
     return NewItemMembersRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemMembersRequestBuilder) Count()(*ItemMembersCountRequestBuilder) {
+    return NewItemMembersCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).
 // [Find more info here]
 // 
@@ -84,6 +88,34 @@ func (m *ItemMembersRequestBuilder) Get(ctx context.Context, requestConfiguratio
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphApplication casts the previous resource to application.
+func (m *ItemMembersRequestBuilder) GraphApplication()(*ItemMembersGraphApplicationRequestBuilder) {
+    return NewItemMembersGraphApplicationRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphDevice casts the previous resource to device.
+func (m *ItemMembersRequestBuilder) GraphDevice()(*ItemMembersGraphDeviceRequestBuilder) {
+    return NewItemMembersGraphDeviceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphGroup casts the previous resource to group.
+func (m *ItemMembersRequestBuilder) GraphGroup()(*ItemMembersGraphGroupRequestBuilder) {
+    return NewItemMembersGraphGroupRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphOrgContact casts the previous resource to orgContact.
+func (m *ItemMembersRequestBuilder) GraphOrgContact()(*ItemMembersGraphOrgContactRequestBuilder) {
+    return NewItemMembersGraphOrgContactRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphServicePrincipal casts the previous resource to servicePrincipal.
+func (m *ItemMembersRequestBuilder) GraphServicePrincipal()(*ItemMembersGraphServicePrincipalRequestBuilder) {
+    return NewItemMembersGraphServicePrincipalRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphUser casts the previous resource to user.
+func (m *ItemMembersRequestBuilder) GraphUser()(*ItemMembersGraphUserRequestBuilder) {
+    return NewItemMembersGraphUserRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Ref provides operations to manage the collection of group entities.
+func (m *ItemMembersRequestBuilder) Ref()(*ItemMembersRefRequestBuilder) {
+    return NewItemMembersRefRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation the members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).
 func (m *ItemMembersRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemMembersRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

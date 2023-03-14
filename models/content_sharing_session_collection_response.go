@@ -66,3 +66,10 @@ func (m *ContentSharingSessionCollectionResponse) Serialize(writer i878a80d2330e
 func (m *ContentSharingSessionCollectionResponse) SetValue(value []ContentSharingSessionable)() {
     m.value = value
 }
+// ContentSharingSessionCollectionResponseable 
+type ContentSharingSessionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ContentSharingSessionable)
+    SetValue(value []ContentSharingSessionable)()
+}

@@ -67,3 +67,10 @@ func (m *ItemOnenoteNotebooksGetRecentNotebooksWithIncludePersonalNotebooksRespo
 func (m *ItemOnenoteNotebooksGetRecentNotebooksWithIncludePersonalNotebooksResponse) SetValue(value []i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.RecentNotebookable)() {
     m.value = value
 }
+// ItemOnenoteNotebooksGetRecentNotebooksWithIncludePersonalNotebooksResponseable 
+type ItemOnenoteNotebooksGetRecentNotebooksWithIncludePersonalNotebooksResponseable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.RecentNotebookable)
+    SetValue(value []i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.RecentNotebookable)()
+}

@@ -66,3 +66,10 @@ func (m *DeviceComplianceSettingStateCollectionResponse) Serialize(writer i878a8
 func (m *DeviceComplianceSettingStateCollectionResponse) SetValue(value []DeviceComplianceSettingStateable)() {
     m.value = value
 }
+// DeviceComplianceSettingStateCollectionResponseable 
+type DeviceComplianceSettingStateCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DeviceComplianceSettingStateable)
+    SetValue(value []DeviceComplianceSettingStateable)()
+}

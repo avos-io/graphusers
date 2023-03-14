@@ -62,3 +62,10 @@ func (m *DeviceAndAppManagementRoleAssignment) Serialize(writer i878a80d2330e89d
 func (m *DeviceAndAppManagementRoleAssignment) SetMembers(value []string)() {
     m.members = value
 }
+// DeviceAndAppManagementRoleAssignmentable 
+type DeviceAndAppManagementRoleAssignmentable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    RoleAssignmentable
+    GetMembers()([]string)
+    SetMembers(value []string)()
+}

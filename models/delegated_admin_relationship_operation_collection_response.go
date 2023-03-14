@@ -66,3 +66,10 @@ func (m *DelegatedAdminRelationshipOperationCollectionResponse) Serialize(writer
 func (m *DelegatedAdminRelationshipOperationCollectionResponse) SetValue(value []DelegatedAdminRelationshipOperationable)() {
     m.value = value
 }
+// DelegatedAdminRelationshipOperationCollectionResponseable 
+type DelegatedAdminRelationshipOperationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DelegatedAdminRelationshipOperationable)
+    SetValue(value []DelegatedAdminRelationshipOperationable)()
+}

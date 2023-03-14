@@ -66,3 +66,10 @@ func (m *IosHomeScreenPageCollectionResponse) Serialize(writer i878a80d2330e89d2
 func (m *IosHomeScreenPageCollectionResponse) SetValue(value []IosHomeScreenPageable)() {
     m.value = value
 }
+// IosHomeScreenPageCollectionResponseable 
+type IosHomeScreenPageCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]IosHomeScreenPageable)
+    SetValue(value []IosHomeScreenPageable)()
+}

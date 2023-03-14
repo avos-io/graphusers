@@ -110,3 +110,14 @@ func (m *ScopedRoleMembership) SetRoleId(value *string)() {
 func (m *ScopedRoleMembership) SetRoleMemberInfo(value Identityable)() {
     m.roleMemberInfo = value
 }
+// ScopedRoleMembershipable 
+type ScopedRoleMembershipable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAdministrativeUnitId()(*string)
+    GetRoleId()(*string)
+    GetRoleMemberInfo()(Identityable)
+    SetAdministrativeUnitId(value *string)()
+    SetRoleId(value *string)()
+    SetRoleMemberInfo(value Identityable)()
+}

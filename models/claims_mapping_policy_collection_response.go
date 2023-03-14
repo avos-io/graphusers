@@ -66,3 +66,10 @@ func (m *ClaimsMappingPolicyCollectionResponse) Serialize(writer i878a80d2330e89
 func (m *ClaimsMappingPolicyCollectionResponse) SetValue(value []ClaimsMappingPolicyable)() {
     m.value = value
 }
+// ClaimsMappingPolicyCollectionResponseable 
+type ClaimsMappingPolicyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ClaimsMappingPolicyable)
+    SetValue(value []ClaimsMappingPolicyable)()
+}

@@ -16,7 +16,7 @@ type IdentityUserFlowAttribute struct {
     // The userFlowAttributeType property
     userFlowAttributeType *IdentityUserFlowAttributeType
 }
-// NewIdentityUserFlowAttribute instantiates a new identityUserFlowAttribute and sets the default values.
+// NewIdentityUserFlowAttribute instantiates a new IdentityUserFlowAttribute and sets the default values.
 func NewIdentityUserFlowAttribute()(*IdentityUserFlowAttribute) {
     m := &IdentityUserFlowAttribute{
         Entity: *NewEntity(),
@@ -157,4 +157,17 @@ func (m *IdentityUserFlowAttribute) SetDisplayName(value *string)() {
 // SetUserFlowAttributeType sets the userFlowAttributeType property value. The userFlowAttributeType property
 func (m *IdentityUserFlowAttribute) SetUserFlowAttributeType(value *IdentityUserFlowAttributeType)() {
     m.userFlowAttributeType = value
+}
+// IdentityUserFlowAttributeable 
+type IdentityUserFlowAttributeable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDataType()(*IdentityUserFlowAttributeDataType)
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetUserFlowAttributeType()(*IdentityUserFlowAttributeType)
+    SetDataType(value *IdentityUserFlowAttributeDataType)()
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetUserFlowAttributeType(value *IdentityUserFlowAttributeType)()
 }

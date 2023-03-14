@@ -21,7 +21,7 @@ type DataPolicyOperation struct {
     // The id for the user on whom the operation is performed.
     userId *string
 }
-// NewDataPolicyOperation instantiates a new dataPolicyOperation and sets the default values.
+// NewDataPolicyOperation instantiates a new DataPolicyOperation and sets the default values.
 func NewDataPolicyOperation()(*DataPolicyOperation) {
     m := &DataPolicyOperation{
         Entity: *NewEntity(),
@@ -189,4 +189,21 @@ func (m *DataPolicyOperation) SetSubmittedDateTime(value *i336074805fc853987abe6
 // SetUserId sets the userId property value. The id for the user on whom the operation is performed.
 func (m *DataPolicyOperation) SetUserId(value *string)() {
     m.userId = value
+}
+// DataPolicyOperationable 
+type DataPolicyOperationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCompletedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetProgress()(*float64)
+    GetStatus()(*DataPolicyOperationStatus)
+    GetStorageLocation()(*string)
+    GetSubmittedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetUserId()(*string)
+    SetCompletedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetProgress(value *float64)()
+    SetStatus(value *DataPolicyOperationStatus)()
+    SetStorageLocation(value *string)()
+    SetSubmittedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetUserId(value *string)()
 }

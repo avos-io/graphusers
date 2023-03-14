@@ -59,6 +59,10 @@ func NewItemPhotosRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemPhotosRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemPhotosRequestBuilder) Count()(*ItemPhotosCountRequestBuilder) {
+    return NewItemPhotosCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a list of profilePhoto objects.
 // [Find more info here]
 // 

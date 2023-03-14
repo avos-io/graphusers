@@ -25,7 +25,7 @@ type ConnectedOrganization struct {
     // The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not.  The possible values are: configured, proposed, unknownFutureValue.
     state *ConnectedOrganizationState
 }
-// NewConnectedOrganization instantiates a new connectedOrganization and sets the default values.
+// NewConnectedOrganization instantiates a new ConnectedOrganization and sets the default values.
 func NewConnectedOrganization()(*ConnectedOrganization) {
     m := &ConnectedOrganization{
         Entity: *NewEntity(),
@@ -265,4 +265,25 @@ func (m *ConnectedOrganization) SetModifiedDateTime(value *i336074805fc853987abe
 // SetState sets the state property value. The state of a connected organization defines whether assignment policies with requestor scope type AllConfiguredConnectedOrganizationSubjects are applicable or not.  The possible values are: configured, proposed, unknownFutureValue.
 func (m *ConnectedOrganization) SetState(value *ConnectedOrganizationState)() {
     m.state = value
+}
+// ConnectedOrganizationable 
+type ConnectedOrganizationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetExternalSponsors()([]DirectoryObjectable)
+    GetIdentitySources()([]IdentitySourceable)
+    GetInternalSponsors()([]DirectoryObjectable)
+    GetModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetState()(*ConnectedOrganizationState)
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetExternalSponsors(value []DirectoryObjectable)()
+    SetIdentitySources(value []IdentitySourceable)()
+    SetInternalSponsors(value []DirectoryObjectable)()
+    SetModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetState(value *ConnectedOrganizationState)()
 }

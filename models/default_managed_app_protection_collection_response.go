@@ -66,3 +66,10 @@ func (m *DefaultManagedAppProtectionCollectionResponse) Serialize(writer i878a80
 func (m *DefaultManagedAppProtectionCollectionResponse) SetValue(value []DefaultManagedAppProtectionable)() {
     m.value = value
 }
+// DefaultManagedAppProtectionCollectionResponseable 
+type DefaultManagedAppProtectionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DefaultManagedAppProtectionable)
+    SetValue(value []DefaultManagedAppProtectionable)()
+}

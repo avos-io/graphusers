@@ -56,6 +56,10 @@ func NewItemPhotoRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemPhotoRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Content provides operations to manage the media for the group entity.
+func (m *ItemPhotoRequestBuilder) Content()(*ItemPhotoValueContentRequestBuilder) {
+    return NewItemPhotoValueContentRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the group's profile photo
 func (m *ItemPhotoRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemPhotoRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ProfilePhotoable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

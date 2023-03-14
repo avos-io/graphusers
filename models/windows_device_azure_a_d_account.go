@@ -60,3 +60,10 @@ func (m *WindowsDeviceAzureADAccount) Serialize(writer i878a80d2330e89d26896388a
 func (m *WindowsDeviceAzureADAccount) SetUserPrincipalName(value *string)() {
     m.userPrincipalName = value
 }
+// WindowsDeviceAzureADAccountable 
+type WindowsDeviceAzureADAccountable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    WindowsDeviceAccountable
+    GetUserPrincipalName()(*string)
+    SetUserPrincipalName(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *AndroidWorkProfileCompliancePolicyCollectionResponse) Serialize(writer 
 func (m *AndroidWorkProfileCompliancePolicyCollectionResponse) SetValue(value []AndroidWorkProfileCompliancePolicyable)() {
     m.value = value
 }
+// AndroidWorkProfileCompliancePolicyCollectionResponseable 
+type AndroidWorkProfileCompliancePolicyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AndroidWorkProfileCompliancePolicyable)
+    SetValue(value []AndroidWorkProfileCompliancePolicyable)()
+}

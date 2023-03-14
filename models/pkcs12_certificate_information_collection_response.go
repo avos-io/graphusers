@@ -66,3 +66,10 @@ func (m *Pkcs12CertificateInformationCollectionResponse) Serialize(writer i878a8
 func (m *Pkcs12CertificateInformationCollectionResponse) SetValue(value []Pkcs12CertificateInformationable)() {
     m.value = value
 }
+// Pkcs12CertificateInformationCollectionResponseable 
+type Pkcs12CertificateInformationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Pkcs12CertificateInformationable)
+    SetValue(value []Pkcs12CertificateInformationable)()
+}

@@ -86,3 +86,12 @@ func (m *OmaSettingStringXml) SetFileName(value *string)() {
 func (m *OmaSettingStringXml) SetValue(value []byte)() {
     m.value = value
 }
+// OmaSettingStringXmlable 
+type OmaSettingStringXmlable interface {
+    OmaSettingable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFileName()(*string)
+    GetValue()([]byte)
+    SetFileName(value *string)()
+    SetValue(value []byte)()
+}

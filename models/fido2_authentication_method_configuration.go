@@ -146,3 +146,16 @@ func (m *Fido2AuthenticationMethodConfiguration) SetIsSelfServiceRegistrationAll
 func (m *Fido2AuthenticationMethodConfiguration) SetKeyRestrictions(value Fido2KeyRestrictionsable)() {
     m.keyRestrictions = value
 }
+// Fido2AuthenticationMethodConfigurationable 
+type Fido2AuthenticationMethodConfigurationable interface {
+    AuthenticationMethodConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIncludeTargets()([]AuthenticationMethodTargetable)
+    GetIsAttestationEnforced()(*bool)
+    GetIsSelfServiceRegistrationAllowed()(*bool)
+    GetKeyRestrictions()(Fido2KeyRestrictionsable)
+    SetIncludeTargets(value []AuthenticationMethodTargetable)()
+    SetIsAttestationEnforced(value *bool)()
+    SetIsSelfServiceRegistrationAllowed(value *bool)()
+    SetKeyRestrictions(value Fido2KeyRestrictionsable)()
+}

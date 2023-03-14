@@ -136,3 +136,16 @@ func (m *WorkbookRangeBorder) SetStyle(value *string)() {
 func (m *WorkbookRangeBorder) SetWeight(value *string)() {
     m.weight = value
 }
+// WorkbookRangeBorderable 
+type WorkbookRangeBorderable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetColor()(*string)
+    GetSideIndex()(*string)
+    GetStyle()(*string)
+    GetWeight()(*string)
+    SetColor(value *string)()
+    SetSideIndex(value *string)()
+    SetStyle(value *string)()
+    SetWeight(value *string)()
+}

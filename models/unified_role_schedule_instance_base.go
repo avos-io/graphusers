@@ -24,7 +24,7 @@ type UnifiedRoleScheduleInstanceBase struct {
     // Identifier of the unifiedRoleDefinition object that is being assigned to the principal or that the principal is eligible for.
     roleDefinitionId *string
 }
-// NewUnifiedRoleScheduleInstanceBase instantiates a new unifiedRoleScheduleInstanceBase and sets the default values.
+// NewUnifiedRoleScheduleInstanceBase instantiates a new UnifiedRoleScheduleInstanceBase and sets the default values.
 func NewUnifiedRoleScheduleInstanceBase()(*UnifiedRoleScheduleInstanceBase) {
     m := &UnifiedRoleScheduleInstanceBase{
         Entity: *NewEntity(),
@@ -259,4 +259,25 @@ func (m *UnifiedRoleScheduleInstanceBase) SetRoleDefinition(value UnifiedRoleDef
 // SetRoleDefinitionId sets the roleDefinitionId property value. Identifier of the unifiedRoleDefinition object that is being assigned to the principal or that the principal is eligible for.
 func (m *UnifiedRoleScheduleInstanceBase) SetRoleDefinitionId(value *string)() {
     m.roleDefinitionId = value
+}
+// UnifiedRoleScheduleInstanceBaseable 
+type UnifiedRoleScheduleInstanceBaseable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppScope()(AppScopeable)
+    GetAppScopeId()(*string)
+    GetDirectoryScope()(DirectoryObjectable)
+    GetDirectoryScopeId()(*string)
+    GetPrincipal()(DirectoryObjectable)
+    GetPrincipalId()(*string)
+    GetRoleDefinition()(UnifiedRoleDefinitionable)
+    GetRoleDefinitionId()(*string)
+    SetAppScope(value AppScopeable)()
+    SetAppScopeId(value *string)()
+    SetDirectoryScope(value DirectoryObjectable)()
+    SetDirectoryScopeId(value *string)()
+    SetPrincipal(value DirectoryObjectable)()
+    SetPrincipalId(value *string)()
+    SetRoleDefinition(value UnifiedRoleDefinitionable)()
+    SetRoleDefinitionId(value *string)()
 }

@@ -60,3 +60,10 @@ func (m *IPv6CidrRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 func (m *IPv6CidrRange) SetCidrAddress(value *string)() {
     m.cidrAddress = value
 }
+// IPv6CidrRangeable 
+type IPv6CidrRangeable interface {
+    IpRangeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCidrAddress()(*string)
+    SetCidrAddress(value *string)()
+}

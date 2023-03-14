@@ -70,6 +70,10 @@ func NewItemAppRoleAssignmentsRequestBuilder(rawUrl string, requestAdapter i2ae4
     urlParams["request-raw-url"] = rawUrl
     return NewItemAppRoleAssignmentsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemAppRoleAssignmentsRequestBuilder) Count()(*ItemAppRoleAssignmentsCountRequestBuilder) {
+    return NewItemAppRoleAssignmentsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get represents the app roles a group has been granted for an application. Supports $expand.
 // [Find more info here]
 // 

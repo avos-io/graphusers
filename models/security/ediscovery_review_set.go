@@ -68,3 +68,10 @@ func (m *EdiscoveryReviewSet) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *EdiscoveryReviewSet) SetQueries(value []EdiscoveryReviewSetQueryable)() {
     m.queries = value
 }
+// EdiscoveryReviewSetable 
+type EdiscoveryReviewSetable interface {
+    DataSetable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetQueries()([]EdiscoveryReviewSetQueryable)
+    SetQueries(value []EdiscoveryReviewSetQueryable)()
+}

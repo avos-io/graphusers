@@ -12,7 +12,7 @@ type AttackSimulationRoot struct {
     // Represents an attack simulation training campaign in a tenant.
     simulations []Simulationable
 }
-// NewAttackSimulationRoot instantiates a new attackSimulationRoot and sets the default values.
+// NewAttackSimulationRoot instantiates a new AttackSimulationRoot and sets the default values.
 func NewAttackSimulationRoot()(*AttackSimulationRoot) {
     m := &AttackSimulationRoot{
         Entity: *NewEntity(),
@@ -99,4 +99,13 @@ func (m *AttackSimulationRoot) SetSimulationAutomations(value []SimulationAutoma
 // SetSimulations sets the simulations property value. Represents an attack simulation training campaign in a tenant.
 func (m *AttackSimulationRoot) SetSimulations(value []Simulationable)() {
     m.simulations = value
+}
+// AttackSimulationRootable 
+type AttackSimulationRootable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSimulationAutomations()([]SimulationAutomationable)
+    GetSimulations()([]Simulationable)
+    SetSimulationAutomations(value []SimulationAutomationable)()
+    SetSimulations(value []Simulationable)()
 }

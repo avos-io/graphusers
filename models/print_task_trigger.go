@@ -85,3 +85,12 @@ func (m *PrintTaskTrigger) SetDefinition(value PrintTaskDefinitionable)() {
 func (m *PrintTaskTrigger) SetEvent(value *PrintEvent)() {
     m.event = value
 }
+// PrintTaskTriggerable 
+type PrintTaskTriggerable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefinition()(PrintTaskDefinitionable)
+    GetEvent()(*PrintEvent)
+    SetDefinition(value PrintTaskDefinitionable)()
+    SetEvent(value *PrintEvent)()
+}

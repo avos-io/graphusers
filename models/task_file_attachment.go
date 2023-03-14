@@ -60,3 +60,10 @@ func (m *TaskFileAttachment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *TaskFileAttachment) SetContentBytes(value []byte)() {
     m.contentBytes = value
 }
+// TaskFileAttachmentable 
+type TaskFileAttachmentable interface {
+    AttachmentBaseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetContentBytes()([]byte)
+    SetContentBytes(value []byte)()
+}

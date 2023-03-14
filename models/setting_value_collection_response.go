@@ -66,3 +66,10 @@ func (m *SettingValueCollectionResponse) Serialize(writer i878a80d2330e89d268963
 func (m *SettingValueCollectionResponse) SetValue(value []SettingValueable)() {
     m.value = value
 }
+// SettingValueCollectionResponseable 
+type SettingValueCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SettingValueable)
+    SetValue(value []SettingValueable)()
+}

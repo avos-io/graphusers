@@ -121,3 +121,14 @@ func (m *EmailAddress) SetName(value *string)() {
 func (m *EmailAddress) SetOdataType(value *string)() {
     m.odataType = value
 }
+// EmailAddressable 
+type EmailAddressable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAddress()(*string)
+    GetName()(*string)
+    GetOdataType()(*string)
+    SetAddress(value *string)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+}

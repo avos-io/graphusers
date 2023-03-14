@@ -60,3 +60,10 @@ func (m *OmaSettingBoolean) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 func (m *OmaSettingBoolean) SetValue(value *bool)() {
     m.value = value
 }
+// OmaSettingBooleanable 
+type OmaSettingBooleanable interface {
+    OmaSettingable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()(*bool)
+    SetValue(value *bool)()
+}

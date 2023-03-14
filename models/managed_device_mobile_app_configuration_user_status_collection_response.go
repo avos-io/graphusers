@@ -66,3 +66,10 @@ func (m *ManagedDeviceMobileAppConfigurationUserStatusCollectionResponse) Serial
 func (m *ManagedDeviceMobileAppConfigurationUserStatusCollectionResponse) SetValue(value []ManagedDeviceMobileAppConfigurationUserStatusable)() {
     m.value = value
 }
+// ManagedDeviceMobileAppConfigurationUserStatusCollectionResponseable 
+type ManagedDeviceMobileAppConfigurationUserStatusCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ManagedDeviceMobileAppConfigurationUserStatusable)
+    SetValue(value []ManagedDeviceMobileAppConfigurationUserStatusable)()
+}

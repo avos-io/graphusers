@@ -92,3 +92,12 @@ func (m *IpNamedLocation) SetIpRanges(value []IpRangeable)() {
 func (m *IpNamedLocation) SetIsTrusted(value *bool)() {
     m.isTrusted = value
 }
+// IpNamedLocationable 
+type IpNamedLocationable interface {
+    NamedLocationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIpRanges()([]IpRangeable)
+    GetIsTrusted()(*bool)
+    SetIpRanges(value []IpRangeable)()
+    SetIsTrusted(value *bool)()
+}

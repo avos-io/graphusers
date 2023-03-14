@@ -214,3 +214,20 @@ func (m *AdministrativeUnit) SetScopedRoleMembers(value []ScopedRoleMembershipab
 func (m *AdministrativeUnit) SetVisibility(value *string)() {
     m.visibility = value
 }
+// AdministrativeUnitable 
+type AdministrativeUnitable interface {
+    DirectoryObjectable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetExtensions()([]Extensionable)
+    GetMembers()([]DirectoryObjectable)
+    GetScopedRoleMembers()([]ScopedRoleMembershipable)
+    GetVisibility()(*string)
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetExtensions(value []Extensionable)()
+    SetMembers(value []DirectoryObjectable)()
+    SetScopedRoleMembers(value []ScopedRoleMembershipable)()
+    SetVisibility(value *string)()
+}

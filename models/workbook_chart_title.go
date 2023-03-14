@@ -136,3 +136,16 @@ func (m *WorkbookChartTitle) SetText(value *string)() {
 func (m *WorkbookChartTitle) SetVisible(value *bool)() {
     m.visible = value
 }
+// WorkbookChartTitleable 
+type WorkbookChartTitleable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFormat()(WorkbookChartTitleFormatable)
+    GetOverlay()(*bool)
+    GetText()(*string)
+    GetVisible()(*bool)
+    SetFormat(value WorkbookChartTitleFormatable)()
+    SetOverlay(value *bool)()
+    SetText(value *string)()
+    SetVisible(value *bool)()
+}

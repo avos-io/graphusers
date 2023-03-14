@@ -66,3 +66,10 @@ func (m *PersonCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f4
 func (m *PersonCollectionResponse) SetValue(value []Personable)() {
     m.value = value
 }
+// PersonCollectionResponseable 
+type PersonCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Personable)
+    SetValue(value []Personable)()
+}

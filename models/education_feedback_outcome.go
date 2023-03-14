@@ -86,3 +86,12 @@ func (m *EducationFeedbackOutcome) SetFeedback(value EducationFeedbackable)() {
 func (m *EducationFeedbackOutcome) SetPublishedFeedback(value EducationFeedbackable)() {
     m.publishedFeedback = value
 }
+// EducationFeedbackOutcomeable 
+type EducationFeedbackOutcomeable interface {
+    EducationOutcomeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFeedback()(EducationFeedbackable)
+    GetPublishedFeedback()(EducationFeedbackable)
+    SetFeedback(value EducationFeedbackable)()
+    SetPublishedFeedback(value EducationFeedbackable)()
+}

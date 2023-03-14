@@ -42,7 +42,7 @@ func NewClient(requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7
 func (m *Client) Groups()(*iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.GroupsRequestBuilder) {
     return iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.NewGroupsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
-// GroupsById gets an item from the github.com/avos-io/graphusers.groups.item collection
+// GroupsById provides operations to manage the collection of group entities.
 func (m *Client) GroupsById(id string)(*iec5f2438c41fe292e9cdda62cf2ddf63215212b46956129fc2cc02257c7cec8e.GroupItemRequestBuilder) {
     urlTplParams := make(map[string]string)
     for idx, item := range m.pathParameters {

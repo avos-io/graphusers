@@ -66,3 +66,10 @@ func (m *IosManagedAppRegistrationCollectionResponse) Serialize(writer i878a80d2
 func (m *IosManagedAppRegistrationCollectionResponse) SetValue(value []IosManagedAppRegistrationable)() {
     m.value = value
 }
+// IosManagedAppRegistrationCollectionResponseable 
+type IosManagedAppRegistrationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]IosManagedAppRegistrationable)
+    SetValue(value []IosManagedAppRegistrationable)()
+}

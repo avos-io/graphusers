@@ -60,3 +60,10 @@ func (m *DeviceEnrollmentLimitConfiguration) Serialize(writer i878a80d2330e89d26
 func (m *DeviceEnrollmentLimitConfiguration) SetLimit(value *int32)() {
     m.limit = value
 }
+// DeviceEnrollmentLimitConfigurationable 
+type DeviceEnrollmentLimitConfigurationable interface {
+    DeviceEnrollmentConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetLimit()(*int32)
+    SetLimit(value *int32)()
+}

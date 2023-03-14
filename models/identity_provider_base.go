@@ -10,7 +10,7 @@ type IdentityProviderBase struct {
     // The display name of the identity provider.
     displayName *string
 }
-// NewIdentityProviderBase instantiates a new IdentityProviderBase and sets the default values.
+// NewIdentityProviderBase instantiates a new identityProviderBase and sets the default values.
 func NewIdentityProviderBase()(*IdentityProviderBase) {
     m := &IdentityProviderBase{
         Entity: *NewEntity(),
@@ -85,4 +85,11 @@ func (m *IdentityProviderBase) Serialize(writer i878a80d2330e89d26896388a3f487ee
 // SetDisplayName sets the displayName property value. The display name of the identity provider.
 func (m *IdentityProviderBase) SetDisplayName(value *string)() {
     m.displayName = value
+}
+// IdentityProviderBaseable 
+type IdentityProviderBaseable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    SetDisplayName(value *string)()
 }

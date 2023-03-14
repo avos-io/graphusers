@@ -66,3 +66,10 @@ func (m *LocalizedNotificationMessageCollectionResponse) Serialize(writer i878a8
 func (m *LocalizedNotificationMessageCollectionResponse) SetValue(value []LocalizedNotificationMessageable)() {
     m.value = value
 }
+// LocalizedNotificationMessageCollectionResponseable 
+type LocalizedNotificationMessageCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]LocalizedNotificationMessageable)
+    SetValue(value []LocalizedNotificationMessageable)()
+}

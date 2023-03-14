@@ -25,7 +25,7 @@ type ConditionalAccessPolicy struct {
     // The state property
     state *ConditionalAccessPolicyState
 }
-// NewConditionalAccessPolicy instantiates a new conditionalAccessPolicy and sets the default values.
+// NewConditionalAccessPolicy instantiates a new ConditionalAccessPolicy and sets the default values.
 func NewConditionalAccessPolicy()(*ConditionalAccessPolicy) {
     m := &ConditionalAccessPolicy{
         Entity: *NewEntity(),
@@ -241,4 +241,25 @@ func (m *ConditionalAccessPolicy) SetSessionControls(value ConditionalAccessSess
 // SetState sets the state property value. The state property
 func (m *ConditionalAccessPolicy) SetState(value *ConditionalAccessPolicyState)() {
     m.state = value
+}
+// ConditionalAccessPolicyable 
+type ConditionalAccessPolicyable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConditions()(ConditionalAccessConditionSetable)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetGrantControls()(ConditionalAccessGrantControlsable)
+    GetModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetSessionControls()(ConditionalAccessSessionControlsable)
+    GetState()(*ConditionalAccessPolicyState)
+    SetConditions(value ConditionalAccessConditionSetable)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetGrantControls(value ConditionalAccessGrantControlsable)()
+    SetModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetSessionControls(value ConditionalAccessSessionControlsable)()
+    SetState(value *ConditionalAccessPolicyState)()
 }

@@ -73,3 +73,10 @@ func (m *ItemCheckMemberGroupsPostRequestBody) SetAdditionalData(value map[strin
 func (m *ItemCheckMemberGroupsPostRequestBody) SetGroupIds(value []string)() {
     m.groupIds = value
 }
+// ItemCheckMemberGroupsPostRequestBodyable 
+type ItemCheckMemberGroupsPostRequestBodyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetGroupIds()([]string)
+    SetGroupIds(value []string)()
+}

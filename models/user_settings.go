@@ -14,7 +14,7 @@ type UserSettings struct {
     // The shiftPreferences property
     shiftPreferences ShiftPreferencesable
 }
-// NewUserSettings instantiates a new UserSettings and sets the default values.
+// NewUserSettings instantiates a new userSettings and sets the default values.
 func NewUserSettings()(*UserSettings) {
     m := &UserSettings{
         Entity: *NewEntity(),
@@ -109,4 +109,15 @@ func (m *UserSettings) SetContributionToContentDiscoveryDisabled(value *bool)() 
 // SetShiftPreferences sets the shiftPreferences property value. The shiftPreferences property
 func (m *UserSettings) SetShiftPreferences(value ShiftPreferencesable)() {
     m.shiftPreferences = value
+}
+// UserSettingsable 
+type UserSettingsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetContributionToContentDiscoveryAsOrganizationDisabled()(*bool)
+    GetContributionToContentDiscoveryDisabled()(*bool)
+    GetShiftPreferences()(ShiftPreferencesable)
+    SetContributionToContentDiscoveryAsOrganizationDisabled(value *bool)()
+    SetContributionToContentDiscoveryDisabled(value *bool)()
+    SetShiftPreferences(value ShiftPreferencesable)()
 }

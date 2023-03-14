@@ -134,3 +134,14 @@ func (m *OfficeGraphInsights) SetTrending(value []Trendingable)() {
 func (m *OfficeGraphInsights) SetUsed(value []UsedInsightable)() {
     m.used = value
 }
+// OfficeGraphInsightsable 
+type OfficeGraphInsightsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetShared()([]SharedInsightable)
+    GetTrending()([]Trendingable)
+    GetUsed()([]UsedInsightable)
+    SetShared(value []SharedInsightable)()
+    SetTrending(value []Trendingable)()
+    SetUsed(value []UsedInsightable)()
+}

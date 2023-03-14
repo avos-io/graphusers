@@ -147,3 +147,16 @@ func (m *ConvertIdResult) SetSourceId(value *string)() {
 func (m *ConvertIdResult) SetTargetId(value *string)() {
     m.targetId = value
 }
+// ConvertIdResultable 
+type ConvertIdResultable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetErrorDetails()(GenericErrorable)
+    GetOdataType()(*string)
+    GetSourceId()(*string)
+    GetTargetId()(*string)
+    SetErrorDetails(value GenericErrorable)()
+    SetOdataType(value *string)()
+    SetSourceId(value *string)()
+    SetTargetId(value *string)()
+}

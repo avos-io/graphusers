@@ -15,7 +15,7 @@ type ExternalGroup struct {
     // A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
     members []Identityable
 }
-// NewExternalGroup instantiates a new externalGroup and sets the default values.
+// NewExternalGroup instantiates a new ExternalGroup and sets the default values.
 func NewExternalGroup()(*ExternalGroup) {
     m := &ExternalGroup{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),
@@ -118,4 +118,15 @@ func (m *ExternalGroup) SetDisplayName(value *string)() {
 // SetMembers sets the members property value. A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
 func (m *ExternalGroup) SetMembers(value []Identityable)() {
     m.members = value
+}
+// ExternalGroupable 
+type ExternalGroupable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetMembers()([]Identityable)
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetMembers(value []Identityable)()
 }

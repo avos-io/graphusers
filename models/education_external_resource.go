@@ -60,3 +60,10 @@ func (m *EducationExternalResource) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *EducationExternalResource) SetWebUrl(value *string)() {
     m.webUrl = value
 }
+// EducationExternalResourceable 
+type EducationExternalResourceable interface {
+    EducationResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetWebUrl()(*string)
+    SetWebUrl(value *string)()
+}

@@ -29,7 +29,7 @@ type SecureScore struct {
     // Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
     vendorInformation SecurityVendorInformationable
 }
-// NewSecureScore instantiates a new secureScore and sets the default values.
+// NewSecureScore instantiates a new SecureScore and sets the default values.
 func NewSecureScore()(*SecureScore) {
     m := &SecureScore{
         Entity: *NewEntity(),
@@ -312,4 +312,29 @@ func (m *SecureScore) SetMaxScore(value *float64)() {
 // SetVendorInformation sets the vendorInformation property value. Complex type containing details about the security product/service vendor, provider, and subprovider (for example, vendor=Microsoft; provider=SecureScore). Required.
 func (m *SecureScore) SetVendorInformation(value SecurityVendorInformationable)() {
     m.vendorInformation = value
+}
+// SecureScoreable 
+type SecureScoreable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetActiveUserCount()(*int32)
+    GetAverageComparativeScores()([]AverageComparativeScoreable)
+    GetAzureTenantId()(*string)
+    GetControlScores()([]ControlScoreable)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCurrentScore()(*float64)
+    GetEnabledServices()([]string)
+    GetLicensedUserCount()(*int32)
+    GetMaxScore()(*float64)
+    GetVendorInformation()(SecurityVendorInformationable)
+    SetActiveUserCount(value *int32)()
+    SetAverageComparativeScores(value []AverageComparativeScoreable)()
+    SetAzureTenantId(value *string)()
+    SetControlScores(value []ControlScoreable)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCurrentScore(value *float64)()
+    SetEnabledServices(value []string)()
+    SetLicensedUserCount(value *int32)()
+    SetMaxScore(value *float64)()
+    SetVendorInformation(value SecurityVendorInformationable)()
 }

@@ -66,3 +66,10 @@ func (m *SingleValueLegacyExtendedPropertyCollectionResponse) Serialize(writer i
 func (m *SingleValueLegacyExtendedPropertyCollectionResponse) SetValue(value []SingleValueLegacyExtendedPropertyable)() {
     m.value = value
 }
+// SingleValueLegacyExtendedPropertyCollectionResponseable 
+type SingleValueLegacyExtendedPropertyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SingleValueLegacyExtendedPropertyable)
+    SetValue(value []SingleValueLegacyExtendedPropertyable)()
+}

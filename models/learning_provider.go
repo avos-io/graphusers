@@ -22,7 +22,7 @@ type LearningProvider struct {
     // The square logo URL for the light mode that needs to be a publicly accessible image. This image would be saved to the blob storage of Viva Learning for rendering within the Viva Learning app. Required.
     squareLogoWebUrlForLightTheme *string
 }
-// NewLearningProvider instantiates a new learningProvider and sets the default values.
+// NewLearningProvider instantiates a new LearningProvider and sets the default values.
 func NewLearningProvider()(*LearningProvider) {
     m := &LearningProvider{
         Entity: *NewEntity(),
@@ -221,4 +221,23 @@ func (m *LearningProvider) SetSquareLogoWebUrlForDarkTheme(value *string)() {
 // SetSquareLogoWebUrlForLightTheme sets the squareLogoWebUrlForLightTheme property value. The square logo URL for the light mode that needs to be a publicly accessible image. This image would be saved to the blob storage of Viva Learning for rendering within the Viva Learning app. Required.
 func (m *LearningProvider) SetSquareLogoWebUrlForLightTheme(value *string)() {
     m.squareLogoWebUrlForLightTheme = value
+}
+// LearningProviderable 
+type LearningProviderable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    GetLearningContents()([]LearningContentable)
+    GetLoginWebUrl()(*string)
+    GetLongLogoWebUrlForDarkTheme()(*string)
+    GetLongLogoWebUrlForLightTheme()(*string)
+    GetSquareLogoWebUrlForDarkTheme()(*string)
+    GetSquareLogoWebUrlForLightTheme()(*string)
+    SetDisplayName(value *string)()
+    SetLearningContents(value []LearningContentable)()
+    SetLoginWebUrl(value *string)()
+    SetLongLogoWebUrlForDarkTheme(value *string)()
+    SetLongLogoWebUrlForLightTheme(value *string)()
+    SetSquareLogoWebUrlForDarkTheme(value *string)()
+    SetSquareLogoWebUrlForLightTheme(value *string)()
 }

@@ -83,7 +83,7 @@ type Contact struct {
     // The yomiSurname property
     yomiSurname *string
 }
-// NewContact instantiates a new contact and sets the default values.
+// NewContact instantiates a new Contact and sets the default values.
 func NewContact()(*Contact) {
     m := &Contact{
         OutlookItem: *NewOutlookItem(),
@@ -1044,4 +1044,83 @@ func (m *Contact) SetYomiGivenName(value *string)() {
 // SetYomiSurname sets the yomiSurname property value. The yomiSurname property
 func (m *Contact) SetYomiSurname(value *string)() {
     m.yomiSurname = value
+}
+// Contactable 
+type Contactable interface {
+    OutlookItemable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAssistantName()(*string)
+    GetBirthday()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetBusinessAddress()(PhysicalAddressable)
+    GetBusinessHomePage()(*string)
+    GetBusinessPhones()([]string)
+    GetChildren()([]string)
+    GetCompanyName()(*string)
+    GetDepartment()(*string)
+    GetDisplayName()(*string)
+    GetEmailAddresses()([]EmailAddressable)
+    GetExtensions()([]Extensionable)
+    GetFileAs()(*string)
+    GetGeneration()(*string)
+    GetGivenName()(*string)
+    GetHomeAddress()(PhysicalAddressable)
+    GetHomePhones()([]string)
+    GetImAddresses()([]string)
+    GetInitials()(*string)
+    GetJobTitle()(*string)
+    GetManager()(*string)
+    GetMiddleName()(*string)
+    GetMobilePhone()(*string)
+    GetMultiValueExtendedProperties()([]MultiValueLegacyExtendedPropertyable)
+    GetNickName()(*string)
+    GetOfficeLocation()(*string)
+    GetOtherAddress()(PhysicalAddressable)
+    GetParentFolderId()(*string)
+    GetPersonalNotes()(*string)
+    GetPhoto()(ProfilePhotoable)
+    GetProfession()(*string)
+    GetSingleValueExtendedProperties()([]SingleValueLegacyExtendedPropertyable)
+    GetSpouseName()(*string)
+    GetSurname()(*string)
+    GetTitle()(*string)
+    GetYomiCompanyName()(*string)
+    GetYomiGivenName()(*string)
+    GetYomiSurname()(*string)
+    SetAssistantName(value *string)()
+    SetBirthday(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetBusinessAddress(value PhysicalAddressable)()
+    SetBusinessHomePage(value *string)()
+    SetBusinessPhones(value []string)()
+    SetChildren(value []string)()
+    SetCompanyName(value *string)()
+    SetDepartment(value *string)()
+    SetDisplayName(value *string)()
+    SetEmailAddresses(value []EmailAddressable)()
+    SetExtensions(value []Extensionable)()
+    SetFileAs(value *string)()
+    SetGeneration(value *string)()
+    SetGivenName(value *string)()
+    SetHomeAddress(value PhysicalAddressable)()
+    SetHomePhones(value []string)()
+    SetImAddresses(value []string)()
+    SetInitials(value *string)()
+    SetJobTitle(value *string)()
+    SetManager(value *string)()
+    SetMiddleName(value *string)()
+    SetMobilePhone(value *string)()
+    SetMultiValueExtendedProperties(value []MultiValueLegacyExtendedPropertyable)()
+    SetNickName(value *string)()
+    SetOfficeLocation(value *string)()
+    SetOtherAddress(value PhysicalAddressable)()
+    SetParentFolderId(value *string)()
+    SetPersonalNotes(value *string)()
+    SetPhoto(value ProfilePhotoable)()
+    SetProfession(value *string)()
+    SetSingleValueExtendedProperties(value []SingleValueLegacyExtendedPropertyable)()
+    SetSpouseName(value *string)()
+    SetSurname(value *string)()
+    SetTitle(value *string)()
+    SetYomiCompanyName(value *string)()
+    SetYomiGivenName(value *string)()
+    SetYomiSurname(value *string)()
 }

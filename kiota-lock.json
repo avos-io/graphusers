@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "FE18C5A9B666C084A1C30A1198705ECF9932E8EBE5AD65F61F7593C5AFEBF45FF51975E9087092F1452864BD3596F7FAFED6313C6341C8563D61AAE567EC1CB8",
+  "descriptionHash": "4FF7C23E3FE521F1FADA1D4EEDC47C1DFD6F16F9A4B1EF6F753A24FDC17C4854E7E5AD10B46F692883AF58E1D70575194067C20C2B96492A58B71EB0BBF3FED6",
   "descriptionLocation": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "0.11.1-preview",
+  "kiotaVersion": "1.0.1",
   "clientClassName": "Client",
   "clientNamespaceName": "github.com/avos-io/graphusers",
   "language": "Go",
@@ -27,7 +27,7 @@
   ],
   "includePatterns": [
     "/users/**",
-    "/groups/*/*"
+    "/groups/**"
   ],
   "excludePatterns": [],
   "disabledValidationRules": []

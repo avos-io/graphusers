@@ -118,3 +118,14 @@ func (m *ItemAnalytics) SetItemActivityStats(value []ItemActivityStatable)() {
 func (m *ItemAnalytics) SetLastSevenDays(value ItemActivityStatable)() {
     m.lastSevenDays = value
 }
+// ItemAnalyticsable 
+type ItemAnalyticsable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllTime()(ItemActivityStatable)
+    GetItemActivityStats()([]ItemActivityStatable)
+    GetLastSevenDays()(ItemActivityStatable)
+    SetAllTime(value ItemActivityStatable)()
+    SetItemActivityStats(value []ItemActivityStatable)()
+    SetLastSevenDays(value ItemActivityStatable)()
+}

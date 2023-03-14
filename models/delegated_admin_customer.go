@@ -118,3 +118,14 @@ func (m *DelegatedAdminCustomer) SetServiceManagementDetails(value []DelegatedAd
 func (m *DelegatedAdminCustomer) SetTenantId(value *string)() {
     m.tenantId = value
 }
+// DelegatedAdminCustomerable 
+type DelegatedAdminCustomerable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    GetServiceManagementDetails()([]DelegatedAdminServiceManagementDetailable)
+    GetTenantId()(*string)
+    SetDisplayName(value *string)()
+    SetServiceManagementDetails(value []DelegatedAdminServiceManagementDetailable)()
+    SetTenantId(value *string)()
+}

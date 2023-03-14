@@ -84,3 +84,12 @@ func (m *DeviceCategory) SetDescription(value *string)() {
 func (m *DeviceCategory) SetDisplayName(value *string)() {
     m.displayName = value
 }
+// DeviceCategoryable 
+type DeviceCategoryable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+}

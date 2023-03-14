@@ -164,3 +164,18 @@ func (m *ResourceSpecificPermissionGrant) SetPermissionType(value *string)() {
 func (m *ResourceSpecificPermissionGrant) SetResourceAppId(value *string)() {
     m.resourceAppId = value
 }
+// ResourceSpecificPermissionGrantable 
+type ResourceSpecificPermissionGrantable interface {
+    DirectoryObjectable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClientAppId()(*string)
+    GetClientId()(*string)
+    GetPermission()(*string)
+    GetPermissionType()(*string)
+    GetResourceAppId()(*string)
+    SetClientAppId(value *string)()
+    SetClientId(value *string)()
+    SetPermission(value *string)()
+    SetPermissionType(value *string)()
+    SetResourceAppId(value *string)()
+}

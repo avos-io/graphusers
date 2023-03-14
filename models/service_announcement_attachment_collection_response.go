@@ -66,3 +66,10 @@ func (m *ServiceAnnouncementAttachmentCollectionResponse) Serialize(writer i878a
 func (m *ServiceAnnouncementAttachmentCollectionResponse) SetValue(value []ServiceAnnouncementAttachmentable)() {
     m.value = value
 }
+// ServiceAnnouncementAttachmentCollectionResponseable 
+type ServiceAnnouncementAttachmentCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ServiceAnnouncementAttachmentable)
+    SetValue(value []ServiceAnnouncementAttachmentable)()
+}

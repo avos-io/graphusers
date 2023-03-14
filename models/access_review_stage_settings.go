@@ -275,3 +275,24 @@ func (m *AccessReviewStageSettings) SetReviewers(value []AccessReviewReviewerSco
 func (m *AccessReviewStageSettings) SetStageId(value *string)() {
     m.stageId = value
 }
+// AccessReviewStageSettingsable 
+type AccessReviewStageSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDecisionsThatWillMoveToNextStage()([]string)
+    GetDependsOn()([]string)
+    GetDurationInDays()(*int32)
+    GetFallbackReviewers()([]AccessReviewReviewerScopeable)
+    GetOdataType()(*string)
+    GetRecommendationsEnabled()(*bool)
+    GetReviewers()([]AccessReviewReviewerScopeable)
+    GetStageId()(*string)
+    SetDecisionsThatWillMoveToNextStage(value []string)()
+    SetDependsOn(value []string)()
+    SetDurationInDays(value *int32)()
+    SetFallbackReviewers(value []AccessReviewReviewerScopeable)()
+    SetOdataType(value *string)()
+    SetRecommendationsEnabled(value *bool)()
+    SetReviewers(value []AccessReviewReviewerScopeable)()
+    SetStageId(value *string)()
+}

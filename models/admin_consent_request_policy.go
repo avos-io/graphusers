@@ -20,7 +20,7 @@ type AdminConsentRequestPolicy struct {
     // Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.
     version *int32
 }
-// NewAdminConsentRequestPolicy instantiates a new adminConsentRequestPolicy and sets the default values.
+// NewAdminConsentRequestPolicy instantiates a new AdminConsentRequestPolicy and sets the default values.
 func NewAdminConsentRequestPolicy()(*AdminConsentRequestPolicy) {
     m := &AdminConsentRequestPolicy{
         Entity: *NewEntity(),
@@ -195,4 +195,21 @@ func (m *AdminConsentRequestPolicy) SetReviewers(value []AccessReviewReviewerSco
 // SetVersion sets the version property value. Specifies the version of this policy. When the policy is updated, this version is updated. Read-only.
 func (m *AdminConsentRequestPolicy) SetVersion(value *int32)() {
     m.version = value
+}
+// AdminConsentRequestPolicyable 
+type AdminConsentRequestPolicyable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsEnabled()(*bool)
+    GetNotifyReviewers()(*bool)
+    GetRemindersEnabled()(*bool)
+    GetRequestDurationInDays()(*int32)
+    GetReviewers()([]AccessReviewReviewerScopeable)
+    GetVersion()(*int32)
+    SetIsEnabled(value *bool)()
+    SetNotifyReviewers(value *bool)()
+    SetRemindersEnabled(value *bool)()
+    SetRequestDurationInDays(value *int32)()
+    SetReviewers(value []AccessReviewReviewerScopeable)()
+    SetVersion(value *int32)()
 }

@@ -86,3 +86,12 @@ func (m *JoinMeetingIdMeetingInfo) SetJoinMeetingId(value *string)() {
 func (m *JoinMeetingIdMeetingInfo) SetPasscode(value *string)() {
     m.passcode = value
 }
+// JoinMeetingIdMeetingInfoable 
+type JoinMeetingIdMeetingInfoable interface {
+    MeetingInfoable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetJoinMeetingId()(*string)
+    GetPasscode()(*string)
+    SetJoinMeetingId(value *string)()
+    SetPasscode(value *string)()
+}

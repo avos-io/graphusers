@@ -66,3 +66,10 @@ func (m *EducationUserCollectionResponse) Serialize(writer i878a80d2330e89d26896
 func (m *EducationUserCollectionResponse) SetValue(value []EducationUserable)() {
     m.value = value
 }
+// EducationUserCollectionResponseable 
+type EducationUserCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]EducationUserable)
+    SetValue(value []EducationUserable)()
+}

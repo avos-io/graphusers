@@ -60,3 +60,10 @@ func (m *AnonymousGuestConversationMember) Serialize(writer i878a80d2330e89d2689
 func (m *AnonymousGuestConversationMember) SetAnonymousGuestId(value *string)() {
     m.anonymousGuestId = value
 }
+// AnonymousGuestConversationMemberable 
+type AnonymousGuestConversationMemberable interface {
+    ConversationMemberable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAnonymousGuestId()(*string)
+    SetAnonymousGuestId(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *TeamsAsyncOperationCollectionResponse) Serialize(writer i878a80d2330e89
 func (m *TeamsAsyncOperationCollectionResponse) SetValue(value []TeamsAsyncOperationable)() {
     m.value = value
 }
+// TeamsAsyncOperationCollectionResponseable 
+type TeamsAsyncOperationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]TeamsAsyncOperationable)
+    SetValue(value []TeamsAsyncOperationable)()
+}

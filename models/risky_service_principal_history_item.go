@@ -12,7 +12,7 @@ type RiskyServicePrincipalHistoryItem struct {
     // The identifier of the actor of the operation.
     initiatedBy *string
 }
-// NewRiskyServicePrincipalHistoryItem instantiates a new riskyServicePrincipalHistoryItem and sets the default values.
+// NewRiskyServicePrincipalHistoryItem instantiates a new RiskyServicePrincipalHistoryItem and sets the default values.
 func NewRiskyServicePrincipalHistoryItem()(*RiskyServicePrincipalHistoryItem) {
     m := &RiskyServicePrincipalHistoryItem{
         RiskyServicePrincipal: *NewRiskyServicePrincipal(),
@@ -83,4 +83,13 @@ func (m *RiskyServicePrincipalHistoryItem) SetActivity(value RiskServicePrincipa
 // SetInitiatedBy sets the initiatedBy property value. The identifier of the actor of the operation.
 func (m *RiskyServicePrincipalHistoryItem) SetInitiatedBy(value *string)() {
     m.initiatedBy = value
+}
+// RiskyServicePrincipalHistoryItemable 
+type RiskyServicePrincipalHistoryItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    RiskyServicePrincipalable
+    GetActivity()(RiskServicePrincipalActivityable)
+    GetInitiatedBy()(*string)
+    SetActivity(value RiskServicePrincipalActivityable)()
+    SetInitiatedBy(value *string)()
 }

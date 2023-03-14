@@ -66,3 +66,10 @@ func (m *ChecklistItemCollectionResponse) Serialize(writer i878a80d2330e89d26896
 func (m *ChecklistItemCollectionResponse) SetValue(value []ChecklistItemable)() {
     m.value = value
 }
+// ChecklistItemCollectionResponseable 
+type ChecklistItemCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ChecklistItemable)
+    SetValue(value []ChecklistItemable)()
+}

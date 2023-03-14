@@ -70,6 +70,14 @@ func NewItemPermissionGrantsRequestBuilder(rawUrl string, requestAdapter i2ae418
     urlParams["request-raw-url"] = rawUrl
     return NewItemPermissionGrantsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemPermissionGrantsRequestBuilder) Count()(*ItemPermissionGrantsCountRequestBuilder) {
+    return NewItemPermissionGrantsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Delta provides operations to call the delta method.
+func (m *ItemPermissionGrantsRequestBuilder) Delta()(*ItemPermissionGrantsDeltaRequestBuilder) {
+    return NewItemPermissionGrantsDeltaRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get list all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
 // [Find more info here]
 // 
@@ -91,6 +99,14 @@ func (m *ItemPermissionGrantsRequestBuilder) Get(ctx context.Context, requestCon
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ResourceSpecificPermissionGrantCollectionResponseable), nil
+}
+// GetAvailableExtensionProperties provides operations to call the getAvailableExtensionProperties method.
+func (m *ItemPermissionGrantsRequestBuilder) GetAvailableExtensionProperties()(*ItemPermissionGrantsGetAvailableExtensionPropertiesRequestBuilder) {
+    return NewItemPermissionGrantsGetAvailableExtensionPropertiesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GetByIds provides operations to call the getByIds method.
+func (m *ItemPermissionGrantsRequestBuilder) GetByIds()(*ItemPermissionGrantsGetByIdsRequestBuilder) {
+    return NewItemPermissionGrantsGetByIdsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // Post create new navigation property to permissionGrants for groups
 func (m *ItemPermissionGrantsRequestBuilder) Post(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ResourceSpecificPermissionGrantable, requestConfiguration *ItemPermissionGrantsRequestBuilderPostRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ResourceSpecificPermissionGrantable, error) {
@@ -143,4 +159,8 @@ func (m *ItemPermissionGrantsRequestBuilder) ToPostRequestInformation(ctx contex
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     return requestInfo, nil
+}
+// ValidateProperties provides operations to call the validateProperties method.
+func (m *ItemPermissionGrantsRequestBuilder) ValidateProperties()(*ItemPermissionGrantsValidatePropertiesRequestBuilder) {
+    return NewItemPermissionGrantsValidatePropertiesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }

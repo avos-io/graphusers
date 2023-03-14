@@ -112,3 +112,14 @@ func (m *TeamRenamedEventMessageDetail) SetTeamDisplayName(value *string)() {
 func (m *TeamRenamedEventMessageDetail) SetTeamId(value *string)() {
     m.teamId = value
 }
+// TeamRenamedEventMessageDetailable 
+type TeamRenamedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInitiator()(IdentitySetable)
+    GetTeamDisplayName()(*string)
+    GetTeamId()(*string)
+    SetInitiator(value IdentitySetable)()
+    SetTeamDisplayName(value *string)()
+    SetTeamId(value *string)()
+}

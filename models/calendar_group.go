@@ -17,7 +17,7 @@ type CalendarGroup struct {
     // The group name.
     name *string
 }
-// NewCalendarGroup instantiates a new calendarGroup and sets the default values.
+// NewCalendarGroup instantiates a new CalendarGroup and sets the default values.
 func NewCalendarGroup()(*CalendarGroup) {
     m := &CalendarGroup{
         Entity: *NewEntity(),
@@ -144,4 +144,17 @@ func (m *CalendarGroup) SetClassId(value *i561e97a8befe7661a44c8f54600992b4207a3
 // SetName sets the name property value. The group name.
 func (m *CalendarGroup) SetName(value *string)() {
     m.name = value
+}
+// CalendarGroupable 
+type CalendarGroupable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCalendars()([]Calendarable)
+    GetChangeKey()(*string)
+    GetClassId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetName()(*string)
+    SetCalendars(value []Calendarable)()
+    SetChangeKey(value *string)()
+    SetClassId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetName(value *string)()
 }

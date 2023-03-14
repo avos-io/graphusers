@@ -63,6 +63,10 @@ func NewItemDrivesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemDrivesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemDrivesRequestBuilder) Count()(*ItemDrivesCountRequestBuilder) {
+    return NewItemDrivesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve the list of Drive resources available for a target User, Group, or Site.
 // [Find more info here]
 // 

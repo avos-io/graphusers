@@ -66,3 +66,10 @@ func (m *EducationFeedbackResourceOutcomeCollectionResponse) Serialize(writer i8
 func (m *EducationFeedbackResourceOutcomeCollectionResponse) SetValue(value []EducationFeedbackResourceOutcomeable)() {
     m.value = value
 }
+// EducationFeedbackResourceOutcomeCollectionResponseable 
+type EducationFeedbackResourceOutcomeCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]EducationFeedbackResourceOutcomeable)
+    SetValue(value []EducationFeedbackResourceOutcomeable)()
+}

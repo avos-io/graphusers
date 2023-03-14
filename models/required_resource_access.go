@@ -129,3 +129,14 @@ func (m *RequiredResourceAccess) SetResourceAccess(value []ResourceAccessable)()
 func (m *RequiredResourceAccess) SetResourceAppId(value *string)() {
     m.resourceAppId = value
 }
+// RequiredResourceAccessable 
+type RequiredResourceAccessable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetResourceAccess()([]ResourceAccessable)
+    GetResourceAppId()(*string)
+    SetOdataType(value *string)()
+    SetResourceAccess(value []ResourceAccessable)()
+    SetResourceAppId(value *string)()
+}

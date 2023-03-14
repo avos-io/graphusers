@@ -16,7 +16,7 @@ type ItemMessagesItemAttachmentsRequestBuilder struct {
     // Url template to use to build the URL for the current request builder
     urlTemplate string
 }
-// ItemMessagesItemAttachmentsRequestBuilderGetQueryParameters retrieve a list of attachment objects.
+// ItemMessagesItemAttachmentsRequestBuilderGetQueryParameters retrieve a list of attachment objects attached to a message.
 type ItemMessagesItemAttachmentsRequestBuilderGetQueryParameters struct {
     // Include count of items
     Count *bool `uriparametername:"%24count"`
@@ -76,10 +76,10 @@ func (m *ItemMessagesItemAttachmentsRequestBuilder) Count()(*ItemMessagesItemAtt
 func (m *ItemMessagesItemAttachmentsRequestBuilder) CreateUploadSession()(*ItemMessagesItemAttachmentsCreateUploadSessionRequestBuilder) {
     return NewItemMessagesItemAttachmentsCreateUploadSessionRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
-// Get retrieve a list of attachment objects.
+// Get retrieve a list of attachment objects attached to a message.
 // [Find more info here]
 // 
-// [Find more info here]: https://docs.microsoft.com/graph/api/eventmessage-list-attachments?view=graph-rest-1.0
+// [Find more info here]: https://docs.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0
 func (m *ItemMessagesItemAttachmentsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemMessagesItemAttachmentsRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.AttachmentCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
     if err != nil {
@@ -120,7 +120,7 @@ func (m *ItemMessagesItemAttachmentsRequestBuilder) Post(ctx context.Context, bo
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Attachmentable), nil
 }
-// ToGetRequestInformation retrieve a list of attachment objects.
+// ToGetRequestInformation retrieve a list of attachment objects attached to a message.
 func (m *ItemMessagesItemAttachmentsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemMessagesItemAttachmentsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.urlTemplate

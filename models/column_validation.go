@@ -155,3 +155,16 @@ func (m *ColumnValidation) SetFormula(value *string)() {
 func (m *ColumnValidation) SetOdataType(value *string)() {
     m.odataType = value
 }
+// ColumnValidationable 
+type ColumnValidationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefaultLanguage()(*string)
+    GetDescriptions()([]DisplayNameLocalizationable)
+    GetFormula()(*string)
+    GetOdataType()(*string)
+    SetDefaultLanguage(value *string)()
+    SetDescriptions(value []DisplayNameLocalizationable)()
+    SetFormula(value *string)()
+    SetOdataType(value *string)()
+}

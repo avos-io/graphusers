@@ -69,3 +69,10 @@ func (m *ItemGetMemberGroupsPostRequestBody) SetAdditionalData(value map[string]
 func (m *ItemGetMemberGroupsPostRequestBody) SetSecurityEnabledOnly(value *bool)() {
     m.securityEnabledOnly = value
 }
+// ItemGetMemberGroupsPostRequestBodyable 
+type ItemGetMemberGroupsPostRequestBodyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSecurityEnabledOnly()(*bool)
+    SetSecurityEnabledOnly(value *bool)()
+}

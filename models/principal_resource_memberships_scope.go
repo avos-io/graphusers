@@ -102,3 +102,12 @@ func (m *PrincipalResourceMembershipsScope) SetPrincipalScopes(value []AccessRev
 func (m *PrincipalResourceMembershipsScope) SetResourceScopes(value []AccessReviewScopeable)() {
     m.resourceScopes = value
 }
+// PrincipalResourceMembershipsScopeable 
+type PrincipalResourceMembershipsScopeable interface {
+    AccessReviewScopeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetPrincipalScopes()([]AccessReviewScopeable)
+    GetResourceScopes()([]AccessReviewScopeable)
+    SetPrincipalScopes(value []AccessReviewScopeable)()
+    SetResourceScopes(value []AccessReviewScopeable)()
+}

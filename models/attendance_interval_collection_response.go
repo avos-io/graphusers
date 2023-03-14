@@ -66,3 +66,10 @@ func (m *AttendanceIntervalCollectionResponse) Serialize(writer i878a80d2330e89d
 func (m *AttendanceIntervalCollectionResponse) SetValue(value []AttendanceIntervalable)() {
     m.value = value
 }
+// AttendanceIntervalCollectionResponseable 
+type AttendanceIntervalCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AttendanceIntervalable)
+    SetValue(value []AttendanceIntervalable)()
+}

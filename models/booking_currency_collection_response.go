@@ -66,3 +66,10 @@ func (m *BookingCurrencyCollectionResponse) Serialize(writer i878a80d2330e89d268
 func (m *BookingCurrencyCollectionResponse) SetValue(value []BookingCurrencyable)() {
     m.value = value
 }
+// BookingCurrencyCollectionResponseable 
+type BookingCurrencyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]BookingCurrencyable)
+    SetValue(value []BookingCurrencyable)()
+}

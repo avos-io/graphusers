@@ -60,3 +60,10 @@ func (m *WindowsWebApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
 func (m *WindowsWebApp) SetAppUrl(value *string)() {
     m.appUrl = value
 }
+// WindowsWebAppable 
+type WindowsWebAppable interface {
+    MobileAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppUrl()(*string)
+    SetAppUrl(value *string)()
+}

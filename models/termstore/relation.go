@@ -138,3 +138,16 @@ func (m *Relation) SetSet(value Setable)() {
 func (m *Relation) SetToTerm(value Termable)() {
     m.toTerm = value
 }
+// Relationable 
+type Relationable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFromTerm()(Termable)
+    GetRelationship()(*RelationType)
+    GetSet()(Setable)
+    GetToTerm()(Termable)
+    SetFromTerm(value Termable)()
+    SetRelationship(value *RelationType)()
+    SetSet(value Setable)()
+    SetToTerm(value Termable)()
+}

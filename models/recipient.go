@@ -115,3 +115,12 @@ func (m *Recipient) SetEmailAddress(value EmailAddressable)() {
 func (m *Recipient) SetOdataType(value *string)() {
     m.odataType = value
 }
+// Recipientable 
+type Recipientable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetEmailAddress()(EmailAddressable)
+    GetOdataType()(*string)
+    SetEmailAddress(value EmailAddressable)()
+    SetOdataType(value *string)()
+}

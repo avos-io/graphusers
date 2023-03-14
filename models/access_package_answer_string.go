@@ -60,3 +60,10 @@ func (m *AccessPackageAnswerString) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *AccessPackageAnswerString) SetValue(value *string)() {
     m.value = value
 }
+// AccessPackageAnswerStringable 
+type AccessPackageAnswerStringable interface {
+    AccessPackageAnswerable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()(*string)
+    SetValue(value *string)()
+}

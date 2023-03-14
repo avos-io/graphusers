@@ -84,3 +84,12 @@ func (m *RecordOperation) SetRecordingAccessToken(value *string)() {
 func (m *RecordOperation) SetRecordingLocation(value *string)() {
     m.recordingLocation = value
 }
+// RecordOperationable 
+type RecordOperationable interface {
+    CommsOperationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetRecordingAccessToken()(*string)
+    GetRecordingLocation()(*string)
+    SetRecordingAccessToken(value *string)()
+    SetRecordingLocation(value *string)()
+}

@@ -66,3 +66,10 @@ func (m *Windows10EndpointProtectionConfigurationCollectionResponse) Serialize(w
 func (m *Windows10EndpointProtectionConfigurationCollectionResponse) SetValue(value []Windows10EndpointProtectionConfigurationable)() {
     m.value = value
 }
+// Windows10EndpointProtectionConfigurationCollectionResponseable 
+type Windows10EndpointProtectionConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]Windows10EndpointProtectionConfigurationable)
+    SetValue(value []Windows10EndpointProtectionConfigurationable)()
+}

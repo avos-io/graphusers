@@ -60,3 +60,10 @@ func (m *EducationLinkResource) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *EducationLinkResource) SetLink(value *string)() {
     m.link = value
 }
+// EducationLinkResourceable 
+type EducationLinkResourceable interface {
+    EducationResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetLink()(*string)
+    SetLink(value *string)()
+}

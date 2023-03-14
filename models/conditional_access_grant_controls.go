@@ -185,3 +185,18 @@ func (m *ConditionalAccessGrantControls) SetOperator(value *string)() {
 func (m *ConditionalAccessGrantControls) SetTermsOfUse(value []string)() {
     m.termsOfUse = value
 }
+// ConditionalAccessGrantControlsable 
+type ConditionalAccessGrantControlsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBuiltInControls()([]ConditionalAccessGrantControl)
+    GetCustomAuthenticationFactors()([]string)
+    GetOdataType()(*string)
+    GetOperator()(*string)
+    GetTermsOfUse()([]string)
+    SetBuiltInControls(value []ConditionalAccessGrantControl)()
+    SetCustomAuthenticationFactors(value []string)()
+    SetOdataType(value *string)()
+    SetOperator(value *string)()
+    SetTermsOfUse(value []string)()
+}

@@ -60,3 +60,10 @@ func (m *SkypeUserConversationMember) Serialize(writer i878a80d2330e89d26896388a
 func (m *SkypeUserConversationMember) SetSkypeId(value *string)() {
     m.skypeId = value
 }
+// SkypeUserConversationMemberable 
+type SkypeUserConversationMemberable interface {
+    ConversationMemberable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSkypeId()(*string)
+    SetSkypeId(value *string)()
+}

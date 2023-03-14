@@ -121,3 +121,14 @@ func (m *EducationTeacher) SetOdataType(value *string)() {
 func (m *EducationTeacher) SetTeacherNumber(value *string)() {
     m.teacherNumber = value
 }
+// EducationTeacherable 
+type EducationTeacherable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExternalId()(*string)
+    GetOdataType()(*string)
+    GetTeacherNumber()(*string)
+    SetExternalId(value *string)()
+    SetOdataType(value *string)()
+    SetTeacherNumber(value *string)()
+}

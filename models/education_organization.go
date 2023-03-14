@@ -16,7 +16,7 @@ type EducationOrganization struct {
     // The name of the external source this resources was generated from.
     externalSourceDetail *string
 }
-// NewEducationOrganization instantiates a new educationOrganization and sets the default values.
+// NewEducationOrganization instantiates a new EducationOrganization and sets the default values.
 func NewEducationOrganization()(*EducationOrganization) {
     m := &EducationOrganization{
         Entity: *NewEntity(),
@@ -154,4 +154,17 @@ func (m *EducationOrganization) SetExternalSource(value *EducationExternalSource
 // SetExternalSourceDetail sets the externalSourceDetail property value. The name of the external source this resources was generated from.
 func (m *EducationOrganization) SetExternalSourceDetail(value *string)() {
     m.externalSourceDetail = value
+}
+// EducationOrganizationable 
+type EducationOrganizationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetExternalSource()(*EducationExternalSource)
+    GetExternalSourceDetail()(*string)
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetExternalSource(value *EducationExternalSource)()
+    SetExternalSourceDetail(value *string)()
 }

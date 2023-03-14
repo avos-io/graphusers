@@ -66,3 +66,10 @@ func (m *PermissionGrantConditionSetCollectionResponse) Serialize(writer i878a80
 func (m *PermissionGrantConditionSetCollectionResponse) SetValue(value []PermissionGrantConditionSetable)() {
     m.value = value
 }
+// PermissionGrantConditionSetCollectionResponseable 
+type PermissionGrantConditionSetCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]PermissionGrantConditionSetable)
+    SetValue(value []PermissionGrantConditionSetable)()
+}

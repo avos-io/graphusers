@@ -58,3 +58,10 @@ func (m *WorkbookRangeFill) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 func (m *WorkbookRangeFill) SetColor(value *string)() {
     m.color = value
 }
+// WorkbookRangeFillable 
+type WorkbookRangeFillable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetColor()(*string)
+    SetColor(value *string)()
+}

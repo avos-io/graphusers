@@ -113,3 +113,14 @@ func (m *MailAssessmentRequest) SetMessageUri(value *string)() {
 func (m *MailAssessmentRequest) SetRecipientEmail(value *string)() {
     m.recipientEmail = value
 }
+// MailAssessmentRequestable 
+type MailAssessmentRequestable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    ThreatAssessmentRequestable
+    GetDestinationRoutingReason()(*MailDestinationRoutingReason)
+    GetMessageUri()(*string)
+    GetRecipientEmail()(*string)
+    SetDestinationRoutingReason(value *MailDestinationRoutingReason)()
+    SetMessageUri(value *string)()
+    SetRecipientEmail(value *string)()
+}

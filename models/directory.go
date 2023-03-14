@@ -168,3 +168,16 @@ func (m *Directory) SetFederationConfigurations(value []IdentityProviderBaseable
 func (m *Directory) SetOnPremisesSynchronization(value []OnPremisesDirectorySynchronizationable)() {
     m.onPremisesSynchronization = value
 }
+// Directoryable 
+type Directoryable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAdministrativeUnits()([]AdministrativeUnitable)
+    GetDeletedItems()([]DirectoryObjectable)
+    GetFederationConfigurations()([]IdentityProviderBaseable)
+    GetOnPremisesSynchronization()([]OnPremisesDirectorySynchronizationable)
+    SetAdministrativeUnits(value []AdministrativeUnitable)()
+    SetDeletedItems(value []DirectoryObjectable)()
+    SetFederationConfigurations(value []IdentityProviderBaseable)()
+    SetOnPremisesSynchronization(value []OnPremisesDirectorySynchronizationable)()
+}

@@ -60,3 +60,10 @@ func (m *EducationWordResource) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *EducationWordResource) SetFileUrl(value *string)() {
     m.fileUrl = value
 }
+// EducationWordResourceable 
+type EducationWordResourceable interface {
+    EducationResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFileUrl()(*string)
+    SetFileUrl(value *string)()
+}

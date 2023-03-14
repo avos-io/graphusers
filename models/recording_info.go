@@ -122,3 +122,14 @@ func (m *RecordingInfo) SetOdataType(value *string)() {
 func (m *RecordingInfo) SetRecordingStatus(value *RecordingStatus)() {
     m.recordingStatus = value
 }
+// RecordingInfoable 
+type RecordingInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInitiator()(IdentitySetable)
+    GetOdataType()(*string)
+    GetRecordingStatus()(*RecordingStatus)
+    SetInitiator(value IdentitySetable)()
+    SetOdataType(value *string)()
+    SetRecordingStatus(value *RecordingStatus)()
+}

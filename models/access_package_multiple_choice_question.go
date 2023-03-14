@@ -94,3 +94,12 @@ func (m *AccessPackageMultipleChoiceQuestion) SetChoices(value []AccessPackageAn
 func (m *AccessPackageMultipleChoiceQuestion) SetIsMultipleSelectionAllowed(value *bool)() {
     m.isMultipleSelectionAllowed = value
 }
+// AccessPackageMultipleChoiceQuestionable 
+type AccessPackageMultipleChoiceQuestionable interface {
+    AccessPackageQuestionable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetChoices()([]AccessPackageAnswerChoiceable)
+    GetIsMultipleSelectionAllowed()(*bool)
+    SetChoices(value []AccessPackageAnswerChoiceable)()
+    SetIsMultipleSelectionAllowed(value *bool)()
+}

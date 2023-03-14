@@ -66,3 +66,10 @@ func (m *MacOSCompliancePolicyCollectionResponse) Serialize(writer i878a80d2330e
 func (m *MacOSCompliancePolicyCollectionResponse) SetValue(value []MacOSCompliancePolicyable)() {
     m.value = value
 }
+// MacOSCompliancePolicyCollectionResponseable 
+type MacOSCompliancePolicyCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]MacOSCompliancePolicyable)
+    SetValue(value []MacOSCompliancePolicyable)()
+}

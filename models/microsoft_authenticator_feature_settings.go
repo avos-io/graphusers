@@ -121,3 +121,14 @@ func (m *MicrosoftAuthenticatorFeatureSettings) SetDisplayLocationInformationReq
 func (m *MicrosoftAuthenticatorFeatureSettings) SetOdataType(value *string)() {
     m.odataType = value
 }
+// MicrosoftAuthenticatorFeatureSettingsable 
+type MicrosoftAuthenticatorFeatureSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayAppInformationRequiredState()(AuthenticationMethodFeatureConfigurationable)
+    GetDisplayLocationInformationRequiredState()(AuthenticationMethodFeatureConfigurationable)
+    GetOdataType()(*string)
+    SetDisplayAppInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)()
+    SetDisplayLocationInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)()
+    SetOdataType(value *string)()
+}

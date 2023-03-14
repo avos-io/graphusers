@@ -110,3 +110,14 @@ func (m *WorkbookChartAxes) SetSeriesAxis(value WorkbookChartAxisable)() {
 func (m *WorkbookChartAxes) SetValueAxis(value WorkbookChartAxisable)() {
     m.valueAxis = value
 }
+// WorkbookChartAxesable 
+type WorkbookChartAxesable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCategoryAxis()(WorkbookChartAxisable)
+    GetSeriesAxis()(WorkbookChartAxisable)
+    GetValueAxis()(WorkbookChartAxisable)
+    SetCategoryAxis(value WorkbookChartAxisable)()
+    SetSeriesAxis(value WorkbookChartAxisable)()
+    SetValueAxis(value WorkbookChartAxisable)()
+}

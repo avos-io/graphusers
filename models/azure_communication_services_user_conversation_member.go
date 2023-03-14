@@ -60,3 +60,10 @@ func (m *AzureCommunicationServicesUserConversationMember) Serialize(writer i878
 func (m *AzureCommunicationServicesUserConversationMember) SetAzureCommunicationServicesId(value *string)() {
     m.azureCommunicationServicesId = value
 }
+// AzureCommunicationServicesUserConversationMemberable 
+type AzureCommunicationServicesUserConversationMemberable interface {
+    ConversationMemberable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAzureCommunicationServicesId()(*string)
+    SetAzureCommunicationServicesId(value *string)()
+}

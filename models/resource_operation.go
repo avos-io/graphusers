@@ -110,3 +110,14 @@ func (m *ResourceOperation) SetDescription(value *string)() {
 func (m *ResourceOperation) SetResourceName(value *string)() {
     m.resourceName = value
 }
+// ResourceOperationable 
+type ResourceOperationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetActionName()(*string)
+    GetDescription()(*string)
+    GetResourceName()(*string)
+    SetActionName(value *string)()
+    SetDescription(value *string)()
+    SetResourceName(value *string)()
+}

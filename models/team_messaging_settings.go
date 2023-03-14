@@ -199,3 +199,20 @@ func (m *TeamMessagingSettings) SetAllowUserEditMessages(value *bool)() {
 func (m *TeamMessagingSettings) SetOdataType(value *string)() {
     m.odataType = value
 }
+// TeamMessagingSettingsable 
+type TeamMessagingSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowChannelMentions()(*bool)
+    GetAllowOwnerDeleteMessages()(*bool)
+    GetAllowTeamMentions()(*bool)
+    GetAllowUserDeleteMessages()(*bool)
+    GetAllowUserEditMessages()(*bool)
+    GetOdataType()(*string)
+    SetAllowChannelMentions(value *bool)()
+    SetAllowOwnerDeleteMessages(value *bool)()
+    SetAllowTeamMentions(value *bool)()
+    SetAllowUserDeleteMessages(value *bool)()
+    SetAllowUserEditMessages(value *bool)()
+    SetOdataType(value *string)()
+}

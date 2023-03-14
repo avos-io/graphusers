@@ -128,3 +128,14 @@ func (m *X509CertificateAuthenticationMethodConfiguration) SetCertificateUserBin
 func (m *X509CertificateAuthenticationMethodConfiguration) SetIncludeTargets(value []AuthenticationMethodTargetable)() {
     m.includeTargets = value
 }
+// X509CertificateAuthenticationMethodConfigurationable 
+type X509CertificateAuthenticationMethodConfigurationable interface {
+    AuthenticationMethodConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAuthenticationModeConfiguration()(X509CertificateAuthenticationModeConfigurationable)
+    GetCertificateUserBindings()([]X509CertificateUserBindingable)
+    GetIncludeTargets()([]AuthenticationMethodTargetable)
+    SetAuthenticationModeConfiguration(value X509CertificateAuthenticationModeConfigurationable)()
+    SetCertificateUserBindings(value []X509CertificateUserBindingable)()
+    SetIncludeTargets(value []AuthenticationMethodTargetable)()
+}

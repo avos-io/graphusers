@@ -147,3 +147,16 @@ func (m *WorkbookOperationError) SetMessage(value *string)() {
 func (m *WorkbookOperationError) SetOdataType(value *string)() {
     m.odataType = value
 }
+// WorkbookOperationErrorable 
+type WorkbookOperationErrorable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCode()(*string)
+    GetInnerError()(WorkbookOperationErrorable)
+    GetMessage()(*string)
+    GetOdataType()(*string)
+    SetCode(value *string)()
+    SetInnerError(value WorkbookOperationErrorable)()
+    SetMessage(value *string)()
+    SetOdataType(value *string)()
+}

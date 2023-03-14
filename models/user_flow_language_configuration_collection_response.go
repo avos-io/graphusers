@@ -66,3 +66,10 @@ func (m *UserFlowLanguageConfigurationCollectionResponse) Serialize(writer i878a
 func (m *UserFlowLanguageConfigurationCollectionResponse) SetValue(value []UserFlowLanguageConfigurationable)() {
     m.value = value
 }
+// UserFlowLanguageConfigurationCollectionResponseable 
+type UserFlowLanguageConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]UserFlowLanguageConfigurationable)
+    SetValue(value []UserFlowLanguageConfigurationable)()
+}

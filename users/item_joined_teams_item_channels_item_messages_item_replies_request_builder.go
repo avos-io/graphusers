@@ -100,10 +100,10 @@ func (m *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilder) Get(c
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ChatMessageCollectionResponseable), nil
 }
-// Post send a new reply to a chatMessage in a specified channel.
+// Post create a new reply to a chatMessage in a specified channel.
 // [Find more info here]
 // 
-// [Find more info here]: https://docs.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0
+// [Find more info here]: https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0
 func (m *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilder) Post(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ChatMessageable, requestConfiguration *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilderPostRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ChatMessageable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -138,7 +138,7 @@ func (m *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilder) ToGet
     }
     return requestInfo, nil
 }
-// ToPostRequestInformation send a new reply to a chatMessage in a specified channel.
+// ToPostRequestInformation create a new reply to a chatMessage in a specified channel.
 func (m *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilder) ToPostRequestInformation(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ChatMessageable, requestConfiguration *ItemJoinedTeamsItemChannelsItemMessagesItemRepliesRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.urlTemplate

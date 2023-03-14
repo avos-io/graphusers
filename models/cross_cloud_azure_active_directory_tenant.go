@@ -112,3 +112,14 @@ func (m *CrossCloudAzureActiveDirectoryTenant) SetDisplayName(value *string)() {
 func (m *CrossCloudAzureActiveDirectoryTenant) SetTenantId(value *string)() {
     m.tenantId = value
 }
+// CrossCloudAzureActiveDirectoryTenantable 
+type CrossCloudAzureActiveDirectoryTenantable interface {
+    IdentitySourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCloudInstance()(*string)
+    GetDisplayName()(*string)
+    GetTenantId()(*string)
+    SetCloudInstance(value *string)()
+    SetDisplayName(value *string)()
+    SetTenantId(value *string)()
+}

@@ -165,3 +165,18 @@ func (m *MicrosoftAuthenticatorAuthenticationMethod) SetDisplayName(value *strin
 func (m *MicrosoftAuthenticatorAuthenticationMethod) SetPhoneAppVersion(value *string)() {
     m.phoneAppVersion = value
 }
+// MicrosoftAuthenticatorAuthenticationMethodable 
+type MicrosoftAuthenticatorAuthenticationMethodable interface {
+    AuthenticationMethodable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDevice()(Deviceable)
+    GetDeviceTag()(*string)
+    GetDisplayName()(*string)
+    GetPhoneAppVersion()(*string)
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDevice(value Deviceable)()
+    SetDeviceTag(value *string)()
+    SetDisplayName(value *string)()
+    SetPhoneAppVersion(value *string)()
+}

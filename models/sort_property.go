@@ -121,3 +121,14 @@ func (m *SortProperty) SetName(value *string)() {
 func (m *SortProperty) SetOdataType(value *string)() {
     m.odataType = value
 }
+// SortPropertyable 
+type SortPropertyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsDescending()(*bool)
+    GetName()(*string)
+    GetOdataType()(*string)
+    SetIsDescending(value *bool)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+}

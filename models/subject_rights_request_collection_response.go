@@ -66,3 +66,10 @@ func (m *SubjectRightsRequestCollectionResponse) Serialize(writer i878a80d2330e8
 func (m *SubjectRightsRequestCollectionResponse) SetValue(value []SubjectRightsRequestable)() {
     m.value = value
 }
+// SubjectRightsRequestCollectionResponseable 
+type SubjectRightsRequestCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SubjectRightsRequestable)
+    SetValue(value []SubjectRightsRequestable)()
+}

@@ -112,3 +112,14 @@ func (m *CustomTimeZone) SetDaylightOffset(value DaylightTimeZoneOffsetable)() {
 func (m *CustomTimeZone) SetStandardOffset(value StandardTimeZoneOffsetable)() {
     m.standardOffset = value
 }
+// CustomTimeZoneable 
+type CustomTimeZoneable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    TimeZoneBaseable
+    GetBias()(*int32)
+    GetDaylightOffset()(DaylightTimeZoneOffsetable)
+    GetStandardOffset()(StandardTimeZoneOffsetable)
+    SetBias(value *int32)()
+    SetDaylightOffset(value DaylightTimeZoneOffsetable)()
+    SetStandardOffset(value StandardTimeZoneOffsetable)()
+}

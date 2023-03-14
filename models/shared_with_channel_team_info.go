@@ -92,3 +92,12 @@ func (m *SharedWithChannelTeamInfo) SetAllowedMembers(value []ConversationMember
 func (m *SharedWithChannelTeamInfo) SetIsHostTeam(value *bool)() {
     m.isHostTeam = value
 }
+// SharedWithChannelTeamInfoable 
+type SharedWithChannelTeamInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    TeamInfoable
+    GetAllowedMembers()([]ConversationMemberable)
+    GetIsHostTeam()(*bool)
+    SetAllowedMembers(value []ConversationMemberable)()
+    SetIsHostTeam(value *bool)()
+}

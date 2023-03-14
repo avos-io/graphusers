@@ -140,3 +140,16 @@ func (m *EditionUpgradeConfiguration) SetProductKey(value *string)() {
 func (m *EditionUpgradeConfiguration) SetTargetEdition(value *Windows10EditionType)() {
     m.targetEdition = value
 }
+// EditionUpgradeConfigurationable 
+type EditionUpgradeConfigurationable interface {
+    DeviceConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetLicense()(*string)
+    GetLicenseType()(*EditionUpgradeLicenseType)
+    GetProductKey()(*string)
+    GetTargetEdition()(*Windows10EditionType)
+    SetLicense(value *string)()
+    SetLicenseType(value *EditionUpgradeLicenseType)()
+    SetProductKey(value *string)()
+    SetTargetEdition(value *Windows10EditionType)()
+}

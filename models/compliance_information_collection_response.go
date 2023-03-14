@@ -66,3 +66,10 @@ func (m *ComplianceInformationCollectionResponse) Serialize(writer i878a80d2330e
 func (m *ComplianceInformationCollectionResponse) SetValue(value []ComplianceInformationable)() {
     m.value = value
 }
+// ComplianceInformationCollectionResponseable 
+type ComplianceInformationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ComplianceInformationable)
+    SetValue(value []ComplianceInformationable)()
+}

@@ -10,7 +10,7 @@ type EducationCategory struct {
     // Unique identifier for the category.
     displayName *string
 }
-// NewEducationCategory instantiates a new educationCategory and sets the default values.
+// NewEducationCategory instantiates a new EducationCategory and sets the default values.
 func NewEducationCategory()(*EducationCategory) {
     m := &EducationCategory{
         Entity: *NewEntity(),
@@ -57,4 +57,11 @@ func (m *EducationCategory) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 // SetDisplayName sets the displayName property value. Unique identifier for the category.
 func (m *EducationCategory) SetDisplayName(value *string)() {
     m.displayName = value
+}
+// EducationCategoryable 
+type EducationCategoryable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    SetDisplayName(value *string)()
 }

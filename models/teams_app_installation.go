@@ -102,3 +102,12 @@ func (m *TeamsAppInstallation) SetTeamsApp(value TeamsAppable)() {
 func (m *TeamsAppInstallation) SetTeamsAppDefinition(value TeamsAppDefinitionable)() {
     m.teamsAppDefinition = value
 }
+// TeamsAppInstallationable 
+type TeamsAppInstallationable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetTeamsApp()(TeamsAppable)
+    GetTeamsAppDefinition()(TeamsAppDefinitionable)
+    SetTeamsApp(value TeamsAppable)()
+    SetTeamsAppDefinition(value TeamsAppDefinitionable)()
+}

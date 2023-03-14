@@ -66,3 +66,10 @@ func (m *SectionGroupCollectionResponse) Serialize(writer i878a80d2330e89d268963
 func (m *SectionGroupCollectionResponse) SetValue(value []SectionGroupable)() {
     m.value = value
 }
+// SectionGroupCollectionResponseable 
+type SectionGroupCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SectionGroupable)
+    SetValue(value []SectionGroupable)()
+}

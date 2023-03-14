@@ -66,3 +66,10 @@ func (m *PinnedChatMessageInfoCollectionResponse) Serialize(writer i878a80d2330e
 func (m *PinnedChatMessageInfoCollectionResponse) SetValue(value []PinnedChatMessageInfoable)() {
     m.value = value
 }
+// PinnedChatMessageInfoCollectionResponseable 
+type PinnedChatMessageInfoCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]PinnedChatMessageInfoable)
+    SetValue(value []PinnedChatMessageInfoable)()
+}

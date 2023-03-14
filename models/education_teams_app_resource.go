@@ -138,3 +138,16 @@ func (m *EducationTeamsAppResource) SetTeamsEmbeddedContentUrl(value *string)() 
 func (m *EducationTeamsAppResource) SetWebUrl(value *string)() {
     m.webUrl = value
 }
+// EducationTeamsAppResourceable 
+type EducationTeamsAppResourceable interface {
+    EducationResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppIconWebUrl()(*string)
+    GetAppId()(*string)
+    GetTeamsEmbeddedContentUrl()(*string)
+    GetWebUrl()(*string)
+    SetAppIconWebUrl(value *string)()
+    SetAppId(value *string)()
+    SetTeamsEmbeddedContentUrl(value *string)()
+    SetWebUrl(value *string)()
+}

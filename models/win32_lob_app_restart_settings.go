@@ -147,3 +147,16 @@ func (m *Win32LobAppRestartSettings) SetOdataType(value *string)() {
 func (m *Win32LobAppRestartSettings) SetRestartNotificationSnoozeDurationInMinutes(value *int32)() {
     m.restartNotificationSnoozeDurationInMinutes = value
 }
+// Win32LobAppRestartSettingsable 
+type Win32LobAppRestartSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCountdownDisplayBeforeRestartInMinutes()(*int32)
+    GetGracePeriodInMinutes()(*int32)
+    GetOdataType()(*string)
+    GetRestartNotificationSnoozeDurationInMinutes()(*int32)
+    SetCountdownDisplayBeforeRestartInMinutes(value *int32)()
+    SetGracePeriodInMinutes(value *int32)()
+    SetOdataType(value *string)()
+    SetRestartNotificationSnoozeDurationInMinutes(value *int32)()
+}

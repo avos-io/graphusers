@@ -60,3 +60,10 @@ func (m *IosHomeScreenApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *IosHomeScreenApp) SetBundleID(value *string)() {
     m.bundleID = value
 }
+// IosHomeScreenAppable 
+type IosHomeScreenAppable interface {
+    IosHomeScreenItemable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBundleID()(*string)
+    SetBundleID(value *string)()
+}

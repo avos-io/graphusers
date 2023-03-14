@@ -61,3 +61,10 @@ func (m *TeamworkConversationIdentity) Serialize(writer i878a80d2330e89d26896388
 func (m *TeamworkConversationIdentity) SetConversationIdentityType(value *TeamworkConversationIdentityType)() {
     m.conversationIdentityType = value
 }
+// TeamworkConversationIdentityable 
+type TeamworkConversationIdentityable interface {
+    Identityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConversationIdentityType()(*TeamworkConversationIdentityType)
+    SetConversationIdentityType(value *TeamworkConversationIdentityType)()
+}

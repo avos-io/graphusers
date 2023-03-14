@@ -100,3 +100,12 @@ func (m *AccessReviewSet) SetDefinitions(value []AccessReviewScheduleDefinitiona
 func (m *AccessReviewSet) SetHistoryDefinitions(value []AccessReviewHistoryDefinitionable)() {
     m.historyDefinitions = value
 }
+// AccessReviewSetable 
+type AccessReviewSetable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefinitions()([]AccessReviewScheduleDefinitionable)
+    GetHistoryDefinitions()([]AccessReviewHistoryDefinitionable)
+    SetDefinitions(value []AccessReviewScheduleDefinitionable)()
+    SetHistoryDefinitions(value []AccessReviewHistoryDefinitionable)()
+}

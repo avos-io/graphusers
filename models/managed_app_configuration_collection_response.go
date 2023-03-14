@@ -66,3 +66,10 @@ func (m *ManagedAppConfigurationCollectionResponse) Serialize(writer i878a80d233
 func (m *ManagedAppConfigurationCollectionResponse) SetValue(value []ManagedAppConfigurationable)() {
     m.value = value
 }
+// ManagedAppConfigurationCollectionResponseable 
+type ManagedAppConfigurationCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]ManagedAppConfigurationable)
+    SetValue(value []ManagedAppConfigurationable)()
+}

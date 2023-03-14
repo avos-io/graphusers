@@ -66,3 +66,10 @@ func (m *B2xIdentityUserFlowCollectionResponse) Serialize(writer i878a80d2330e89
 func (m *B2xIdentityUserFlowCollectionResponse) SetValue(value []B2xIdentityUserFlowable)() {
     m.value = value
 }
+// B2xIdentityUserFlowCollectionResponseable 
+type B2xIdentityUserFlowCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]B2xIdentityUserFlowable)
+    SetValue(value []B2xIdentityUserFlowable)()
+}

@@ -84,3 +84,10 @@ func (m *UnifiedRoleManagementPolicyRule) Serialize(writer i878a80d2330e89d26896
 func (m *UnifiedRoleManagementPolicyRule) SetTarget(value UnifiedRoleManagementPolicyRuleTargetable)() {
     m.target = value
 }
+// UnifiedRoleManagementPolicyRuleable 
+type UnifiedRoleManagementPolicyRuleable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetTarget()(UnifiedRoleManagementPolicyRuleTargetable)
+    SetTarget(value UnifiedRoleManagementPolicyRuleTargetable)()
+}

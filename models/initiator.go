@@ -61,3 +61,10 @@ func (m *Initiator) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 func (m *Initiator) SetInitiatorType(value *InitiatorType)() {
     m.initiatorType = value
 }
+// Initiatorable 
+type Initiatorable interface {
+    Identityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInitiatorType()(*InitiatorType)
+    SetInitiatorType(value *InitiatorType)()
+}

@@ -122,3 +122,14 @@ func (m *ExcludeTarget) SetOdataType(value *string)() {
 func (m *ExcludeTarget) SetTargetType(value *AuthenticationMethodTargetType)() {
     m.targetType = value
 }
+// ExcludeTargetable 
+type ExcludeTargetable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetId()(*string)
+    GetOdataType()(*string)
+    GetTargetType()(*AuthenticationMethodTargetType)
+    SetId(value *string)()
+    SetOdataType(value *string)()
+    SetTargetType(value *AuthenticationMethodTargetType)()
+}

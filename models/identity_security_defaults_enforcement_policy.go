@@ -60,3 +60,10 @@ func (m *IdentitySecurityDefaultsEnforcementPolicy) Serialize(writer i878a80d233
 func (m *IdentitySecurityDefaultsEnforcementPolicy) SetIsEnabled(value *bool)() {
     m.isEnabled = value
 }
+// IdentitySecurityDefaultsEnforcementPolicyable 
+type IdentitySecurityDefaultsEnforcementPolicyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    PolicyBaseable
+    GetIsEnabled()(*bool)
+    SetIsEnabled(value *bool)()
+}

@@ -84,3 +84,12 @@ func (m *EdiscoveryAddToReviewSetOperation) SetReviewSet(value EdiscoveryReviewS
 func (m *EdiscoveryAddToReviewSetOperation) SetSearch(value EdiscoverySearchable)() {
     m.search = value
 }
+// EdiscoveryAddToReviewSetOperationable 
+type EdiscoveryAddToReviewSetOperationable interface {
+    CaseOperationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetReviewSet()(EdiscoveryReviewSetable)
+    GetSearch()(EdiscoverySearchable)
+    SetReviewSet(value EdiscoveryReviewSetable)()
+    SetSearch(value EdiscoverySearchable)()
+}

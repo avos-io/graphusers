@@ -66,3 +66,10 @@ func (m *VppTokenCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3
 func (m *VppTokenCollectionResponse) SetValue(value []VppTokenable)() {
     m.value = value
 }
+// VppTokenCollectionResponseable 
+type VppTokenCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]VppTokenable)
+    SetValue(value []VppTokenable)()
+}

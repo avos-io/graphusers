@@ -66,3 +66,10 @@ func (m *UnifiedRoleDefinitionCollectionResponse) Serialize(writer i878a80d2330e
 func (m *UnifiedRoleDefinitionCollectionResponse) SetValue(value []UnifiedRoleDefinitionable)() {
     m.value = value
 }
+// UnifiedRoleDefinitionCollectionResponseable 
+type UnifiedRoleDefinitionCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]UnifiedRoleDefinitionable)
+    SetValue(value []UnifiedRoleDefinitionable)()
+}

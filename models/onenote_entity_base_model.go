@@ -88,3 +88,10 @@ func (m *OnenoteEntityBaseModel) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *OnenoteEntityBaseModel) SetSelf(value *string)() {
     m.self = value
 }
+// OnenoteEntityBaseModelable 
+type OnenoteEntityBaseModelable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSelf()(*string)
+    SetSelf(value *string)()
+}

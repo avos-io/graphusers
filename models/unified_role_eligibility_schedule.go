@@ -84,3 +84,12 @@ func (m *UnifiedRoleEligibilitySchedule) SetMemberType(value *string)() {
 func (m *UnifiedRoleEligibilitySchedule) SetScheduleInfo(value RequestScheduleable)() {
     m.scheduleInfo = value
 }
+// UnifiedRoleEligibilityScheduleable 
+type UnifiedRoleEligibilityScheduleable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    UnifiedRoleScheduleBaseable
+    GetMemberType()(*string)
+    GetScheduleInfo()(RequestScheduleable)
+    SetMemberType(value *string)()
+    SetScheduleInfo(value RequestScheduleable)()
+}

@@ -58,3 +58,10 @@ func (m *PlannerBucketTaskBoardTaskFormat) Serialize(writer i878a80d2330e89d2689
 func (m *PlannerBucketTaskBoardTaskFormat) SetOrderHint(value *string)() {
     m.orderHint = value
 }
+// PlannerBucketTaskBoardTaskFormatable 
+type PlannerBucketTaskBoardTaskFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOrderHint()(*string)
+    SetOrderHint(value *string)()
+}

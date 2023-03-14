@@ -70,6 +70,10 @@ func NewItemExtensionsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     urlParams["request-raw-url"] = rawUrl
     return NewItemExtensionsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemExtensionsRequestBuilder) Count()(*ItemExtensionsCountRequestBuilder) {
+    return NewItemExtensionsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the collection of open extensions defined for the group. Read-only. Nullable.
 func (m *ItemExtensionsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemExtensionsRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ExtensionCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

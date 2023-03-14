@@ -66,3 +66,10 @@ func (m *AccessReviewHistoryInstanceCollectionResponse) Serialize(writer i878a80
 func (m *AccessReviewHistoryInstanceCollectionResponse) SetValue(value []AccessReviewHistoryInstanceable)() {
     m.value = value
 }
+// AccessReviewHistoryInstanceCollectionResponseable 
+type AccessReviewHistoryInstanceCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]AccessReviewHistoryInstanceable)
+    SetValue(value []AccessReviewHistoryInstanceable)()
+}

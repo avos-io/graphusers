@@ -66,3 +66,10 @@ func (m *SignInCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f4
 func (m *SignInCollectionResponse) SetValue(value []SignInable)() {
     m.value = value
 }
+// SignInCollectionResponseable 
+type SignInCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]SignInable)
+    SetValue(value []SignInable)()
+}

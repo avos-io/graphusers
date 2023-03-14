@@ -190,3 +190,20 @@ func (m *ChatMessageInfo) SetIsDeleted(value *bool)() {
 func (m *ChatMessageInfo) SetMessageType(value *ChatMessageType)() {
     m.messageType = value
 }
+// ChatMessageInfoable 
+type ChatMessageInfoable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBody()(ItemBodyable)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetEventDetail()(EventMessageDetailable)
+    GetFrom()(ChatMessageFromIdentitySetable)
+    GetIsDeleted()(*bool)
+    GetMessageType()(*ChatMessageType)
+    SetBody(value ItemBodyable)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetEventDetail(value EventMessageDetailable)()
+    SetFrom(value ChatMessageFromIdentitySetable)()
+    SetIsDeleted(value *bool)()
+    SetMessageType(value *ChatMessageType)()
+}

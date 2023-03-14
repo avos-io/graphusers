@@ -66,3 +66,10 @@ func (m *DeviceManagementExchangeConnectorCollectionResponse) Serialize(writer i
 func (m *DeviceManagementExchangeConnectorCollectionResponse) SetValue(value []DeviceManagementExchangeConnectorable)() {
     m.value = value
 }
+// DeviceManagementExchangeConnectorCollectionResponseable 
+type DeviceManagementExchangeConnectorCollectionResponseable interface {
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]DeviceManagementExchangeConnectorable)
+    SetValue(value []DeviceManagementExchangeConnectorable)()
+}
