@@ -27,7 +27,7 @@ type PrintJob struct {
     // A list of printTasks that were triggered by this print job.
     tasks []PrintTaskable
 }
-// NewPrintJob instantiates a new PrintJob and sets the default values.
+// NewPrintJob instantiates a new printJob and sets the default values.
 func NewPrintJob()(*PrintJob) {
     m := &PrintJob{
         Entity: *NewEntity(),

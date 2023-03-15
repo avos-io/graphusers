@@ -6,6 +6,7 @@ generate
 --ad
 -i /users
 -i /users/*
+-i /users/*/*
 -i /groups
 -i /groups/*
 -m application/json

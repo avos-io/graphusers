@@ -24,7 +24,7 @@ type UnifiedRoleScheduleInstanceBase struct {
     // Identifier of the unifiedRoleDefinition object that is being assigned to the principal or that the principal is eligible for.
     roleDefinitionId *string
 }
-// NewUnifiedRoleScheduleInstanceBase instantiates a new UnifiedRoleScheduleInstanceBase and sets the default values.
+// NewUnifiedRoleScheduleInstanceBase instantiates a new unifiedRoleScheduleInstanceBase and sets the default values.
 func NewUnifiedRoleScheduleInstanceBase()(*UnifiedRoleScheduleInstanceBase) {
     m := &UnifiedRoleScheduleInstanceBase{
         Entity: *NewEntity(),
