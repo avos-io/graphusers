@@ -63,6 +63,10 @@ func NewItemFollowedSitesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7
     urlParams["request-raw-url"] = rawUrl
     return NewItemFollowedSitesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemFollowedSitesRequestBuilder) Count()(*ItemFollowedSitesCountRequestBuilder) {
+    return NewItemFollowedSitesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get list the sites that have been followed by the signed in user.
 // [Find more info here]
 // 

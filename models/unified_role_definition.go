@@ -26,7 +26,7 @@ type UnifiedRoleDefinition struct {
     // Indicates version of the role definition. Read-only when isBuiltIn is true.
     version *string
 }
-// NewUnifiedRoleDefinition instantiates a new UnifiedRoleDefinition and sets the default values.
+// NewUnifiedRoleDefinition instantiates a new unifiedRoleDefinition and sets the default values.
 func NewUnifiedRoleDefinition()(*UnifiedRoleDefinition) {
     m := &UnifiedRoleDefinition{
         Entity: *NewEntity(),

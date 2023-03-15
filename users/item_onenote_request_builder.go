@@ -100,6 +100,51 @@ func (m *ItemOnenoteRequestBuilder) Get(ctx context.Context, requestConfiguratio
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Onenoteable), nil
 }
+// Notebooks provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) Notebooks()(*ItemOnenoteNotebooksRequestBuilder) {
+    return NewItemOnenoteNotebooksRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// NotebooksById provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) NotebooksById(id string)(*ItemOnenoteNotebooksNotebookItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["notebook%2Did"] = id
+    }
+    return NewItemOnenoteNotebooksNotebookItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// Operations provides operations to manage the operations property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) Operations()(*ItemOnenoteOperationsRequestBuilder) {
+    return NewItemOnenoteOperationsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// OperationsById provides operations to manage the operations property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) OperationsById(id string)(*ItemOnenoteOperationsOnenoteOperationItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["onenoteOperation%2Did"] = id
+    }
+    return NewItemOnenoteOperationsOnenoteOperationItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// Pages provides operations to manage the pages property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) Pages()(*ItemOnenotePagesRequestBuilder) {
+    return NewItemOnenotePagesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// PagesById provides operations to manage the pages property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) PagesById(id string)(*ItemOnenotePagesOnenotePageItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["onenotePage%2Did"] = id
+    }
+    return NewItemOnenotePagesOnenotePageItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Patch update the navigation property onenote in users
 func (m *ItemOnenoteRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Onenoteable, requestConfiguration *ItemOnenoteRequestBuilderPatchRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Onenoteable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
@@ -118,6 +163,51 @@ func (m *ItemOnenoteRequestBuilder) Patch(ctx context.Context, body i43734bed85a
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Onenoteable), nil
+}
+// Resources provides operations to manage the resources property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) Resources()(*ItemOnenoteResourcesRequestBuilder) {
+    return NewItemOnenoteResourcesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// ResourcesById provides operations to manage the resources property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) ResourcesById(id string)(*ItemOnenoteResourcesOnenoteResourceItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["onenoteResource%2Did"] = id
+    }
+    return NewItemOnenoteResourcesOnenoteResourceItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// SectionGroups provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) SectionGroups()(*ItemOnenoteSectionGroupsRequestBuilder) {
+    return NewItemOnenoteSectionGroupsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SectionGroupsById provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) SectionGroupsById(id string)(*ItemOnenoteSectionGroupsSectionGroupItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["sectionGroup%2Did"] = id
+    }
+    return NewItemOnenoteSectionGroupsSectionGroupItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// Sections provides operations to manage the sections property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) Sections()(*ItemOnenoteSectionsRequestBuilder) {
+    return NewItemOnenoteSectionsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SectionsById provides operations to manage the sections property of the microsoft.graph.onenote entity.
+func (m *ItemOnenoteRequestBuilder) SectionsById(id string)(*ItemOnenoteSectionsOnenoteSectionItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["onenoteSection%2Did"] = id
+    }
+    return NewItemOnenoteSectionsOnenoteSectionItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // ToDeleteRequestInformation delete navigation property onenote for users
 func (m *ItemOnenoteRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemOnenoteRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

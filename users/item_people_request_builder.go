@@ -61,6 +61,10 @@ func NewItemPeopleRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee263
     urlParams["request-raw-url"] = rawUrl
     return NewItemPeopleRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemPeopleRequestBuilder) Count()(*ItemPeopleCountRequestBuilder) {
+    return NewItemPeopleCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a collection of person objects ordered by their relevance to the user, which is determined by the user's communication and collaboration patterns, and business relationships. You can get this information via the People API. For examples, see the Examples section and the article Use the People API to get information about the people most relevant to you.
 // [Find more info here]
 // 

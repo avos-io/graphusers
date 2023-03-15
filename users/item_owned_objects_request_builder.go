@@ -63,6 +63,10 @@ func NewItemOwnedObjectsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7d
     urlParams["request-raw-url"] = rawUrl
     return NewItemOwnedObjectsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemOwnedObjectsRequestBuilder) Count()(*ItemOwnedObjectsCountRequestBuilder) {
+    return NewItemOwnedObjectsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get directory objects that are owned by the user. Read-only. Nullable. Supports $expand.
 // [Find more info here]
 // 
@@ -84,6 +88,18 @@ func (m *ItemOwnedObjectsRequestBuilder) Get(ctx context.Context, requestConfigu
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphApplication casts the previous resource to application.
+func (m *ItemOwnedObjectsRequestBuilder) GraphApplication()(*ItemOwnedObjectsGraphApplicationRequestBuilder) {
+    return NewItemOwnedObjectsGraphApplicationRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphGroup casts the previous resource to group.
+func (m *ItemOwnedObjectsRequestBuilder) GraphGroup()(*ItemOwnedObjectsGraphGroupRequestBuilder) {
+    return NewItemOwnedObjectsGraphGroupRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphServicePrincipal casts the previous resource to servicePrincipal.
+func (m *ItemOwnedObjectsRequestBuilder) GraphServicePrincipal()(*ItemOwnedObjectsGraphServicePrincipalRequestBuilder) {
+    return NewItemOwnedObjectsGraphServicePrincipalRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation directory objects that are owned by the user. Read-only. Nullable. Supports $expand.
 func (m *ItemOwnedObjectsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemOwnedObjectsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

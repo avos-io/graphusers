@@ -63,6 +63,10 @@ func NewItemManagedAppRegistrationsRequestBuilder(rawUrl string, requestAdapter 
     urlParams["request-raw-url"] = rawUrl
     return NewItemManagedAppRegistrationsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemManagedAppRegistrationsRequestBuilder) Count()(*ItemManagedAppRegistrationsCountRequestBuilder) {
+    return NewItemManagedAppRegistrationsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get zero or more managed app registrations that belong to the user.
 func (m *ItemManagedAppRegistrationsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemManagedAppRegistrationsRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ManagedAppRegistrationCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

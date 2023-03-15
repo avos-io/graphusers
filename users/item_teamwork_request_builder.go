@@ -46,6 +46,21 @@ type ItemTeamworkRequestBuilderPatchRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// AssociatedTeams provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
+func (m *ItemTeamworkRequestBuilder) AssociatedTeams()(*ItemTeamworkAssociatedTeamsRequestBuilder) {
+    return NewItemTeamworkAssociatedTeamsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// AssociatedTeamsById provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
+func (m *ItemTeamworkRequestBuilder) AssociatedTeamsById(id string)(*ItemTeamworkAssociatedTeamsAssociatedTeamInfoItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["associatedTeamInfo%2Did"] = id
+    }
+    return NewItemTeamworkAssociatedTeamsAssociatedTeamInfoItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // NewItemTeamworkRequestBuilderInternal instantiates a new TeamworkRequestBuilder and sets the default values.
 func NewItemTeamworkRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemTeamworkRequestBuilder) {
     m := &ItemTeamworkRequestBuilder{
@@ -100,6 +115,21 @@ func (m *ItemTeamworkRequestBuilder) Get(ctx context.Context, requestConfigurati
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserTeamworkable), nil
 }
+// InstalledApps provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
+func (m *ItemTeamworkRequestBuilder) InstalledApps()(*ItemTeamworkInstalledAppsRequestBuilder) {
+    return NewItemTeamworkInstalledAppsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// InstalledAppsById provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
+func (m *ItemTeamworkRequestBuilder) InstalledAppsById(id string)(*ItemTeamworkInstalledAppsUserScopeTeamsAppInstallationItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["userScopeTeamsAppInstallation%2Did"] = id
+    }
+    return NewItemTeamworkInstalledAppsUserScopeTeamsAppInstallationItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Patch update the navigation property teamwork in users
 func (m *ItemTeamworkRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserTeamworkable, requestConfiguration *ItemTeamworkRequestBuilderPatchRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserTeamworkable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
@@ -118,6 +148,10 @@ func (m *ItemTeamworkRequestBuilder) Patch(ctx context.Context, body i43734bed85
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserTeamworkable), nil
+}
+// SendActivityNotification provides operations to call the sendActivityNotification method.
+func (m *ItemTeamworkRequestBuilder) SendActivityNotification()(*ItemTeamworkSendActivityNotificationRequestBuilder) {
+    return NewItemTeamworkSendActivityNotificationRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToDeleteRequestInformation delete navigation property teamwork for users
 func (m *ItemTeamworkRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemTeamworkRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

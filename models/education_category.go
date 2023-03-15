@@ -10,7 +10,7 @@ type EducationCategory struct {
     // Unique identifier for the category.
     displayName *string
 }
-// NewEducationCategory instantiates a new EducationCategory and sets the default values.
+// NewEducationCategory instantiates a new educationCategory and sets the default values.
 func NewEducationCategory()(*EducationCategory) {
     m := &EducationCategory{
         Entity: *NewEntity(),

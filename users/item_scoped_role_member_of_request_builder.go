@@ -70,6 +70,10 @@ func NewItemScopedRoleMemberOfRequestBuilder(rawUrl string, requestAdapter i2ae4
     urlParams["request-raw-url"] = rawUrl
     return NewItemScopedRoleMemberOfRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemScopedRoleMemberOfRequestBuilder) Count()(*ItemScopedRoleMemberOfCountRequestBuilder) {
+    return NewItemScopedRoleMemberOfCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get scopedRoleMemberOf from users
 func (m *ItemScopedRoleMemberOfRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemScopedRoleMemberOfRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ScopedRoleMembershipCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

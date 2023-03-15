@@ -66,6 +66,10 @@ func NewItemCalendarGroupsRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemCalendarGroupsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemCalendarGroupsRequestBuilder) Count()(*ItemCalendarGroupsCountRequestBuilder) {
+    return NewItemCalendarGroupsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get the user's calendar groups.
 // [Find more info here]
 // 

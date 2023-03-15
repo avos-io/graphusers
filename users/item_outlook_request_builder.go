@@ -68,6 +68,33 @@ func (m *ItemOutlookRequestBuilder) Get(ctx context.Context, requestConfiguratio
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.OutlookUserable), nil
 }
+// MasterCategories provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
+func (m *ItemOutlookRequestBuilder) MasterCategories()(*ItemOutlookMasterCategoriesRequestBuilder) {
+    return NewItemOutlookMasterCategoriesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// MasterCategoriesById provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
+func (m *ItemOutlookRequestBuilder) MasterCategoriesById(id string)(*ItemOutlookMasterCategoriesOutlookCategoryItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["outlookCategory%2Did"] = id
+    }
+    return NewItemOutlookMasterCategoriesOutlookCategoryItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// SupportedLanguages provides operations to call the supportedLanguages method.
+func (m *ItemOutlookRequestBuilder) SupportedLanguages()(*ItemOutlookSupportedLanguagesRequestBuilder) {
+    return NewItemOutlookSupportedLanguagesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SupportedTimeZones provides operations to call the supportedTimeZones method.
+func (m *ItemOutlookRequestBuilder) SupportedTimeZones()(*ItemOutlookSupportedTimeZonesRequestBuilder) {
+    return NewItemOutlookSupportedTimeZonesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SupportedTimeZonesWithTimeZoneStandard provides operations to call the supportedTimeZones method.
+func (m *ItemOutlookRequestBuilder) SupportedTimeZonesWithTimeZoneStandard(timeZoneStandard *string)(*ItemOutlookSupportedTimeZonesWithTimeZoneStandardRequestBuilder) {
+    return NewItemOutlookSupportedTimeZonesWithTimeZoneStandardRequestBuilderInternal(m.pathParameters, m.requestAdapter, timeZoneStandard)
+}
 // ToGetRequestInformation get outlook from users
 func (m *ItemOutlookRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemOutlookRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()

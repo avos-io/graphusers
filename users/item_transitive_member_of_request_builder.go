@@ -63,6 +63,10 @@ func NewItemTransitiveMemberOfRequestBuilder(rawUrl string, requestAdapter i2ae4
     urlParams["request-raw-url"] = rawUrl
     return NewItemTransitiveMemberOfRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemTransitiveMemberOfRequestBuilder) Count()(*ItemTransitiveMemberOfCountRequestBuilder) {
+    return NewItemTransitiveMemberOfCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the groups, including nested groups, and directory roles that a user is a member of. Nullable.
 // [Find more info here]
 // 
@@ -84,6 +88,10 @@ func (m *ItemTransitiveMemberOfRequestBuilder) Get(ctx context.Context, requestC
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphGroup casts the previous resource to group.
+func (m *ItemTransitiveMemberOfRequestBuilder) GraphGroup()(*ItemTransitiveMemberOfGraphGroupRequestBuilder) {
+    return NewItemTransitiveMemberOfGraphGroupRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation the groups, including nested groups, and directory roles that a user is a member of. Nullable.
 func (m *ItemTransitiveMemberOfRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemTransitiveMemberOfRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

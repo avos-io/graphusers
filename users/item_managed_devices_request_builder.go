@@ -70,6 +70,10 @@ func NewItemManagedDevicesRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemManagedDevicesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemManagedDevicesRequestBuilder) Count()(*ItemManagedDevicesCountRequestBuilder) {
+    return NewItemManagedDevicesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the managed devices associated with the user.
 func (m *ItemManagedDevicesRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemManagedDevicesRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ManagedDeviceCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

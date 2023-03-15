@@ -63,6 +63,10 @@ func NewItemRegisteredDevicesRequestBuilder(rawUrl string, requestAdapter i2ae41
     urlParams["request-raw-url"] = rawUrl
     return NewItemRegisteredDevicesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemRegisteredDevicesRequestBuilder) Count()(*ItemRegisteredDevicesCountRequestBuilder) {
+    return NewItemRegisteredDevicesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get devices that are registered for the user. Read-only. Nullable. Supports $expand.
 // [Find more info here]
 // 
@@ -84,6 +88,18 @@ func (m *ItemRegisteredDevicesRequestBuilder) Get(ctx context.Context, requestCo
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphAppRoleAssignment casts the previous resource to appRoleAssignment.
+func (m *ItemRegisteredDevicesRequestBuilder) GraphAppRoleAssignment()(*ItemRegisteredDevicesGraphAppRoleAssignmentRequestBuilder) {
+    return NewItemRegisteredDevicesGraphAppRoleAssignmentRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphDevice casts the previous resource to device.
+func (m *ItemRegisteredDevicesRequestBuilder) GraphDevice()(*ItemRegisteredDevicesGraphDeviceRequestBuilder) {
+    return NewItemRegisteredDevicesGraphDeviceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphEndpoint casts the previous resource to endpoint.
+func (m *ItemRegisteredDevicesRequestBuilder) GraphEndpoint()(*ItemRegisteredDevicesGraphEndpointRequestBuilder) {
+    return NewItemRegisteredDevicesGraphEndpointRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation devices that are registered for the user. Read-only. Nullable. Supports $expand.
 func (m *ItemRegisteredDevicesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemRegisteredDevicesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

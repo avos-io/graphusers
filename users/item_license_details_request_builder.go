@@ -70,6 +70,10 @@ func NewItemLicenseDetailsRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemLicenseDetailsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemLicenseDetailsRequestBuilder) Count()(*ItemLicenseDetailsCountRequestBuilder) {
+    return NewItemLicenseDetailsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
 // [Find more info here]
 // 

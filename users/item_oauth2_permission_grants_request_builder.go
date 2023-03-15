@@ -63,6 +63,10 @@ func NewItemOauth2PermissionGrantsRequestBuilder(rawUrl string, requestAdapter i
     urlParams["request-raw-url"] = rawUrl
     return NewItemOauth2PermissionGrantsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemOauth2PermissionGrantsRequestBuilder) Count()(*ItemOauth2PermissionGrantsCountRequestBuilder) {
+    return NewItemOauth2PermissionGrantsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve a list of oAuth2PermissionGrant entities, which represent delegated permissions granted to enable a client application to access an API on behalf of the user.
 // [Find more info here]
 // 

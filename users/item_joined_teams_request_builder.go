@@ -70,6 +70,10 @@ func NewItemJoinedTeamsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7da
     urlParams["request-raw-url"] = rawUrl
     return NewItemJoinedTeamsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemJoinedTeamsRequestBuilder) Count()(*ItemJoinedTeamsCountRequestBuilder) {
+    return NewItemJoinedTeamsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get the teams in Microsoft Teams that the user is a direct member of.
 // [Find more info here]
 // 
@@ -91,6 +95,10 @@ func (m *ItemJoinedTeamsRequestBuilder) Get(ctx context.Context, requestConfigur
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.TeamCollectionResponseable), nil
+}
+// GetAllMessages provides operations to call the getAllMessages method.
+func (m *ItemJoinedTeamsRequestBuilder) GetAllMessages()(*ItemJoinedTeamsGetAllMessagesRequestBuilder) {
+    return NewItemJoinedTeamsGetAllMessagesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // Post create new navigation property to joinedTeams for users
 func (m *ItemJoinedTeamsRequestBuilder) Post(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Teamable, requestConfiguration *ItemJoinedTeamsRequestBuilderPostRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Teamable, error) {

@@ -70,6 +70,10 @@ func NewItemChatsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewItemChatsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemChatsRequestBuilder) Count()(*ItemChatsCountRequestBuilder) {
+    return NewItemChatsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
 // [Find more info here]
 // 
@@ -91,6 +95,10 @@ func (m *ItemChatsRequestBuilder) Get(ctx context.Context, requestConfiguration 
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.ChatCollectionResponseable), nil
+}
+// GetAllMessages provides operations to call the getAllMessages method.
+func (m *ItemChatsRequestBuilder) GetAllMessages()(*ItemChatsGetAllMessagesRequestBuilder) {
+    return NewItemChatsGetAllMessagesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // Post create new navigation property to chats for users
 func (m *ItemChatsRequestBuilder) Post(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Chatable, requestConfiguration *ItemChatsRequestBuilderPostRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Chatable, error) {

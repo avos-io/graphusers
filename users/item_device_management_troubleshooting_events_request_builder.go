@@ -70,6 +70,10 @@ func NewItemDeviceManagementTroubleshootingEventsRequestBuilder(rawUrl string, r
     urlParams["request-raw-url"] = rawUrl
     return NewItemDeviceManagementTroubleshootingEventsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemDeviceManagementTroubleshootingEventsRequestBuilder) Count()(*ItemDeviceManagementTroubleshootingEventsCountRequestBuilder) {
+    return NewItemDeviceManagementTroubleshootingEventsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the list of troubleshooting events for this user.
 func (m *ItemDeviceManagementTroubleshootingEventsRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemDeviceManagementTroubleshootingEventsRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DeviceManagementTroubleshootingEventCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);

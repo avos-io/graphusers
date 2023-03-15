@@ -70,6 +70,14 @@ func NewItemOnlineMeetingsRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemOnlineMeetingsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemOnlineMeetingsRequestBuilder) Count()(*ItemOnlineMeetingsCountRequestBuilder) {
+    return NewItemOnlineMeetingsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// CreateOrGet provides operations to call the createOrGet method.
+func (m *ItemOnlineMeetingsRequestBuilder) CreateOrGet()(*ItemOnlineMeetingsCreateOrGetRequestBuilder) {
+    return NewItemOnlineMeetingsCreateOrGetRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
 // [Find more info here]
 // 

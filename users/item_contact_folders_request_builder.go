@@ -66,6 +66,14 @@ func NewItemContactFoldersRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemContactFoldersRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemContactFoldersRequestBuilder) Count()(*ItemContactFoldersCountRequestBuilder) {
+    return NewItemContactFoldersCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Delta provides operations to call the delta method.
+func (m *ItemContactFoldersRequestBuilder) Delta()(*ItemContactFoldersDeltaRequestBuilder) {
+    return NewItemContactFoldersDeltaRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get the contact folder collection in the default Contacts folder of the signed-in user.
 // [Find more info here]
 // 

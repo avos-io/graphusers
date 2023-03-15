@@ -63,6 +63,10 @@ func NewItemOwnedDevicesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7d
     urlParams["request-raw-url"] = rawUrl
     return NewItemOwnedDevicesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemOwnedDevicesRequestBuilder) Count()(*ItemOwnedDevicesCountRequestBuilder) {
+    return NewItemOwnedDevicesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
 // [Find more info here]
 // 
@@ -84,6 +88,18 @@ func (m *ItemOwnedDevicesRequestBuilder) Get(ctx context.Context, requestConfigu
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphAppRoleAssignment casts the previous resource to appRoleAssignment.
+func (m *ItemOwnedDevicesRequestBuilder) GraphAppRoleAssignment()(*ItemOwnedDevicesGraphAppRoleAssignmentRequestBuilder) {
+    return NewItemOwnedDevicesGraphAppRoleAssignmentRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphDevice casts the previous resource to device.
+func (m *ItemOwnedDevicesRequestBuilder) GraphDevice()(*ItemOwnedDevicesGraphDeviceRequestBuilder) {
+    return NewItemOwnedDevicesGraphDeviceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// GraphEndpoint casts the previous resource to endpoint.
+func (m *ItemOwnedDevicesRequestBuilder) GraphEndpoint()(*ItemOwnedDevicesGraphEndpointRequestBuilder) {
+    return NewItemOwnedDevicesGraphEndpointRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
 func (m *ItemOwnedDevicesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemOwnedDevicesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

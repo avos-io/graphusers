@@ -46,6 +46,14 @@ type ItemPresenceRequestBuilderPatchRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
+// ClearPresence provides operations to call the clearPresence method.
+func (m *ItemPresenceRequestBuilder) ClearPresence()(*ItemPresenceClearPresenceRequestBuilder) {
+    return NewItemPresenceClearPresenceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// ClearUserPreferredPresence provides operations to call the clearUserPreferredPresence method.
+func (m *ItemPresenceRequestBuilder) ClearUserPreferredPresence()(*ItemPresenceClearUserPreferredPresenceRequestBuilder) {
+    return NewItemPresenceClearUserPreferredPresenceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // NewItemPresenceRequestBuilderInternal instantiates a new PresenceRequestBuilder and sets the default values.
 func NewItemPresenceRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*ItemPresenceRequestBuilder) {
     m := &ItemPresenceRequestBuilder{
@@ -121,6 +129,14 @@ func (m *ItemPresenceRequestBuilder) Patch(ctx context.Context, body i43734bed85
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Presenceable), nil
+}
+// SetPresence provides operations to call the setPresence method.
+func (m *ItemPresenceRequestBuilder) SetPresence()(*ItemPresenceSetPresenceRequestBuilder) {
+    return NewItemPresenceSetPresenceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SetUserPreferredPresence provides operations to call the setUserPreferredPresence method.
+func (m *ItemPresenceRequestBuilder) SetUserPreferredPresence()(*ItemPresenceSetUserPreferredPresenceRequestBuilder) {
+    return NewItemPresenceSetUserPreferredPresenceRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToDeleteRequestInformation delete navigation property presence for users
 func (m *ItemPresenceRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemPresenceRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

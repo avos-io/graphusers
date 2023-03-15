@@ -70,6 +70,10 @@ func NewItemActivitiesRequestBuilder(rawUrl string, requestAdapter i2ae4187f7dae
     urlParams["request-raw-url"] = rawUrl
     return NewItemActivitiesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemActivitiesRequestBuilder) Count()(*ItemActivitiesCountRequestBuilder) {
+    return NewItemActivitiesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the user's activities across devices. Read-only. Nullable.
 func (m *ItemActivitiesRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemActivitiesRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserActivityCollectionResponseable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -107,6 +111,10 @@ func (m *ItemActivitiesRequestBuilder) Post(ctx context.Context, body i43734bed8
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.UserActivityable), nil
+}
+// Recent provides operations to call the recent method.
+func (m *ItemActivitiesRequestBuilder) Recent()(*ItemActivitiesRecentRequestBuilder) {
+    return NewItemActivitiesRecentRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation the user's activities across devices. Read-only. Nullable.
 func (m *ItemActivitiesRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemActivitiesRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

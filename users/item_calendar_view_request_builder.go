@@ -63,6 +63,14 @@ func NewItemCalendarViewRequestBuilder(rawUrl string, requestAdapter i2ae4187f7d
     urlParams["request-raw-url"] = rawUrl
     return NewItemCalendarViewRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemCalendarViewRequestBuilder) Count()(*ItemCalendarViewCountRequestBuilder) {
+    return NewItemCalendarViewCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Delta provides operations to call the delta method.
+func (m *ItemCalendarViewRequestBuilder) Delta()(*ItemCalendarViewDeltaRequestBuilder) {
+    return NewItemCalendarViewDeltaRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get the calendar view for the calendar. Read-only. Nullable.
 // [Find more info here]
 // 

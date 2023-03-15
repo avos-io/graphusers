@@ -50,13 +50,46 @@ type UserItemRequestBuilderPatchRequestConfiguration struct {
 func (m *UserItemRequestBuilder) Activities()(*ItemActivitiesRequestBuilder) {
     return NewItemActivitiesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// ActivitiesById provides operations to manage the activities property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ActivitiesById(id string)(*ItemActivitiesUserActivityItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["userActivity%2Did"] = id
+    }
+    return NewItemActivitiesUserActivityItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // AgreementAcceptances provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) AgreementAcceptances()(*ItemAgreementAcceptancesRequestBuilder) {
     return NewItemAgreementAcceptancesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// AgreementAcceptancesById provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) AgreementAcceptancesById(id string)(*ItemAgreementAcceptancesAgreementAcceptanceItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["agreementAcceptance%2Did"] = id
+    }
+    return NewItemAgreementAcceptancesAgreementAcceptanceItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // AppRoleAssignments provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) AppRoleAssignments()(*ItemAppRoleAssignmentsRequestBuilder) {
     return NewItemAppRoleAssignmentsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// AppRoleAssignmentsById provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) AppRoleAssignmentsById(id string)(*ItemAppRoleAssignmentsAppRoleAssignmentItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["appRoleAssignment%2Did"] = id
+    }
+    return NewItemAppRoleAssignmentsAppRoleAssignmentItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // AssignLicense provides operations to call the assignLicense method.
 func (m *UserItemRequestBuilder) AssignLicense()(*ItemAssignLicenseRequestBuilder) {
@@ -74,13 +107,46 @@ func (m *UserItemRequestBuilder) Calendar()(*ItemCalendarRequestBuilder) {
 func (m *UserItemRequestBuilder) CalendarGroups()(*ItemCalendarGroupsRequestBuilder) {
     return NewItemCalendarGroupsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// CalendarGroupsById provides operations to manage the calendarGroups property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) CalendarGroupsById(id string)(*ItemCalendarGroupsCalendarGroupItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["calendarGroup%2Did"] = id
+    }
+    return NewItemCalendarGroupsCalendarGroupItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Calendars provides operations to manage the calendars property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Calendars()(*ItemCalendarsRequestBuilder) {
     return NewItemCalendarsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// CalendarsById provides operations to manage the calendars property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) CalendarsById(id string)(*ItemCalendarsCalendarItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["calendar%2Did"] = id
+    }
+    return NewItemCalendarsCalendarItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // CalendarView provides operations to manage the calendarView property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) CalendarView()(*ItemCalendarViewRequestBuilder) {
     return NewItemCalendarViewRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// CalendarViewById provides operations to manage the calendarView property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) CalendarViewById(id string)(*ItemCalendarViewEventItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["event%2Did"] = id
+    }
+    return NewItemCalendarViewEventItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // ChangePassword provides operations to call the changePassword method.
 func (m *UserItemRequestBuilder) ChangePassword()(*ItemChangePasswordRequestBuilder) {
@@ -89,6 +155,17 @@ func (m *UserItemRequestBuilder) ChangePassword()(*ItemChangePasswordRequestBuil
 // Chats provides operations to manage the chats property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Chats()(*ItemChatsRequestBuilder) {
     return NewItemChatsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// ChatsById provides operations to manage the chats property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ChatsById(id string)(*ItemChatsChatItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["chat%2Did"] = id
+    }
+    return NewItemChatsChatItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // CheckMemberGroups provides operations to call the checkMemberGroups method.
 func (m *UserItemRequestBuilder) CheckMemberGroups()(*ItemCheckMemberGroupsRequestBuilder) {
@@ -121,13 +198,46 @@ func NewUserItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
 func (m *UserItemRequestBuilder) ContactFolders()(*ItemContactFoldersRequestBuilder) {
     return NewItemContactFoldersRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// ContactFoldersById provides operations to manage the contactFolders property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ContactFoldersById(id string)(*ItemContactFoldersContactFolderItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["contactFolder%2Did"] = id
+    }
+    return NewItemContactFoldersContactFolderItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Contacts provides operations to manage the contacts property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Contacts()(*ItemContactsRequestBuilder) {
     return NewItemContactsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// ContactsById provides operations to manage the contacts property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ContactsById(id string)(*ItemContactsContactItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["contact%2Did"] = id
+    }
+    return NewItemContactsContactItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // CreatedObjects provides operations to manage the createdObjects property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) CreatedObjects()(*ItemCreatedObjectsRequestBuilder) {
     return NewItemCreatedObjectsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// CreatedObjectsById provides operations to manage the createdObjects property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) CreatedObjectsById(id string)(*ItemCreatedObjectsDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemCreatedObjectsDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Delete delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
 // [Find more info here]
@@ -152,9 +262,31 @@ func (m *UserItemRequestBuilder) Delete(ctx context.Context, requestConfiguratio
 func (m *UserItemRequestBuilder) DeviceManagementTroubleshootingEvents()(*ItemDeviceManagementTroubleshootingEventsRequestBuilder) {
     return NewItemDeviceManagementTroubleshootingEventsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// DeviceManagementTroubleshootingEventsById provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) DeviceManagementTroubleshootingEventsById(id string)(*ItemDeviceManagementTroubleshootingEventsDeviceManagementTroubleshootingEventItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["deviceManagementTroubleshootingEvent%2Did"] = id
+    }
+    return NewItemDeviceManagementTroubleshootingEventsDeviceManagementTroubleshootingEventItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // DirectReports provides operations to manage the directReports property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) DirectReports()(*ItemDirectReportsRequestBuilder) {
     return NewItemDirectReportsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// DirectReportsById provides operations to manage the directReports property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) DirectReportsById(id string)(*ItemDirectReportsDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemDirectReportsDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Drive provides operations to manage the drive property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Drive()(*ItemDriveRequestBuilder) {
@@ -164,9 +296,31 @@ func (m *UserItemRequestBuilder) Drive()(*ItemDriveRequestBuilder) {
 func (m *UserItemRequestBuilder) Drives()(*ItemDrivesRequestBuilder) {
     return NewItemDrivesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// DrivesById provides operations to manage the drives property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) DrivesById(id string)(*ItemDrivesDriveItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["drive%2Did"] = id
+    }
+    return NewItemDrivesDriveItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Events provides operations to manage the events property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Events()(*ItemEventsRequestBuilder) {
     return NewItemEventsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// EventsById provides operations to manage the events property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) EventsById(id string)(*ItemEventsEventItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["event%2Did"] = id
+    }
+    return NewItemEventsEventItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // ExportDeviceAndAppManagementData provides operations to call the exportDeviceAndAppManagementData method.
 func (m *UserItemRequestBuilder) ExportDeviceAndAppManagementData()(*ItemExportDeviceAndAppManagementDataRequestBuilder) {
@@ -184,6 +338,17 @@ func (m *UserItemRequestBuilder) ExportPersonalData()(*ItemExportPersonalDataReq
 func (m *UserItemRequestBuilder) Extensions()(*ItemExtensionsRequestBuilder) {
     return NewItemExtensionsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// ExtensionsById provides operations to manage the extensions property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ExtensionsById(id string)(*ItemExtensionsExtensionItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["extension%2Did"] = id
+    }
+    return NewItemExtensionsExtensionItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // FindMeetingTimes provides operations to call the findMeetingTimes method.
 func (m *UserItemRequestBuilder) FindMeetingTimes()(*ItemFindMeetingTimesRequestBuilder) {
     return NewItemFindMeetingTimesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
@@ -191,6 +356,17 @@ func (m *UserItemRequestBuilder) FindMeetingTimes()(*ItemFindMeetingTimesRequest
 // FollowedSites provides operations to manage the followedSites property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) FollowedSites()(*ItemFollowedSitesRequestBuilder) {
     return NewItemFollowedSitesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// FollowedSitesById provides operations to manage the followedSites property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) FollowedSitesById(id string)(*ItemFollowedSitesSiteItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["site%2Did"] = id
+    }
+    return NewItemFollowedSitesSiteItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Get retrieve the properties and relationships of user object.
 // [Find more info here]
@@ -250,21 +426,76 @@ func (m *UserItemRequestBuilder) Insights()(*ItemInsightsRequestBuilder) {
 func (m *UserItemRequestBuilder) JoinedTeams()(*ItemJoinedTeamsRequestBuilder) {
     return NewItemJoinedTeamsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// JoinedTeamsById provides operations to manage the joinedTeams property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) JoinedTeamsById(id string)(*ItemJoinedTeamsTeamItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["team%2Did"] = id
+    }
+    return NewItemJoinedTeamsTeamItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // LicenseDetails provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) LicenseDetails()(*ItemLicenseDetailsRequestBuilder) {
     return NewItemLicenseDetailsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// LicenseDetailsById provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) LicenseDetailsById(id string)(*ItemLicenseDetailsLicenseDetailsItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["licenseDetails%2Did"] = id
+    }
+    return NewItemLicenseDetailsLicenseDetailsItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // MailFolders provides operations to manage the mailFolders property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) MailFolders()(*ItemMailFoldersRequestBuilder) {
     return NewItemMailFoldersRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// MailFoldersById provides operations to manage the mailFolders property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) MailFoldersById(id string)(*ItemMailFoldersMailFolderItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["mailFolder%2Did"] = id
+    }
+    return NewItemMailFoldersMailFolderItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // ManagedAppRegistrations provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) ManagedAppRegistrations()(*ItemManagedAppRegistrationsRequestBuilder) {
     return NewItemManagedAppRegistrationsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// ManagedAppRegistrationsById provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ManagedAppRegistrationsById(id string)(*ItemManagedAppRegistrationsManagedAppRegistrationItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["managedAppRegistration%2Did"] = id
+    }
+    return NewItemManagedAppRegistrationsManagedAppRegistrationItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // ManagedDevices provides operations to manage the managedDevices property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) ManagedDevices()(*ItemManagedDevicesRequestBuilder) {
     return NewItemManagedDevicesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// ManagedDevicesById provides operations to manage the managedDevices property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ManagedDevicesById(id string)(*ItemManagedDevicesManagedDeviceItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["managedDevice%2Did"] = id
+    }
+    return NewItemManagedDevicesManagedDeviceItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Manager provides operations to manage the manager property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Manager()(*ItemManagerRequestBuilder) {
@@ -274,13 +505,46 @@ func (m *UserItemRequestBuilder) Manager()(*ItemManagerRequestBuilder) {
 func (m *UserItemRequestBuilder) MemberOf()(*ItemMemberOfRequestBuilder) {
     return NewItemMemberOfRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// MemberOfById provides operations to manage the memberOf property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) MemberOfById(id string)(*ItemMemberOfDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemMemberOfDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Messages provides operations to manage the messages property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Messages()(*ItemMessagesRequestBuilder) {
     return NewItemMessagesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// MessagesById provides operations to manage the messages property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) MessagesById(id string)(*ItemMessagesMessageItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["message%2Did"] = id
+    }
+    return NewItemMessagesMessageItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Oauth2PermissionGrants provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Oauth2PermissionGrants()(*ItemOauth2PermissionGrantsRequestBuilder) {
     return NewItemOauth2PermissionGrantsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Oauth2PermissionGrantsById provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) Oauth2PermissionGrantsById(id string)(*ItemOauth2PermissionGrantsOAuth2PermissionGrantItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["oAuth2PermissionGrant%2Did"] = id
+    }
+    return NewItemOauth2PermissionGrantsOAuth2PermissionGrantItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Onenote provides operations to manage the onenote property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Onenote()(*ItemOnenoteRequestBuilder) {
@@ -290,6 +554,17 @@ func (m *UserItemRequestBuilder) Onenote()(*ItemOnenoteRequestBuilder) {
 func (m *UserItemRequestBuilder) OnlineMeetings()(*ItemOnlineMeetingsRequestBuilder) {
     return NewItemOnlineMeetingsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// OnlineMeetingsById provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) OnlineMeetingsById(id string)(*ItemOnlineMeetingsOnlineMeetingItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["onlineMeeting%2Did"] = id
+    }
+    return NewItemOnlineMeetingsOnlineMeetingItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Outlook provides operations to manage the outlook property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Outlook()(*ItemOutlookRequestBuilder) {
     return NewItemOutlookRequestBuilderInternal(m.pathParameters, m.requestAdapter)
@@ -298,9 +573,31 @@ func (m *UserItemRequestBuilder) Outlook()(*ItemOutlookRequestBuilder) {
 func (m *UserItemRequestBuilder) OwnedDevices()(*ItemOwnedDevicesRequestBuilder) {
     return NewItemOwnedDevicesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// OwnedDevicesById provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) OwnedDevicesById(id string)(*ItemOwnedDevicesDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemOwnedDevicesDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // OwnedObjects provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) OwnedObjects()(*ItemOwnedObjectsRequestBuilder) {
     return NewItemOwnedObjectsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// OwnedObjectsById provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) OwnedObjectsById(id string)(*ItemOwnedObjectsDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemOwnedObjectsDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Patch update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
 // [Find more info here]
@@ -328,6 +625,17 @@ func (m *UserItemRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb
 func (m *UserItemRequestBuilder) People()(*ItemPeopleRequestBuilder) {
     return NewItemPeopleRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
+// PeopleById provides operations to manage the people property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) PeopleById(id string)(*ItemPeoplePersonItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["person%2Did"] = id
+    }
+    return NewItemPeoplePersonItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Photo provides operations to manage the photo property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Photo()(*ItemPhotoRequestBuilder) {
     return NewItemPhotoRequestBuilderInternal(m.pathParameters, m.requestAdapter)
@@ -335,6 +643,17 @@ func (m *UserItemRequestBuilder) Photo()(*ItemPhotoRequestBuilder) {
 // Photos provides operations to manage the photos property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Photos()(*ItemPhotosRequestBuilder) {
     return NewItemPhotosRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// PhotosById provides operations to manage the photos property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) PhotosById(id string)(*ItemPhotosProfilePhotoItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["profilePhoto%2Did"] = id
+    }
+    return NewItemPhotosProfilePhotoItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // Planner provides operations to manage the planner property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) Planner()(*ItemPlannerRequestBuilder) {
@@ -347,6 +666,17 @@ func (m *UserItemRequestBuilder) Presence()(*ItemPresenceRequestBuilder) {
 // RegisteredDevices provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) RegisteredDevices()(*ItemRegisteredDevicesRequestBuilder) {
     return NewItemRegisteredDevicesRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// RegisteredDevicesById provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) RegisteredDevicesById(id string)(*ItemRegisteredDevicesDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemRegisteredDevicesDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // ReminderViewWithStartDateTimeWithEndDateTime provides operations to call the reminderView method.
 func (m *UserItemRequestBuilder) ReminderViewWithStartDateTimeWithEndDateTime(endDateTime *string, startDateTime *string)(*ItemReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder) {
@@ -371,6 +701,17 @@ func (m *UserItemRequestBuilder) RevokeSignInSessions()(*ItemRevokeSignInSession
 // ScopedRoleMemberOf provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) ScopedRoleMemberOf()(*ItemScopedRoleMemberOfRequestBuilder) {
     return NewItemScopedRoleMemberOfRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// ScopedRoleMemberOfById provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) ScopedRoleMemberOfById(id string)(*ItemScopedRoleMemberOfScopedRoleMembershipItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["scopedRoleMembership%2Did"] = id
+    }
+    return NewItemScopedRoleMemberOfScopedRoleMembershipItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // SendMail provides operations to call the sendMail method.
 func (m *UserItemRequestBuilder) SendMail()(*ItemSendMailRequestBuilder) {
@@ -436,6 +777,17 @@ func (m *UserItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, 
 // TransitiveMemberOf provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
 func (m *UserItemRequestBuilder) TransitiveMemberOf()(*ItemTransitiveMemberOfRequestBuilder) {
     return NewItemTransitiveMemberOfRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// TransitiveMemberOfById provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
+func (m *UserItemRequestBuilder) TransitiveMemberOfById(id string)(*ItemTransitiveMemberOfDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemTransitiveMemberOfDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // TranslateExchangeIds provides operations to call the translateExchangeIds method.
 func (m *UserItemRequestBuilder) TranslateExchangeIds()(*ItemTranslateExchangeIdsRequestBuilder) {

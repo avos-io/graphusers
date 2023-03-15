@@ -63,6 +63,10 @@ func NewItemCreatedObjectsRequestBuilder(rawUrl string, requestAdapter i2ae4187f
     urlParams["request-raw-url"] = rawUrl
     return NewItemCreatedObjectsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemCreatedObjectsRequestBuilder) Count()(*ItemCreatedObjectsCountRequestBuilder) {
+    return NewItemCreatedObjectsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn't in any administrator role; otherwise, it returns an empty object.
 // [Find more info here]
 // 
@@ -84,6 +88,10 @@ func (m *ItemCreatedObjectsRequestBuilder) Get(ctx context.Context, requestConfi
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.DirectoryObjectCollectionResponseable), nil
+}
+// GraphServicePrincipal casts the previous resource to servicePrincipal.
+func (m *ItemCreatedObjectsRequestBuilder) GraphServicePrincipal()(*ItemCreatedObjectsGraphServicePrincipalRequestBuilder) {
+    return NewItemCreatedObjectsGraphServicePrincipalRequestBuilderInternal(m.pathParameters, m.requestAdapter)
 }
 // ToGetRequestInformation get a list of directory objects that were created by the user. This API returns only those directory objects that were created by a user who isn't in any administrator role; otherwise, it returns an empty object.
 func (m *ItemCreatedObjectsRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *ItemCreatedObjectsRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {

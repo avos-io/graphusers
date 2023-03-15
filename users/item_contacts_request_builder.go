@@ -68,6 +68,14 @@ func NewItemContactsRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2
     urlParams["request-raw-url"] = rawUrl
     return NewItemContactsRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemContactsRequestBuilder) Count()(*ItemContactsCountRequestBuilder) {
+    return NewItemContactsCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Delta provides operations to call the delta method.
+func (m *ItemContactsRequestBuilder) Delta()(*ItemContactsDeltaRequestBuilder) {
+    return NewItemContactsDeltaRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get get a contact collection from the default contacts folder of the signed-in user. There are two scenarios where an app can get contacts in another user's contact folder:
 // [Find more info here]
 // 

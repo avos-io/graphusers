@@ -18,7 +18,7 @@ type DomainDnsRecord struct {
     // Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.
     ttl *int32
 }
-// NewDomainDnsRecord instantiates a new DomainDnsRecord and sets the default values.
+// NewDomainDnsRecord instantiates a new domainDnsRecord and sets the default values.
 func NewDomainDnsRecord()(*DomainDnsRecord) {
     m := &DomainDnsRecord{
         Entity: *NewEntity(),

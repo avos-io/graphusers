@@ -81,6 +81,36 @@ func (m *ItemAuthenticationRequestBuilder) Delete(ctx context.Context, requestCo
     }
     return nil
 }
+// EmailMethods provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) EmailMethods()(*ItemAuthenticationEmailMethodsRequestBuilder) {
+    return NewItemAuthenticationEmailMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// EmailMethodsById provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) EmailMethodsById(id string)(*ItemAuthenticationEmailMethodsEmailAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["emailAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationEmailMethodsEmailAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// Fido2Methods provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) Fido2Methods()(*ItemAuthenticationFido2MethodsRequestBuilder) {
+    return NewItemAuthenticationFido2MethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// Fido2MethodsById provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) Fido2MethodsById(id string)(*ItemAuthenticationFido2MethodsFido2AuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["fido2AuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationFido2MethodsFido2AuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Get the authentication methods that are supported for the user.
 func (m *ItemAuthenticationRequestBuilder) Get(ctx context.Context, requestConfiguration *ItemAuthenticationRequestBuilderGetRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Authenticationable, error) {
     requestInfo, err := m.ToGetRequestInformation(ctx, requestConfiguration);
@@ -100,6 +130,66 @@ func (m *ItemAuthenticationRequestBuilder) Get(ctx context.Context, requestConfi
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Authenticationable), nil
 }
+// Methods provides operations to manage the methods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) Methods()(*ItemAuthenticationMethodsRequestBuilder) {
+    return NewItemAuthenticationMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// MethodsById provides operations to manage the methods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) MethodsById(id string)(*ItemAuthenticationMethodsAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["authenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationMethodsAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// MicrosoftAuthenticatorMethods provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) MicrosoftAuthenticatorMethods()(*ItemAuthenticationMicrosoftAuthenticatorMethodsRequestBuilder) {
+    return NewItemAuthenticationMicrosoftAuthenticatorMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// MicrosoftAuthenticatorMethodsById provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) MicrosoftAuthenticatorMethodsById(id string)(*ItemAuthenticationMicrosoftAuthenticatorMethodsMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["microsoftAuthenticatorAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationMicrosoftAuthenticatorMethodsMicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// Operations provides operations to manage the operations property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) Operations()(*ItemAuthenticationOperationsRequestBuilder) {
+    return NewItemAuthenticationOperationsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// OperationsById provides operations to manage the operations property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) OperationsById(id string)(*ItemAuthenticationOperationsLongRunningOperationItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["longRunningOperation%2Did"] = id
+    }
+    return NewItemAuthenticationOperationsLongRunningOperationItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// PasswordMethods provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) PasswordMethods()(*ItemAuthenticationPasswordMethodsRequestBuilder) {
+    return NewItemAuthenticationPasswordMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// PasswordMethodsById provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) PasswordMethodsById(id string)(*ItemAuthenticationPasswordMethodsPasswordAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["passwordAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationPasswordMethodsPasswordAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Patch update the navigation property authentication in users
 func (m *ItemAuthenticationRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Authenticationable, requestConfiguration *ItemAuthenticationRequestBuilderPatchRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Authenticationable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
@@ -118,6 +208,51 @@ func (m *ItemAuthenticationRequestBuilder) Patch(ctx context.Context, body i4373
         return nil, nil
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Authenticationable), nil
+}
+// PhoneMethods provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) PhoneMethods()(*ItemAuthenticationPhoneMethodsRequestBuilder) {
+    return NewItemAuthenticationPhoneMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// PhoneMethodsById provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) PhoneMethodsById(id string)(*ItemAuthenticationPhoneMethodsPhoneAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["phoneAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationPhoneMethodsPhoneAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// SoftwareOathMethods provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) SoftwareOathMethods()(*ItemAuthenticationSoftwareOathMethodsRequestBuilder) {
+    return NewItemAuthenticationSoftwareOathMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// SoftwareOathMethodsById provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) SoftwareOathMethodsById(id string)(*ItemAuthenticationSoftwareOathMethodsSoftwareOathAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["softwareOathAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationSoftwareOathMethodsSoftwareOathAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
+// TemporaryAccessPassMethods provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) TemporaryAccessPassMethods()(*ItemAuthenticationTemporaryAccessPassMethodsRequestBuilder) {
+    return NewItemAuthenticationTemporaryAccessPassMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// TemporaryAccessPassMethodsById provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) TemporaryAccessPassMethodsById(id string)(*ItemAuthenticationTemporaryAccessPassMethodsTemporaryAccessPassAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["temporaryAccessPassAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationTemporaryAccessPassMethodsTemporaryAccessPassAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }
 // ToDeleteRequestInformation delete navigation property authentication for users
 func (m *ItemAuthenticationRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *ItemAuthenticationRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
@@ -163,4 +298,19 @@ func (m *ItemAuthenticationRequestBuilder) ToPatchRequestInformation(ctx context
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     return requestInfo, nil
+}
+// WindowsHelloForBusinessMethods provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) WindowsHelloForBusinessMethods()(*ItemAuthenticationWindowsHelloForBusinessMethodsRequestBuilder) {
+    return NewItemAuthenticationWindowsHelloForBusinessMethodsRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// WindowsHelloForBusinessMethodsById provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
+func (m *ItemAuthenticationRequestBuilder) WindowsHelloForBusinessMethodsById(id string)(*ItemAuthenticationWindowsHelloForBusinessMethodsWindowsHelloForBusinessAuthenticationMethodItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["windowsHelloForBusinessAuthenticationMethod%2Did"] = id
+    }
+    return NewItemAuthenticationWindowsHelloForBusinessMethodsWindowsHelloForBusinessAuthenticationMethodItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
 }

@@ -25,7 +25,7 @@ type ConditionalAccessPolicy struct {
     // The state property
     state *ConditionalAccessPolicyState
 }
-// NewConditionalAccessPolicy instantiates a new ConditionalAccessPolicy and sets the default values.
+// NewConditionalAccessPolicy instantiates a new conditionalAccessPolicy and sets the default values.
 func NewConditionalAccessPolicy()(*ConditionalAccessPolicy) {
     m := &ConditionalAccessPolicy{
         Entity: *NewEntity(),

@@ -63,6 +63,10 @@ func NewItemAgreementAcceptancesRequestBuilder(rawUrl string, requestAdapter i2a
     urlParams["request-raw-url"] = rawUrl
     return NewItemAgreementAcceptancesRequestBuilderInternal(urlParams, requestAdapter)
 }
+// Count provides operations to count the resources in the collection.
+func (m *ItemAgreementAcceptancesRequestBuilder) Count()(*ItemAgreementAcceptancesCountRequestBuilder) {
+    return NewItemAgreementAcceptancesCountRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
 // Get retrieve the signed-in user's agreementAcceptance objects.
 // [Find more info here]
 // 
