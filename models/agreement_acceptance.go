@@ -35,7 +35,7 @@ type AgreementAcceptance struct {
     // UPN of the user when the acceptance was recorded.
     userPrincipalName *string
 }
-// NewAgreementAcceptance instantiates a new AgreementAcceptance and sets the default values.
+// NewAgreementAcceptance instantiates a new agreementAcceptance and sets the default values.
 func NewAgreementAcceptance()(*AgreementAcceptance) {
     m := &AgreementAcceptance{
         Entity: *NewEntity(),
