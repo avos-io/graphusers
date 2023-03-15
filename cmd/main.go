@@ -52,7 +52,7 @@ func readAndWriteZip(zf *zip.File) error {
 
 	fo, err := os.Create(binaryName)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	defer func() {
 		if err := fo.Close(); err != nil {
@@ -66,7 +66,7 @@ func readAndWriteZip(zf *zip.File) error {
 
 	_, err = fo.Write(b)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	return nil

@@ -1,5 +1,5 @@
 {
-  "descriptionHash": "16765270B60F07D4BD399F833F385BA9CCB0BC0F94638D9812D92E865459919D88B321FF36A7915E14D070EF47FF8915CE69702E7B06001490A408A556EBA907",
+  "descriptionHash": "CC4D333A338434E0498A7F7A8037F2D70E1B8F3320FEB638018ACA4B791BC24D74C939362DD897D5AA3259C8DF124660A2CA6E1115503484B55DB4786F09E23A",
   "descriptionLocation": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.0.1",
@@ -26,7 +26,9 @@
     "text/yaml"
   ],
   "includePatterns": [
-    "/users/**",
+    "/users",
+    "/users/*",
+    "/users/*/memberOf/**",
     "/groups",
     "/groups/*"
   ],

@@ -4,7 +4,9 @@ generate
 -c Client
 -n github.com/avos-io/graphusers
 --ad
--i /users/**
+-i /users
+-i /users/*
+-i /users/*/memberOf/**
 -i /groups
 -i /groups/*
 -m application/json
