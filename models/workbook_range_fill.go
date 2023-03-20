@@ -10,7 +10,7 @@ type WorkbookRangeFill struct {
     // HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange')
     color *string
 }
-// NewWorkbookRangeFill instantiates a new workbookRangeFill and sets the default values.
+// NewWorkbookRangeFill instantiates a new WorkbookRangeFill and sets the default values.
 func NewWorkbookRangeFill()(*WorkbookRangeFill) {
     m := &WorkbookRangeFill{
         Entity: *NewEntity(),

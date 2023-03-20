@@ -106,6 +106,21 @@ func (m *GroupItemRequestBuilder) Get(ctx context.Context, requestConfiguration 
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Groupable), nil
 }
+// Members the members property
+func (m *GroupItemRequestBuilder) Members()(*ItemMembersRequestBuilder) {
+    return NewItemMembersRequestBuilderInternal(m.pathParameters, m.requestAdapter)
+}
+// MembersById gets an item from the github.com/avos-io/graphusers.groups.item.members.item collection
+func (m *GroupItemRequestBuilder) MembersById(id string)(*ItemMembersDirectoryObjectItemRequestBuilder) {
+    urlTplParams := make(map[string]string)
+    for idx, item := range m.pathParameters {
+        urlTplParams[idx] = item
+    }
+    if id != "" {
+        urlTplParams["directoryObject%2Did"] = id
+    }
+    return NewItemMembersDirectoryObjectItemRequestBuilderInternal(urlTplParams, m.requestAdapter)
+}
 // Patch add a member to a security or Microsoft 365 group through the **members** navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
 // [Find more info here]
 // 

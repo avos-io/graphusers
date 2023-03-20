@@ -29,7 +29,7 @@ type TermsAndConditions struct {
     // Integer indicating the current version of the terms. Incremented when an administrator makes a change to the terms and wishes to require users to re-accept the modified T&C policy.
     version *int32
 }
-// NewTermsAndConditions instantiates a new termsAndConditions and sets the default values.
+// NewTermsAndConditions instantiates a new TermsAndConditions and sets the default values.
 func NewTermsAndConditions()(*TermsAndConditions) {
     m := &TermsAndConditions{
         Entity: *NewEntity(),

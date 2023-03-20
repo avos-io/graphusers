@@ -19,7 +19,7 @@ type ServiceAnnouncementAttachment struct {
     // The size property
     size *int32
 }
-// NewServiceAnnouncementAttachment instantiates a new serviceAnnouncementAttachment and sets the default values.
+// NewServiceAnnouncementAttachment instantiates a new ServiceAnnouncementAttachment and sets the default values.
 func NewServiceAnnouncementAttachment()(*ServiceAnnouncementAttachment) {
     m := &ServiceAnnouncementAttachment{
         Entity: *NewEntity(),

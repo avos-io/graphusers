@@ -9,7 +9,7 @@ generate
 -i /users/*/memberOf/**
 -i /groups
 -i /groups/*
--i /users/*/members/**
+-i /groups/*/members/**
 -m application/json
 -m application/xml
 -m text/plain
