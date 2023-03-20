@@ -1,89 +1,75 @@
 package models
 
 import (
-	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// BookingServiceCollectionResponse
+// BookingServiceCollectionResponse 
 type BookingServiceCollectionResponse struct {
-	BaseCollectionPaginationCountResponse
-	// The value property
-	value []BookingServiceable
+    BaseCollectionPaginationCountResponse
+    // The value property
+    value []BookingServiceable
 }
-
 // NewBookingServiceCollectionResponse instantiates a new BookingServiceCollectionResponse and sets the default values.
-func NewBookingServiceCollectionResponse() *BookingServiceCollectionResponse {
-	m := &BookingServiceCollectionResponse{
-		BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
-	}
-	return m
+func NewBookingServiceCollectionResponse()(*BookingServiceCollectionResponse) {
+    m := &BookingServiceCollectionResponse{
+        BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
+    }
+    return m
 }
-
 // CreateBookingServiceCollectionResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
-func CreateBookingServiceCollectionResponseFromDiscriminatorValue(
-	parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode,
-) (i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
-	return NewBookingServiceCollectionResponse(), nil
+func CreateBookingServiceCollectionResponseFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
+    return NewBookingServiceCollectionResponse(), nil
 }
-
 // GetFieldDeserializers the deserialization information for the current model
-func (m *BookingServiceCollectionResponse) GetFieldDeserializers() map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-	res := m.BaseCollectionPaginationCountResponse.GetFieldDeserializers()
-	res["value"] = func(n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
-		val, err := n.GetCollectionOfObjectValues(CreateBookingServiceFromDiscriminatorValue)
-		if err != nil {
-			return err
-		}
-		if val != nil {
-			res := make([]BookingServiceable, len(val))
-			for i, v := range val {
-				res[i] = v.(BookingServiceable)
-			}
-			m.SetValue(res)
-		}
-		return nil
-	}
-	return res
+func (m *BookingServiceCollectionResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
+    res := m.BaseCollectionPaginationCountResponse.GetFieldDeserializers()
+    res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateBookingServiceFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]BookingServiceable, len(val))
+            for i, v := range val {
+                res[i] = v.(BookingServiceable)
+            }
+            m.SetValue(res)
+        }
+        return nil
+    }
+    return res
 }
-
 // GetValue gets the value property value. The value property
-func (m *BookingServiceCollectionResponse) GetValue() []BookingServiceable {
-	return m.value
+func (m *BookingServiceCollectionResponse) GetValue()([]BookingServiceable) {
+    return m.value
 }
-
 // Serialize serializes information the current object
-func (m *BookingServiceCollectionResponse) Serialize(
-	writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter,
-) error {
-	err := m.BaseCollectionPaginationCountResponse.Serialize(writer)
-	if err != nil {
-		return err
-	}
-	if m.GetValue() != nil {
-		cast := make(
-			[]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable,
-			len(m.GetValue()),
-		)
-		for i, v := range m.GetValue() {
-			cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
-		}
-		err = writer.WriteCollectionOfObjectValues("value", cast)
-		if err != nil {
-			return err
-		}
-	}
-	return nil
+func (m *BookingServiceCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    err := m.BaseCollectionPaginationCountResponse.Serialize(writer)
+    if err != nil {
+        return err
+    }
+    if m.GetValue() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetValue()))
+        for i, v := range m.GetValue() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
+        err = writer.WriteCollectionOfObjectValues("value", cast)
+        if err != nil {
+            return err
+        }
+    }
+    return nil
 }
-
 // SetValue sets the value property value. The value property
-func (m *BookingServiceCollectionResponse) SetValue(value []BookingServiceable) {
-	m.value = value
+func (m *BookingServiceCollectionResponse) SetValue(value []BookingServiceable)() {
+    m.value = value
 }
-
-// BookingServiceCollectionResponseable
+// BookingServiceCollectionResponseable 
 type BookingServiceCollectionResponseable interface {
-	BaseCollectionPaginationCountResponseable
-	i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
-	GetValue() []BookingServiceable
-	SetValue(value []BookingServiceable)
+    BaseCollectionPaginationCountResponseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetValue()([]BookingServiceable)
+    SetValue(value []BookingServiceable)()
 }
