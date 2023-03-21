@@ -73,7 +73,7 @@ func readAndWriteZip(zf *zip.File) error {
 }
 
 func latestKiota() {
-	log.Printf("Download latest kiota:")
+	log.Printf("Download latest kiota")
 	r, err := http.Get(kiotaUrl)
 	if err != nil {
 		log.Fatal(err)
@@ -153,8 +153,8 @@ func runKiota(name string) {
 
 func main() {
 	flag.BoolVar(&latest, "latest", false, "Download latest kiota binary")
-	flag.BoolVar(&generate, "generate", false, "Generate sdk")
-	flag.BoolVar(&apply, "apply", false, "Apply generated sdk changes")
+	flag.BoolVar(&generate, "generate", false, "Generate SDK")
+	flag.BoolVar(&apply, "apply", false, "Apply generated SDK changes")
 	flag.BoolVar(&info, "info", false, "List go dependencies needed")
 	flag.Parse()
 
@@ -163,13 +163,13 @@ func main() {
 	}
 
 	if generate {
-		log.Printf("Generate SDK:")
+		log.Printf("Generate SDK")
 		runKiota("cmd/generate.txt")
 	}
 
 	if apply {
-		log.Printf("Apply SDK changes:")
-		_, err := exec.Command("/bin/sh", "-c", "cp -r output/* ./").Output()
+		log.Printf("Apply SDK changes")
+		_, err := exec.Command("/bin/sh", "-c", "rm -rf model/ users/ groups/ && cp -r output/* ./").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -177,7 +177,7 @@ func main() {
 	}
 
 	if info {
-		log.Printf("List go dependencies:")
+		log.Printf("List go dependencies")
 		runKiota("cmd/info.txt")
 	}
 }
