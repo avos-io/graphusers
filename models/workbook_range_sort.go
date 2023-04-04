@@ -8,7 +8,7 @@ import (
 type WorkbookRangeSort struct {
     Entity
 }
-// NewWorkbookRangeSort instantiates a new workbookRangeSort and sets the default values.
+// NewWorkbookRangeSort instantiates a new WorkbookRangeSort and sets the default values.
 func NewWorkbookRangeSort()(*WorkbookRangeSort) {
     m := &WorkbookRangeSort{
         Entity: *NewEntity(),
@@ -31,4 +31,9 @@ func (m *WorkbookRangeSort) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         return err
     }
     return nil
+}
+// WorkbookRangeSortable 
+type WorkbookRangeSortable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
 }

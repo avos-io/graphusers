@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -29,7 +28,16 @@ func (m *WorkbookChartLineFormat) GetColor()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WorkbookChartLineFormat) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["color"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetColor)
+    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetColor(val)
+        }
+        return nil
+    }
     return res
 }
 // Serialize serializes information the current object
@@ -49,4 +57,11 @@ func (m *WorkbookChartLineFormat) Serialize(writer i878a80d2330e89d26896388a3f48
 // SetColor sets the color property value. HTML color code representing the color of lines in the chart.
 func (m *WorkbookChartLineFormat) SetColor(value *string)() {
     m.color = value
+}
+// WorkbookChartLineFormatable 
+type WorkbookChartLineFormatable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetColor()(*string)
+    SetColor(value *string)()
 }

@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -12,7 +11,7 @@ type TemporaryAccessPassAuthenticationMethodConfiguration struct {
     defaultLength *int32
     // Default lifetime in minutes for a Temporary Access Pass. Value can be any integer between the minimumLifetimeInMinutes and maximumLifetimeInMinutes.
     defaultLifetimeInMinutes *int32
-    // A collection of users or groups who are enabled to use the authentication method.
+    // A collection of groups that are enabled to use the authentication method.
     includeTargets []AuthenticationMethodTargetable
     // If true, all the passes in the tenant will be restricted to one-time use. If false, passes in the tenant can be created to be either one-time use or reusable.
     isUsableOnce *bool
@@ -26,8 +25,8 @@ func NewTemporaryAccessPassAuthenticationMethodConfiguration()(*TemporaryAccessP
     m := &TemporaryAccessPassAuthenticationMethodConfiguration{
         AuthenticationMethodConfiguration: *NewAuthenticationMethodConfiguration(),
     }
-    odataTypeValue := "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateTemporaryAccessPassAuthenticationMethodConfigurationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -45,15 +44,73 @@ func (m *TemporaryAccessPassAuthenticationMethodConfiguration) GetDefaultLifetim
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TemporaryAccessPassAuthenticationMethodConfiguration) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AuthenticationMethodConfiguration.GetFieldDeserializers()
-    res["defaultLength"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDefaultLength)
-    res["defaultLifetimeInMinutes"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDefaultLifetimeInMinutes)
-    res["includeTargets"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateAuthenticationMethodTargetFromDiscriminatorValue , m.SetIncludeTargets)
-    res["isUsableOnce"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsUsableOnce)
-    res["maximumLifetimeInMinutes"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMaximumLifetimeInMinutes)
-    res["minimumLifetimeInMinutes"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMinimumLifetimeInMinutes)
+    res["defaultLength"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultLength(val)
+        }
+        return nil
+    }
+    res["defaultLifetimeInMinutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultLifetimeInMinutes(val)
+        }
+        return nil
+    }
+    res["includeTargets"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAuthenticationMethodTargetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AuthenticationMethodTargetable, len(val))
+            for i, v := range val {
+                res[i] = v.(AuthenticationMethodTargetable)
+            }
+            m.SetIncludeTargets(res)
+        }
+        return nil
+    }
+    res["isUsableOnce"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsUsableOnce(val)
+        }
+        return nil
+    }
+    res["maximumLifetimeInMinutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMaximumLifetimeInMinutes(val)
+        }
+        return nil
+    }
+    res["minimumLifetimeInMinutes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMinimumLifetimeInMinutes(val)
+        }
+        return nil
+    }
     return res
 }
-// GetIncludeTargets gets the includeTargets property value. A collection of users or groups who are enabled to use the authentication method.
+// GetIncludeTargets gets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 func (m *TemporaryAccessPassAuthenticationMethodConfiguration) GetIncludeTargets()([]AuthenticationMethodTargetable) {
     return m.includeTargets
 }
@@ -88,7 +145,10 @@ func (m *TemporaryAccessPassAuthenticationMethodConfiguration) Serialize(writer 
         }
     }
     if m.GetIncludeTargets() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetIncludeTargets())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetIncludeTargets()))
+        for i, v := range m.GetIncludeTargets() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("includeTargets", cast)
         if err != nil {
             return err
@@ -122,7 +182,7 @@ func (m *TemporaryAccessPassAuthenticationMethodConfiguration) SetDefaultLength(
 func (m *TemporaryAccessPassAuthenticationMethodConfiguration) SetDefaultLifetimeInMinutes(value *int32)() {
     m.defaultLifetimeInMinutes = value
 }
-// SetIncludeTargets sets the includeTargets property value. A collection of users or groups who are enabled to use the authentication method.
+// SetIncludeTargets sets the includeTargets property value. A collection of groups that are enabled to use the authentication method.
 func (m *TemporaryAccessPassAuthenticationMethodConfiguration) SetIncludeTargets(value []AuthenticationMethodTargetable)() {
     m.includeTargets = value
 }
@@ -137,4 +197,21 @@ func (m *TemporaryAccessPassAuthenticationMethodConfiguration) SetMaximumLifetim
 // SetMinimumLifetimeInMinutes sets the minimumLifetimeInMinutes property value. Minimum lifetime in minutes for any Temporary Access Pass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).
 func (m *TemporaryAccessPassAuthenticationMethodConfiguration) SetMinimumLifetimeInMinutes(value *int32)() {
     m.minimumLifetimeInMinutes = value
+}
+// TemporaryAccessPassAuthenticationMethodConfigurationable 
+type TemporaryAccessPassAuthenticationMethodConfigurationable interface {
+    AuthenticationMethodConfigurationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefaultLength()(*int32)
+    GetDefaultLifetimeInMinutes()(*int32)
+    GetIncludeTargets()([]AuthenticationMethodTargetable)
+    GetIsUsableOnce()(*bool)
+    GetMaximumLifetimeInMinutes()(*int32)
+    GetMinimumLifetimeInMinutes()(*int32)
+    SetDefaultLength(value *int32)()
+    SetDefaultLifetimeInMinutes(value *int32)()
+    SetIncludeTargets(value []AuthenticationMethodTargetable)()
+    SetIsUsableOnce(value *bool)()
+    SetMaximumLifetimeInMinutes(value *int32)()
+    SetMinimumLifetimeInMinutes(value *int32)()
 }

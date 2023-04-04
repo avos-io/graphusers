@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // WindowsInformationProtectionProxiedDomainCollection windows Information Protection Proxied Domain Collection
 type WindowsInformationProtectionProxiedDomainCollection struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Display name
     displayName *string
     // The OdataType property
@@ -20,7 +19,7 @@ type WindowsInformationProtectionProxiedDomainCollection struct {
 func NewWindowsInformationProtectionProxiedDomainCollection()(*WindowsInformationProtectionProxiedDomainCollection) {
     m := &WindowsInformationProtectionProxiedDomainCollection{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWindowsInformationProtectionProxiedDomainCollectionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateWindowsInformationProtectionProxiedDomainCollectionFromDiscriminatorV
     return NewWindowsInformationProtectionProxiedDomainCollection(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WindowsInformationProtectionProxiedDomainCollection) GetAdditionalData()(map[string]interface{}) {
+func (m *WindowsInformationProtectionProxiedDomainCollection) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDisplayName gets the displayName property value. Display name
@@ -38,9 +37,40 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) GetDisplayName()(*
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WindowsInformationProtectionProxiedDomainCollection) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["proxiedDomains"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateProxiedDomainFromDiscriminatorValue , m.SetProxiedDomains)
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["proxiedDomains"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateProxiedDomainFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ProxiedDomainable, len(val))
+            for i, v := range val {
+                res[i] = v.(ProxiedDomainable)
+            }
+            m.SetProxiedDomains(res)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -66,7 +96,10 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) Serialize(writer i
         }
     }
     if m.GetProxiedDomains() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetProxiedDomains())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProxiedDomains()))
+        for i, v := range m.GetProxiedDomains() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("proxiedDomains", cast)
         if err != nil {
             return err
@@ -81,7 +114,7 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) Serialize(writer i
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WindowsInformationProtectionProxiedDomainCollection) SetAdditionalData(value map[string]interface{})() {
+func (m *WindowsInformationProtectionProxiedDomainCollection) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDisplayName sets the displayName property value. Display name
@@ -95,4 +128,15 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) SetOdataType(value
 // SetProxiedDomains sets the proxiedDomains property value. Collection of proxied domains
 func (m *WindowsInformationProtectionProxiedDomainCollection) SetProxiedDomains(value []ProxiedDomainable)() {
     m.proxiedDomains = value
+}
+// WindowsInformationProtectionProxiedDomainCollectionable 
+type WindowsInformationProtectionProxiedDomainCollectionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayName()(*string)
+    GetOdataType()(*string)
+    GetProxiedDomains()([]ProxiedDomainable)
+    SetDisplayName(value *string)()
+    SetOdataType(value *string)()
+    SetProxiedDomains(value []ProxiedDomainable)()
 }

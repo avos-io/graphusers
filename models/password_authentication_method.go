@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -19,8 +18,8 @@ func NewPasswordAuthenticationMethod()(*PasswordAuthenticationMethod) {
     m := &PasswordAuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
     }
-    odataTypeValue := "#microsoft.graph.passwordAuthenticationMethod";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.passwordAuthenticationMethod"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreatePasswordAuthenticationMethodFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,8 +33,26 @@ func (m *PasswordAuthenticationMethod) GetCreatedDateTime()(*i336074805fc853987a
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PasswordAuthenticationMethod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AuthenticationMethod.GetFieldDeserializers()
-    res["createdDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCreatedDateTime)
-    res["password"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPassword)
+    res["createdDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["password"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPassword(val)
+        }
+        return nil
+    }
     return res
 }
 // GetPassword gets the password property value. For security, the password is always returned as null from a LIST or GET operation.
@@ -69,4 +86,13 @@ func (m *PasswordAuthenticationMethod) SetCreatedDateTime(value *i336074805fc853
 // SetPassword sets the password property value. For security, the password is always returned as null from a LIST or GET operation.
 func (m *PasswordAuthenticationMethod) SetPassword(value *string)() {
     m.password = value
+}
+// PasswordAuthenticationMethodable 
+type PasswordAuthenticationMethodable interface {
+    AuthenticationMethodable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetPassword()(*string)
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetPassword(value *string)()
 }

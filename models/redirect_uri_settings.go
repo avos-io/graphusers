@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // RedirectUriSettings 
 type RedirectUriSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The index property
     index *int32
     // The OdataType property
@@ -20,7 +19,7 @@ type RedirectUriSettings struct {
 func NewRedirectUriSettings()(*RedirectUriSettings) {
     m := &RedirectUriSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateRedirectUriSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateRedirectUriSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewRedirectUriSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RedirectUriSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *RedirectUriSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RedirectUriSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["index"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetIndex)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["uri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUri)
+    res["index"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIndex(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["uri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUri(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIndex gets the index property value. The index property
@@ -80,7 +106,7 @@ func (m *RedirectUriSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RedirectUriSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *RedirectUriSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIndex sets the index property value. The index property
@@ -94,4 +120,15 @@ func (m *RedirectUriSettings) SetOdataType(value *string)() {
 // SetUri sets the uri property value. The uri property
 func (m *RedirectUriSettings) SetUri(value *string)() {
     m.uri = value
+}
+// RedirectUriSettingsable 
+type RedirectUriSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIndex()(*int32)
+    GetOdataType()(*string)
+    GetUri()(*string)
+    SetIndex(value *int32)()
+    SetOdataType(value *string)()
+    SetUri(value *string)()
 }

@@ -1,11 +1,10 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// ResourceSpecificPermissionGrant provides operations to manage the collection of user entities.
+// ResourceSpecificPermissionGrant 
 type ResourceSpecificPermissionGrant struct {
     DirectoryObject
     // ID of the service principal of the Azure AD app that has been granted access. Read-only.
@@ -24,8 +23,8 @@ func NewResourceSpecificPermissionGrant()(*ResourceSpecificPermissionGrant) {
     m := &ResourceSpecificPermissionGrant{
         DirectoryObject: *NewDirectoryObject(),
     }
-    odataTypeValue := "#microsoft.graph.resourceSpecificPermissionGrant";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.resourceSpecificPermissionGrant"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateResourceSpecificPermissionGrantFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -43,11 +42,56 @@ func (m *ResourceSpecificPermissionGrant) GetClientId()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ResourceSpecificPermissionGrant) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DirectoryObject.GetFieldDeserializers()
-    res["clientAppId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetClientAppId)
-    res["clientId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetClientId)
-    res["permission"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPermission)
-    res["permissionType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPermissionType)
-    res["resourceAppId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetResourceAppId)
+    res["clientAppId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClientAppId(val)
+        }
+        return nil
+    }
+    res["clientId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClientId(val)
+        }
+        return nil
+    }
+    res["permission"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPermission(val)
+        }
+        return nil
+    }
+    res["permissionType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPermissionType(val)
+        }
+        return nil
+    }
+    res["resourceAppId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetResourceAppId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetPermission gets the permission property value. The name of the resource-specific permission. Read-only.
@@ -119,4 +163,19 @@ func (m *ResourceSpecificPermissionGrant) SetPermissionType(value *string)() {
 // SetResourceAppId sets the resourceAppId property value. ID of the Azure AD app that is hosting the resource. Read-only.
 func (m *ResourceSpecificPermissionGrant) SetResourceAppId(value *string)() {
     m.resourceAppId = value
+}
+// ResourceSpecificPermissionGrantable 
+type ResourceSpecificPermissionGrantable interface {
+    DirectoryObjectable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClientAppId()(*string)
+    GetClientId()(*string)
+    GetPermission()(*string)
+    GetPermissionType()(*string)
+    GetResourceAppId()(*string)
+    SetClientAppId(value *string)()
+    SetClientId(value *string)()
+    SetPermission(value *string)()
+    SetPermissionType(value *string)()
+    SetResourceAppId(value *string)()
 }

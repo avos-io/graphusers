@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BroadcastMeetingCaptionSettings 
 type BroadcastMeetingCaptionSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates whether captions are enabled for this Teams live event.
     isCaptionEnabled *bool
     // The OdataType property
@@ -22,7 +21,7 @@ type BroadcastMeetingCaptionSettings struct {
 func NewBroadcastMeetingCaptionSettings()(*BroadcastMeetingCaptionSettings) {
     m := &BroadcastMeetingCaptionSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateBroadcastMeetingCaptionSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,56 @@ func CreateBroadcastMeetingCaptionSettingsFromDiscriminatorValue(parseNode i878a
     return NewBroadcastMeetingCaptionSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastMeetingCaptionSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *BroadcastMeetingCaptionSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BroadcastMeetingCaptionSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["isCaptionEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsCaptionEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["spokenLanguage"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSpokenLanguage)
-    res["translationLanguages"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetTranslationLanguages)
+    res["isCaptionEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsCaptionEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["spokenLanguage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSpokenLanguage(val)
+        }
+        return nil
+    }
+    res["translationLanguages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetTranslationLanguages(res)
+        }
+        return nil
+    }
     return res
 }
 // GetIsCaptionEnabled gets the isCaptionEnabled property value. Indicates whether captions are enabled for this Teams live event.
@@ -93,7 +132,7 @@ func (m *BroadcastMeetingCaptionSettings) Serialize(writer i878a80d2330e89d26896
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastMeetingCaptionSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *BroadcastMeetingCaptionSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIsCaptionEnabled sets the isCaptionEnabled property value. Indicates whether captions are enabled for this Teams live event.
@@ -111,4 +150,17 @@ func (m *BroadcastMeetingCaptionSettings) SetSpokenLanguage(value *string)() {
 // SetTranslationLanguages sets the translationLanguages property value. The translation languages (choose up to 6).
 func (m *BroadcastMeetingCaptionSettings) SetTranslationLanguages(value []string)() {
     m.translationLanguages = value
+}
+// BroadcastMeetingCaptionSettingsable 
+type BroadcastMeetingCaptionSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsCaptionEnabled()(*bool)
+    GetOdataType()(*string)
+    GetSpokenLanguage()(*string)
+    GetTranslationLanguages()([]string)
+    SetIsCaptionEnabled(value *bool)()
+    SetOdataType(value *string)()
+    SetSpokenLanguage(value *string)()
+    SetTranslationLanguages(value []string)()
 }

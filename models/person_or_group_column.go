@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PersonOrGroupColumn 
 type PersonOrGroupColumn struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates whether multiple values can be selected from the source.
     allowMultipleSelection *bool
     // Whether to allow selection of people only, or people and groups. Must be one of peopleAndGroups or peopleOnly.
@@ -22,7 +21,7 @@ type PersonOrGroupColumn struct {
 func NewPersonOrGroupColumn()(*PersonOrGroupColumn) {
     m := &PersonOrGroupColumn{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePersonOrGroupColumnFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreatePersonOrGroupColumnFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewPersonOrGroupColumn(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PersonOrGroupColumn) GetAdditionalData()(map[string]interface{}) {
+func (m *PersonOrGroupColumn) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAllowMultipleSelection gets the allowMultipleSelection property value. Indicates whether multiple values can be selected from the source.
@@ -48,10 +47,46 @@ func (m *PersonOrGroupColumn) GetDisplayAs()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PersonOrGroupColumn) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowMultipleSelection"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowMultipleSelection)
-    res["chooseFromType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetChooseFromType)
-    res["displayAs"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayAs)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["allowMultipleSelection"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowMultipleSelection(val)
+        }
+        return nil
+    }
+    res["chooseFromType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetChooseFromType(val)
+        }
+        return nil
+    }
+    res["displayAs"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayAs(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -93,7 +128,7 @@ func (m *PersonOrGroupColumn) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PersonOrGroupColumn) SetAdditionalData(value map[string]interface{})() {
+func (m *PersonOrGroupColumn) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAllowMultipleSelection sets the allowMultipleSelection property value. Indicates whether multiple values can be selected from the source.
@@ -111,4 +146,17 @@ func (m *PersonOrGroupColumn) SetDisplayAs(value *string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *PersonOrGroupColumn) SetOdataType(value *string)() {
     m.odataType = value
+}
+// PersonOrGroupColumnable 
+type PersonOrGroupColumnable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowMultipleSelection()(*bool)
+    GetChooseFromType()(*string)
+    GetDisplayAs()(*string)
+    GetOdataType()(*string)
+    SetAllowMultipleSelection(value *bool)()
+    SetChooseFromType(value *string)()
+    SetDisplayAs(value *string)()
+    SetOdataType(value *string)()
 }

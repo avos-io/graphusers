@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SearchBucket 
 type SearchBucket struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // A token containing the encoded filter to aggregate search matches by the specific key value. To use the filter, pass the token as part of the aggregationFilter property in a searchRequest object, in the format '{field}:/'{aggregationFilterToken}/''. See an example.
     aggregationFilterToken *string
     // The approximate number of search matches that share the same value specified in the key property. Note that this number is not the exact number of matches.
@@ -22,7 +21,7 @@ type SearchBucket struct {
 func NewSearchBucket()(*SearchBucket) {
     m := &SearchBucket{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSearchBucketFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateSearchBucketFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewSearchBucket(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SearchBucket) GetAdditionalData()(map[string]interface{}) {
+func (m *SearchBucket) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAggregationFilterToken gets the aggregationFilterToken property value. A token containing the encoded filter to aggregate search matches by the specific key value. To use the filter, pass the token as part of the aggregationFilter property in a searchRequest object, in the format '{field}:/'{aggregationFilterToken}/''. See an example.
@@ -44,10 +43,46 @@ func (m *SearchBucket) GetCount()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SearchBucket) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["aggregationFilterToken"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAggregationFilterToken)
-    res["count"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCount)
-    res["key"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetKey)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["aggregationFilterToken"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAggregationFilterToken(val)
+        }
+        return nil
+    }
+    res["count"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCount(val)
+        }
+        return nil
+    }
+    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKey(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetKey gets the key property value. The discrete value of the field that an aggregation was computed on.
@@ -93,7 +128,7 @@ func (m *SearchBucket) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SearchBucket) SetAdditionalData(value map[string]interface{})() {
+func (m *SearchBucket) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAggregationFilterToken sets the aggregationFilterToken property value. A token containing the encoded filter to aggregate search matches by the specific key value. To use the filter, pass the token as part of the aggregationFilter property in a searchRequest object, in the format '{field}:/'{aggregationFilterToken}/''. See an example.
@@ -111,4 +146,17 @@ func (m *SearchBucket) SetKey(value *string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *SearchBucket) SetOdataType(value *string)() {
     m.odataType = value
+}
+// SearchBucketable 
+type SearchBucketable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAggregationFilterToken()(*string)
+    GetCount()(*int32)
+    GetKey()(*string)
+    GetOdataType()(*string)
+    SetAggregationFilterToken(value *string)()
+    SetCount(value *int32)()
+    SetKey(value *string)()
+    SetOdataType(value *string)()
 }

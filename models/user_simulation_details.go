@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // UserSimulationDetails 
 type UserSimulationDetails struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Number of trainings assigned to a user in an attack simulation and training campaign.
     assignedTrainingsCount *int32
     // Number of trainings completed by a user in an attack simulation and training campaign.
@@ -35,7 +34,7 @@ type UserSimulationDetails struct {
 func NewUserSimulationDetails()(*UserSimulationDetails) {
     m := &UserSimulationDetails{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateUserSimulationDetailsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -43,7 +42,7 @@ func CreateUserSimulationDetailsFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewUserSimulationDetails(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserSimulationDetails) GetAdditionalData()(map[string]interface{}) {
+func (m *UserSimulationDetails) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAssignedTrainingsCount gets the assignedTrainingsCount property value. Number of trainings assigned to a user in an attack simulation and training campaign.
@@ -61,16 +60,114 @@ func (m *UserSimulationDetails) GetCompromisedDateTime()(*i336074805fc853987abe6
 // GetFieldDeserializers the deserialization information for the current model
 func (m *UserSimulationDetails) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["assignedTrainingsCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetAssignedTrainingsCount)
-    res["completedTrainingsCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCompletedTrainingsCount)
-    res["compromisedDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCompromisedDateTime)
-    res["inProgressTrainingsCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetInProgressTrainingsCount)
-    res["isCompromised"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsCompromised)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["reportedPhishDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetReportedPhishDateTime)
-    res["simulationEvents"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateUserSimulationEventInfoFromDiscriminatorValue , m.SetSimulationEvents)
-    res["simulationUser"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAttackSimulationUserFromDiscriminatorValue , m.SetSimulationUser)
-    res["trainingEvents"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateUserTrainingEventInfoFromDiscriminatorValue , m.SetTrainingEvents)
+    res["assignedTrainingsCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAssignedTrainingsCount(val)
+        }
+        return nil
+    }
+    res["completedTrainingsCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompletedTrainingsCount(val)
+        }
+        return nil
+    }
+    res["compromisedDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompromisedDateTime(val)
+        }
+        return nil
+    }
+    res["inProgressTrainingsCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInProgressTrainingsCount(val)
+        }
+        return nil
+    }
+    res["isCompromised"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsCompromised(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["reportedPhishDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReportedPhishDateTime(val)
+        }
+        return nil
+    }
+    res["simulationEvents"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateUserSimulationEventInfoFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]UserSimulationEventInfoable, len(val))
+            for i, v := range val {
+                res[i] = v.(UserSimulationEventInfoable)
+            }
+            m.SetSimulationEvents(res)
+        }
+        return nil
+    }
+    res["simulationUser"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAttackSimulationUserFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSimulationUser(val.(AttackSimulationUserable))
+        }
+        return nil
+    }
+    res["trainingEvents"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateUserTrainingEventInfoFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]UserTrainingEventInfoable, len(val))
+            for i, v := range val {
+                res[i] = v.(UserTrainingEventInfoable)
+            }
+            m.SetTrainingEvents(res)
+        }
+        return nil
+    }
     return res
 }
 // GetInProgressTrainingsCount gets the inProgressTrainingsCount property value. Number of trainings in progress by a user in an attack simulation and training campaign.
@@ -146,7 +243,10 @@ func (m *UserSimulationDetails) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     if m.GetSimulationEvents() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetSimulationEvents())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSimulationEvents()))
+        for i, v := range m.GetSimulationEvents() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("simulationEvents", cast)
         if err != nil {
             return err
@@ -159,7 +259,10 @@ func (m *UserSimulationDetails) Serialize(writer i878a80d2330e89d26896388a3f487e
         }
     }
     if m.GetTrainingEvents() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetTrainingEvents())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTrainingEvents()))
+        for i, v := range m.GetTrainingEvents() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("trainingEvents", cast)
         if err != nil {
             return err
@@ -174,7 +277,7 @@ func (m *UserSimulationDetails) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserSimulationDetails) SetAdditionalData(value map[string]interface{})() {
+func (m *UserSimulationDetails) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAssignedTrainingsCount sets the assignedTrainingsCount property value. Number of trainings assigned to a user in an attack simulation and training campaign.
@@ -216,4 +319,29 @@ func (m *UserSimulationDetails) SetSimulationUser(value AttackSimulationUserable
 // SetTrainingEvents sets the trainingEvents property value. List of training events of a user in the attack simulation and training campaign.
 func (m *UserSimulationDetails) SetTrainingEvents(value []UserTrainingEventInfoable)() {
     m.trainingEvents = value
+}
+// UserSimulationDetailsable 
+type UserSimulationDetailsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAssignedTrainingsCount()(*int32)
+    GetCompletedTrainingsCount()(*int32)
+    GetCompromisedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetInProgressTrainingsCount()(*int32)
+    GetIsCompromised()(*bool)
+    GetOdataType()(*string)
+    GetReportedPhishDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetSimulationEvents()([]UserSimulationEventInfoable)
+    GetSimulationUser()(AttackSimulationUserable)
+    GetTrainingEvents()([]UserTrainingEventInfoable)
+    SetAssignedTrainingsCount(value *int32)()
+    SetCompletedTrainingsCount(value *int32)()
+    SetCompromisedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetInProgressTrainingsCount(value *int32)()
+    SetIsCompromised(value *bool)()
+    SetOdataType(value *string)()
+    SetReportedPhishDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetSimulationEvents(value []UserSimulationEventInfoable)()
+    SetSimulationUser(value AttackSimulationUserable)()
+    SetTrainingEvents(value []UserTrainingEventInfoable)()
 }

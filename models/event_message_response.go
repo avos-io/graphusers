@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -18,8 +17,8 @@ func NewEventMessageResponse()(*EventMessageResponse) {
     m := &EventMessageResponse{
         EventMessage: *NewEventMessage(),
     }
-    odataTypeValue := "#microsoft.graph.eventMessageResponse";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.eventMessageResponse"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateEventMessageResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -29,8 +28,26 @@ func CreateEventMessageResponseFromDiscriminatorValue(parseNode i878a80d2330e89d
 // GetFieldDeserializers the deserialization information for the current model
 func (m *EventMessageResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.EventMessage.GetFieldDeserializers()
-    res["proposedNewTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateTimeSlotFromDiscriminatorValue , m.SetProposedNewTime)
-    res["responseType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseResponseType , m.SetResponseType)
+    res["proposedNewTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTimeSlotFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetProposedNewTime(val.(TimeSlotable))
+        }
+        return nil
+    }
+    res["responseType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseResponseType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetResponseType(val.(*ResponseType))
+        }
+        return nil
+    }
     return res
 }
 // GetProposedNewTime gets the proposedNewTime property value. The proposedNewTime property
@@ -69,4 +86,13 @@ func (m *EventMessageResponse) SetProposedNewTime(value TimeSlotable)() {
 // SetResponseType sets the responseType property value. The responseType property
 func (m *EventMessageResponse) SetResponseType(value *ResponseType)() {
     m.responseType = value
+}
+// EventMessageResponseable 
+type EventMessageResponseable interface {
+    EventMessageable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetProposedNewTime()(TimeSlotable)
+    GetResponseType()(*ResponseType)
+    SetProposedNewTime(value TimeSlotable)()
+    SetResponseType(value *ResponseType)()
 }

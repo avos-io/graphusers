@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // X509CertificateRule 
 type X509CertificateRule struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The identifier of the X.509 certificate. Required.
     identifier *string
     // The OdataType property
@@ -22,7 +21,7 @@ type X509CertificateRule struct {
 func NewX509CertificateRule()(*X509CertificateRule) {
     m := &X509CertificateRule{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateX509CertificateRuleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateX509CertificateRuleFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewX509CertificateRule(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *X509CertificateRule) GetAdditionalData()(map[string]interface{}) {
+func (m *X509CertificateRule) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *X509CertificateRule) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["identifier"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIdentifier)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["x509CertificateAuthenticationMode"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseX509CertificateAuthenticationMode , m.SetX509CertificateAuthenticationMode)
-    res["x509CertificateRuleType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseX509CertificateRuleType , m.SetX509CertificateRuleType)
+    res["identifier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIdentifier(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["x509CertificateAuthenticationMode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseX509CertificateAuthenticationMode)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetX509CertificateAuthenticationMode(val.(*X509CertificateAuthenticationMode))
+        }
+        return nil
+    }
+    res["x509CertificateRuleType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseX509CertificateRuleType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetX509CertificateRuleType(val.(*X509CertificateRuleType))
+        }
+        return nil
+    }
     return res
 }
 // GetIdentifier gets the identifier property value. The identifier of the X.509 certificate. Required.
@@ -95,7 +130,7 @@ func (m *X509CertificateRule) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *X509CertificateRule) SetAdditionalData(value map[string]interface{})() {
+func (m *X509CertificateRule) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIdentifier sets the identifier property value. The identifier of the X.509 certificate. Required.
@@ -113,4 +148,17 @@ func (m *X509CertificateRule) SetX509CertificateAuthenticationMode(value *X509Ce
 // SetX509CertificateRuleType sets the x509CertificateRuleType property value. The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue. Required.
 func (m *X509CertificateRule) SetX509CertificateRuleType(value *X509CertificateRuleType)() {
     m.x509CertificateRuleType = value
+}
+// X509CertificateRuleable 
+type X509CertificateRuleable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIdentifier()(*string)
+    GetOdataType()(*string)
+    GetX509CertificateAuthenticationMode()(*X509CertificateAuthenticationMode)
+    GetX509CertificateRuleType()(*X509CertificateRuleType)
+    SetIdentifier(value *string)()
+    SetOdataType(value *string)()
+    SetX509CertificateAuthenticationMode(value *X509CertificateAuthenticationMode)()
+    SetX509CertificateRuleType(value *X509CertificateRuleType)()
 }

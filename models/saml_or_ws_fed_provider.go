@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -24,8 +23,8 @@ func NewSamlOrWsFedProvider()(*SamlOrWsFedProvider) {
     m := &SamlOrWsFedProvider{
         IdentityProviderBase: *NewIdentityProviderBase(),
     }
-    odataTypeValue := "#microsoft.graph.samlOrWsFedProvider";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.samlOrWsFedProvider"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateSamlOrWsFedProviderFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -55,11 +54,56 @@ func CreateSamlOrWsFedProviderFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SamlOrWsFedProvider) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.IdentityProviderBase.GetFieldDeserializers()
-    res["issuerUri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetIssuerUri)
-    res["metadataExchangeUri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMetadataExchangeUri)
-    res["passiveSignInUri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPassiveSignInUri)
-    res["preferredAuthenticationProtocol"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAuthenticationProtocol , m.SetPreferredAuthenticationProtocol)
-    res["signingCertificate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSigningCertificate)
+    res["issuerUri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIssuerUri(val)
+        }
+        return nil
+    }
+    res["metadataExchangeUri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMetadataExchangeUri(val)
+        }
+        return nil
+    }
+    res["passiveSignInUri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPassiveSignInUri(val)
+        }
+        return nil
+    }
+    res["preferredAuthenticationProtocol"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAuthenticationProtocol)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPreferredAuthenticationProtocol(val.(*AuthenticationProtocol))
+        }
+        return nil
+    }
+    res["signingCertificate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSigningCertificate(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIssuerUri gets the issuerUri property value. Issuer URI of the federation server.
@@ -140,4 +184,19 @@ func (m *SamlOrWsFedProvider) SetPreferredAuthenticationProtocol(value *Authenti
 // SetSigningCertificate sets the signingCertificate property value. Current certificate used to sign tokens passed to the Microsoft identity platform. The certificate is formatted as a Base64 encoded string of the public portion of the federated IdP's token signing certificate and must be compatible with the X509Certificate2 class.   This property is used in the following scenarios:  if a rollover is required outside of the autorollover update a new federation service is being set up  if the new token signing certificate isn't present in the federation properties after the federation service certificate has been updated.   Azure AD updates certificates via an autorollover process in which it attempts to retrieve a new certificate from the federation service metadata, 30 days before expiry of the current certificate. If a new certificate isn't available, Azure AD monitors the metadata daily and will update the federation settings for the domain when a new certificate is available.
 func (m *SamlOrWsFedProvider) SetSigningCertificate(value *string)() {
     m.signingCertificate = value
+}
+// SamlOrWsFedProviderable 
+type SamlOrWsFedProviderable interface {
+    IdentityProviderBaseable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIssuerUri()(*string)
+    GetMetadataExchangeUri()(*string)
+    GetPassiveSignInUri()(*string)
+    GetPreferredAuthenticationProtocol()(*AuthenticationProtocol)
+    GetSigningCertificate()(*string)
+    SetIssuerUri(value *string)()
+    SetMetadataExchangeUri(value *string)()
+    SetPassiveSignInUri(value *string)()
+    SetPreferredAuthenticationProtocol(value *AuthenticationProtocol)()
+    SetSigningCertificate(value *string)()
 }

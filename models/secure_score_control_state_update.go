@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SecureScoreControlStateUpdate 
 type SecureScoreControlStateUpdate struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Assigns the control to the user who will take the action.
     assignedTo *string
     // Provides optional comment about the control.
@@ -27,7 +26,7 @@ type SecureScoreControlStateUpdate struct {
 func NewSecureScoreControlStateUpdate()(*SecureScoreControlStateUpdate) {
     m := &SecureScoreControlStateUpdate{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSecureScoreControlStateUpdateFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -35,7 +34,7 @@ func CreateSecureScoreControlStateUpdateFromDiscriminatorValue(parseNode i878a80
     return NewSecureScoreControlStateUpdate(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScoreControlStateUpdate) GetAdditionalData()(map[string]interface{}) {
+func (m *SecureScoreControlStateUpdate) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAssignedTo gets the assignedTo property value. Assigns the control to the user who will take the action.
@@ -49,12 +48,66 @@ func (m *SecureScoreControlStateUpdate) GetComment()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SecureScoreControlStateUpdate) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["assignedTo"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAssignedTo)
-    res["comment"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetComment)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["state"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetState)
-    res["updatedBy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUpdatedBy)
-    res["updatedDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetUpdatedDateTime)
+    res["assignedTo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAssignedTo(val)
+        }
+        return nil
+    }
+    res["comment"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetComment(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val)
+        }
+        return nil
+    }
+    res["updatedBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUpdatedBy(val)
+        }
+        return nil
+    }
+    res["updatedDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUpdatedDateTime(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -120,7 +173,7 @@ func (m *SecureScoreControlStateUpdate) Serialize(writer i878a80d2330e89d2689638
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SecureScoreControlStateUpdate) SetAdditionalData(value map[string]interface{})() {
+func (m *SecureScoreControlStateUpdate) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAssignedTo sets the assignedTo property value. Assigns the control to the user who will take the action.
@@ -146,4 +199,21 @@ func (m *SecureScoreControlStateUpdate) SetUpdatedBy(value *string)() {
 // SetUpdatedDateTime sets the updatedDateTime property value. Time at which the control state was updated.
 func (m *SecureScoreControlStateUpdate) SetUpdatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.updatedDateTime = value
+}
+// SecureScoreControlStateUpdateable 
+type SecureScoreControlStateUpdateable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAssignedTo()(*string)
+    GetComment()(*string)
+    GetOdataType()(*string)
+    GetState()(*string)
+    GetUpdatedBy()(*string)
+    GetUpdatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    SetAssignedTo(value *string)()
+    SetComment(value *string)()
+    SetOdataType(value *string)()
+    SetState(value *string)()
+    SetUpdatedBy(value *string)()
+    SetUpdatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
 }

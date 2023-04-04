@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PersonType 
 type PersonType struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The type of data source, such as Person.
     class *string
     // The OdataType property
@@ -20,7 +19,7 @@ type PersonType struct {
 func NewPersonType()(*PersonType) {
     m := &PersonType{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePersonTypeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreatePersonTypeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
     return NewPersonType(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PersonType) GetAdditionalData()(map[string]interface{}) {
+func (m *PersonType) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetClass gets the class property value. The type of data source, such as Person.
@@ -38,9 +37,36 @@ func (m *PersonType) GetClass()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PersonType) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["class"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetClass)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["subclass"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSubclass)
+    res["class"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClass(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["subclass"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSubclass(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -80,7 +106,7 @@ func (m *PersonType) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PersonType) SetAdditionalData(value map[string]interface{})() {
+func (m *PersonType) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetClass sets the class property value. The type of data source, such as Person.
@@ -94,4 +120,15 @@ func (m *PersonType) SetOdataType(value *string)() {
 // SetSubclass sets the subclass property value. The secondary type of data source, such as OrganizationUser.
 func (m *PersonType) SetSubclass(value *string)() {
     m.subclass = value
+}
+// PersonTypeable 
+type PersonTypeable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClass()(*string)
+    GetOdataType()(*string)
+    GetSubclass()(*string)
+    SetClass(value *string)()
+    SetOdataType(value *string)()
+    SetSubclass(value *string)()
 }

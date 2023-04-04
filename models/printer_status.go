@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PrinterStatus 
 type PrinterStatus struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // A human-readable description of the printer's current processing state. Read-only.
     description *string
     // The list of details describing why the printer is in the current state. Valid values are described in the following table. Read-only.
@@ -22,7 +21,7 @@ type PrinterStatus struct {
 func NewPrinterStatus()(*PrinterStatus) {
     m := &PrinterStatus{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePrinterStatusFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreatePrinterStatusFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
     return NewPrinterStatus(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrinterStatus) GetAdditionalData()(map[string]interface{}) {
+func (m *PrinterStatus) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDescription gets the description property value. A human-readable description of the printer's current processing state. Read-only.
@@ -44,10 +43,50 @@ func (m *PrinterStatus) GetDetails()([]PrinterProcessingStateDetail) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PrinterStatus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDescription)
-    res["details"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParsePrinterProcessingStateDetail , m.SetDetails)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["state"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePrinterProcessingState , m.SetState)
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
+        }
+        return nil
+    }
+    res["details"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParsePrinterProcessingStateDetail)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]PrinterProcessingStateDetail, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*PrinterProcessingStateDetail))
+            }
+            m.SetDetails(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePrinterProcessingState)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val.(*PrinterProcessingState))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -94,7 +133,7 @@ func (m *PrinterStatus) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrinterStatus) SetAdditionalData(value map[string]interface{})() {
+func (m *PrinterStatus) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDescription sets the description property value. A human-readable description of the printer's current processing state. Read-only.
@@ -112,4 +151,17 @@ func (m *PrinterStatus) SetOdataType(value *string)() {
 // SetState sets the state property value. The state property
 func (m *PrinterStatus) SetState(value *PrinterProcessingState)() {
     m.state = value
+}
+// PrinterStatusable 
+type PrinterStatusable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDetails()([]PrinterProcessingStateDetail)
+    GetOdataType()(*string)
+    GetState()(*PrinterProcessingState)
+    SetDescription(value *string)()
+    SetDetails(value []PrinterProcessingStateDetail)()
+    SetOdataType(value *string)()
+    SetState(value *PrinterProcessingState)()
 }

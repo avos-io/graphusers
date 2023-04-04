@@ -1,11 +1,10 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// BookingCustomQuestion represents a custom question of the business.
+// BookingCustomQuestion 
 type BookingCustomQuestion struct {
     Entity
     // The expected answer type. The possible values are: text, radioButton, unknownFutureValue.
@@ -15,7 +14,7 @@ type BookingCustomQuestion struct {
     // The question.
     displayName *string
 }
-// NewBookingCustomQuestion instantiates a new bookingCustomQuestion and sets the default values.
+// NewBookingCustomQuestion instantiates a new BookingCustomQuestion and sets the default values.
 func NewBookingCustomQuestion()(*BookingCustomQuestion) {
     m := &BookingCustomQuestion{
         Entity: *NewEntity(),
@@ -41,9 +40,40 @@ func (m *BookingCustomQuestion) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BookingCustomQuestion) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["answerInputType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAnswerInputType , m.SetAnswerInputType)
-    res["answerOptions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetAnswerOptions)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
+    res["answerInputType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAnswerInputType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAnswerInputType(val.(*AnswerInputType))
+        }
+        return nil
+    }
+    res["answerOptions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetAnswerOptions(res)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
     return res
 }
 // Serialize serializes information the current object
@@ -84,4 +114,15 @@ func (m *BookingCustomQuestion) SetAnswerOptions(value []string)() {
 // SetDisplayName sets the displayName property value. The question.
 func (m *BookingCustomQuestion) SetDisplayName(value *string)() {
     m.displayName = value
+}
+// BookingCustomQuestionable 
+type BookingCustomQuestionable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAnswerInputType()(*AnswerInputType)
+    GetAnswerOptions()([]string)
+    GetDisplayName()(*string)
+    SetAnswerInputType(value *AnswerInputType)()
+    SetAnswerOptions(value []string)()
+    SetDisplayName(value *string)()
 }

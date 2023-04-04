@@ -1,14 +1,13 @@
 package externalconnectors
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Property 
 type Property struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // A set of aliases or a friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
     aliases []string
     // Specifies if the property is queryable. Queryable properties can be used in Keyword Query Language (KQL) queries. Optional.
@@ -26,13 +25,13 @@ type Property struct {
     // The OdataType property
     odataType *string
     // The type property
-    type_escaped *PropertyType
+    typeEscaped *PropertyType
 }
 // NewProperty instantiates a new property and sets the default values.
 func NewProperty()(*Property) {
     m := &Property{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePropertyFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -40,7 +39,7 @@ func CreatePropertyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
     return NewProperty(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Property) GetAdditionalData()(map[string]interface{}) {
+func (m *Property) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAliases gets the aliases property value. A set of aliases or a friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
@@ -50,15 +49,104 @@ func (m *Property) GetAliases()([]string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Property) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["aliases"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetAliases)
-    res["isQueryable"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsQueryable)
-    res["isRefinable"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsRefinable)
-    res["isRetrievable"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsRetrievable)
-    res["isSearchable"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsSearchable)
-    res["labels"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParseLabel , m.SetLabels)
-    res["name"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParsePropertyType , m.SetType)
+    res["aliases"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetAliases(res)
+        }
+        return nil
+    }
+    res["isQueryable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsQueryable(val)
+        }
+        return nil
+    }
+    res["isRefinable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRefinable(val)
+        }
+        return nil
+    }
+    res["isRetrievable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRetrievable(val)
+        }
+        return nil
+    }
+    res["isSearchable"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsSearchable(val)
+        }
+        return nil
+    }
+    res["labels"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParseLabel)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]Label, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*Label))
+            }
+            m.SetLabels(res)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParsePropertyType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val.(*PropertyType))
+        }
+        return nil
+    }
     return res
 }
 // GetIsQueryable gets the isQueryable property value. Specifies if the property is queryable. Queryable properties can be used in Keyword Query Language (KQL) queries. Optional.
@@ -91,7 +179,7 @@ func (m *Property) GetOdataType()(*string) {
 }
 // GetType gets the type property value. The type property
 func (m *Property) GetType()(*PropertyType) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *Property) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -159,7 +247,7 @@ func (m *Property) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Property) SetAdditionalData(value map[string]interface{})() {
+func (m *Property) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAliases sets the aliases property value. A set of aliases or a friendly names for the property. Maximum 32 characters. Only alphanumeric characters allowed. For example, each string may not contain control characters, whitespace, or any of the following: :, ;, ,, (, ), [, ], {, }, %, $, +, !, *, =, &, ?, @, #, /, ~, ', ', <, >, `, ^. Optional.
@@ -196,5 +284,28 @@ func (m *Property) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. The type property
 func (m *Property) SetType(value *PropertyType)() {
-    m.type_escaped = value
+    m.typeEscaped = value
+}
+// Propertyable 
+type Propertyable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAliases()([]string)
+    GetIsQueryable()(*bool)
+    GetIsRefinable()(*bool)
+    GetIsRetrievable()(*bool)
+    GetIsSearchable()(*bool)
+    GetLabels()([]Label)
+    GetName()(*string)
+    GetOdataType()(*string)
+    GetType()(*PropertyType)
+    SetAliases(value []string)()
+    SetIsQueryable(value *bool)()
+    SetIsRefinable(value *bool)()
+    SetIsRetrievable(value *bool)()
+    SetIsSearchable(value *bool)()
+    SetLabels(value []Label)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+    SetType(value *PropertyType)()
 }

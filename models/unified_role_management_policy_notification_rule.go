@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -24,8 +23,8 @@ func NewUnifiedRoleManagementPolicyNotificationRule()(*UnifiedRoleManagementPoli
     m := &UnifiedRoleManagementPolicyNotificationRule{
         UnifiedRoleManagementPolicyRule: *NewUnifiedRoleManagementPolicyRule(),
     }
-    odataTypeValue := "#microsoft.graph.unifiedRoleManagementPolicyNotificationRule";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.unifiedRoleManagementPolicyNotificationRule"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateUnifiedRoleManagementPolicyNotificationRuleFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -35,11 +34,60 @@ func CreateUnifiedRoleManagementPolicyNotificationRuleFromDiscriminatorValue(par
 // GetFieldDeserializers the deserialization information for the current model
 func (m *UnifiedRoleManagementPolicyNotificationRule) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.UnifiedRoleManagementPolicyRule.GetFieldDeserializers()
-    res["isDefaultRecipientsEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsDefaultRecipientsEnabled)
-    res["notificationLevel"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetNotificationLevel)
-    res["notificationRecipients"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetNotificationRecipients)
-    res["notificationType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetNotificationType)
-    res["recipientType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRecipientType)
+    res["isDefaultRecipientsEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsDefaultRecipientsEnabled(val)
+        }
+        return nil
+    }
+    res["notificationLevel"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotificationLevel(val)
+        }
+        return nil
+    }
+    res["notificationRecipients"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetNotificationRecipients(res)
+        }
+        return nil
+    }
+    res["notificationType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotificationType(val)
+        }
+        return nil
+    }
+    res["recipientType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecipientType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsDefaultRecipientsEnabled gets the isDefaultRecipientsEnabled property value. Indicates whether a default recipient will receive the notification email.
@@ -119,4 +167,19 @@ func (m *UnifiedRoleManagementPolicyNotificationRule) SetNotificationType(value 
 // SetRecipientType sets the recipientType property value. The type of recipient of the notification. The possible values are Requestor, Approver, Admin.
 func (m *UnifiedRoleManagementPolicyNotificationRule) SetRecipientType(value *string)() {
     m.recipientType = value
+}
+// UnifiedRoleManagementPolicyNotificationRuleable 
+type UnifiedRoleManagementPolicyNotificationRuleable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    UnifiedRoleManagementPolicyRuleable
+    GetIsDefaultRecipientsEnabled()(*bool)
+    GetNotificationLevel()(*string)
+    GetNotificationRecipients()([]string)
+    GetNotificationType()(*string)
+    GetRecipientType()(*string)
+    SetIsDefaultRecipientsEnabled(value *bool)()
+    SetNotificationLevel(value *string)()
+    SetNotificationRecipients(value []string)()
+    SetNotificationType(value *string)()
+    SetRecipientType(value *string)()
 }

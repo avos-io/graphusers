@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ComplianceManagementPartnerAssignment user group targeting for Compliance Management Partner
 type ComplianceManagementPartnerAssignment struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // Group assignment target.
@@ -18,7 +17,7 @@ type ComplianceManagementPartnerAssignment struct {
 func NewComplianceManagementPartnerAssignment()(*ComplianceManagementPartnerAssignment) {
     m := &ComplianceManagementPartnerAssignment{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateComplianceManagementPartnerAssignmentFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,14 +25,32 @@ func CreateComplianceManagementPartnerAssignmentFromDiscriminatorValue(parseNode
     return NewComplianceManagementPartnerAssignment(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ComplianceManagementPartnerAssignment) GetAdditionalData()(map[string]interface{}) {
+func (m *ComplianceManagementPartnerAssignment) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ComplianceManagementPartnerAssignment) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["target"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDeviceAndAppManagementAssignmentTargetFromDiscriminatorValue , m.SetTarget)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["target"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDeviceAndAppManagementAssignmentTargetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTarget(val.(DeviceAndAppManagementAssignmentTargetable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -67,7 +84,7 @@ func (m *ComplianceManagementPartnerAssignment) Serialize(writer i878a80d2330e89
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ComplianceManagementPartnerAssignment) SetAdditionalData(value map[string]interface{})() {
+func (m *ComplianceManagementPartnerAssignment) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
@@ -77,4 +94,13 @@ func (m *ComplianceManagementPartnerAssignment) SetOdataType(value *string)() {
 // SetTarget sets the target property value. Group assignment target.
 func (m *ComplianceManagementPartnerAssignment) SetTarget(value DeviceAndAppManagementAssignmentTargetable)() {
     m.target = value
+}
+// ComplianceManagementPartnerAssignmentable 
+type ComplianceManagementPartnerAssignmentable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetTarget()(DeviceAndAppManagementAssignmentTargetable)
+    SetOdataType(value *string)()
+    SetTarget(value DeviceAndAppManagementAssignmentTargetable)()
 }

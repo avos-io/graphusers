@@ -1,7 +1,6 @@
 package security
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390 "github.com/avos-io/graphusers/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -17,8 +16,8 @@ func NewSiteSource()(*SiteSource) {
     m := &SiteSource{
         DataSource: *NewDataSource(),
     }
-    odataTypeValue := "#microsoft.graph.security.siteSource";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.security.siteSource"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateSiteSourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,16 @@ func CreateSiteSourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SiteSource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DataSource.GetFieldDeserializers()
-    res["site"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.CreateSiteFromDiscriminatorValue , m.SetSite)
+    res["site"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.CreateSiteFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSite(val.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Siteable))
+        }
+        return nil
+    }
     return res
 }
 // GetSite gets the site property value. The site property
@@ -52,4 +60,11 @@ func (m *SiteSource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
 // SetSite sets the site property value. The site property
 func (m *SiteSource) SetSite(value i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Siteable)() {
     m.site = value
+}
+// SiteSourceable 
+type SiteSourceable interface {
+    DataSourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetSite()(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Siteable)
+    SetSite(value i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Siteable)()
 }

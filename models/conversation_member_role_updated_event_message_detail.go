@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -20,8 +19,8 @@ func NewConversationMemberRoleUpdatedEventMessageDetail()(*ConversationMemberRol
     m := &ConversationMemberRoleUpdatedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),
     }
-    odataTypeValue := "#microsoft.graph.conversationMemberRoleUpdatedEventMessageDetail";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.conversationMemberRoleUpdatedEventMessageDetail"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateConversationMemberRoleUpdatedEventMessageDetailFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -39,9 +38,40 @@ func (m *ConversationMemberRoleUpdatedEventMessageDetail) GetConversationMemberU
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConversationMemberRoleUpdatedEventMessageDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.EventMessageDetail.GetFieldDeserializers()
-    res["conversationMemberRoles"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetConversationMemberRoles)
-    res["conversationMemberUser"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateTeamworkUserIdentityFromDiscriminatorValue , m.SetConversationMemberUser)
-    res["initiator"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySetFromDiscriminatorValue , m.SetInitiator)
+    res["conversationMemberRoles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetConversationMemberRoles(res)
+        }
+        return nil
+    }
+    res["conversationMemberUser"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTeamworkUserIdentityFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConversationMemberUser(val.(TeamworkUserIdentityable))
+        }
+        return nil
+    }
+    res["initiator"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInitiator(val.(IdentitySetable))
+        }
+        return nil
+    }
     return res
 }
 // GetInitiator gets the initiator property value. Initiator of the event.
@@ -85,4 +115,15 @@ func (m *ConversationMemberRoleUpdatedEventMessageDetail) SetConversationMemberU
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *ConversationMemberRoleUpdatedEventMessageDetail) SetInitiator(value IdentitySetable)() {
     m.initiator = value
+}
+// ConversationMemberRoleUpdatedEventMessageDetailable 
+type ConversationMemberRoleUpdatedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConversationMemberRoles()([]string)
+    GetConversationMemberUser()(TeamworkUserIdentityable)
+    GetInitiator()(IdentitySetable)
+    SetConversationMemberRoles(value []string)()
+    SetConversationMemberUser(value TeamworkUserIdentityable)()
+    SetInitiator(value IdentitySetable)()
 }

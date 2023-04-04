@@ -1,20 +1,20 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ResourceSpecificPermission 
 type ResourceSpecificPermission struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Describes the level of access that the resource-specific permission represents.
     description *string
     // The display name for the resource-specific permission.
     displayName *string
     // The unique identifier for the resource-specific application permission.
-    id *string
+    id *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // Indicates whether the permission is enabled.
     isEnabled *bool
     // The OdataType property
@@ -26,7 +26,7 @@ type ResourceSpecificPermission struct {
 func NewResourceSpecificPermission()(*ResourceSpecificPermission) {
     m := &ResourceSpecificPermission{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateResourceSpecificPermissionFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +34,7 @@ func CreateResourceSpecificPermissionFromDiscriminatorValue(parseNode i878a80d23
     return NewResourceSpecificPermission(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ResourceSpecificPermission) GetAdditionalData()(map[string]interface{}) {
+func (m *ResourceSpecificPermission) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDescription gets the description property value. Describes the level of access that the resource-specific permission represents.
@@ -48,16 +48,70 @@ func (m *ResourceSpecificPermission) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ResourceSpecificPermission) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["description"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDescription)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["isEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["value"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetValue)
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["isEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetValue(val)
+        }
+        return nil
+    }
     return res
 }
 // GetId gets the id property value. The unique identifier for the resource-specific application permission.
-func (m *ResourceSpecificPermission) GetId()(*string) {
+func (m *ResourceSpecificPermission) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.id
 }
 // GetIsEnabled gets the isEnabled property value. Indicates whether the permission is enabled.
@@ -87,7 +141,7 @@ func (m *ResourceSpecificPermission) Serialize(writer i878a80d2330e89d26896388a3
         }
     }
     {
-        err := writer.WriteStringValue("id", m.GetId())
+        err := writer.WriteUUIDValue("id", m.GetId())
         if err != nil {
             return err
         }
@@ -119,7 +173,7 @@ func (m *ResourceSpecificPermission) Serialize(writer i878a80d2330e89d26896388a3
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ResourceSpecificPermission) SetAdditionalData(value map[string]interface{})() {
+func (m *ResourceSpecificPermission) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDescription sets the description property value. Describes the level of access that the resource-specific permission represents.
@@ -131,7 +185,7 @@ func (m *ResourceSpecificPermission) SetDisplayName(value *string)() {
     m.displayName = value
 }
 // SetId sets the id property value. The unique identifier for the resource-specific application permission.
-func (m *ResourceSpecificPermission) SetId(value *string)() {
+func (m *ResourceSpecificPermission) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.id = value
 }
 // SetIsEnabled sets the isEnabled property value. Indicates whether the permission is enabled.
@@ -145,4 +199,21 @@ func (m *ResourceSpecificPermission) SetOdataType(value *string)() {
 // SetValue sets the value property value. The value of the permission.
 func (m *ResourceSpecificPermission) SetValue(value *string)() {
     m.value = value
+}
+// ResourceSpecificPermissionable 
+type ResourceSpecificPermissionable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDescription()(*string)
+    GetDisplayName()(*string)
+    GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetIsEnabled()(*bool)
+    GetOdataType()(*string)
+    GetValue()(*string)
+    SetDescription(value *string)()
+    SetDisplayName(value *string)()
+    SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetIsEnabled(value *bool)()
+    SetOdataType(value *string)()
+    SetValue(value *string)()
 }

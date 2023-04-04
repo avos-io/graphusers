@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // MicrosoftAuthenticatorFeatureSettings 
 type MicrosoftAuthenticatorFeatureSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Determines whether the user's Authenticator app will show them the client app they are signing into.
     displayAppInformationRequiredState AuthenticationMethodFeatureConfigurationable
     // Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
@@ -20,7 +19,7 @@ type MicrosoftAuthenticatorFeatureSettings struct {
 func NewMicrosoftAuthenticatorFeatureSettings()(*MicrosoftAuthenticatorFeatureSettings) {
     m := &MicrosoftAuthenticatorFeatureSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateMicrosoftAuthenticatorFeatureSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateMicrosoftAuthenticatorFeatureSettingsFromDiscriminatorValue(parseNode
     return NewMicrosoftAuthenticatorFeatureSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MicrosoftAuthenticatorFeatureSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *MicrosoftAuthenticatorFeatureSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDisplayAppInformationRequiredState gets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
@@ -42,9 +41,36 @@ func (m *MicrosoftAuthenticatorFeatureSettings) GetDisplayLocationInformationReq
 // GetFieldDeserializers the deserialization information for the current model
 func (m *MicrosoftAuthenticatorFeatureSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["displayAppInformationRequiredState"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue , m.SetDisplayAppInformationRequiredState)
-    res["displayLocationInformationRequiredState"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue , m.SetDisplayLocationInformationRequiredState)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["displayAppInformationRequiredState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayAppInformationRequiredState(val.(AuthenticationMethodFeatureConfigurationable))
+        }
+        return nil
+    }
+    res["displayLocationInformationRequiredState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationMethodFeatureConfigurationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayLocationInformationRequiredState(val.(AuthenticationMethodFeatureConfigurationable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -80,7 +106,7 @@ func (m *MicrosoftAuthenticatorFeatureSettings) Serialize(writer i878a80d2330e89
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MicrosoftAuthenticatorFeatureSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *MicrosoftAuthenticatorFeatureSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDisplayAppInformationRequiredState sets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
@@ -94,4 +120,15 @@ func (m *MicrosoftAuthenticatorFeatureSettings) SetDisplayLocationInformationReq
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *MicrosoftAuthenticatorFeatureSettings) SetOdataType(value *string)() {
     m.odataType = value
+}
+// MicrosoftAuthenticatorFeatureSettingsable 
+type MicrosoftAuthenticatorFeatureSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDisplayAppInformationRequiredState()(AuthenticationMethodFeatureConfigurationable)
+    GetDisplayLocationInformationRequiredState()(AuthenticationMethodFeatureConfigurationable)
+    GetOdataType()(*string)
+    SetDisplayAppInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)()
+    SetDisplayLocationInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)()
+    SetOdataType(value *string)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ChatMessagePolicyViolationPolicyTip 
 type ChatMessagePolicyViolationPolicyTip struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The URL a user can visit to read about the data loss prevention policies for the organization. (ie, policies about what users shouldn't say in chats)
     complianceUrl *string
     // Explanatory text shown to the sender of the message.
@@ -22,7 +21,7 @@ type ChatMessagePolicyViolationPolicyTip struct {
 func NewChatMessagePolicyViolationPolicyTip()(*ChatMessagePolicyViolationPolicyTip) {
     m := &ChatMessagePolicyViolationPolicyTip{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateChatMessagePolicyViolationPolicyTipFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateChatMessagePolicyViolationPolicyTipFromDiscriminatorValue(parseNode i
     return NewChatMessagePolicyViolationPolicyTip(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessagePolicyViolationPolicyTip) GetAdditionalData()(map[string]interface{}) {
+func (m *ChatMessagePolicyViolationPolicyTip) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetComplianceUrl gets the complianceUrl property value. The URL a user can visit to read about the data loss prevention policies for the organization. (ie, policies about what users shouldn't say in chats)
@@ -40,10 +39,50 @@ func (m *ChatMessagePolicyViolationPolicyTip) GetComplianceUrl()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ChatMessagePolicyViolationPolicyTip) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["complianceUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetComplianceUrl)
-    res["generalText"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetGeneralText)
-    res["matchedConditionDescriptions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetMatchedConditionDescriptions)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["complianceUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetComplianceUrl(val)
+        }
+        return nil
+    }
+    res["generalText"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGeneralText(val)
+        }
+        return nil
+    }
+    res["matchedConditionDescriptions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetMatchedConditionDescriptions(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGeneralText gets the generalText property value. Explanatory text shown to the sender of the message.
@@ -93,7 +132,7 @@ func (m *ChatMessagePolicyViolationPolicyTip) Serialize(writer i878a80d2330e89d2
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ChatMessagePolicyViolationPolicyTip) SetAdditionalData(value map[string]interface{})() {
+func (m *ChatMessagePolicyViolationPolicyTip) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetComplianceUrl sets the complianceUrl property value. The URL a user can visit to read about the data loss prevention policies for the organization. (ie, policies about what users shouldn't say in chats)
@@ -111,4 +150,17 @@ func (m *ChatMessagePolicyViolationPolicyTip) SetMatchedConditionDescriptions(va
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ChatMessagePolicyViolationPolicyTip) SetOdataType(value *string)() {
     m.odataType = value
+}
+// ChatMessagePolicyViolationPolicyTipable 
+type ChatMessagePolicyViolationPolicyTipable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetComplianceUrl()(*string)
+    GetGeneralText()(*string)
+    GetMatchedConditionDescriptions()([]string)
+    GetOdataType()(*string)
+    SetComplianceUrl(value *string)()
+    SetGeneralText(value *string)()
+    SetMatchedConditionDescriptions(value []string)()
+    SetOdataType(value *string)()
 }

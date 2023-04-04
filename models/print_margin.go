@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // PrintMargin 
 type PrintMargin struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The margin in microns from the bottom edge.
     bottom *int32
     // The margin in microns from the left edge.
@@ -24,7 +23,7 @@ type PrintMargin struct {
 func NewPrintMargin()(*PrintMargin) {
     m := &PrintMargin{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreatePrintMarginFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreatePrintMarginFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewPrintMargin(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrintMargin) GetAdditionalData()(map[string]interface{}) {
+func (m *PrintMargin) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetBottom gets the bottom property value. The margin in microns from the bottom edge.
@@ -42,11 +41,56 @@ func (m *PrintMargin) GetBottom()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PrintMargin) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["bottom"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetBottom)
-    res["left"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetLeft)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["right"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetRight)
-    res["top"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTop)
+    res["bottom"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBottom(val)
+        }
+        return nil
+    }
+    res["left"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLeft(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["right"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRight(val)
+        }
+        return nil
+    }
+    res["top"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTop(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLeft gets the left property value. The margin in microns from the left edge.
@@ -106,7 +150,7 @@ func (m *PrintMargin) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *PrintMargin) SetAdditionalData(value map[string]interface{})() {
+func (m *PrintMargin) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetBottom sets the bottom property value. The margin in microns from the bottom edge.
@@ -128,4 +172,19 @@ func (m *PrintMargin) SetRight(value *int32)() {
 // SetTop sets the top property value. The margin in microns from the top edge.
 func (m *PrintMargin) SetTop(value *int32)() {
     m.top = value
+}
+// PrintMarginable 
+type PrintMarginable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBottom()(*int32)
+    GetLeft()(*int32)
+    GetOdataType()(*string)
+    GetRight()(*int32)
+    GetTop()(*int32)
+    SetBottom(value *int32)()
+    SetLeft(value *int32)()
+    SetOdataType(value *string)()
+    SetRight(value *int32)()
+    SetTop(value *int32)()
 }

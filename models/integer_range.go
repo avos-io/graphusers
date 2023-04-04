@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // IntegerRange 
 type IntegerRange struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The inclusive upper bound of the integer range.
     end *int64
     // The OdataType property
@@ -20,7 +19,7 @@ type IntegerRange struct {
 func NewIntegerRange()(*IntegerRange) {
     m := &IntegerRange{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateIntegerRangeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateIntegerRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewIntegerRange(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IntegerRange) GetAdditionalData()(map[string]interface{}) {
+func (m *IntegerRange) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetEnd gets the end property value. The inclusive upper bound of the integer range.
@@ -38,9 +37,36 @@ func (m *IntegerRange) GetEnd()(*int64) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *IntegerRange) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["end"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetEnd)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["start"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetStart)
+    res["end"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEnd(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["start"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStart(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -80,7 +106,7 @@ func (m *IntegerRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *IntegerRange) SetAdditionalData(value map[string]interface{})() {
+func (m *IntegerRange) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetEnd sets the end property value. The inclusive upper bound of the integer range.
@@ -94,4 +120,15 @@ func (m *IntegerRange) SetOdataType(value *string)() {
 // SetStart sets the start property value. The inclusive lower bound of the integer range.
 func (m *IntegerRange) SetStart(value *int64)() {
     m.start = value
+}
+// IntegerRangeable 
+type IntegerRangeable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetEnd()(*int64)
+    GetOdataType()(*string)
+    GetStart()(*int64)
+    SetEnd(value *int64)()
+    SetOdataType(value *string)()
+    SetStart(value *int64)()
 }

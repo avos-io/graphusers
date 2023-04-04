@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AttendanceInterval 
 type AttendanceInterval struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Duration of the meeting interval in seconds; that is, the difference between joinDateTime and leaveDateTime.
     durationInSeconds *int32
     // The time the attendee joined in UTC.
@@ -23,7 +22,7 @@ type AttendanceInterval struct {
 func NewAttendanceInterval()(*AttendanceInterval) {
     m := &AttendanceInterval{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAttendanceIntervalFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -31,7 +30,7 @@ func CreateAttendanceIntervalFromDiscriminatorValue(parseNode i878a80d2330e89d26
     return NewAttendanceInterval(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AttendanceInterval) GetAdditionalData()(map[string]interface{}) {
+func (m *AttendanceInterval) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDurationInSeconds gets the durationInSeconds property value. Duration of the meeting interval in seconds; that is, the difference between joinDateTime and leaveDateTime.
@@ -41,10 +40,46 @@ func (m *AttendanceInterval) GetDurationInSeconds()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AttendanceInterval) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["durationInSeconds"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDurationInSeconds)
-    res["joinDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetJoinDateTime)
-    res["leaveDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetLeaveDateTime)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["durationInSeconds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDurationInSeconds(val)
+        }
+        return nil
+    }
+    res["joinDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJoinDateTime(val)
+        }
+        return nil
+    }
+    res["leaveDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLeaveDateTime(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetJoinDateTime gets the joinDateTime property value. The time the attendee joined in UTC.
@@ -94,7 +129,7 @@ func (m *AttendanceInterval) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AttendanceInterval) SetAdditionalData(value map[string]interface{})() {
+func (m *AttendanceInterval) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDurationInSeconds sets the durationInSeconds property value. Duration of the meeting interval in seconds; that is, the difference between joinDateTime and leaveDateTime.
@@ -112,4 +147,17 @@ func (m *AttendanceInterval) SetLeaveDateTime(value *i336074805fc853987abe6f7fe3
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AttendanceInterval) SetOdataType(value *string)() {
     m.odataType = value
+}
+// AttendanceIntervalable 
+type AttendanceIntervalable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDurationInSeconds()(*int32)
+    GetJoinDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLeaveDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetOdataType()(*string)
+    SetDurationInSeconds(value *int32)()
+    SetJoinDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLeaveDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetOdataType(value *string)()
 }

@@ -1,0 +1,20 @@
+generate
+-d https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml
+-l go
+-c Client
+-n github.com/avos-io/graphusers
+--ad
+-i /users
+-i /users/*
+-i /users/*/memberOf/**
+-i /groups
+-i /groups/*
+-i /groups/*/members/**
+-m application/json
+-m application/xml
+-m text/plain
+-m text/xml
+-m text/yaml
+--ll trace
+--cc
+--co

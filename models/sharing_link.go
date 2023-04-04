@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SharingLink 
 type SharingLink struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The app the link is associated with.
     application Identityable
     // The OdataType property
@@ -18,7 +17,7 @@ type SharingLink struct {
     // The scope of the link represented by this permission. Value anonymous indicates the link is usable by anyone, organization indicates the link is only usable for users signed into the same tenant.
     scope *string
     // The type of the link created.
-    type_escaped *string
+    typeEscaped *string
     // For embed links, this property contains the HTML code for an <iframe> element that will embed the item in a webpage.
     webHtml *string
     // A URL that opens the item in the browser on the OneDrive website.
@@ -28,7 +27,7 @@ type SharingLink struct {
 func NewSharingLink()(*SharingLink) {
     m := &SharingLink{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSharingLinkFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateSharingLinkFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
     return NewSharingLink(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharingLink) GetAdditionalData()(map[string]interface{}) {
+func (m *SharingLink) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetApplication gets the application property value. The app the link is associated with.
@@ -46,13 +45,76 @@ func (m *SharingLink) GetApplication()(Identityable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SharingLink) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["application"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentityFromDiscriminatorValue , m.SetApplication)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["preventsDownload"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetPreventsDownload)
-    res["scope"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetScope)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
-    res["webHtml"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetWebHtml)
-    res["webUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetWebUrl)
+    res["application"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentityFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApplication(val.(Identityable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["preventsDownload"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPreventsDownload(val)
+        }
+        return nil
+    }
+    res["scope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScope(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
+    res["webHtml"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWebHtml(val)
+        }
+        return nil
+    }
+    res["webUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWebUrl(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -69,7 +131,7 @@ func (m *SharingLink) GetScope()(*string) {
 }
 // GetType gets the type property value. The type of the link created.
 func (m *SharingLink) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // GetWebHtml gets the webHtml property value. For embed links, this property contains the HTML code for an <iframe> element that will embed the item in a webpage.
 func (m *SharingLink) GetWebHtml()(*string) {
@@ -132,7 +194,7 @@ func (m *SharingLink) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SharingLink) SetAdditionalData(value map[string]interface{})() {
+func (m *SharingLink) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetApplication sets the application property value. The app the link is associated with.
@@ -153,7 +215,7 @@ func (m *SharingLink) SetScope(value *string)() {
 }
 // SetType sets the type property value. The type of the link created.
 func (m *SharingLink) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
 }
 // SetWebHtml sets the webHtml property value. For embed links, this property contains the HTML code for an <iframe> element that will embed the item in a webpage.
 func (m *SharingLink) SetWebHtml(value *string)() {
@@ -162,4 +224,23 @@ func (m *SharingLink) SetWebHtml(value *string)() {
 // SetWebUrl sets the webUrl property value. A URL that opens the item in the browser on the OneDrive website.
 func (m *SharingLink) SetWebUrl(value *string)() {
     m.webUrl = value
+}
+// SharingLinkable 
+type SharingLinkable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetApplication()(Identityable)
+    GetOdataType()(*string)
+    GetPreventsDownload()(*bool)
+    GetScope()(*string)
+    GetType()(*string)
+    GetWebHtml()(*string)
+    GetWebUrl()(*string)
+    SetApplication(value Identityable)()
+    SetOdataType(value *string)()
+    SetPreventsDownload(value *bool)()
+    SetScope(value *string)()
+    SetType(value *string)()
+    SetWebHtml(value *string)()
+    SetWebUrl(value *string)()
 }

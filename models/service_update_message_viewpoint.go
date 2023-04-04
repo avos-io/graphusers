@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ServiceUpdateMessageViewpoint 
 type ServiceUpdateMessageViewpoint struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Indicates whether the user archived the message.
     isArchived *bool
     // Indicates whether the user marked the message as favorite.
@@ -22,7 +21,7 @@ type ServiceUpdateMessageViewpoint struct {
 func NewServiceUpdateMessageViewpoint()(*ServiceUpdateMessageViewpoint) {
     m := &ServiceUpdateMessageViewpoint{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateServiceUpdateMessageViewpointFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateServiceUpdateMessageViewpointFromDiscriminatorValue(parseNode i878a80
     return NewServiceUpdateMessageViewpoint(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ServiceUpdateMessageViewpoint) GetAdditionalData()(map[string]interface{}) {
+func (m *ServiceUpdateMessageViewpoint) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ServiceUpdateMessageViewpoint) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["isArchived"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsArchived)
-    res["isFavorited"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsFavorited)
-    res["isRead"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsRead)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["isArchived"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsArchived(val)
+        }
+        return nil
+    }
+    res["isFavorited"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsFavorited(val)
+        }
+        return nil
+    }
+    res["isRead"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRead(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsArchived gets the isArchived property value. Indicates whether the user archived the message.
@@ -93,7 +128,7 @@ func (m *ServiceUpdateMessageViewpoint) Serialize(writer i878a80d2330e89d2689638
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ServiceUpdateMessageViewpoint) SetAdditionalData(value map[string]interface{})() {
+func (m *ServiceUpdateMessageViewpoint) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIsArchived sets the isArchived property value. Indicates whether the user archived the message.
@@ -111,4 +146,17 @@ func (m *ServiceUpdateMessageViewpoint) SetIsRead(value *bool)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ServiceUpdateMessageViewpoint) SetOdataType(value *string)() {
     m.odataType = value
+}
+// ServiceUpdateMessageViewpointable 
+type ServiceUpdateMessageViewpointable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsArchived()(*bool)
+    GetIsFavorited()(*bool)
+    GetIsRead()(*bool)
+    GetOdataType()(*string)
+    SetIsArchived(value *bool)()
+    SetIsFavorited(value *bool)()
+    SetIsRead(value *bool)()
+    SetOdataType(value *string)()
 }

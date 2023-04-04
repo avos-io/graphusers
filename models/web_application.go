@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // WebApplication 
 type WebApplication struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Home page or landing page of the application.
     homePageUrl *string
     // Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
@@ -26,7 +25,7 @@ type WebApplication struct {
 func NewWebApplication()(*WebApplication) {
     m := &WebApplication{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWebApplicationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,18 +33,80 @@ func CreateWebApplicationFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewWebApplication(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WebApplication) GetAdditionalData()(map[string]interface{}) {
+func (m *WebApplication) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WebApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["homePageUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetHomePageUrl)
-    res["implicitGrantSettings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateImplicitGrantSettingsFromDiscriminatorValue , m.SetImplicitGrantSettings)
-    res["logoutUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLogoutUrl)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["redirectUris"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetRedirectUris)
-    res["redirectUriSettings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateRedirectUriSettingsFromDiscriminatorValue , m.SetRedirectUriSettings)
+    res["homePageUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHomePageUrl(val)
+        }
+        return nil
+    }
+    res["implicitGrantSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateImplicitGrantSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetImplicitGrantSettings(val.(ImplicitGrantSettingsable))
+        }
+        return nil
+    }
+    res["logoutUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogoutUrl(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["redirectUris"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetRedirectUris(res)
+        }
+        return nil
+    }
+    res["redirectUriSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateRedirectUriSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]RedirectUriSettingsable, len(val))
+            for i, v := range val {
+                res[i] = v.(RedirectUriSettingsable)
+            }
+            m.SetRedirectUriSettings(res)
+        }
+        return nil
+    }
     return res
 }
 // GetHomePageUrl gets the homePageUrl property value. Home page or landing page of the application.
@@ -105,7 +166,10 @@ func (m *WebApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     if m.GetRedirectUriSettings() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetRedirectUriSettings())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRedirectUriSettings()))
+        for i, v := range m.GetRedirectUriSettings() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("redirectUriSettings", cast)
         if err != nil {
             return err
@@ -120,7 +184,7 @@ func (m *WebApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WebApplication) SetAdditionalData(value map[string]interface{})() {
+func (m *WebApplication) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetHomePageUrl sets the homePageUrl property value. Home page or landing page of the application.
@@ -146,4 +210,21 @@ func (m *WebApplication) SetRedirectUris(value []string)() {
 // SetRedirectUriSettings sets the redirectUriSettings property value. The redirectUriSettings property
 func (m *WebApplication) SetRedirectUriSettings(value []RedirectUriSettingsable)() {
     m.redirectUriSettings = value
+}
+// WebApplicationable 
+type WebApplicationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetHomePageUrl()(*string)
+    GetImplicitGrantSettings()(ImplicitGrantSettingsable)
+    GetLogoutUrl()(*string)
+    GetOdataType()(*string)
+    GetRedirectUris()([]string)
+    GetRedirectUriSettings()([]RedirectUriSettingsable)
+    SetHomePageUrl(value *string)()
+    SetImplicitGrantSettings(value ImplicitGrantSettingsable)()
+    SetLogoutUrl(value *string)()
+    SetOdataType(value *string)()
+    SetRedirectUris(value []string)()
+    SetRedirectUriSettings(value []RedirectUriSettingsable)()
 }

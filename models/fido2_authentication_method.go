@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -27,8 +26,8 @@ func NewFido2AuthenticationMethod()(*Fido2AuthenticationMethod) {
     m := &Fido2AuthenticationMethod{
         AuthenticationMethod: *NewAuthenticationMethod(),
     }
-    odataTypeValue := "#microsoft.graph.fido2AuthenticationMethod";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.fido2AuthenticationMethod"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateFido2AuthenticationMethodFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -58,12 +57,70 @@ func (m *Fido2AuthenticationMethod) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Fido2AuthenticationMethod) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AuthenticationMethod.GetFieldDeserializers()
-    res["aaGuid"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAaGuid)
-    res["attestationCertificates"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetAttestationCertificates)
-    res["attestationLevel"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseAttestationLevel , m.SetAttestationLevel)
-    res["createdDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCreatedDateTime)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["model"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetModel)
+    res["aaGuid"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAaGuid(val)
+        }
+        return nil
+    }
+    res["attestationCertificates"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetAttestationCertificates(res)
+        }
+        return nil
+    }
+    res["attestationLevel"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAttestationLevel)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAttestationLevel(val.(*AttestationLevel))
+        }
+        return nil
+    }
+    res["createdDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["model"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetModel(val)
+        }
+        return nil
+    }
     return res
 }
 // GetModel gets the model property value. The manufacturer-assigned model of the FIDO2 security key.
@@ -138,4 +195,21 @@ func (m *Fido2AuthenticationMethod) SetDisplayName(value *string)() {
 // SetModel sets the model property value. The manufacturer-assigned model of the FIDO2 security key.
 func (m *Fido2AuthenticationMethod) SetModel(value *string)() {
     m.model = value
+}
+// Fido2AuthenticationMethodable 
+type Fido2AuthenticationMethodable interface {
+    AuthenticationMethodable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAaGuid()(*string)
+    GetAttestationCertificates()([]string)
+    GetAttestationLevel()(*AttestationLevel)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDisplayName()(*string)
+    GetModel()(*string)
+    SetAaGuid(value *string)()
+    SetAttestationCertificates(value []string)()
+    SetAttestationLevel(value *AttestationLevel)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDisplayName(value *string)()
+    SetModel(value *string)()
 }

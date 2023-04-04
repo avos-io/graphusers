@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // LobbyBypassSettings 
 type LobbyBypassSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Specifies whether or not to always let dial-in callers bypass the lobby. Optional.
     isDialInBypassEnabled *bool
     // The OdataType property
@@ -20,7 +19,7 @@ type LobbyBypassSettings struct {
 func NewLobbyBypassSettings()(*LobbyBypassSettings) {
     m := &LobbyBypassSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateLobbyBypassSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateLobbyBypassSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d2
     return NewLobbyBypassSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *LobbyBypassSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *LobbyBypassSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *LobbyBypassSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["isDialInBypassEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsDialInBypassEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["scope"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseLobbyBypassScope , m.SetScope)
+    res["isDialInBypassEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsDialInBypassEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["scope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseLobbyBypassScope)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScope(val.(*LobbyBypassScope))
+        }
+        return nil
+    }
     return res
 }
 // GetIsDialInBypassEnabled gets the isDialInBypassEnabled property value. Specifies whether or not to always let dial-in callers bypass the lobby. Optional.
@@ -81,7 +107,7 @@ func (m *LobbyBypassSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *LobbyBypassSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *LobbyBypassSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIsDialInBypassEnabled sets the isDialInBypassEnabled property value. Specifies whether or not to always let dial-in callers bypass the lobby. Optional.
@@ -95,4 +121,15 @@ func (m *LobbyBypassSettings) SetOdataType(value *string)() {
 // SetScope sets the scope property value. Specifies the type of participants that are automatically admitted into a meeting, bypassing the lobby. Optional.
 func (m *LobbyBypassSettings) SetScope(value *LobbyBypassScope)() {
     m.scope = value
+}
+// LobbyBypassSettingsable 
+type LobbyBypassSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsDialInBypassEnabled()(*bool)
+    GetOdataType()(*string)
+    GetScope()(*LobbyBypassScope)
+    SetIsDialInBypassEnabled(value *bool)()
+    SetOdataType(value *string)()
+    SetScope(value *LobbyBypassScope)()
 }

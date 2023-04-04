@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BroadcastMeetingSettings 
 type BroadcastMeetingSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Defines who can join the Teams live event. Possible values are listed in the following table.
     allowedAudience *BroadcastMeetingAudience
     // Caption settings of a Teams live event.
@@ -28,7 +27,7 @@ type BroadcastMeetingSettings struct {
 func NewBroadcastMeetingSettings()(*BroadcastMeetingSettings) {
     m := &BroadcastMeetingSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateBroadcastMeetingSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateBroadcastMeetingSettingsFromDiscriminatorValue(parseNode i878a80d2330
     return NewBroadcastMeetingSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastMeetingSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *BroadcastMeetingSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAllowedAudience gets the allowedAudience property value. Defines who can join the Teams live event. Possible values are listed in the following table.
@@ -50,13 +49,76 @@ func (m *BroadcastMeetingSettings) GetCaptions()(BroadcastMeetingCaptionSettings
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BroadcastMeetingSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowedAudience"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseBroadcastMeetingAudience , m.SetAllowedAudience)
-    res["captions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateBroadcastMeetingCaptionSettingsFromDiscriminatorValue , m.SetCaptions)
-    res["isAttendeeReportEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsAttendeeReportEnabled)
-    res["isQuestionAndAnswerEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsQuestionAndAnswerEnabled)
-    res["isRecordingEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsRecordingEnabled)
-    res["isVideoOnDemandEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsVideoOnDemandEnabled)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["allowedAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseBroadcastMeetingAudience)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowedAudience(val.(*BroadcastMeetingAudience))
+        }
+        return nil
+    }
+    res["captions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateBroadcastMeetingCaptionSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCaptions(val.(BroadcastMeetingCaptionSettingsable))
+        }
+        return nil
+    }
+    res["isAttendeeReportEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsAttendeeReportEnabled(val)
+        }
+        return nil
+    }
+    res["isQuestionAndAnswerEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsQuestionAndAnswerEnabled(val)
+        }
+        return nil
+    }
+    res["isRecordingEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsRecordingEnabled(val)
+        }
+        return nil
+    }
+    res["isVideoOnDemandEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsVideoOnDemandEnabled(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsAttendeeReportEnabled gets the isAttendeeReportEnabled property value. Indicates whether attendee report is enabled for this Teams live event. Default value is false.
@@ -133,7 +195,7 @@ func (m *BroadcastMeetingSettings) Serialize(writer i878a80d2330e89d26896388a3f4
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BroadcastMeetingSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *BroadcastMeetingSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAllowedAudience sets the allowedAudience property value. Defines who can join the Teams live event. Possible values are listed in the following table.
@@ -163,4 +225,23 @@ func (m *BroadcastMeetingSettings) SetIsVideoOnDemandEnabled(value *bool)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *BroadcastMeetingSettings) SetOdataType(value *string)() {
     m.odataType = value
+}
+// BroadcastMeetingSettingsable 
+type BroadcastMeetingSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowedAudience()(*BroadcastMeetingAudience)
+    GetCaptions()(BroadcastMeetingCaptionSettingsable)
+    GetIsAttendeeReportEnabled()(*bool)
+    GetIsQuestionAndAnswerEnabled()(*bool)
+    GetIsRecordingEnabled()(*bool)
+    GetIsVideoOnDemandEnabled()(*bool)
+    GetOdataType()(*string)
+    SetAllowedAudience(value *BroadcastMeetingAudience)()
+    SetCaptions(value BroadcastMeetingCaptionSettingsable)()
+    SetIsAttendeeReportEnabled(value *bool)()
+    SetIsQuestionAndAnswerEnabled(value *bool)()
+    SetIsRecordingEnabled(value *bool)()
+    SetIsVideoOnDemandEnabled(value *bool)()
+    SetOdataType(value *string)()
 }

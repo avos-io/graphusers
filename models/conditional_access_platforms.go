@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ConditionalAccessPlatforms 
 type ConditionalAccessPlatforms struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.
     excludePlatforms []ConditionalAccessDevicePlatform
     // Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.
@@ -20,7 +19,7 @@ type ConditionalAccessPlatforms struct {
 func NewConditionalAccessPlatforms()(*ConditionalAccessPlatforms) {
     m := &ConditionalAccessPlatforms{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateConditionalAccessPlatformsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateConditionalAccessPlatformsFromDiscriminatorValue(parseNode i878a80d23
     return NewConditionalAccessPlatforms(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessPlatforms) GetAdditionalData()(map[string]interface{}) {
+func (m *ConditionalAccessPlatforms) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetExcludePlatforms gets the excludePlatforms property value. Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.
@@ -38,9 +37,44 @@ func (m *ConditionalAccessPlatforms) GetExcludePlatforms()([]ConditionalAccessDe
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessPlatforms) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["excludePlatforms"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParseConditionalAccessDevicePlatform , m.SetExcludePlatforms)
-    res["includePlatforms"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParseConditionalAccessDevicePlatform , m.SetIncludePlatforms)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["excludePlatforms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParseConditionalAccessDevicePlatform)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ConditionalAccessDevicePlatform, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*ConditionalAccessDevicePlatform))
+            }
+            m.SetExcludePlatforms(res)
+        }
+        return nil
+    }
+    res["includePlatforms"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParseConditionalAccessDevicePlatform)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ConditionalAccessDevicePlatform, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*ConditionalAccessDevicePlatform))
+            }
+            m.SetIncludePlatforms(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIncludePlatforms gets the includePlatforms property value. Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.
@@ -80,7 +114,7 @@ func (m *ConditionalAccessPlatforms) Serialize(writer i878a80d2330e89d26896388a3
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessPlatforms) SetAdditionalData(value map[string]interface{})() {
+func (m *ConditionalAccessPlatforms) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetExcludePlatforms sets the excludePlatforms property value. Possible values are: android, iOS, windows, windowsPhone, macOS, linux, all, unknownFutureValue.
@@ -94,4 +128,15 @@ func (m *ConditionalAccessPlatforms) SetIncludePlatforms(value []ConditionalAcce
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ConditionalAccessPlatforms) SetOdataType(value *string)() {
     m.odataType = value
+}
+// ConditionalAccessPlatformsable 
+type ConditionalAccessPlatformsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExcludePlatforms()([]ConditionalAccessDevicePlatform)
+    GetIncludePlatforms()([]ConditionalAccessDevicePlatform)
+    GetOdataType()(*string)
+    SetExcludePlatforms(value []ConditionalAccessDevicePlatform)()
+    SetIncludePlatforms(value []ConditionalAccessDevicePlatform)()
+    SetOdataType(value *string)()
 }

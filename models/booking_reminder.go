@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BookingReminder this type represents when and to whom to send an e-mail reminder.
 type BookingReminder struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The message in the reminder.
     message *string
     // The OdataType property
@@ -22,7 +21,7 @@ type BookingReminder struct {
 func NewBookingReminder()(*BookingReminder) {
     m := &BookingReminder{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateBookingReminderFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,52 @@ func CreateBookingReminderFromDiscriminatorValue(parseNode i878a80d2330e89d26896
     return NewBookingReminder(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BookingReminder) GetAdditionalData()(map[string]interface{}) {
+func (m *BookingReminder) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BookingReminder) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["message"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMessage)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["offset"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetOffset)
-    res["recipients"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseBookingReminderRecipients , m.SetRecipients)
+    res["message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMessage(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["offset"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOffset(val)
+        }
+        return nil
+    }
+    res["recipients"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseBookingReminderRecipients)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecipients(val.(*BookingReminderRecipients))
+        }
+        return nil
+    }
     return res
 }
 // GetMessage gets the message property value. The message in the reminder.
@@ -94,7 +129,7 @@ func (m *BookingReminder) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BookingReminder) SetAdditionalData(value map[string]interface{})() {
+func (m *BookingReminder) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetMessage sets the message property value. The message in the reminder.
@@ -112,4 +147,17 @@ func (m *BookingReminder) SetOffset(value *i878a80d2330e89d26896388a3f487eef27b0
 // SetRecipients sets the recipients property value. The recipients property
 func (m *BookingReminder) SetRecipients(value *BookingReminderRecipients)() {
     m.recipients = value
+}
+// BookingReminderable 
+type BookingReminderable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMessage()(*string)
+    GetOdataType()(*string)
+    GetOffset()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    GetRecipients()(*BookingReminderRecipients)
+    SetMessage(value *string)()
+    SetOdataType(value *string)()
+    SetOffset(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)()
+    SetRecipients(value *BookingReminderRecipients)()
 }

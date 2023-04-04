@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -22,8 +21,8 @@ func NewWin32LobAppAssignmentSettings()(*Win32LobAppAssignmentSettings) {
     m := &Win32LobAppAssignmentSettings{
         MobileAppAssignmentSettings: *NewMobileAppAssignmentSettings(),
     }
-    odataTypeValue := "#microsoft.graph.win32LobAppAssignmentSettings";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.win32LobAppAssignmentSettings"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateWin32LobAppAssignmentSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -37,10 +36,46 @@ func (m *Win32LobAppAssignmentSettings) GetDeliveryOptimizationPriority()(*Win32
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Win32LobAppAssignmentSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.MobileAppAssignmentSettings.GetFieldDeserializers()
-    res["deliveryOptimizationPriority"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseWin32LobAppDeliveryOptimizationPriority , m.SetDeliveryOptimizationPriority)
-    res["installTimeSettings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateMobileAppInstallTimeSettingsFromDiscriminatorValue , m.SetInstallTimeSettings)
-    res["notifications"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseWin32LobAppNotification , m.SetNotifications)
-    res["restartSettings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateWin32LobAppRestartSettingsFromDiscriminatorValue , m.SetRestartSettings)
+    res["deliveryOptimizationPriority"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseWin32LobAppDeliveryOptimizationPriority)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeliveryOptimizationPriority(val.(*Win32LobAppDeliveryOptimizationPriority))
+        }
+        return nil
+    }
+    res["installTimeSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateMobileAppInstallTimeSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInstallTimeSettings(val.(MobileAppInstallTimeSettingsable))
+        }
+        return nil
+    }
+    res["notifications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseWin32LobAppNotification)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotifications(val.(*Win32LobAppNotification))
+        }
+        return nil
+    }
+    res["restartSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateWin32LobAppRestartSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRestartSettings(val.(Win32LobAppRestartSettingsable))
+        }
+        return nil
+    }
     return res
 }
 // GetInstallTimeSettings gets the installTimeSettings property value. The install time settings to apply for this app assignment.
@@ -104,4 +139,17 @@ func (m *Win32LobAppAssignmentSettings) SetNotifications(value *Win32LobAppNotif
 // SetRestartSettings sets the restartSettings property value. The reboot settings to apply for this app assignment.
 func (m *Win32LobAppAssignmentSettings) SetRestartSettings(value Win32LobAppRestartSettingsable)() {
     m.restartSettings = value
+}
+// Win32LobAppAssignmentSettingsable 
+type Win32LobAppAssignmentSettingsable interface {
+    MobileAppAssignmentSettingsable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeliveryOptimizationPriority()(*Win32LobAppDeliveryOptimizationPriority)
+    GetInstallTimeSettings()(MobileAppInstallTimeSettingsable)
+    GetNotifications()(*Win32LobAppNotification)
+    GetRestartSettings()(Win32LobAppRestartSettingsable)
+    SetDeliveryOptimizationPriority(value *Win32LobAppDeliveryOptimizationPriority)()
+    SetInstallTimeSettings(value MobileAppInstallTimeSettingsable)()
+    SetNotifications(value *Win32LobAppNotification)()
+    SetRestartSettings(value Win32LobAppRestartSettingsable)()
 }

@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -10,9 +9,9 @@ type BookingAppointment struct {
     Entity
     // Additional information that is sent to the customer when an appointment is confirmed.
     additionalInformation *string
-    // The anonymousJoinWebUrl property
+    // The URL of the meeting to join anonymously.
     anonymousJoinWebUrl *string
-    // It lists down the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+    // A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
     customers []BookingCustomerInformationBaseable
     // The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
     customerTimeZone *string
@@ -72,11 +71,11 @@ func CreateBookingAppointmentFromDiscriminatorValue(parseNode i878a80d2330e89d26
 func (m *BookingAppointment) GetAdditionalInformation()(*string) {
     return m.additionalInformation
 }
-// GetAnonymousJoinWebUrl gets the anonymousJoinWebUrl property value. The anonymousJoinWebUrl property
+// GetAnonymousJoinWebUrl gets the anonymousJoinWebUrl property value. The URL of the meeting to join anonymously.
 func (m *BookingAppointment) GetAnonymousJoinWebUrl()(*string) {
     return m.anonymousJoinWebUrl
 }
-// GetCustomers gets the customers property value. It lists down the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+// GetCustomers gets the customers property value. A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
 func (m *BookingAppointment) GetCustomers()([]BookingCustomerInformationBaseable) {
     return m.customers
 }
@@ -95,30 +94,258 @@ func (m *BookingAppointment) GetEndDateTime()(DateTimeTimeZoneable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BookingAppointment) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["additionalInformation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAdditionalInformation)
-    res["anonymousJoinWebUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAnonymousJoinWebUrl)
-    res["customers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateBookingCustomerInformationBaseFromDiscriminatorValue , m.SetCustomers)
-    res["customerTimeZone"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCustomerTimeZone)
-    res["duration"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetDuration)
-    res["endDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue , m.SetEndDateTime)
-    res["filledAttendeesCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetFilledAttendeesCount)
-    res["isLocationOnline"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsLocationOnline)
-    res["joinWebUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetJoinWebUrl)
-    res["maximumAttendeesCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMaximumAttendeesCount)
-    res["optOutOfCustomerEmail"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetOptOutOfCustomerEmail)
-    res["postBuffer"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetPostBuffer)
-    res["preBuffer"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetPreBuffer)
-    res["price"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetPrice)
-    res["priceType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseBookingPriceType , m.SetPriceType)
-    res["reminders"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateBookingReminderFromDiscriminatorValue , m.SetReminders)
-    res["selfServiceAppointmentId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSelfServiceAppointmentId)
-    res["serviceId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetServiceId)
-    res["serviceLocation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateLocationFromDiscriminatorValue , m.SetServiceLocation)
-    res["serviceName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetServiceName)
-    res["serviceNotes"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetServiceNotes)
-    res["smsNotificationsEnabled"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetSmsNotificationsEnabled)
-    res["staffMemberIds"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetStaffMemberIds)
-    res["startDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue , m.SetStartDateTime)
+    res["additionalInformation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAdditionalInformation(val)
+        }
+        return nil
+    }
+    res["anonymousJoinWebUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAnonymousJoinWebUrl(val)
+        }
+        return nil
+    }
+    res["customers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateBookingCustomerInformationBaseFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]BookingCustomerInformationBaseable, len(val))
+            for i, v := range val {
+                res[i] = v.(BookingCustomerInformationBaseable)
+            }
+            m.SetCustomers(res)
+        }
+        return nil
+    }
+    res["customerTimeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCustomerTimeZone(val)
+        }
+        return nil
+    }
+    res["duration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDuration(val)
+        }
+        return nil
+    }
+    res["endDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndDateTime(val.(DateTimeTimeZoneable))
+        }
+        return nil
+    }
+    res["filledAttendeesCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFilledAttendeesCount(val)
+        }
+        return nil
+    }
+    res["isLocationOnline"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsLocationOnline(val)
+        }
+        return nil
+    }
+    res["joinWebUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJoinWebUrl(val)
+        }
+        return nil
+    }
+    res["maximumAttendeesCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMaximumAttendeesCount(val)
+        }
+        return nil
+    }
+    res["optOutOfCustomerEmail"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOptOutOfCustomerEmail(val)
+        }
+        return nil
+    }
+    res["postBuffer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPostBuffer(val)
+        }
+        return nil
+    }
+    res["preBuffer"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPreBuffer(val)
+        }
+        return nil
+    }
+    res["price"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPrice(val)
+        }
+        return nil
+    }
+    res["priceType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseBookingPriceType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPriceType(val.(*BookingPriceType))
+        }
+        return nil
+    }
+    res["reminders"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateBookingReminderFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]BookingReminderable, len(val))
+            for i, v := range val {
+                res[i] = v.(BookingReminderable)
+            }
+            m.SetReminders(res)
+        }
+        return nil
+    }
+    res["selfServiceAppointmentId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSelfServiceAppointmentId(val)
+        }
+        return nil
+    }
+    res["serviceId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServiceId(val)
+        }
+        return nil
+    }
+    res["serviceLocation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateLocationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServiceLocation(val.(Locationable))
+        }
+        return nil
+    }
+    res["serviceName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServiceName(val)
+        }
+        return nil
+    }
+    res["serviceNotes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServiceNotes(val)
+        }
+        return nil
+    }
+    res["smsNotificationsEnabled"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSmsNotificationsEnabled(val)
+        }
+        return nil
+    }
+    res["staffMemberIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetStaffMemberIds(res)
+        }
+        return nil
+    }
+    res["startDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartDateTime(val.(DateTimeTimeZoneable))
+        }
+        return nil
+    }
     return res
 }
 // GetFilledAttendeesCount gets the filledAttendeesCount property value. The current number of customers in the appointment
@@ -212,7 +439,10 @@ func (m *BookingAppointment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     if m.GetCustomers() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetCustomers())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCustomers()))
+        for i, v := range m.GetCustomers() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("customers", cast)
         if err != nil {
             return err
@@ -280,7 +510,10 @@ func (m *BookingAppointment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
         }
     }
     if m.GetReminders() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetReminders())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReminders()))
+        for i, v := range m.GetReminders() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("reminders", cast)
         if err != nil {
             return err
@@ -340,11 +573,11 @@ func (m *BookingAppointment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *BookingAppointment) SetAdditionalInformation(value *string)() {
     m.additionalInformation = value
 }
-// SetAnonymousJoinWebUrl sets the anonymousJoinWebUrl property value. The anonymousJoinWebUrl property
+// SetAnonymousJoinWebUrl sets the anonymousJoinWebUrl property value. The URL of the meeting to join anonymously.
 func (m *BookingAppointment) SetAnonymousJoinWebUrl(value *string)() {
     m.anonymousJoinWebUrl = value
 }
-// SetCustomers sets the customers property value. It lists down the customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+// SetCustomers sets the customers property value. A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
 func (m *BookingAppointment) SetCustomers(value []BookingCustomerInformationBaseable)() {
     m.customers = value
 }
@@ -431,4 +664,57 @@ func (m *BookingAppointment) SetStaffMemberIds(value []string)() {
 // SetStartDateTime sets the startDateTime property value. The startDateTime property
 func (m *BookingAppointment) SetStartDateTime(value DateTimeTimeZoneable)() {
     m.startDateTime = value
+}
+// BookingAppointmentable 
+type BookingAppointmentable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAdditionalInformation()(*string)
+    GetAnonymousJoinWebUrl()(*string)
+    GetCustomers()([]BookingCustomerInformationBaseable)
+    GetCustomerTimeZone()(*string)
+    GetDuration()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    GetEndDateTime()(DateTimeTimeZoneable)
+    GetFilledAttendeesCount()(*int32)
+    GetIsLocationOnline()(*bool)
+    GetJoinWebUrl()(*string)
+    GetMaximumAttendeesCount()(*int32)
+    GetOptOutOfCustomerEmail()(*bool)
+    GetPostBuffer()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    GetPreBuffer()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    GetPrice()(*float64)
+    GetPriceType()(*BookingPriceType)
+    GetReminders()([]BookingReminderable)
+    GetSelfServiceAppointmentId()(*string)
+    GetServiceId()(*string)
+    GetServiceLocation()(Locationable)
+    GetServiceName()(*string)
+    GetServiceNotes()(*string)
+    GetSmsNotificationsEnabled()(*bool)
+    GetStaffMemberIds()([]string)
+    GetStartDateTime()(DateTimeTimeZoneable)
+    SetAdditionalInformation(value *string)()
+    SetAnonymousJoinWebUrl(value *string)()
+    SetCustomers(value []BookingCustomerInformationBaseable)()
+    SetCustomerTimeZone(value *string)()
+    SetDuration(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)()
+    SetEndDateTime(value DateTimeTimeZoneable)()
+    SetFilledAttendeesCount(value *int32)()
+    SetIsLocationOnline(value *bool)()
+    SetJoinWebUrl(value *string)()
+    SetMaximumAttendeesCount(value *int32)()
+    SetOptOutOfCustomerEmail(value *bool)()
+    SetPostBuffer(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)()
+    SetPreBuffer(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)()
+    SetPrice(value *float64)()
+    SetPriceType(value *BookingPriceType)()
+    SetReminders(value []BookingReminderable)()
+    SetSelfServiceAppointmentId(value *string)()
+    SetServiceId(value *string)()
+    SetServiceLocation(value Locationable)()
+    SetServiceName(value *string)()
+    SetServiceNotes(value *string)()
+    SetSmsNotificationsEnabled(value *bool)()
+    SetStaffMemberIds(value []string)()
+    SetStartDateTime(value DateTimeTimeZoneable)()
 }

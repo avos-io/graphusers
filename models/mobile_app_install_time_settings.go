@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // MobileAppInstallTimeSettings contains properties used to determine when to offer an app to devices and when to install the app on devices.
 type MobileAppInstallTimeSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The time at which the app should be installed.
     deadlineDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The OdataType property
@@ -23,7 +22,7 @@ type MobileAppInstallTimeSettings struct {
 func NewMobileAppInstallTimeSettings()(*MobileAppInstallTimeSettings) {
     m := &MobileAppInstallTimeSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateMobileAppInstallTimeSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -31,7 +30,7 @@ func CreateMobileAppInstallTimeSettingsFromDiscriminatorValue(parseNode i878a80d
     return NewMobileAppInstallTimeSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MobileAppInstallTimeSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *MobileAppInstallTimeSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDeadlineDateTime gets the deadlineDateTime property value. The time at which the app should be installed.
@@ -41,10 +40,46 @@ func (m *MobileAppInstallTimeSettings) GetDeadlineDateTime()(*i336074805fc853987
 // GetFieldDeserializers the deserialization information for the current model
 func (m *MobileAppInstallTimeSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deadlineDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetDeadlineDateTime)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["startDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetStartDateTime)
-    res["useLocalTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetUseLocalTime)
+    res["deadlineDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeadlineDateTime(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["startDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartDateTime(val)
+        }
+        return nil
+    }
+    res["useLocalTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUseLocalTime(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -94,7 +129,7 @@ func (m *MobileAppInstallTimeSettings) Serialize(writer i878a80d2330e89d26896388
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MobileAppInstallTimeSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *MobileAppInstallTimeSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDeadlineDateTime sets the deadlineDateTime property value. The time at which the app should be installed.
@@ -112,4 +147,17 @@ func (m *MobileAppInstallTimeSettings) SetStartDateTime(value *i336074805fc85398
 // SetUseLocalTime sets the useLocalTime property value. Whether the local device time or UTC time should be used when determining the available and deadline times.
 func (m *MobileAppInstallTimeSettings) SetUseLocalTime(value *bool)() {
     m.useLocalTime = value
+}
+// MobileAppInstallTimeSettingsable 
+type MobileAppInstallTimeSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeadlineDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetOdataType()(*string)
+    GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetUseLocalTime()(*bool)
+    SetDeadlineDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetOdataType(value *string)()
+    SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetUseLocalTime(value *bool)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // OperationError 
 type OperationError struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Operation error code.
     code *string
     // Operation error message.
@@ -20,7 +19,7 @@ type OperationError struct {
 func NewOperationError()(*OperationError) {
     m := &OperationError{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateOperationErrorFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateOperationErrorFromDiscriminatorValue(parseNode i878a80d2330e89d268963
     return NewOperationError(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OperationError) GetAdditionalData()(map[string]interface{}) {
+func (m *OperationError) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCode gets the code property value. Operation error code.
@@ -38,9 +37,36 @@ func (m *OperationError) GetCode()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OperationError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["code"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCode)
-    res["message"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMessage)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCode(val)
+        }
+        return nil
+    }
+    res["message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMessage(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMessage gets the message property value. Operation error message.
@@ -80,7 +106,7 @@ func (m *OperationError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OperationError) SetAdditionalData(value map[string]interface{})() {
+func (m *OperationError) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCode sets the code property value. Operation error code.
@@ -94,4 +120,15 @@ func (m *OperationError) SetMessage(value *string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *OperationError) SetOdataType(value *string)() {
     m.odataType = value
+}
+// OperationErrorable 
+type OperationErrorable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCode()(*string)
+    GetMessage()(*string)
+    GetOdataType()(*string)
+    SetCode(value *string)()
+    SetMessage(value *string)()
+    SetOdataType(value *string)()
 }

@@ -1,7 +1,6 @@
 package externalconnectors
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390 "github.com/avos-io/graphusers/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -14,7 +13,7 @@ type Schema struct {
     // The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
     properties []Propertyable
 }
-// NewSchema instantiates a new schema and sets the default values.
+// NewSchema instantiates a new Schema and sets the default values.
 func NewSchema()(*Schema) {
     m := &Schema{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),
@@ -32,8 +31,30 @@ func (m *Schema) GetBaseType()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Schema) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["baseType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetBaseType)
-    res["properties"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreatePropertyFromDiscriminatorValue , m.SetProperties)
+    res["baseType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBaseType(val)
+        }
+        return nil
+    }
+    res["properties"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreatePropertyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]Propertyable, len(val))
+            for i, v := range val {
+                res[i] = v.(Propertyable)
+            }
+            m.SetProperties(res)
+        }
+        return nil
+    }
     return res
 }
 // GetProperties gets the properties property value. The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
@@ -53,7 +74,10 @@ func (m *Schema) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c
         }
     }
     if m.GetProperties() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetProperties())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProperties()))
+        for i, v := range m.GetProperties() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("properties", cast)
         if err != nil {
             return err
@@ -68,4 +92,13 @@ func (m *Schema) SetBaseType(value *string)() {
 // SetProperties sets the properties property value. The properties defined for the items in the connection. The minimum number of properties is one, the maximum is 128.
 func (m *Schema) SetProperties(value []Propertyable)() {
     m.properties = value
+}
+// Schemaable 
+type Schemaable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetBaseType()(*string)
+    GetProperties()([]Propertyable)
+    SetBaseType(value *string)()
+    SetProperties(value []Propertyable)()
 }

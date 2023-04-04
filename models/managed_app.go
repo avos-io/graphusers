@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -18,8 +17,8 @@ func NewManagedApp()(*ManagedApp) {
     m := &ManagedApp{
         MobileApp: *NewMobileApp(),
     }
-    odataTypeValue := "#microsoft.graph.managedApp";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.managedApp"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateManagedAppFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -59,8 +58,26 @@ func (m *ManagedApp) GetAppAvailability()(*ManagedAppAvailability) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ManagedApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.MobileApp.GetFieldDeserializers()
-    res["appAvailability"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseManagedAppAvailability , m.SetAppAvailability)
-    res["version"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVersion)
+    res["appAvailability"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseManagedAppAvailability)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAppAvailability(val.(*ManagedAppAvailability))
+        }
+        return nil
+    }
+    res["version"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVersion(val)
+        }
+        return nil
+    }
     return res
 }
 // GetVersion gets the version property value. The Application's version.
@@ -95,4 +112,13 @@ func (m *ManagedApp) SetAppAvailability(value *ManagedAppAvailability)() {
 // SetVersion sets the version property value. The Application's version.
 func (m *ManagedApp) SetVersion(value *string)() {
     m.version = value
+}
+// ManagedAppable 
+type ManagedAppable interface {
+    MobileAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppAvailability()(*ManagedAppAvailability)
+    GetVersion()(*string)
+    SetAppAvailability(value *ManagedAppAvailability)()
+    SetVersion(value *string)()
 }

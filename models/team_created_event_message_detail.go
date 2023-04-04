@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -22,8 +21,8 @@ func NewTeamCreatedEventMessageDetail()(*TeamCreatedEventMessageDetail) {
     m := &TeamCreatedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),
     }
-    odataTypeValue := "#microsoft.graph.teamCreatedEventMessageDetail";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.teamCreatedEventMessageDetail"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateTeamCreatedEventMessageDetailFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -33,10 +32,46 @@ func CreateTeamCreatedEventMessageDetailFromDiscriminatorValue(parseNode i878a80
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TeamCreatedEventMessageDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.EventMessageDetail.GetFieldDeserializers()
-    res["initiator"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySetFromDiscriminatorValue , m.SetInitiator)
-    res["teamDescription"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTeamDescription)
-    res["teamDisplayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTeamDisplayName)
-    res["teamId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTeamId)
+    res["initiator"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInitiator(val.(IdentitySetable))
+        }
+        return nil
+    }
+    res["teamDescription"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTeamDescription(val)
+        }
+        return nil
+    }
+    res["teamDisplayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTeamDisplayName(val)
+        }
+        return nil
+    }
+    res["teamId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTeamId(val)
+        }
+        return nil
+    }
     return res
 }
 // GetInitiator gets the initiator property value. Initiator of the event.
@@ -102,4 +137,17 @@ func (m *TeamCreatedEventMessageDetail) SetTeamDisplayName(value *string)() {
 // SetTeamId sets the teamId property value. Unique identifier of the team.
 func (m *TeamCreatedEventMessageDetail) SetTeamId(value *string)() {
     m.teamId = value
+}
+// TeamCreatedEventMessageDetailable 
+type TeamCreatedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInitiator()(IdentitySetable)
+    GetTeamDescription()(*string)
+    GetTeamDisplayName()(*string)
+    GetTeamId()(*string)
+    SetInitiator(value IdentitySetable)()
+    SetTeamDescription(value *string)()
+    SetTeamDisplayName(value *string)()
+    SetTeamId(value *string)()
 }

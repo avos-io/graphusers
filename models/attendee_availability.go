@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AttendeeAvailability 
 type AttendeeAvailability struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The email address and type of attendee - whether it's a person or a resource, and whether required or optional if it's a person.
     attendee AttendeeBaseable
     // The availability status of the attendee. The possible values are: free, tentative, busy, oof, workingElsewhere, unknown.
@@ -20,7 +19,7 @@ type AttendeeAvailability struct {
 func NewAttendeeAvailability()(*AttendeeAvailability) {
     m := &AttendeeAvailability{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAttendeeAvailabilityFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateAttendeeAvailabilityFromDiscriminatorValue(parseNode i878a80d2330e89d
     return NewAttendeeAvailability(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AttendeeAvailability) GetAdditionalData()(map[string]interface{}) {
+func (m *AttendeeAvailability) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAttendee gets the attendee property value. The email address and type of attendee - whether it's a person or a resource, and whether required or optional if it's a person.
@@ -42,9 +41,36 @@ func (m *AttendeeAvailability) GetAvailability()(*FreeBusyStatus) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AttendeeAvailability) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["attendee"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAttendeeBaseFromDiscriminatorValue , m.SetAttendee)
-    res["availability"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseFreeBusyStatus , m.SetAvailability)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["attendee"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAttendeeBaseFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAttendee(val.(AttendeeBaseable))
+        }
+        return nil
+    }
+    res["availability"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseFreeBusyStatus)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAvailability(val.(*FreeBusyStatus))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -81,7 +107,7 @@ func (m *AttendeeAvailability) Serialize(writer i878a80d2330e89d26896388a3f487ee
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AttendeeAvailability) SetAdditionalData(value map[string]interface{})() {
+func (m *AttendeeAvailability) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAttendee sets the attendee property value. The email address and type of attendee - whether it's a person or a resource, and whether required or optional if it's a person.
@@ -95,4 +121,15 @@ func (m *AttendeeAvailability) SetAvailability(value *FreeBusyStatus)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AttendeeAvailability) SetOdataType(value *string)() {
     m.odataType = value
+}
+// AttendeeAvailabilityable 
+type AttendeeAvailabilityable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAttendee()(AttendeeBaseable)
+    GetAvailability()(*FreeBusyStatus)
+    GetOdataType()(*string)
+    SetAttendee(value AttendeeBaseable)()
+    SetAvailability(value *FreeBusyStatus)()
+    SetOdataType(value *string)()
 }

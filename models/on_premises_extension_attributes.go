@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // OnPremisesExtensionAttributes 
 type OnPremisesExtensionAttributes struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // First customizable extension attribute.
     extensionAttribute1 *string
     // Tenth customizable extension attribute.
@@ -46,7 +45,7 @@ type OnPremisesExtensionAttributes struct {
 func NewOnPremisesExtensionAttributes()(*OnPremisesExtensionAttributes) {
     m := &OnPremisesExtensionAttributes{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateOnPremisesExtensionAttributesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -54,7 +53,7 @@ func CreateOnPremisesExtensionAttributesFromDiscriminatorValue(parseNode i878a80
     return NewOnPremisesExtensionAttributes(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OnPremisesExtensionAttributes) GetAdditionalData()(map[string]interface{}) {
+func (m *OnPremisesExtensionAttributes) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetExtensionAttribute1 gets the extensionAttribute1 property value. First customizable extension attribute.
@@ -120,22 +119,166 @@ func (m *OnPremisesExtensionAttributes) GetExtensionAttribute9()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OnPremisesExtensionAttributes) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["extensionAttribute1"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute1)
-    res["extensionAttribute10"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute10)
-    res["extensionAttribute11"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute11)
-    res["extensionAttribute12"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute12)
-    res["extensionAttribute13"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute13)
-    res["extensionAttribute14"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute14)
-    res["extensionAttribute15"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute15)
-    res["extensionAttribute2"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute2)
-    res["extensionAttribute3"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute3)
-    res["extensionAttribute4"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute4)
-    res["extensionAttribute5"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute5)
-    res["extensionAttribute6"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute6)
-    res["extensionAttribute7"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute7)
-    res["extensionAttribute8"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute8)
-    res["extensionAttribute9"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetExtensionAttribute9)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["extensionAttribute1"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute1(val)
+        }
+        return nil
+    }
+    res["extensionAttribute10"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute10(val)
+        }
+        return nil
+    }
+    res["extensionAttribute11"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute11(val)
+        }
+        return nil
+    }
+    res["extensionAttribute12"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute12(val)
+        }
+        return nil
+    }
+    res["extensionAttribute13"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute13(val)
+        }
+        return nil
+    }
+    res["extensionAttribute14"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute14(val)
+        }
+        return nil
+    }
+    res["extensionAttribute15"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute15(val)
+        }
+        return nil
+    }
+    res["extensionAttribute2"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute2(val)
+        }
+        return nil
+    }
+    res["extensionAttribute3"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute3(val)
+        }
+        return nil
+    }
+    res["extensionAttribute4"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute4(val)
+        }
+        return nil
+    }
+    res["extensionAttribute5"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute5(val)
+        }
+        return nil
+    }
+    res["extensionAttribute6"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute6(val)
+        }
+        return nil
+    }
+    res["extensionAttribute7"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute7(val)
+        }
+        return nil
+    }
+    res["extensionAttribute8"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute8(val)
+        }
+        return nil
+    }
+    res["extensionAttribute9"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExtensionAttribute9(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -249,7 +392,7 @@ func (m *OnPremisesExtensionAttributes) Serialize(writer i878a80d2330e89d2689638
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OnPremisesExtensionAttributes) SetAdditionalData(value map[string]interface{})() {
+func (m *OnPremisesExtensionAttributes) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetExtensionAttribute1 sets the extensionAttribute1 property value. First customizable extension attribute.
@@ -315,4 +458,41 @@ func (m *OnPremisesExtensionAttributes) SetExtensionAttribute9(value *string)() 
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *OnPremisesExtensionAttributes) SetOdataType(value *string)() {
     m.odataType = value
+}
+// OnPremisesExtensionAttributesable 
+type OnPremisesExtensionAttributesable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExtensionAttribute1()(*string)
+    GetExtensionAttribute10()(*string)
+    GetExtensionAttribute11()(*string)
+    GetExtensionAttribute12()(*string)
+    GetExtensionAttribute13()(*string)
+    GetExtensionAttribute14()(*string)
+    GetExtensionAttribute15()(*string)
+    GetExtensionAttribute2()(*string)
+    GetExtensionAttribute3()(*string)
+    GetExtensionAttribute4()(*string)
+    GetExtensionAttribute5()(*string)
+    GetExtensionAttribute6()(*string)
+    GetExtensionAttribute7()(*string)
+    GetExtensionAttribute8()(*string)
+    GetExtensionAttribute9()(*string)
+    GetOdataType()(*string)
+    SetExtensionAttribute1(value *string)()
+    SetExtensionAttribute10(value *string)()
+    SetExtensionAttribute11(value *string)()
+    SetExtensionAttribute12(value *string)()
+    SetExtensionAttribute13(value *string)()
+    SetExtensionAttribute14(value *string)()
+    SetExtensionAttribute15(value *string)()
+    SetExtensionAttribute2(value *string)()
+    SetExtensionAttribute3(value *string)()
+    SetExtensionAttribute4(value *string)()
+    SetExtensionAttribute5(value *string)()
+    SetExtensionAttribute6(value *string)()
+    SetExtensionAttribute7(value *string)()
+    SetExtensionAttribute8(value *string)()
+    SetExtensionAttribute9(value *string)()
+    SetOdataType(value *string)()
 }

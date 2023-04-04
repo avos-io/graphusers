@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -16,8 +15,8 @@ func NewAccessReviewInactiveUsersQueryScope()(*AccessReviewInactiveUsersQuerySco
     m := &AccessReviewInactiveUsersQueryScope{
         AccessReviewQueryScope: *NewAccessReviewQueryScope(),
     }
-    odataTypeValue := "#microsoft.graph.accessReviewInactiveUsersQueryScope";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.accessReviewInactiveUsersQueryScope"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateAccessReviewInactiveUsersQueryScopeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -27,7 +26,16 @@ func CreateAccessReviewInactiveUsersQueryScopeFromDiscriminatorValue(parseNode i
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessReviewInactiveUsersQueryScope) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AccessReviewQueryScope.GetFieldDeserializers()
-    res["inactiveDuration"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetISODurationValue(m.SetInactiveDuration)
+    res["inactiveDuration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetISODurationValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInactiveDuration(val)
+        }
+        return nil
+    }
     return res
 }
 // GetInactiveDuration gets the inactiveDuration property value. Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access review instance's start date. If this property is not specified, it's assigned the default value PT0S.
@@ -51,4 +59,11 @@ func (m *AccessReviewInactiveUsersQueryScope) Serialize(writer i878a80d2330e89d2
 // SetInactiveDuration sets the inactiveDuration property value. Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access review instance's start date. If this property is not specified, it's assigned the default value PT0S.
 func (m *AccessReviewInactiveUsersQueryScope) SetInactiveDuration(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
     m.inactiveDuration = value
+}
+// AccessReviewInactiveUsersQueryScopeable 
+type AccessReviewInactiveUsersQueryScopeable interface {
+    AccessReviewQueryScopeable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetInactiveDuration()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)
+    SetInactiveDuration(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)()
 }

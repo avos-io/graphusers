@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AssignedTrainingInfo 
 type AssignedTrainingInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Number of users who were assigned the training in an attack simulation and training campaign.
     assignedUserCount *int32
     // Number of users who completed the training in an attack simulation and training campaign.
@@ -22,7 +21,7 @@ type AssignedTrainingInfo struct {
 func NewAssignedTrainingInfo()(*AssignedTrainingInfo) {
     m := &AssignedTrainingInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAssignedTrainingInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,7 +29,7 @@ func CreateAssignedTrainingInfoFromDiscriminatorValue(parseNode i878a80d2330e89d
     return NewAssignedTrainingInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AssignedTrainingInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *AssignedTrainingInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAssignedUserCount gets the assignedUserCount property value. Number of users who were assigned the training in an attack simulation and training campaign.
@@ -48,10 +47,46 @@ func (m *AssignedTrainingInfo) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AssignedTrainingInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["assignedUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetAssignedUserCount)
-    res["completedUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCompletedUserCount)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["assignedUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAssignedUserCount(val)
+        }
+        return nil
+    }
+    res["completedUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompletedUserCount(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -93,7 +128,7 @@ func (m *AssignedTrainingInfo) Serialize(writer i878a80d2330e89d26896388a3f487ee
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AssignedTrainingInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *AssignedTrainingInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAssignedUserCount sets the assignedUserCount property value. Number of users who were assigned the training in an attack simulation and training campaign.
@@ -111,4 +146,17 @@ func (m *AssignedTrainingInfo) SetDisplayName(value *string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AssignedTrainingInfo) SetOdataType(value *string)() {
     m.odataType = value
+}
+// AssignedTrainingInfoable 
+type AssignedTrainingInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAssignedUserCount()(*int32)
+    GetCompletedUserCount()(*int32)
+    GetDisplayName()(*string)
+    GetOdataType()(*string)
+    SetAssignedUserCount(value *int32)()
+    SetCompletedUserCount(value *int32)()
+    SetDisplayName(value *string)()
+    SetOdataType(value *string)()
 }

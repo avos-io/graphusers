@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -13,7 +12,7 @@ type UserSecurityState struct {
     // Account name of user account (without Active Directory domain or DNS domain) - (also called mailNickName).
     accountName *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // NetBIOS/Active Directory domain of user account (that is, domain/account format).
     domainName *string
     // For email-related alerts - user account's email 'role'. Possible values are: unknown, sender, recipient.
@@ -45,7 +44,7 @@ type UserSecurityState struct {
 func NewUserSecurityState()(*UserSecurityState) {
     m := &UserSecurityState{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateUserSecurityStateFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -61,7 +60,7 @@ func (m *UserSecurityState) GetAccountName()(*string) {
     return m.accountName
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserSecurityState) GetAdditionalData()(map[string]interface{}) {
+func (m *UserSecurityState) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDomainName gets the domainName property value. NetBIOS/Active Directory domain of user account (that is, domain/account format).
@@ -75,21 +74,156 @@ func (m *UserSecurityState) GetEmailRole()(*EmailRole) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *UserSecurityState) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["aadUserId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAadUserId)
-    res["accountName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAccountName)
-    res["domainName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDomainName)
-    res["emailRole"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseEmailRole , m.SetEmailRole)
-    res["isVpn"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsVpn)
-    res["logonDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetLogonDateTime)
-    res["logonId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLogonId)
-    res["logonIp"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLogonIp)
-    res["logonLocation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLogonLocation)
-    res["logonType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseLogonType , m.SetLogonType)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["onPremisesSecurityIdentifier"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOnPremisesSecurityIdentifier)
-    res["riskScore"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRiskScore)
-    res["userAccountType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseUserAccountSecurityType , m.SetUserAccountType)
-    res["userPrincipalName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUserPrincipalName)
+    res["aadUserId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAadUserId(val)
+        }
+        return nil
+    }
+    res["accountName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccountName(val)
+        }
+        return nil
+    }
+    res["domainName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDomainName(val)
+        }
+        return nil
+    }
+    res["emailRole"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseEmailRole)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEmailRole(val.(*EmailRole))
+        }
+        return nil
+    }
+    res["isVpn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsVpn(val)
+        }
+        return nil
+    }
+    res["logonDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogonDateTime(val)
+        }
+        return nil
+    }
+    res["logonId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogonId(val)
+        }
+        return nil
+    }
+    res["logonIp"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogonIp(val)
+        }
+        return nil
+    }
+    res["logonLocation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogonLocation(val)
+        }
+        return nil
+    }
+    res["logonType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseLogonType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogonType(val.(*LogonType))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["onPremisesSecurityIdentifier"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOnPremisesSecurityIdentifier(val)
+        }
+        return nil
+    }
+    res["riskScore"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRiskScore(val)
+        }
+        return nil
+    }
+    res["userAccountType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseUserAccountSecurityType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUserAccountType(val.(*UserAccountSecurityType))
+        }
+        return nil
+    }
+    res["userPrincipalName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUserPrincipalName(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsVpn gets the isVpn property value. Indicates whether the user logged on through a VPN.
@@ -248,7 +382,7 @@ func (m *UserSecurityState) SetAccountName(value *string)() {
     m.accountName = value
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UserSecurityState) SetAdditionalData(value map[string]interface{})() {
+func (m *UserSecurityState) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDomainName sets the domainName property value. NetBIOS/Active Directory domain of user account (that is, domain/account format).
@@ -302,4 +436,39 @@ func (m *UserSecurityState) SetUserAccountType(value *UserAccountSecurityType)()
 // SetUserPrincipalName sets the userPrincipalName property value. User sign-in name - internet format: (user account name)@(user account DNS domain name).
 func (m *UserSecurityState) SetUserPrincipalName(value *string)() {
     m.userPrincipalName = value
+}
+// UserSecurityStateable 
+type UserSecurityStateable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAadUserId()(*string)
+    GetAccountName()(*string)
+    GetDomainName()(*string)
+    GetEmailRole()(*EmailRole)
+    GetIsVpn()(*bool)
+    GetLogonDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLogonId()(*string)
+    GetLogonIp()(*string)
+    GetLogonLocation()(*string)
+    GetLogonType()(*LogonType)
+    GetOdataType()(*string)
+    GetOnPremisesSecurityIdentifier()(*string)
+    GetRiskScore()(*string)
+    GetUserAccountType()(*UserAccountSecurityType)
+    GetUserPrincipalName()(*string)
+    SetAadUserId(value *string)()
+    SetAccountName(value *string)()
+    SetDomainName(value *string)()
+    SetEmailRole(value *EmailRole)()
+    SetIsVpn(value *bool)()
+    SetLogonDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLogonId(value *string)()
+    SetLogonIp(value *string)()
+    SetLogonLocation(value *string)()
+    SetLogonType(value *LogonType)()
+    SetOdataType(value *string)()
+    SetOnPremisesSecurityIdentifier(value *string)()
+    SetRiskScore(value *string)()
+    SetUserAccountType(value *UserAccountSecurityType)()
+    SetUserPrincipalName(value *string)()
 }

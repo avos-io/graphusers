@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -20,8 +19,8 @@ func NewChatRenamedEventMessageDetail()(*ChatRenamedEventMessageDetail) {
     m := &ChatRenamedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),
     }
-    odataTypeValue := "#microsoft.graph.chatRenamedEventMessageDetail";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.chatRenamedEventMessageDetail"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateChatRenamedEventMessageDetailFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -39,9 +38,36 @@ func (m *ChatRenamedEventMessageDetail) GetChatId()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ChatRenamedEventMessageDetail) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.EventMessageDetail.GetFieldDeserializers()
-    res["chatDisplayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetChatDisplayName)
-    res["chatId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetChatId)
-    res["initiator"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateIdentitySetFromDiscriminatorValue , m.SetInitiator)
+    res["chatDisplayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetChatDisplayName(val)
+        }
+        return nil
+    }
+    res["chatId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetChatId(val)
+        }
+        return nil
+    }
+    res["initiator"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInitiator(val.(IdentitySetable))
+        }
+        return nil
+    }
     return res
 }
 // GetInitiator gets the initiator property value. Initiator of the event.
@@ -85,4 +111,15 @@ func (m *ChatRenamedEventMessageDetail) SetChatId(value *string)() {
 // SetInitiator sets the initiator property value. Initiator of the event.
 func (m *ChatRenamedEventMessageDetail) SetInitiator(value IdentitySetable)() {
     m.initiator = value
+}
+// ChatRenamedEventMessageDetailable 
+type ChatRenamedEventMessageDetailable interface {
+    EventMessageDetailable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetChatDisplayName()(*string)
+    GetChatId()(*string)
+    GetInitiator()(IdentitySetable)
+    SetChatDisplayName(value *string)()
+    SetChatId(value *string)()
+    SetInitiator(value IdentitySetable)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // MailboxSettings 
 type MailboxSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Folder ID of an archive folder for the user.
     archiveFolder *string
     // Configuration settings to automatically notify the sender of an incoming email with a message from the signed-in user.
@@ -25,7 +24,7 @@ type MailboxSettings struct {
     timeFormat *string
     // The default time zone for the user's mailbox.
     timeZone *string
-    // The userPurpose property
+    // The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
     userPurpose *UserPurpose
     // The days of the week and hours in a specific time zone that the user works.
     workingHours WorkingHoursable
@@ -34,7 +33,7 @@ type MailboxSettings struct {
 func NewMailboxSettings()(*MailboxSettings) {
     m := &MailboxSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateMailboxSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -42,7 +41,7 @@ func CreateMailboxSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896
     return NewMailboxSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MailboxSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *MailboxSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetArchiveFolder gets the archiveFolder property value. Folder ID of an archive folder for the user.
@@ -64,16 +63,106 @@ func (m *MailboxSettings) GetDelegateMeetingMessageDeliveryOptions()(*DelegateMe
 // GetFieldDeserializers the deserialization information for the current model
 func (m *MailboxSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["archiveFolder"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetArchiveFolder)
-    res["automaticRepliesSetting"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAutomaticRepliesSettingFromDiscriminatorValue , m.SetAutomaticRepliesSetting)
-    res["dateFormat"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDateFormat)
-    res["delegateMeetingMessageDeliveryOptions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDelegateMeetingMessageDeliveryOptions , m.SetDelegateMeetingMessageDeliveryOptions)
-    res["language"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateLocaleInfoFromDiscriminatorValue , m.SetLanguage)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["timeFormat"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTimeFormat)
-    res["timeZone"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTimeZone)
-    res["userPurpose"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseUserPurpose , m.SetUserPurpose)
-    res["workingHours"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateWorkingHoursFromDiscriminatorValue , m.SetWorkingHours)
+    res["archiveFolder"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetArchiveFolder(val)
+        }
+        return nil
+    }
+    res["automaticRepliesSetting"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAutomaticRepliesSettingFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAutomaticRepliesSetting(val.(AutomaticRepliesSettingable))
+        }
+        return nil
+    }
+    res["dateFormat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDateFormat(val)
+        }
+        return nil
+    }
+    res["delegateMeetingMessageDeliveryOptions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDelegateMeetingMessageDeliveryOptions)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDelegateMeetingMessageDeliveryOptions(val.(*DelegateMeetingMessageDeliveryOptions))
+        }
+        return nil
+    }
+    res["language"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateLocaleInfoFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLanguage(val.(LocaleInfoable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["timeFormat"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTimeFormat(val)
+        }
+        return nil
+    }
+    res["timeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTimeZone(val)
+        }
+        return nil
+    }
+    res["userPurpose"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseUserPurpose)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUserPurpose(val.(*UserPurpose))
+        }
+        return nil
+    }
+    res["workingHours"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateWorkingHoursFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWorkingHours(val.(WorkingHoursable))
+        }
+        return nil
+    }
     return res
 }
 // GetLanguage gets the language property value. The locale information for the user, including the preferred language and country/region.
@@ -92,7 +181,7 @@ func (m *MailboxSettings) GetTimeFormat()(*string) {
 func (m *MailboxSettings) GetTimeZone()(*string) {
     return m.timeZone
 }
-// GetUserPurpose gets the userPurpose property value. The userPurpose property
+// GetUserPurpose gets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
 func (m *MailboxSettings) GetUserPurpose()(*UserPurpose) {
     return m.userPurpose
 }
@@ -173,7 +262,7 @@ func (m *MailboxSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MailboxSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *MailboxSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetArchiveFolder sets the archiveFolder property value. Folder ID of an archive folder for the user.
@@ -208,11 +297,36 @@ func (m *MailboxSettings) SetTimeFormat(value *string)() {
 func (m *MailboxSettings) SetTimeZone(value *string)() {
     m.timeZone = value
 }
-// SetUserPurpose sets the userPurpose property value. The userPurpose property
+// SetUserPurpose sets the userPurpose property value. The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.
 func (m *MailboxSettings) SetUserPurpose(value *UserPurpose)() {
     m.userPurpose = value
 }
 // SetWorkingHours sets the workingHours property value. The days of the week and hours in a specific time zone that the user works.
 func (m *MailboxSettings) SetWorkingHours(value WorkingHoursable)() {
     m.workingHours = value
+}
+// MailboxSettingsable 
+type MailboxSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetArchiveFolder()(*string)
+    GetAutomaticRepliesSetting()(AutomaticRepliesSettingable)
+    GetDateFormat()(*string)
+    GetDelegateMeetingMessageDeliveryOptions()(*DelegateMeetingMessageDeliveryOptions)
+    GetLanguage()(LocaleInfoable)
+    GetOdataType()(*string)
+    GetTimeFormat()(*string)
+    GetTimeZone()(*string)
+    GetUserPurpose()(*UserPurpose)
+    GetWorkingHours()(WorkingHoursable)
+    SetArchiveFolder(value *string)()
+    SetAutomaticRepliesSetting(value AutomaticRepliesSettingable)()
+    SetDateFormat(value *string)()
+    SetDelegateMeetingMessageDeliveryOptions(value *DelegateMeetingMessageDeliveryOptions)()
+    SetLanguage(value LocaleInfoable)()
+    SetOdataType(value *string)()
+    SetTimeFormat(value *string)()
+    SetTimeZone(value *string)()
+    SetUserPurpose(value *UserPurpose)()
+    SetWorkingHours(value WorkingHoursable)()
 }

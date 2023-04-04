@@ -1,11 +1,10 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// DomainDnsRecord provides operations to manage the collection of user entities.
+// DomainDnsRecord 
 type DomainDnsRecord struct {
     Entity
     // If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.
@@ -19,7 +18,7 @@ type DomainDnsRecord struct {
     // Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.
     ttl *int32
 }
-// NewDomainDnsRecord instantiates a new domainDnsRecord and sets the default values.
+// NewDomainDnsRecord instantiates a new DomainDnsRecord and sets the default values.
 func NewDomainDnsRecord()(*DomainDnsRecord) {
     m := &DomainDnsRecord{
         Entity: *NewEntity(),
@@ -59,11 +58,56 @@ func CreateDomainDnsRecordFromDiscriminatorValue(parseNode i878a80d2330e89d26896
 // GetFieldDeserializers the deserialization information for the current model
 func (m *DomainDnsRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["isOptional"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsOptional)
-    res["label"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLabel)
-    res["recordType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRecordType)
-    res["supportedService"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSupportedService)
-    res["ttl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTtl)
+    res["isOptional"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsOptional(val)
+        }
+        return nil
+    }
+    res["label"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLabel(val)
+        }
+        return nil
+    }
+    res["recordType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecordType(val)
+        }
+        return nil
+    }
+    res["supportedService"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSupportedService(val)
+        }
+        return nil
+    }
+    res["ttl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTtl(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsOptional gets the isOptional property value. If false, this record must be configured by the customer at the DNS host for Microsoft Online Services to operate correctly with the domain.
@@ -143,4 +187,19 @@ func (m *DomainDnsRecord) SetSupportedService(value *string)() {
 // SetTtl sets the ttl property value. Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.
 func (m *DomainDnsRecord) SetTtl(value *int32)() {
     m.ttl = value
+}
+// DomainDnsRecordable 
+type DomainDnsRecordable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsOptional()(*bool)
+    GetLabel()(*string)
+    GetRecordType()(*string)
+    GetSupportedService()(*string)
+    GetTtl()(*int32)
+    SetIsOptional(value *bool)()
+    SetLabel(value *string)()
+    SetRecordType(value *string)()
+    SetSupportedService(value *string)()
+    SetTtl(value *int32)()
 }

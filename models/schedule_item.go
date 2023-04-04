@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ScheduleItem 
 type ScheduleItem struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The date, time, and time zone that the corresponding event ends.
     end DateTimeTimeZoneable
     // The sensitivity of the corresponding event. True if the event is marked private, false otherwise. Optional.
@@ -28,7 +27,7 @@ type ScheduleItem struct {
 func NewScheduleItem()(*ScheduleItem) {
     m := &ScheduleItem{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateScheduleItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateScheduleItemFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewScheduleItem(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ScheduleItem) GetAdditionalData()(map[string]interface{}) {
+func (m *ScheduleItem) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetEnd gets the end property value. The date, time, and time zone that the corresponding event ends.
@@ -46,13 +45,76 @@ func (m *ScheduleItem) GetEnd()(DateTimeTimeZoneable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ScheduleItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["end"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue , m.SetEnd)
-    res["isPrivate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsPrivate)
-    res["location"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLocation)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["start"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue , m.SetStart)
-    res["status"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseFreeBusyStatus , m.SetStatus)
-    res["subject"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSubject)
+    res["end"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEnd(val.(DateTimeTimeZoneable))
+        }
+        return nil
+    }
+    res["isPrivate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsPrivate(val)
+        }
+        return nil
+    }
+    res["location"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLocation(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["start"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDateTimeTimeZoneFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStart(val.(DateTimeTimeZoneable))
+        }
+        return nil
+    }
+    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseFreeBusyStatus)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStatus(val.(*FreeBusyStatus))
+        }
+        return nil
+    }
+    res["subject"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSubject(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIsPrivate gets the isPrivate property value. The sensitivity of the corresponding event. True if the event is marked private, false otherwise. Optional.
@@ -133,7 +195,7 @@ func (m *ScheduleItem) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ScheduleItem) SetAdditionalData(value map[string]interface{})() {
+func (m *ScheduleItem) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetEnd sets the end property value. The date, time, and time zone that the corresponding event ends.
@@ -163,4 +225,23 @@ func (m *ScheduleItem) SetStatus(value *FreeBusyStatus)() {
 // SetSubject sets the subject property value. The corresponding event's subject line. Optional.
 func (m *ScheduleItem) SetSubject(value *string)() {
     m.subject = value
+}
+// ScheduleItemable 
+type ScheduleItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetEnd()(DateTimeTimeZoneable)
+    GetIsPrivate()(*bool)
+    GetLocation()(*string)
+    GetOdataType()(*string)
+    GetStart()(DateTimeTimeZoneable)
+    GetStatus()(*FreeBusyStatus)
+    GetSubject()(*string)
+    SetEnd(value DateTimeTimeZoneable)()
+    SetIsPrivate(value *bool)()
+    SetLocation(value *string)()
+    SetOdataType(value *string)()
+    SetStart(value DateTimeTimeZoneable)()
+    SetStatus(value *FreeBusyStatus)()
+    SetSubject(value *string)()
 }

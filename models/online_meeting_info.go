@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // OnlineMeetingInfo 
 type OnlineMeetingInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The ID of the conference.
     conferenceId *string
     // The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
@@ -28,7 +27,7 @@ type OnlineMeetingInfo struct {
 func NewOnlineMeetingInfo()(*OnlineMeetingInfo) {
     m := &OnlineMeetingInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateOnlineMeetingInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateOnlineMeetingInfoFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewOnlineMeetingInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OnlineMeetingInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *OnlineMeetingInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetConferenceId gets the conferenceId property value. The ID of the conference.
@@ -46,13 +45,84 @@ func (m *OnlineMeetingInfo) GetConferenceId()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OnlineMeetingInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["conferenceId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetConferenceId)
-    res["joinUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetJoinUrl)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["phones"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreatePhoneFromDiscriminatorValue , m.SetPhones)
-    res["quickDial"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetQuickDial)
-    res["tollFreeNumbers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetTollFreeNumbers)
-    res["tollNumber"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTollNumber)
+    res["conferenceId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConferenceId(val)
+        }
+        return nil
+    }
+    res["joinUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetJoinUrl(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["phones"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreatePhoneFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]Phoneable, len(val))
+            for i, v := range val {
+                res[i] = v.(Phoneable)
+            }
+            m.SetPhones(res)
+        }
+        return nil
+    }
+    res["quickDial"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetQuickDial(val)
+        }
+        return nil
+    }
+    res["tollFreeNumbers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetTollFreeNumbers(res)
+        }
+        return nil
+    }
+    res["tollNumber"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTollNumber(val)
+        }
+        return nil
+    }
     return res
 }
 // GetJoinUrl gets the joinUrl property value. The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.
@@ -100,7 +170,10 @@ func (m *OnlineMeetingInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     if m.GetPhones() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetPhones())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPhones()))
+        for i, v := range m.GetPhones() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("phones", cast)
         if err != nil {
             return err
@@ -133,7 +206,7 @@ func (m *OnlineMeetingInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *OnlineMeetingInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *OnlineMeetingInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetConferenceId sets the conferenceId property value. The ID of the conference.
@@ -163,4 +236,23 @@ func (m *OnlineMeetingInfo) SetTollFreeNumbers(value []string)() {
 // SetTollNumber sets the tollNumber property value. The toll number that can be used to join the conference.
 func (m *OnlineMeetingInfo) SetTollNumber(value *string)() {
     m.tollNumber = value
+}
+// OnlineMeetingInfoable 
+type OnlineMeetingInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConferenceId()(*string)
+    GetJoinUrl()(*string)
+    GetOdataType()(*string)
+    GetPhones()([]Phoneable)
+    GetQuickDial()(*string)
+    GetTollFreeNumbers()([]string)
+    GetTollNumber()(*string)
+    SetConferenceId(value *string)()
+    SetJoinUrl(value *string)()
+    SetOdataType(value *string)()
+    SetPhones(value []Phoneable)()
+    SetQuickDial(value *string)()
+    SetTollFreeNumbers(value []string)()
+    SetTollNumber(value *string)()
 }

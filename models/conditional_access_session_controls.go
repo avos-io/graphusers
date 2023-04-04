@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ConditionalAccessSessionControls 
 type ConditionalAccessSessionControls struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.
     applicationEnforcedRestrictions ApplicationEnforcedRestrictionsSessionControlable
     // Session control to apply cloud app security.
@@ -26,7 +25,7 @@ type ConditionalAccessSessionControls struct {
 func NewConditionalAccessSessionControls()(*ConditionalAccessSessionControls) {
     m := &ConditionalAccessSessionControls{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateConditionalAccessSessionControlsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateConditionalAccessSessionControlsFromDiscriminatorValue(parseNode i878
     return NewConditionalAccessSessionControls(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessSessionControls) GetAdditionalData()(map[string]interface{}) {
+func (m *ConditionalAccessSessionControls) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetApplicationEnforcedRestrictions gets the applicationEnforcedRestrictions property value. Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.
@@ -52,12 +51,66 @@ func (m *ConditionalAccessSessionControls) GetDisableResilienceDefaults()(*bool)
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessSessionControls) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["applicationEnforcedRestrictions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateApplicationEnforcedRestrictionsSessionControlFromDiscriminatorValue , m.SetApplicationEnforcedRestrictions)
-    res["cloudAppSecurity"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateCloudAppSecuritySessionControlFromDiscriminatorValue , m.SetCloudAppSecurity)
-    res["disableResilienceDefaults"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetDisableResilienceDefaults)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["persistentBrowser"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreatePersistentBrowserSessionControlFromDiscriminatorValue , m.SetPersistentBrowser)
-    res["signInFrequency"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateSignInFrequencySessionControlFromDiscriminatorValue , m.SetSignInFrequency)
+    res["applicationEnforcedRestrictions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateApplicationEnforcedRestrictionsSessionControlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApplicationEnforcedRestrictions(val.(ApplicationEnforcedRestrictionsSessionControlable))
+        }
+        return nil
+    }
+    res["cloudAppSecurity"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateCloudAppSecuritySessionControlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCloudAppSecurity(val.(CloudAppSecuritySessionControlable))
+        }
+        return nil
+    }
+    res["disableResilienceDefaults"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisableResilienceDefaults(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["persistentBrowser"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePersistentBrowserSessionControlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPersistentBrowser(val.(PersistentBrowserSessionControlable))
+        }
+        return nil
+    }
+    res["signInFrequency"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSignInFrequencySessionControlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSignInFrequency(val.(SignInFrequencySessionControlable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -119,7 +172,7 @@ func (m *ConditionalAccessSessionControls) Serialize(writer i878a80d2330e89d2689
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessSessionControls) SetAdditionalData(value map[string]interface{})() {
+func (m *ConditionalAccessSessionControls) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetApplicationEnforcedRestrictions sets the applicationEnforcedRestrictions property value. Session control to enforce application restrictions. Only Exchange Online and Sharepoint Online support this session control.
@@ -145,4 +198,21 @@ func (m *ConditionalAccessSessionControls) SetPersistentBrowser(value Persistent
 // SetSignInFrequency sets the signInFrequency property value. Session control to enforce signin frequency.
 func (m *ConditionalAccessSessionControls) SetSignInFrequency(value SignInFrequencySessionControlable)() {
     m.signInFrequency = value
+}
+// ConditionalAccessSessionControlsable 
+type ConditionalAccessSessionControlsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetApplicationEnforcedRestrictions()(ApplicationEnforcedRestrictionsSessionControlable)
+    GetCloudAppSecurity()(CloudAppSecuritySessionControlable)
+    GetDisableResilienceDefaults()(*bool)
+    GetOdataType()(*string)
+    GetPersistentBrowser()(PersistentBrowserSessionControlable)
+    GetSignInFrequency()(SignInFrequencySessionControlable)
+    SetApplicationEnforcedRestrictions(value ApplicationEnforcedRestrictionsSessionControlable)()
+    SetCloudAppSecurity(value CloudAppSecuritySessionControlable)()
+    SetDisableResilienceDefaults(value *bool)()
+    SetOdataType(value *string)()
+    SetPersistentBrowser(value PersistentBrowserSessionControlable)()
+    SetSignInFrequency(value SignInFrequencySessionControlable)()
 }

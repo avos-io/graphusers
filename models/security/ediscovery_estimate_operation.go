@@ -1,7 +1,6 @@
 package security
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -37,13 +36,76 @@ func CreateEdiscoveryEstimateOperationFromDiscriminatorValue(parseNode i878a80d2
 // GetFieldDeserializers the deserialization information for the current model
 func (m *EdiscoveryEstimateOperation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.CaseOperation.GetFieldDeserializers()
-    res["indexedItemCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetIndexedItemCount)
-    res["indexedItemsSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetIndexedItemsSize)
-    res["mailboxCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMailboxCount)
-    res["search"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateEdiscoverySearchFromDiscriminatorValue , m.SetSearch)
-    res["siteCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetSiteCount)
-    res["unindexedItemCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetUnindexedItemCount)
-    res["unindexedItemsSize"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetUnindexedItemsSize)
+    res["indexedItemCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIndexedItemCount(val)
+        }
+        return nil
+    }
+    res["indexedItemsSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIndexedItemsSize(val)
+        }
+        return nil
+    }
+    res["mailboxCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMailboxCount(val)
+        }
+        return nil
+    }
+    res["search"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateEdiscoverySearchFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSearch(val.(EdiscoverySearchable))
+        }
+        return nil
+    }
+    res["siteCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSiteCount(val)
+        }
+        return nil
+    }
+    res["unindexedItemCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUnindexedItemCount(val)
+        }
+        return nil
+    }
+    res["unindexedItemsSize"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUnindexedItemsSize(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIndexedItemCount gets the indexedItemCount property value. The estimated count of items for the search that matched the content query.
@@ -151,4 +213,23 @@ func (m *EdiscoveryEstimateOperation) SetUnindexedItemCount(value *int64)() {
 // SetUnindexedItemsSize sets the unindexedItemsSize property value. The estimated size of unindexed items for the collection.
 func (m *EdiscoveryEstimateOperation) SetUnindexedItemsSize(value *int64)() {
     m.unindexedItemsSize = value
+}
+// EdiscoveryEstimateOperationable 
+type EdiscoveryEstimateOperationable interface {
+    CaseOperationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIndexedItemCount()(*int64)
+    GetIndexedItemsSize()(*int64)
+    GetMailboxCount()(*int32)
+    GetSearch()(EdiscoverySearchable)
+    GetSiteCount()(*int32)
+    GetUnindexedItemCount()(*int64)
+    GetUnindexedItemsSize()(*int64)
+    SetIndexedItemCount(value *int64)()
+    SetIndexedItemsSize(value *int64)()
+    SetMailboxCount(value *int32)()
+    SetSearch(value EdiscoverySearchable)()
+    SetSiteCount(value *int32)()
+    SetUnindexedItemCount(value *int64)()
+    SetUnindexedItemsSize(value *int64)()
 }

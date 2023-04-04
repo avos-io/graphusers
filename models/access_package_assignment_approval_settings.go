@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AccessPackageAssignmentApprovalSettings 
 type AccessPackageAssignmentApprovalSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // If false, then approval is not required for new requests in this policy.
     isApprovalRequiredForAdd *bool
     // If false, then approval is not required for updates to requests in this policy.
@@ -22,7 +21,7 @@ type AccessPackageAssignmentApprovalSettings struct {
 func NewAccessPackageAssignmentApprovalSettings()(*AccessPackageAssignmentApprovalSettings) {
     m := &AccessPackageAssignmentApprovalSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAccessPackageAssignmentApprovalSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -30,16 +29,56 @@ func CreateAccessPackageAssignmentApprovalSettingsFromDiscriminatorValue(parseNo
     return NewAccessPackageAssignmentApprovalSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessPackageAssignmentApprovalSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *AccessPackageAssignmentApprovalSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessPackageAssignmentApprovalSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["isApprovalRequiredForAdd"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsApprovalRequiredForAdd)
-    res["isApprovalRequiredForUpdate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsApprovalRequiredForUpdate)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["stages"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateAccessPackageApprovalStageFromDiscriminatorValue , m.SetStages)
+    res["isApprovalRequiredForAdd"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsApprovalRequiredForAdd(val)
+        }
+        return nil
+    }
+    res["isApprovalRequiredForUpdate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsApprovalRequiredForUpdate(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["stages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAccessPackageApprovalStageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AccessPackageApprovalStageable, len(val))
+            for i, v := range val {
+                res[i] = v.(AccessPackageApprovalStageable)
+            }
+            m.SetStages(res)
+        }
+        return nil
+    }
     return res
 }
 // GetIsApprovalRequiredForAdd gets the isApprovalRequiredForAdd property value. If false, then approval is not required for new requests in this policy.
@@ -79,7 +118,10 @@ func (m *AccessPackageAssignmentApprovalSettings) Serialize(writer i878a80d2330e
         }
     }
     if m.GetStages() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetStages())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetStages()))
+        for i, v := range m.GetStages() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("stages", cast)
         if err != nil {
             return err
@@ -94,7 +136,7 @@ func (m *AccessPackageAssignmentApprovalSettings) Serialize(writer i878a80d2330e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessPackageAssignmentApprovalSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *AccessPackageAssignmentApprovalSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetIsApprovalRequiredForAdd sets the isApprovalRequiredForAdd property value. If false, then approval is not required for new requests in this policy.
@@ -112,4 +154,17 @@ func (m *AccessPackageAssignmentApprovalSettings) SetOdataType(value *string)() 
 // SetStages sets the stages property value. If approval is required, the one, two or three elements of this collection define each of the stages of approval. An empty array is present if no approval is required.
 func (m *AccessPackageAssignmentApprovalSettings) SetStages(value []AccessPackageApprovalStageable)() {
     m.stages = value
+}
+// AccessPackageAssignmentApprovalSettingsable 
+type AccessPackageAssignmentApprovalSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetIsApprovalRequiredForAdd()(*bool)
+    GetIsApprovalRequiredForUpdate()(*bool)
+    GetOdataType()(*string)
+    GetStages()([]AccessPackageApprovalStageable)
+    SetIsApprovalRequiredForAdd(value *bool)()
+    SetIsApprovalRequiredForUpdate(value *bool)()
+    SetOdataType(value *string)()
+    SetStages(value []AccessPackageApprovalStageable)()
 }

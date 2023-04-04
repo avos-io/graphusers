@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // TeamMemberSettings 
 type TeamMemberSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // If set to true, members can add and remove apps.
     allowAddRemoveApps *bool
     // If set to true, members can add and update private channels.
@@ -28,7 +27,7 @@ type TeamMemberSettings struct {
 func NewTeamMemberSettings()(*TeamMemberSettings) {
     m := &TeamMemberSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateTeamMemberSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateTeamMemberSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d26
     return NewTeamMemberSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamMemberSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *TeamMemberSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAllowAddRemoveApps gets the allowAddRemoveApps property value. If set to true, members can add and remove apps.
@@ -66,13 +65,76 @@ func (m *TeamMemberSettings) GetAllowDeleteChannels()(*bool) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TeamMemberSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowAddRemoveApps"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowAddRemoveApps)
-    res["allowCreatePrivateChannels"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowCreatePrivateChannels)
-    res["allowCreateUpdateChannels"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowCreateUpdateChannels)
-    res["allowCreateUpdateRemoveConnectors"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowCreateUpdateRemoveConnectors)
-    res["allowCreateUpdateRemoveTabs"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowCreateUpdateRemoveTabs)
-    res["allowDeleteChannels"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowDeleteChannels)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["allowAddRemoveApps"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowAddRemoveApps(val)
+        }
+        return nil
+    }
+    res["allowCreatePrivateChannels"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowCreatePrivateChannels(val)
+        }
+        return nil
+    }
+    res["allowCreateUpdateChannels"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowCreateUpdateChannels(val)
+        }
+        return nil
+    }
+    res["allowCreateUpdateRemoveConnectors"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowCreateUpdateRemoveConnectors(val)
+        }
+        return nil
+    }
+    res["allowCreateUpdateRemoveTabs"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowCreateUpdateRemoveTabs(val)
+        }
+        return nil
+    }
+    res["allowDeleteChannels"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowDeleteChannels(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -132,7 +194,7 @@ func (m *TeamMemberSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamMemberSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *TeamMemberSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAllowAddRemoveApps sets the allowAddRemoveApps property value. If set to true, members can add and remove apps.
@@ -162,4 +224,23 @@ func (m *TeamMemberSettings) SetAllowDeleteChannels(value *bool)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *TeamMemberSettings) SetOdataType(value *string)() {
     m.odataType = value
+}
+// TeamMemberSettingsable 
+type TeamMemberSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowAddRemoveApps()(*bool)
+    GetAllowCreatePrivateChannels()(*bool)
+    GetAllowCreateUpdateChannels()(*bool)
+    GetAllowCreateUpdateRemoveConnectors()(*bool)
+    GetAllowCreateUpdateRemoveTabs()(*bool)
+    GetAllowDeleteChannels()(*bool)
+    GetOdataType()(*string)
+    SetAllowAddRemoveApps(value *bool)()
+    SetAllowCreatePrivateChannels(value *bool)()
+    SetAllowCreateUpdateChannels(value *bool)()
+    SetAllowCreateUpdateRemoveConnectors(value *bool)()
+    SetAllowCreateUpdateRemoveTabs(value *bool)()
+    SetAllowDeleteChannels(value *bool)()
+    SetOdataType(value *string)()
 }

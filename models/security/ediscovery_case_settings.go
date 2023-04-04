@@ -1,7 +1,6 @@
 package security
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390 "github.com/avos-io/graphusers/models"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
@@ -30,9 +29,36 @@ func CreateEdiscoveryCaseSettingsFromDiscriminatorValue(parseNode i878a80d2330e8
 // GetFieldDeserializers the deserialization information for the current model
 func (m *EdiscoveryCaseSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["ocr"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateOcrSettingsFromDiscriminatorValue , m.SetOcr)
-    res["redundancyDetection"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateRedundancyDetectionSettingsFromDiscriminatorValue , m.SetRedundancyDetection)
-    res["topicModeling"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateTopicModelingSettingsFromDiscriminatorValue , m.SetTopicModeling)
+    res["ocr"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateOcrSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOcr(val.(OcrSettingsable))
+        }
+        return nil
+    }
+    res["redundancyDetection"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateRedundancyDetectionSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRedundancyDetection(val.(RedundancyDetectionSettingsable))
+        }
+        return nil
+    }
+    res["topicModeling"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTopicModelingSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTopicModeling(val.(TopicModelingSettingsable))
+        }
+        return nil
+    }
     return res
 }
 // GetOcr gets the ocr property value. The OCR (Optical Character Recognition) settings for the case.
@@ -84,4 +110,15 @@ func (m *EdiscoveryCaseSettings) SetRedundancyDetection(value RedundancyDetectio
 // SetTopicModeling sets the topicModeling property value. The Topic Modeling (Themes) settings for the case.
 func (m *EdiscoveryCaseSettings) SetTopicModeling(value TopicModelingSettingsable)() {
     m.topicModeling = value
+}
+// EdiscoveryCaseSettingsable 
+type EdiscoveryCaseSettingsable interface {
+    i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOcr()(OcrSettingsable)
+    GetRedundancyDetection()(RedundancyDetectionSettingsable)
+    GetTopicModeling()(TopicModelingSettingsable)
+    SetOcr(value OcrSettingsable)()
+    SetRedundancyDetection(value RedundancyDetectionSettingsable)()
+    SetTopicModeling(value TopicModelingSettingsable)()
 }

@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -18,8 +17,8 @@ func NewFileAssessmentRequest()(*FileAssessmentRequest) {
     m := &FileAssessmentRequest{
         ThreatAssessmentRequest: *NewThreatAssessmentRequest(),
     }
-    odataTypeValue := "#microsoft.graph.fileAssessmentRequest";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.fileAssessmentRequest"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateFileAssessmentRequestFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -33,8 +32,26 @@ func (m *FileAssessmentRequest) GetContentData()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *FileAssessmentRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.ThreatAssessmentRequest.GetFieldDeserializers()
-    res["contentData"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetContentData)
-    res["fileName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetFileName)
+    res["contentData"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetContentData(val)
+        }
+        return nil
+    }
+    res["fileName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFileName(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFileName gets the fileName property value. The file name.
@@ -68,4 +85,13 @@ func (m *FileAssessmentRequest) SetContentData(value *string)() {
 // SetFileName sets the fileName property value. The file name.
 func (m *FileAssessmentRequest) SetFileName(value *string)() {
     m.fileName = value
+}
+// FileAssessmentRequestable 
+type FileAssessmentRequestable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    ThreatAssessmentRequestable
+    GetContentData()(*string)
+    GetFileName()(*string)
+    SetContentData(value *string)()
+    SetFileName(value *string)()
 }

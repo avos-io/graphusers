@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // WorkbookWorksheetProtectionOptions 
 type WorkbookWorksheetProtectionOptions struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Represents the worksheet protection option of allowing using auto filter feature.
     allowAutoFilter *bool
     // Represents the worksheet protection option of allowing deleting columns.
@@ -38,7 +37,7 @@ type WorkbookWorksheetProtectionOptions struct {
 func NewWorkbookWorksheetProtectionOptions()(*WorkbookWorksheetProtectionOptions) {
     m := &WorkbookWorksheetProtectionOptions{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWorkbookWorksheetProtectionOptionsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -46,7 +45,7 @@ func CreateWorkbookWorksheetProtectionOptionsFromDiscriminatorValue(parseNode i8
     return NewWorkbookWorksheetProtectionOptions(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkbookWorksheetProtectionOptions) GetAdditionalData()(map[string]interface{}) {
+func (m *WorkbookWorksheetProtectionOptions) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAllowAutoFilter gets the allowAutoFilter property value. Represents the worksheet protection option of allowing using auto filter feature.
@@ -96,18 +95,126 @@ func (m *WorkbookWorksheetProtectionOptions) GetAllowSort()(*bool) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WorkbookWorksheetProtectionOptions) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowAutoFilter"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowAutoFilter)
-    res["allowDeleteColumns"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowDeleteColumns)
-    res["allowDeleteRows"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowDeleteRows)
-    res["allowFormatCells"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowFormatCells)
-    res["allowFormatColumns"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowFormatColumns)
-    res["allowFormatRows"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowFormatRows)
-    res["allowInsertColumns"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowInsertColumns)
-    res["allowInsertHyperlinks"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowInsertHyperlinks)
-    res["allowInsertRows"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowInsertRows)
-    res["allowPivotTables"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowPivotTables)
-    res["allowSort"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowSort)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["allowAutoFilter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowAutoFilter(val)
+        }
+        return nil
+    }
+    res["allowDeleteColumns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowDeleteColumns(val)
+        }
+        return nil
+    }
+    res["allowDeleteRows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowDeleteRows(val)
+        }
+        return nil
+    }
+    res["allowFormatCells"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowFormatCells(val)
+        }
+        return nil
+    }
+    res["allowFormatColumns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowFormatColumns(val)
+        }
+        return nil
+    }
+    res["allowFormatRows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowFormatRows(val)
+        }
+        return nil
+    }
+    res["allowInsertColumns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowInsertColumns(val)
+        }
+        return nil
+    }
+    res["allowInsertHyperlinks"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowInsertHyperlinks(val)
+        }
+        return nil
+    }
+    res["allowInsertRows"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowInsertRows(val)
+        }
+        return nil
+    }
+    res["allowPivotTables"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowPivotTables(val)
+        }
+        return nil
+    }
+    res["allowSort"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowSort(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -197,7 +304,7 @@ func (m *WorkbookWorksheetProtectionOptions) Serialize(writer i878a80d2330e89d26
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkbookWorksheetProtectionOptions) SetAdditionalData(value map[string]interface{})() {
+func (m *WorkbookWorksheetProtectionOptions) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAllowAutoFilter sets the allowAutoFilter property value. Represents the worksheet protection option of allowing using auto filter feature.
@@ -247,4 +354,33 @@ func (m *WorkbookWorksheetProtectionOptions) SetAllowSort(value *bool)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *WorkbookWorksheetProtectionOptions) SetOdataType(value *string)() {
     m.odataType = value
+}
+// WorkbookWorksheetProtectionOptionsable 
+type WorkbookWorksheetProtectionOptionsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowAutoFilter()(*bool)
+    GetAllowDeleteColumns()(*bool)
+    GetAllowDeleteRows()(*bool)
+    GetAllowFormatCells()(*bool)
+    GetAllowFormatColumns()(*bool)
+    GetAllowFormatRows()(*bool)
+    GetAllowInsertColumns()(*bool)
+    GetAllowInsertHyperlinks()(*bool)
+    GetAllowInsertRows()(*bool)
+    GetAllowPivotTables()(*bool)
+    GetAllowSort()(*bool)
+    GetOdataType()(*string)
+    SetAllowAutoFilter(value *bool)()
+    SetAllowDeleteColumns(value *bool)()
+    SetAllowDeleteRows(value *bool)()
+    SetAllowFormatCells(value *bool)()
+    SetAllowFormatColumns(value *bool)()
+    SetAllowFormatRows(value *bool)()
+    SetAllowInsertColumns(value *bool)()
+    SetAllowInsertHyperlinks(value *bool)()
+    SetAllowInsertRows(value *bool)()
+    SetAllowPivotTables(value *bool)()
+    SetAllowSort(value *bool)()
+    SetOdataType(value *string)()
 }

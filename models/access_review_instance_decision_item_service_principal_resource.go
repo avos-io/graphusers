@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -16,8 +15,8 @@ func NewAccessReviewInstanceDecisionItemServicePrincipalResource()(*AccessReview
     m := &AccessReviewInstanceDecisionItemServicePrincipalResource{
         AccessReviewInstanceDecisionItemResource: *NewAccessReviewInstanceDecisionItemResource(),
     }
-    odataTypeValue := "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateAccessReviewInstanceDecisionItemServicePrincipalResourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -31,7 +30,16 @@ func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) GetAppId()(*s
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AccessReviewInstanceDecisionItemResource.GetFieldDeserializers()
-    res["appId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAppId)
+    res["appId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAppId(val)
+        }
+        return nil
+    }
     return res
 }
 // Serialize serializes information the current object
@@ -51,4 +59,11 @@ func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) Serialize(wri
 // SetAppId sets the appId property value. The appId property
 func (m *AccessReviewInstanceDecisionItemServicePrincipalResource) SetAppId(value *string)() {
     m.appId = value
+}
+// AccessReviewInstanceDecisionItemServicePrincipalResourceable 
+type AccessReviewInstanceDecisionItemServicePrincipalResourceable interface {
+    AccessReviewInstanceDecisionItemResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAppId()(*string)
+    SetAppId(value *string)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // MediaContentRatingAustralia 
 type MediaContentRatingAustralia struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Movies rating labels in Australia
     movieRating *RatingAustraliaMoviesType
     // The OdataType property
@@ -20,7 +19,7 @@ type MediaContentRatingAustralia struct {
 func NewMediaContentRatingAustralia()(*MediaContentRatingAustralia) {
     m := &MediaContentRatingAustralia{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateMediaContentRatingAustraliaFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateMediaContentRatingAustraliaFromDiscriminatorValue(parseNode i878a80d2
     return NewMediaContentRatingAustralia(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MediaContentRatingAustralia) GetAdditionalData()(map[string]interface{}) {
+func (m *MediaContentRatingAustralia) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *MediaContentRatingAustralia) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["movieRating"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseRatingAustraliaMoviesType , m.SetMovieRating)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["tvRating"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseRatingAustraliaTelevisionType , m.SetTvRating)
+    res["movieRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRatingAustraliaMoviesType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMovieRating(val.(*RatingAustraliaMoviesType))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["tvRating"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRatingAustraliaTelevisionType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTvRating(val.(*RatingAustraliaTelevisionType))
+        }
+        return nil
+    }
     return res
 }
 // GetMovieRating gets the movieRating property value. Movies rating labels in Australia
@@ -82,7 +108,7 @@ func (m *MediaContentRatingAustralia) Serialize(writer i878a80d2330e89d26896388a
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *MediaContentRatingAustralia) SetAdditionalData(value map[string]interface{})() {
+func (m *MediaContentRatingAustralia) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetMovieRating sets the movieRating property value. Movies rating labels in Australia
@@ -96,4 +122,15 @@ func (m *MediaContentRatingAustralia) SetOdataType(value *string)() {
 // SetTvRating sets the tvRating property value. TV content rating labels in Australia
 func (m *MediaContentRatingAustralia) SetTvRating(value *RatingAustraliaTelevisionType)() {
     m.tvRating = value
+}
+// MediaContentRatingAustraliaable 
+type MediaContentRatingAustraliaable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMovieRating()(*RatingAustraliaMoviesType)
+    GetOdataType()(*string)
+    GetTvRating()(*RatingAustraliaTelevisionType)
+    SetMovieRating(value *RatingAustraliaMoviesType)()
+    SetOdataType(value *string)()
+    SetTvRating(value *RatingAustraliaTelevisionType)()
 }

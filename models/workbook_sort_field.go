@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // WorkbookSortField 
 type WorkbookSortField struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Represents whether the sorting is done in an ascending fashion.
     ascending *bool
     // Represents the color that is the target of the condition if the sorting is on font or cell color.
@@ -28,7 +27,7 @@ type WorkbookSortField struct {
 func NewWorkbookSortField()(*WorkbookSortField) {
     m := &WorkbookSortField{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWorkbookSortFieldFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateWorkbookSortFieldFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewWorkbookSortField(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkbookSortField) GetAdditionalData()(map[string]interface{}) {
+func (m *WorkbookSortField) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAscending gets the ascending property value. Represents whether the sorting is done in an ascending fashion.
@@ -54,13 +53,76 @@ func (m *WorkbookSortField) GetDataOption()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WorkbookSortField) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["ascending"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAscending)
-    res["color"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetColor)
-    res["dataOption"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDataOption)
-    res["icon"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateWorkbookIconFromDiscriminatorValue , m.SetIcon)
-    res["key"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetKey)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["sortOn"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSortOn)
+    res["ascending"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAscending(val)
+        }
+        return nil
+    }
+    res["color"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetColor(val)
+        }
+        return nil
+    }
+    res["dataOption"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDataOption(val)
+        }
+        return nil
+    }
+    res["icon"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateWorkbookIconFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIcon(val.(WorkbookIconable))
+        }
+        return nil
+    }
+    res["key"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetKey(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["sortOn"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSortOn(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIcon gets the icon property value. Represents the icon that is the target of the condition if the sorting is on the cell's icon.
@@ -132,7 +194,7 @@ func (m *WorkbookSortField) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkbookSortField) SetAdditionalData(value map[string]interface{})() {
+func (m *WorkbookSortField) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAscending sets the ascending property value. Represents whether the sorting is done in an ascending fashion.
@@ -162,4 +224,23 @@ func (m *WorkbookSortField) SetOdataType(value *string)() {
 // SetSortOn sets the sortOn property value. Represents the type of sorting of this condition. The possible values are: Value, CellColor, FontColor, Icon.
 func (m *WorkbookSortField) SetSortOn(value *string)() {
     m.sortOn = value
+}
+// WorkbookSortFieldable 
+type WorkbookSortFieldable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAscending()(*bool)
+    GetColor()(*string)
+    GetDataOption()(*string)
+    GetIcon()(WorkbookIconable)
+    GetKey()(*int32)
+    GetOdataType()(*string)
+    GetSortOn()(*string)
+    SetAscending(value *bool)()
+    SetColor(value *string)()
+    SetDataOption(value *string)()
+    SetIcon(value WorkbookIconable)()
+    SetKey(value *int32)()
+    SetOdataType(value *string)()
+    SetSortOn(value *string)()
 }

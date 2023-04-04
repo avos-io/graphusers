@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AudioConferencing 
 type AudioConferencing struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The conference id of the online meeting.
     conferenceId *string
     // A URL to the externally-accessible web page that contains dial-in information.
@@ -28,7 +27,7 @@ type AudioConferencing struct {
 func NewAudioConferencing()(*AudioConferencing) {
     m := &AudioConferencing{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAudioConferencingFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateAudioConferencingFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewAudioConferencing(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AudioConferencing) GetAdditionalData()(map[string]interface{}) {
+func (m *AudioConferencing) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetConferenceId gets the conferenceId property value. The conference id of the online meeting.
@@ -50,13 +49,84 @@ func (m *AudioConferencing) GetDialinUrl()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AudioConferencing) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["conferenceId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetConferenceId)
-    res["dialinUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDialinUrl)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["tollFreeNumber"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTollFreeNumber)
-    res["tollFreeNumbers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetTollFreeNumbers)
-    res["tollNumber"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTollNumber)
-    res["tollNumbers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetTollNumbers)
+    res["conferenceId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConferenceId(val)
+        }
+        return nil
+    }
+    res["dialinUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDialinUrl(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["tollFreeNumber"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTollFreeNumber(val)
+        }
+        return nil
+    }
+    res["tollFreeNumbers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetTollFreeNumbers(res)
+        }
+        return nil
+    }
+    res["tollNumber"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTollNumber(val)
+        }
+        return nil
+    }
+    res["tollNumbers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetTollNumbers(res)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -132,7 +202,7 @@ func (m *AudioConferencing) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AudioConferencing) SetAdditionalData(value map[string]interface{})() {
+func (m *AudioConferencing) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetConferenceId sets the conferenceId property value. The conference id of the online meeting.
@@ -162,4 +232,23 @@ func (m *AudioConferencing) SetTollNumber(value *string)() {
 // SetTollNumbers sets the tollNumbers property value. List of toll numbers that are displayed in the meeting invite.
 func (m *AudioConferencing) SetTollNumbers(value []string)() {
     m.tollNumbers = value
+}
+// AudioConferencingable 
+type AudioConferencingable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetConferenceId()(*string)
+    GetDialinUrl()(*string)
+    GetOdataType()(*string)
+    GetTollFreeNumber()(*string)
+    GetTollFreeNumbers()([]string)
+    GetTollNumber()(*string)
+    GetTollNumbers()([]string)
+    SetConferenceId(value *string)()
+    SetDialinUrl(value *string)()
+    SetOdataType(value *string)()
+    SetTollFreeNumber(value *string)()
+    SetTollFreeNumbers(value []string)()
+    SetTollNumber(value *string)()
+    SetTollNumbers(value []string)()
 }

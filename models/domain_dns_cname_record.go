@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -29,7 +28,16 @@ func (m *DomainDnsCnameRecord) GetCanonicalName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *DomainDnsCnameRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DomainDnsRecord.GetFieldDeserializers()
-    res["canonicalName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCanonicalName)
+    res["canonicalName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCanonicalName(val)
+        }
+        return nil
+    }
     return res
 }
 // Serialize serializes information the current object
@@ -49,4 +57,11 @@ func (m *DomainDnsCnameRecord) Serialize(writer i878a80d2330e89d26896388a3f487ee
 // SetCanonicalName sets the canonicalName property value. The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.
 func (m *DomainDnsCnameRecord) SetCanonicalName(value *string)() {
     m.canonicalName = value
+}
+// DomainDnsCnameRecordable 
+type DomainDnsCnameRecordable interface {
+    DomainDnsRecordable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCanonicalName()(*string)
+    SetCanonicalName(value *string)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // TeamMessagingSettings 
 type TeamMessagingSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // If set to true, @channel mentions are allowed.
     allowChannelMentions *bool
     // If set to true, owners can delete any message.
@@ -26,7 +25,7 @@ type TeamMessagingSettings struct {
 func NewTeamMessagingSettings()(*TeamMessagingSettings) {
     m := &TeamMessagingSettings{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateTeamMessagingSettingsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateTeamMessagingSettingsFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewTeamMessagingSettings(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamMessagingSettings) GetAdditionalData()(map[string]interface{}) {
+func (m *TeamMessagingSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAllowChannelMentions gets the allowChannelMentions property value. If set to true, @channel mentions are allowed.
@@ -60,12 +59,66 @@ func (m *TeamMessagingSettings) GetAllowUserEditMessages()(*bool) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *TeamMessagingSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["allowChannelMentions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowChannelMentions)
-    res["allowOwnerDeleteMessages"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowOwnerDeleteMessages)
-    res["allowTeamMentions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowTeamMentions)
-    res["allowUserDeleteMessages"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowUserDeleteMessages)
-    res["allowUserEditMessages"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetAllowUserEditMessages)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["allowChannelMentions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowChannelMentions(val)
+        }
+        return nil
+    }
+    res["allowOwnerDeleteMessages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowOwnerDeleteMessages(val)
+        }
+        return nil
+    }
+    res["allowTeamMentions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowTeamMentions(val)
+        }
+        return nil
+    }
+    res["allowUserDeleteMessages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowUserDeleteMessages(val)
+        }
+        return nil
+    }
+    res["allowUserEditMessages"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowUserEditMessages(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -119,7 +172,7 @@ func (m *TeamMessagingSettings) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *TeamMessagingSettings) SetAdditionalData(value map[string]interface{})() {
+func (m *TeamMessagingSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAllowChannelMentions sets the allowChannelMentions property value. If set to true, @channel mentions are allowed.
@@ -145,4 +198,21 @@ func (m *TeamMessagingSettings) SetAllowUserEditMessages(value *bool)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *TeamMessagingSettings) SetOdataType(value *string)() {
     m.odataType = value
+}
+// TeamMessagingSettingsable 
+type TeamMessagingSettingsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAllowChannelMentions()(*bool)
+    GetAllowOwnerDeleteMessages()(*bool)
+    GetAllowTeamMentions()(*bool)
+    GetAllowUserDeleteMessages()(*bool)
+    GetAllowUserEditMessages()(*bool)
+    GetOdataType()(*string)
+    SetAllowChannelMentions(value *bool)()
+    SetAllowOwnerDeleteMessages(value *bool)()
+    SetAllowTeamMentions(value *bool)()
+    SetAllowUserDeleteMessages(value *bool)()
+    SetAllowUserEditMessages(value *bool)()
+    SetOdataType(value *string)()
 }

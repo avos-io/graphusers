@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AuthorizationInfo 
 type AuthorizationInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The certificateUserIds property
     certificateUserIds []string
     // The OdataType property
@@ -18,7 +17,7 @@ type AuthorizationInfo struct {
 func NewAuthorizationInfo()(*AuthorizationInfo) {
     m := &AuthorizationInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAuthorizationInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,7 +25,7 @@ func CreateAuthorizationInfoFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewAuthorizationInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AuthorizationInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *AuthorizationInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCertificateUserIds gets the certificateUserIds property value. The certificateUserIds property
@@ -36,8 +35,30 @@ func (m *AuthorizationInfo) GetCertificateUserIds()([]string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AuthorizationInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["certificateUserIds"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetCertificateUserIds)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["certificateUserIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetCertificateUserIds(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -67,7 +88,7 @@ func (m *AuthorizationInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AuthorizationInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *AuthorizationInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCertificateUserIds sets the certificateUserIds property value. The certificateUserIds property
@@ -77,4 +98,13 @@ func (m *AuthorizationInfo) SetCertificateUserIds(value []string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AuthorizationInfo) SetOdataType(value *string)() {
     m.odataType = value
+}
+// AuthorizationInfoable 
+type AuthorizationInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCertificateUserIds()([]string)
+    GetOdataType()(*string)
+    SetCertificateUserIds(value []string)()
+    SetOdataType(value *string)()
 }

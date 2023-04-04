@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Audio 
 type Audio struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The title of the album for this audio file.
     album *string
     // The artist named on the album for the audio file.
@@ -48,7 +47,7 @@ type Audio struct {
 func NewAudio()(*Audio) {
     m := &Audio{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAudioFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -56,7 +55,7 @@ func CreateAudioFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
     return NewAudio(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Audio) GetAdditionalData()(map[string]interface{}) {
+func (m *Audio) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAlbum gets the album property value. The title of the album for this audio file.
@@ -98,23 +97,176 @@ func (m *Audio) GetDuration()(*int64) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Audio) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["album"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAlbum)
-    res["albumArtist"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAlbumArtist)
-    res["artist"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetArtist)
-    res["bitrate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetBitrate)
-    res["composers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetComposers)
-    res["copyright"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCopyright)
-    res["disc"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDisc)
-    res["discCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDiscCount)
-    res["duration"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetDuration)
-    res["genre"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetGenre)
-    res["hasDrm"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetHasDrm)
-    res["isVariableBitrate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsVariableBitrate)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["title"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTitle)
-    res["track"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTrack)
-    res["trackCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetTrackCount)
-    res["year"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetYear)
+    res["album"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAlbum(val)
+        }
+        return nil
+    }
+    res["albumArtist"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAlbumArtist(val)
+        }
+        return nil
+    }
+    res["artist"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetArtist(val)
+        }
+        return nil
+    }
+    res["bitrate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetBitrate(val)
+        }
+        return nil
+    }
+    res["composers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetComposers(val)
+        }
+        return nil
+    }
+    res["copyright"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCopyright(val)
+        }
+        return nil
+    }
+    res["disc"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisc(val)
+        }
+        return nil
+    }
+    res["discCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDiscCount(val)
+        }
+        return nil
+    }
+    res["duration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDuration(val)
+        }
+        return nil
+    }
+    res["genre"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGenre(val)
+        }
+        return nil
+    }
+    res["hasDrm"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHasDrm(val)
+        }
+        return nil
+    }
+    res["isVariableBitrate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsVariableBitrate(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["title"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTitle(val)
+        }
+        return nil
+    }
+    res["track"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTrack(val)
+        }
+        return nil
+    }
+    res["trackCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTrackCount(val)
+        }
+        return nil
+    }
+    res["year"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetYear(val)
+        }
+        return nil
+    }
     return res
 }
 // GetGenre gets the genre property value. The genre of this audio file.
@@ -262,7 +414,7 @@ func (m *Audio) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Audio) SetAdditionalData(value map[string]interface{})() {
+func (m *Audio) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAlbum sets the album property value. The title of the album for this audio file.
@@ -332,4 +484,43 @@ func (m *Audio) SetTrackCount(value *int32)() {
 // SetYear sets the year property value. The year the audio file was recorded.
 func (m *Audio) SetYear(value *int32)() {
     m.year = value
+}
+// Audioable 
+type Audioable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAlbum()(*string)
+    GetAlbumArtist()(*string)
+    GetArtist()(*string)
+    GetBitrate()(*int64)
+    GetComposers()(*string)
+    GetCopyright()(*string)
+    GetDisc()(*int32)
+    GetDiscCount()(*int32)
+    GetDuration()(*int64)
+    GetGenre()(*string)
+    GetHasDrm()(*bool)
+    GetIsVariableBitrate()(*bool)
+    GetOdataType()(*string)
+    GetTitle()(*string)
+    GetTrack()(*int32)
+    GetTrackCount()(*int32)
+    GetYear()(*int32)
+    SetAlbum(value *string)()
+    SetAlbumArtist(value *string)()
+    SetArtist(value *string)()
+    SetBitrate(value *int64)()
+    SetComposers(value *string)()
+    SetCopyright(value *string)()
+    SetDisc(value *int32)()
+    SetDiscCount(value *int32)()
+    SetDuration(value *int64)()
+    SetGenre(value *string)()
+    SetHasDrm(value *bool)()
+    SetIsVariableBitrate(value *bool)()
+    SetOdataType(value *string)()
+    SetTitle(value *string)()
+    SetTrack(value *int32)()
+    SetTrackCount(value *int32)()
+    SetYear(value *int32)()
 }

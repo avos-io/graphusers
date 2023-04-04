@@ -1,19 +1,18 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ItemReference 
 type ItemReference struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
-    // Unique identifier of the drive instance that contains the item. Read-only.
+    additionalData map[string]any
+    // Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
     driveId *string
-    // Identifies the type of drive. See [drive][] resource for values.
+    // Identifies the type of drive. Only returned if the item is located in a [drive][]. See [drive][] resource for values.
     driveType *string
-    // Unique identifier of the item in the drive. Read-only.
+    // Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
     id *string
     // The name of the item being referenced. Read-only.
     name *string
@@ -25,14 +24,14 @@ type ItemReference struct {
     shareId *string
     // Returns identifiers useful for SharePoint REST compatibility. Read-only.
     sharepointIds SharepointIdsable
-    // For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+    // For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
     siteId *string
 }
 // NewItemReference instantiates a new itemReference and sets the default values.
 func NewItemReference()(*ItemReference) {
     m := &ItemReference{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateItemReferenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -40,32 +39,113 @@ func CreateItemReferenceFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
     return NewItemReference(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ItemReference) GetAdditionalData()(map[string]interface{}) {
+func (m *ItemReference) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDriveId gets the driveId property value. Unique identifier of the drive instance that contains the item. Read-only.
+// GetDriveId gets the driveId property value. Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
 func (m *ItemReference) GetDriveId()(*string) {
     return m.driveId
 }
-// GetDriveType gets the driveType property value. Identifies the type of drive. See [drive][] resource for values.
+// GetDriveType gets the driveType property value. Identifies the type of drive. Only returned if the item is located in a [drive][]. See [drive][] resource for values.
 func (m *ItemReference) GetDriveType()(*string) {
     return m.driveType
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ItemReference) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["driveId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDriveId)
-    res["driveType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDriveType)
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["name"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["path"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPath)
-    res["shareId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetShareId)
-    res["sharepointIds"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateSharepointIdsFromDiscriminatorValue , m.SetSharepointIds)
-    res["siteId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSiteId)
+    res["driveId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDriveId(val)
+        }
+        return nil
+    }
+    res["driveType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDriveType(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["path"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPath(val)
+        }
+        return nil
+    }
+    res["shareId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetShareId(val)
+        }
+        return nil
+    }
+    res["sharepointIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSharepointIdsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSharepointIds(val.(SharepointIdsable))
+        }
+        return nil
+    }
+    res["siteId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSiteId(val)
+        }
+        return nil
+    }
     return res
 }
-// GetId gets the id property value. Unique identifier of the item in the drive. Read-only.
+// GetId gets the id property value. Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
 func (m *ItemReference) GetId()(*string) {
     return m.id
 }
@@ -89,7 +169,7 @@ func (m *ItemReference) GetShareId()(*string) {
 func (m *ItemReference) GetSharepointIds()(SharepointIdsable) {
     return m.sharepointIds
 }
-// GetSiteId gets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+// GetSiteId gets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
 func (m *ItemReference) GetSiteId()(*string) {
     return m.siteId
 }
@@ -158,18 +238,18 @@ func (m *ItemReference) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ItemReference) SetAdditionalData(value map[string]interface{})() {
+func (m *ItemReference) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDriveId sets the driveId property value. Unique identifier of the drive instance that contains the item. Read-only.
+// SetDriveId sets the driveId property value. Unique identifier of the drive instance that contains the driveItem. Only returned if the item is located in a [drive][]. Read-only.
 func (m *ItemReference) SetDriveId(value *string)() {
     m.driveId = value
 }
-// SetDriveType sets the driveType property value. Identifies the type of drive. See [drive][] resource for values.
+// SetDriveType sets the driveType property value. Identifies the type of drive. Only returned if the item is located in a [drive][]. See [drive][] resource for values.
 func (m *ItemReference) SetDriveType(value *string)() {
     m.driveType = value
 }
-// SetId sets the id property value. Unique identifier of the item in the drive. Read-only.
+// SetId sets the id property value. Unique identifier of the driveItem in the drive or a listItem in a list. Read-only.
 func (m *ItemReference) SetId(value *string)() {
     m.id = value
 }
@@ -193,7 +273,30 @@ func (m *ItemReference) SetShareId(value *string)() {
 func (m *ItemReference) SetSharepointIds(value SharepointIdsable)() {
     m.sharepointIds = value
 }
-// SetSiteId sets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
+// SetSiteId sets the siteId property value. For OneDrive for Business and SharePoint, this property represents the ID of the site that contains the parent document library of the driveItem resource or the parent list of the listItem resource. The value is the same as the id property of that [site][] resource. It is an opaque string that consists of three identifiers of the site. For OneDrive, this property is not populated.
 func (m *ItemReference) SetSiteId(value *string)() {
     m.siteId = value
+}
+// ItemReferenceable 
+type ItemReferenceable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDriveId()(*string)
+    GetDriveType()(*string)
+    GetId()(*string)
+    GetName()(*string)
+    GetOdataType()(*string)
+    GetPath()(*string)
+    GetShareId()(*string)
+    GetSharepointIds()(SharepointIdsable)
+    GetSiteId()(*string)
+    SetDriveId(value *string)()
+    SetDriveType(value *string)()
+    SetId(value *string)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+    SetPath(value *string)()
+    SetShareId(value *string)()
+    SetSharepointIds(value SharepointIdsable)()
+    SetSiteId(value *string)()
 }

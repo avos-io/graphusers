@@ -1,14 +1,13 @@
 package odataerrors
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ErrorDetails 
 type ErrorDetails struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The code property
     code *string
     // The message property
@@ -20,7 +19,7 @@ type ErrorDetails struct {
 func NewErrorDetails()(*ErrorDetails) {
     m := &ErrorDetails{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateErrorDetailsFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,7 +27,7 @@ func CreateErrorDetailsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewErrorDetails(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ErrorDetails) GetAdditionalData()(map[string]interface{}) {
+func (m *ErrorDetails) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCode gets the code property value. The code property
@@ -38,9 +37,36 @@ func (m *ErrorDetails) GetCode()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ErrorDetails) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["code"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCode)
-    res["message"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetMessage)
-    res["target"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTarget)
+    res["code"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCode(val)
+        }
+        return nil
+    }
+    res["message"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMessage(val)
+        }
+        return nil
+    }
+    res["target"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTarget(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMessage gets the message property value. The message property
@@ -80,7 +106,7 @@ func (m *ErrorDetails) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ErrorDetails) SetAdditionalData(value map[string]interface{})() {
+func (m *ErrorDetails) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCode sets the code property value. The code property
@@ -94,4 +120,15 @@ func (m *ErrorDetails) SetMessage(value *string)() {
 // SetTarget sets the target property value. The target property
 func (m *ErrorDetails) SetTarget(value *string)() {
     m.target = value
+}
+// ErrorDetailsable 
+type ErrorDetailsable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCode()(*string)
+    GetMessage()(*string)
+    GetTarget()(*string)
+    SetCode(value *string)()
+    SetMessage(value *string)()
+    SetTarget(value *string)()
 }

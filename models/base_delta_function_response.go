@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // BaseDeltaFunctionResponse 
 type BaseDeltaFunctionResponse struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataDeltaLink property
     odataDeltaLink *string
     // The OdataNextLink property
@@ -18,7 +17,7 @@ type BaseDeltaFunctionResponse struct {
 func NewBaseDeltaFunctionResponse()(*BaseDeltaFunctionResponse) {
     m := &BaseDeltaFunctionResponse{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateBaseDeltaFunctionResponseFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,14 +25,32 @@ func CreateBaseDeltaFunctionResponseFromDiscriminatorValue(parseNode i878a80d233
     return NewBaseDeltaFunctionResponse(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BaseDeltaFunctionResponse) GetAdditionalData()(map[string]interface{}) {
+func (m *BaseDeltaFunctionResponse) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *BaseDeltaFunctionResponse) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.deltaLink"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataDeltaLink)
-    res["@odata.nextLink"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataNextLink)
+    res["@odata.deltaLink"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataDeltaLink(val)
+        }
+        return nil
+    }
+    res["@odata.nextLink"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataNextLink(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataDeltaLink gets the @odata.deltaLink property value. The OdataDeltaLink property
@@ -67,7 +84,7 @@ func (m *BaseDeltaFunctionResponse) Serialize(writer i878a80d2330e89d26896388a3f
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *BaseDeltaFunctionResponse) SetAdditionalData(value map[string]interface{})() {
+func (m *BaseDeltaFunctionResponse) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataDeltaLink sets the @odata.deltaLink property value. The OdataDeltaLink property
@@ -77,4 +94,13 @@ func (m *BaseDeltaFunctionResponse) SetOdataDeltaLink(value *string)() {
 // SetOdataNextLink sets the @odata.nextLink property value. The OdataNextLink property
 func (m *BaseDeltaFunctionResponse) SetOdataNextLink(value *string)() {
     m.odataNextLink = value
+}
+// BaseDeltaFunctionResponseable 
+type BaseDeltaFunctionResponseable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataDeltaLink()(*string)
+    GetOdataNextLink()(*string)
+    SetOdataDeltaLink(value *string)()
+    SetOdataNextLink(value *string)()
 }

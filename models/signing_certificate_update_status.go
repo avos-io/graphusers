@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SigningCertificateUpdateStatus 
 type SigningCertificateUpdateStatus struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Status of the last certificate update. Read-only. For a list of statuses, see certificateUpdateResult status.
     certificateUpdateResult *string
     // Date and time in ISO 8601 format and in UTC time when the certificate was last updated. Read-only.
@@ -21,7 +20,7 @@ type SigningCertificateUpdateStatus struct {
 func NewSigningCertificateUpdateStatus()(*SigningCertificateUpdateStatus) {
     m := &SigningCertificateUpdateStatus{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSigningCertificateUpdateStatusFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -29,7 +28,7 @@ func CreateSigningCertificateUpdateStatusFromDiscriminatorValue(parseNode i878a8
     return NewSigningCertificateUpdateStatus(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SigningCertificateUpdateStatus) GetAdditionalData()(map[string]interface{}) {
+func (m *SigningCertificateUpdateStatus) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetCertificateUpdateResult gets the certificateUpdateResult property value. Status of the last certificate update. Read-only. For a list of statuses, see certificateUpdateResult status.
@@ -39,9 +38,36 @@ func (m *SigningCertificateUpdateStatus) GetCertificateUpdateResult()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SigningCertificateUpdateStatus) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["certificateUpdateResult"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetCertificateUpdateResult)
-    res["lastRunDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetLastRunDateTime)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["certificateUpdateResult"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertificateUpdateResult(val)
+        }
+        return nil
+    }
+    res["lastRunDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastRunDateTime(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetLastRunDateTime gets the lastRunDateTime property value. Date and time in ISO 8601 format and in UTC time when the certificate was last updated. Read-only.
@@ -81,7 +107,7 @@ func (m *SigningCertificateUpdateStatus) Serialize(writer i878a80d2330e89d268963
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SigningCertificateUpdateStatus) SetAdditionalData(value map[string]interface{})() {
+func (m *SigningCertificateUpdateStatus) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetCertificateUpdateResult sets the certificateUpdateResult property value. Status of the last certificate update. Read-only. For a list of statuses, see certificateUpdateResult status.
@@ -95,4 +121,15 @@ func (m *SigningCertificateUpdateStatus) SetLastRunDateTime(value *i336074805fc8
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *SigningCertificateUpdateStatus) SetOdataType(value *string)() {
     m.odataType = value
+}
+// SigningCertificateUpdateStatusable 
+type SigningCertificateUpdateStatusable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCertificateUpdateResult()(*string)
+    GetLastRunDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetOdataType()(*string)
+    SetCertificateUpdateResult(value *string)()
+    SetLastRunDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetOdataType(value *string)()
 }

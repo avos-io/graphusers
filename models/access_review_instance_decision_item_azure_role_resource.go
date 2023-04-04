@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -16,8 +15,8 @@ func NewAccessReviewInstanceDecisionItemAzureRoleResource()(*AccessReviewInstanc
     m := &AccessReviewInstanceDecisionItemAzureRoleResource{
         AccessReviewInstanceDecisionItemResource: *NewAccessReviewInstanceDecisionItemResource(),
     }
-    odataTypeValue := "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateAccessReviewInstanceDecisionItemAzureRoleResourceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -27,7 +26,16 @@ func CreateAccessReviewInstanceDecisionItemAzureRoleResourceFromDiscriminatorVal
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessReviewInstanceDecisionItemAzureRoleResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.AccessReviewInstanceDecisionItemResource.GetFieldDeserializers()
-    res["scope"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAccessReviewInstanceDecisionItemResourceFromDiscriminatorValue , m.SetScope)
+    res["scope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccessReviewInstanceDecisionItemResourceFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetScope(val.(AccessReviewInstanceDecisionItemResourceable))
+        }
+        return nil
+    }
     return res
 }
 // GetScope gets the scope property value. Details of the scope this role is associated with.
@@ -51,4 +59,11 @@ func (m *AccessReviewInstanceDecisionItemAzureRoleResource) Serialize(writer i87
 // SetScope sets the scope property value. Details of the scope this role is associated with.
 func (m *AccessReviewInstanceDecisionItemAzureRoleResource) SetScope(value AccessReviewInstanceDecisionItemResourceable)() {
     m.scope = value
+}
+// AccessReviewInstanceDecisionItemAzureRoleResourceable 
+type AccessReviewInstanceDecisionItemAzureRoleResourceable interface {
+    AccessReviewInstanceDecisionItemResourceable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetScope()(AccessReviewInstanceDecisionItemResourceable)
+    SetScope(value AccessReviewInstanceDecisionItemResourceable)()
 }

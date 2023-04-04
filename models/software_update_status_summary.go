@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -39,7 +38,7 @@ type SoftwareUpdateStatusSummary struct {
     // Number of unknown users.
     unknownUserCount *int32
 }
-// NewSoftwareUpdateStatusSummary instantiates a new softwareUpdateStatusSummary and sets the default values.
+// NewSoftwareUpdateStatusSummary instantiates a new SoftwareUpdateStatusSummary and sets the default values.
 func NewSoftwareUpdateStatusSummary()(*SoftwareUpdateStatusSummary) {
     m := &SoftwareUpdateStatusSummary{
         Entity: *NewEntity(),
@@ -81,21 +80,156 @@ func (m *SoftwareUpdateStatusSummary) GetErrorUserCount()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SoftwareUpdateStatusSummary) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["compliantDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCompliantDeviceCount)
-    res["compliantUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetCompliantUserCount)
-    res["conflictDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetConflictDeviceCount)
-    res["conflictUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetConflictUserCount)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["errorDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetErrorDeviceCount)
-    res["errorUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetErrorUserCount)
-    res["nonCompliantDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetNonCompliantDeviceCount)
-    res["nonCompliantUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetNonCompliantUserCount)
-    res["notApplicableDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetNotApplicableDeviceCount)
-    res["notApplicableUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetNotApplicableUserCount)
-    res["remediatedDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetRemediatedDeviceCount)
-    res["remediatedUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetRemediatedUserCount)
-    res["unknownDeviceCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetUnknownDeviceCount)
-    res["unknownUserCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetUnknownUserCount)
+    res["compliantDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompliantDeviceCount(val)
+        }
+        return nil
+    }
+    res["compliantUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCompliantUserCount(val)
+        }
+        return nil
+    }
+    res["conflictDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConflictDeviceCount(val)
+        }
+        return nil
+    }
+    res["conflictUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetConflictUserCount(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["errorDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetErrorDeviceCount(val)
+        }
+        return nil
+    }
+    res["errorUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetErrorUserCount(val)
+        }
+        return nil
+    }
+    res["nonCompliantDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNonCompliantDeviceCount(val)
+        }
+        return nil
+    }
+    res["nonCompliantUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNonCompliantUserCount(val)
+        }
+        return nil
+    }
+    res["notApplicableDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotApplicableDeviceCount(val)
+        }
+        return nil
+    }
+    res["notApplicableUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotApplicableUserCount(val)
+        }
+        return nil
+    }
+    res["remediatedDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRemediatedDeviceCount(val)
+        }
+        return nil
+    }
+    res["remediatedUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRemediatedUserCount(val)
+        }
+        return nil
+    }
+    res["unknownDeviceCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUnknownDeviceCount(val)
+        }
+        return nil
+    }
+    res["unknownUserCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUnknownUserCount(val)
+        }
+        return nil
+    }
     return res
 }
 // GetNonCompliantDeviceCount gets the nonCompliantDeviceCount property value. Number of non compliant devices.
@@ -287,4 +421,39 @@ func (m *SoftwareUpdateStatusSummary) SetUnknownDeviceCount(value *int32)() {
 // SetUnknownUserCount sets the unknownUserCount property value. Number of unknown users.
 func (m *SoftwareUpdateStatusSummary) SetUnknownUserCount(value *int32)() {
     m.unknownUserCount = value
+}
+// SoftwareUpdateStatusSummaryable 
+type SoftwareUpdateStatusSummaryable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCompliantDeviceCount()(*int32)
+    GetCompliantUserCount()(*int32)
+    GetConflictDeviceCount()(*int32)
+    GetConflictUserCount()(*int32)
+    GetDisplayName()(*string)
+    GetErrorDeviceCount()(*int32)
+    GetErrorUserCount()(*int32)
+    GetNonCompliantDeviceCount()(*int32)
+    GetNonCompliantUserCount()(*int32)
+    GetNotApplicableDeviceCount()(*int32)
+    GetNotApplicableUserCount()(*int32)
+    GetRemediatedDeviceCount()(*int32)
+    GetRemediatedUserCount()(*int32)
+    GetUnknownDeviceCount()(*int32)
+    GetUnknownUserCount()(*int32)
+    SetCompliantDeviceCount(value *int32)()
+    SetCompliantUserCount(value *int32)()
+    SetConflictDeviceCount(value *int32)()
+    SetConflictUserCount(value *int32)()
+    SetDisplayName(value *string)()
+    SetErrorDeviceCount(value *int32)()
+    SetErrorUserCount(value *int32)()
+    SetNonCompliantDeviceCount(value *int32)()
+    SetNonCompliantUserCount(value *int32)()
+    SetNotApplicableDeviceCount(value *int32)()
+    SetNotApplicableUserCount(value *int32)()
+    SetRemediatedDeviceCount(value *int32)()
+    SetRemediatedUserCount(value *int32)()
+    SetUnknownDeviceCount(value *int32)()
+    SetUnknownUserCount(value *int32)()
 }

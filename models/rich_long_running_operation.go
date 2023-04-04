@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -15,7 +14,7 @@ type RichLongRunningOperation struct {
     // The unique identifier for the result.
     resourceId *string
     // The type of the operation.
-    type_escaped *string
+    typeEscaped *string
 }
 // NewRichLongRunningOperation instantiates a new RichLongRunningOperation and sets the default values.
 func NewRichLongRunningOperation()(*RichLongRunningOperation) {
@@ -35,10 +34,46 @@ func (m *RichLongRunningOperation) GetError()(PublicErrorable) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RichLongRunningOperation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.LongRunningOperation.GetFieldDeserializers()
-    res["error"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreatePublicErrorFromDiscriminatorValue , m.SetError)
-    res["percentageComplete"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetPercentageComplete)
-    res["resourceId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetResourceId)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
+    res["error"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePublicErrorFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetError(val.(PublicErrorable))
+        }
+        return nil
+    }
+    res["percentageComplete"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPercentageComplete(val)
+        }
+        return nil
+    }
+    res["resourceId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetResourceId(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetPercentageComplete gets the percentageComplete property value. A value between 0 and 100 that indicates the progress of the operation.
@@ -51,7 +86,7 @@ func (m *RichLongRunningOperation) GetResourceId()(*string) {
 }
 // GetType gets the type property value. The type of the operation.
 func (m *RichLongRunningOperation) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *RichLongRunningOperation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -99,5 +134,18 @@ func (m *RichLongRunningOperation) SetResourceId(value *string)() {
 }
 // SetType sets the type property value. The type of the operation.
 func (m *RichLongRunningOperation) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
+}
+// RichLongRunningOperationable 
+type RichLongRunningOperationable interface {
+    LongRunningOperationable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetError()(PublicErrorable)
+    GetPercentageComplete()(*int32)
+    GetResourceId()(*string)
+    GetType()(*string)
+    SetError(value PublicErrorable)()
+    SetPercentageComplete(value *int32)()
+    SetResourceId(value *string)()
+    SetType(value *string)()
 }

@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // RecurrenceRange 
 type RecurrenceRange struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The date to stop applying the recurrence pattern. Depending on the recurrence pattern of the event, the last occurrence of the meeting may not be this date. Required if type is endDate.
     endDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
     // The number of times to repeat the event. Required and must be positive if type is numbered.
@@ -20,13 +19,13 @@ type RecurrenceRange struct {
     // The date to start applying the recurrence pattern. The first occurrence of the meeting may be this date or later, depending on the recurrence pattern of the event. Must be the same value as the start property of the recurring event. Required.
     startDate *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly
     // The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
-    type_escaped *RecurrenceRangeType
+    typeEscaped *RecurrenceRangeType
 }
 // NewRecurrenceRange instantiates a new recurrenceRange and sets the default values.
 func NewRecurrenceRange()(*RecurrenceRange) {
     m := &RecurrenceRange{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateRecurrenceRangeFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateRecurrenceRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896
     return NewRecurrenceRange(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RecurrenceRange) GetAdditionalData()(map[string]interface{}) {
+func (m *RecurrenceRange) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetEndDate gets the endDate property value. The date to stop applying the recurrence pattern. Depending on the recurrence pattern of the event, the last occurrence of the meeting may not be this date. Required if type is endDate.
@@ -44,12 +43,66 @@ func (m *RecurrenceRange) GetEndDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RecurrenceRange) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["endDate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetDateOnlyValue(m.SetEndDate)
-    res["numberOfOccurrences"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetNumberOfOccurrences)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["recurrenceTimeZone"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRecurrenceTimeZone)
-    res["startDate"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetDateOnlyValue(m.SetStartDate)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseRecurrenceRangeType , m.SetType)
+    res["endDate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetDateOnlyValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndDate(val)
+        }
+        return nil
+    }
+    res["numberOfOccurrences"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNumberOfOccurrences(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["recurrenceTimeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecurrenceTimeZone(val)
+        }
+        return nil
+    }
+    res["startDate"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetDateOnlyValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartDate(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseRecurrenceRangeType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val.(*RecurrenceRangeType))
+        }
+        return nil
+    }
     return res
 }
 // GetNumberOfOccurrences gets the numberOfOccurrences property value. The number of times to repeat the event. Required and must be positive if type is numbered.
@@ -70,7 +123,7 @@ func (m *RecurrenceRange) GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a
 }
 // GetType gets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
 func (m *RecurrenceRange) GetType()(*RecurrenceRangeType) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *RecurrenceRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -120,7 +173,7 @@ func (m *RecurrenceRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RecurrenceRange) SetAdditionalData(value map[string]interface{})() {
+func (m *RecurrenceRange) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetEndDate sets the endDate property value. The date to stop applying the recurrence pattern. Depending on the recurrence pattern of the event, the last occurrence of the meeting may not be this date. Required if type is endDate.
@@ -145,5 +198,22 @@ func (m *RecurrenceRange) SetStartDate(value *i878a80d2330e89d26896388a3f487eef2
 }
 // SetType sets the type property value. The recurrence range. The possible values are: endDate, noEnd, numbered. Required.
 func (m *RecurrenceRange) SetType(value *RecurrenceRangeType)() {
-    m.type_escaped = value
+    m.typeEscaped = value
+}
+// RecurrenceRangeable 
+type RecurrenceRangeable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetEndDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    GetNumberOfOccurrences()(*int32)
+    GetOdataType()(*string)
+    GetRecurrenceTimeZone()(*string)
+    GetStartDate()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)
+    GetType()(*RecurrenceRangeType)
+    SetEndDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)()
+    SetNumberOfOccurrences(value *int32)()
+    SetOdataType(value *string)()
+    SetRecurrenceTimeZone(value *string)()
+    SetStartDate(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.DateOnly)()
+    SetType(value *RecurrenceRangeType)()
 }

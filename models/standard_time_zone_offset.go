@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // StandardTimeZoneOffset 
 type StandardTimeZoneOffset struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Represents the nth occurrence of the day of week that the transition from daylight saving time to standard time occurs.
     dayOccurrence *int32
     // Represents the day of the week when the transition from daylight saving time to standard time.
@@ -26,7 +25,7 @@ type StandardTimeZoneOffset struct {
 func NewStandardTimeZoneOffset()(*StandardTimeZoneOffset) {
     m := &StandardTimeZoneOffset{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateStandardTimeZoneOffsetFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -52,7 +51,7 @@ func CreateStandardTimeZoneOffsetFromDiscriminatorValue(parseNode i878a80d2330e8
     return NewStandardTimeZoneOffset(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StandardTimeZoneOffset) GetAdditionalData()(map[string]interface{}) {
+func (m *StandardTimeZoneOffset) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDayOccurrence gets the dayOccurrence property value. Represents the nth occurrence of the day of week that the transition from daylight saving time to standard time occurs.
@@ -66,12 +65,66 @@ func (m *StandardTimeZoneOffset) GetDayOfWeek()(*DayOfWeek) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *StandardTimeZoneOffset) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["dayOccurrence"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetDayOccurrence)
-    res["dayOfWeek"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDayOfWeek , m.SetDayOfWeek)
-    res["month"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetMonth)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["time"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeOnlyValue(m.SetTime)
-    res["year"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetYear)
+    res["dayOccurrence"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDayOccurrence(val)
+        }
+        return nil
+    }
+    res["dayOfWeek"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDayOfWeek)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDayOfWeek(val.(*DayOfWeek))
+        }
+        return nil
+    }
+    res["month"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMonth(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["time"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeOnlyValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTime(val)
+        }
+        return nil
+    }
+    res["year"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetYear(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMonth gets the month property value. Represents the month of the year when the transition from daylight saving time to standard time occurs.
@@ -138,7 +191,7 @@ func (m *StandardTimeZoneOffset) Serialize(writer i878a80d2330e89d26896388a3f487
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *StandardTimeZoneOffset) SetAdditionalData(value map[string]interface{})() {
+func (m *StandardTimeZoneOffset) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDayOccurrence sets the dayOccurrence property value. Represents the nth occurrence of the day of week that the transition from daylight saving time to standard time occurs.
@@ -164,4 +217,21 @@ func (m *StandardTimeZoneOffset) SetTime(value *i878a80d2330e89d26896388a3f487ee
 // SetYear sets the year property value. Represents how frequently in terms of years the change from daylight saving time to standard time occurs. For example, a value of 0 means every year.
 func (m *StandardTimeZoneOffset) SetYear(value *int32)() {
     m.year = value
+}
+// StandardTimeZoneOffsetable 
+type StandardTimeZoneOffsetable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDayOccurrence()(*int32)
+    GetDayOfWeek()(*DayOfWeek)
+    GetMonth()(*int32)
+    GetOdataType()(*string)
+    GetTime()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)
+    GetYear()(*int32)
+    SetDayOccurrence(value *int32)()
+    SetDayOfWeek(value *DayOfWeek)()
+    SetMonth(value *int32)()
+    SetOdataType(value *string)()
+    SetTime(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)()
+    SetYear(value *int32)()
 }

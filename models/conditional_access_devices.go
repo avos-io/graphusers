@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ConditionalAccessDevices 
 type ConditionalAccessDevices struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them.
     deviceFilter ConditionalAccessFilterable
     // The OdataType property
@@ -18,7 +17,7 @@ type ConditionalAccessDevices struct {
 func NewConditionalAccessDevices()(*ConditionalAccessDevices) {
     m := &ConditionalAccessDevices{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateConditionalAccessDevicesFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,7 +25,7 @@ func CreateConditionalAccessDevicesFromDiscriminatorValue(parseNode i878a80d2330
     return NewConditionalAccessDevices(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessDevices) GetAdditionalData()(map[string]interface{}) {
+func (m *ConditionalAccessDevices) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDeviceFilter gets the deviceFilter property value. Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them.
@@ -36,8 +35,26 @@ func (m *ConditionalAccessDevices) GetDeviceFilter()(ConditionalAccessFilterable
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessDevices) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deviceFilter"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateConditionalAccessFilterFromDiscriminatorValue , m.SetDeviceFilter)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["deviceFilter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateConditionalAccessFilterFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeviceFilter(val.(ConditionalAccessFilterable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -67,7 +84,7 @@ func (m *ConditionalAccessDevices) Serialize(writer i878a80d2330e89d26896388a3f4
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessDevices) SetAdditionalData(value map[string]interface{})() {
+func (m *ConditionalAccessDevices) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDeviceFilter sets the deviceFilter property value. Filter that defines the dynamic-device-syntax rule to include/exclude devices. A filter can use device properties (such as extension attributes) to include/exclude them.
@@ -77,4 +94,13 @@ func (m *ConditionalAccessDevices) SetDeviceFilter(value ConditionalAccessFilter
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ConditionalAccessDevices) SetOdataType(value *string)() {
     m.odataType = value
+}
+// ConditionalAccessDevicesable 
+type ConditionalAccessDevicesable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeviceFilter()(ConditionalAccessFilterable)
+    GetOdataType()(*string)
+    SetDeviceFilter(value ConditionalAccessFilterable)()
+    SetOdataType(value *string)()
 }

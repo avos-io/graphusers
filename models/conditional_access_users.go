@@ -1,22 +1,25 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ConditionalAccessUsers 
 type ConditionalAccessUsers struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Group IDs excluded from scope of policy.
     excludeGroups []string
+    // The excludeGuestsOrExternalUsers property
+    excludeGuestsOrExternalUsers ConditionalAccessGuestsOrExternalUsersable
     // Role IDs excluded from scope of policy.
     excludeRoles []string
     // User IDs excluded from scope of policy and/or GuestsOrExternalUsers.
     excludeUsers []string
     // Group IDs in scope of policy unless explicitly excluded, or All.
     includeGroups []string
+    // The includeGuestsOrExternalUsers property
+    includeGuestsOrExternalUsers ConditionalAccessGuestsOrExternalUsersable
     // Role IDs in scope of policy unless explicitly excluded, or All.
     includeRoles []string
     // User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.
@@ -28,7 +31,7 @@ type ConditionalAccessUsers struct {
 func NewConditionalAccessUsers()(*ConditionalAccessUsers) {
     m := &ConditionalAccessUsers{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateConditionalAccessUsersFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,12 +39,16 @@ func CreateConditionalAccessUsersFromDiscriminatorValue(parseNode i878a80d2330e8
     return NewConditionalAccessUsers(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessUsers) GetAdditionalData()(map[string]interface{}) {
+func (m *ConditionalAccessUsers) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetExcludeGroups gets the excludeGroups property value. Group IDs excluded from scope of policy.
 func (m *ConditionalAccessUsers) GetExcludeGroups()([]string) {
     return m.excludeGroups
+}
+// GetExcludeGuestsOrExternalUsers gets the excludeGuestsOrExternalUsers property value. The excludeGuestsOrExternalUsers property
+func (m *ConditionalAccessUsers) GetExcludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable) {
+    return m.excludeGuestsOrExternalUsers
 }
 // GetExcludeRoles gets the excludeRoles property value. Role IDs excluded from scope of policy.
 func (m *ConditionalAccessUsers) GetExcludeRoles()([]string) {
@@ -54,18 +61,129 @@ func (m *ConditionalAccessUsers) GetExcludeUsers()([]string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["excludeGroups"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetExcludeGroups)
-    res["excludeRoles"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetExcludeRoles)
-    res["excludeUsers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetExcludeUsers)
-    res["includeGroups"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetIncludeGroups)
-    res["includeRoles"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetIncludeRoles)
-    res["includeUsers"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetIncludeUsers)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["excludeGroups"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetExcludeGroups(res)
+        }
+        return nil
+    }
+    res["excludeGuestsOrExternalUsers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateConditionalAccessGuestsOrExternalUsersFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExcludeGuestsOrExternalUsers(val.(ConditionalAccessGuestsOrExternalUsersable))
+        }
+        return nil
+    }
+    res["excludeRoles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetExcludeRoles(res)
+        }
+        return nil
+    }
+    res["excludeUsers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetExcludeUsers(res)
+        }
+        return nil
+    }
+    res["includeGroups"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetIncludeGroups(res)
+        }
+        return nil
+    }
+    res["includeGuestsOrExternalUsers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateConditionalAccessGuestsOrExternalUsersFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIncludeGuestsOrExternalUsers(val.(ConditionalAccessGuestsOrExternalUsersable))
+        }
+        return nil
+    }
+    res["includeRoles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetIncludeRoles(res)
+        }
+        return nil
+    }
+    res["includeUsers"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetIncludeUsers(res)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetIncludeGroups gets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded, or All.
 func (m *ConditionalAccessUsers) GetIncludeGroups()([]string) {
     return m.includeGroups
+}
+// GetIncludeGuestsOrExternalUsers gets the includeGuestsOrExternalUsers property value. The includeGuestsOrExternalUsers property
+func (m *ConditionalAccessUsers) GetIncludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable) {
+    return m.includeGuestsOrExternalUsers
 }
 // GetIncludeRoles gets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded, or All.
 func (m *ConditionalAccessUsers) GetIncludeRoles()([]string) {
@@ -87,6 +205,12 @@ func (m *ConditionalAccessUsers) Serialize(writer i878a80d2330e89d26896388a3f487
             return err
         }
     }
+    {
+        err := writer.WriteObjectValue("excludeGuestsOrExternalUsers", m.GetExcludeGuestsOrExternalUsers())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetExcludeRoles() != nil {
         err := writer.WriteCollectionOfStringValues("excludeRoles", m.GetExcludeRoles())
         if err != nil {
@@ -101,6 +225,12 @@ func (m *ConditionalAccessUsers) Serialize(writer i878a80d2330e89d26896388a3f487
     }
     if m.GetIncludeGroups() != nil {
         err := writer.WriteCollectionOfStringValues("includeGroups", m.GetIncludeGroups())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("includeGuestsOrExternalUsers", m.GetIncludeGuestsOrExternalUsers())
         if err != nil {
             return err
         }
@@ -132,12 +262,16 @@ func (m *ConditionalAccessUsers) Serialize(writer i878a80d2330e89d26896388a3f487
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ConditionalAccessUsers) SetAdditionalData(value map[string]interface{})() {
+func (m *ConditionalAccessUsers) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetExcludeGroups sets the excludeGroups property value. Group IDs excluded from scope of policy.
 func (m *ConditionalAccessUsers) SetExcludeGroups(value []string)() {
     m.excludeGroups = value
+}
+// SetExcludeGuestsOrExternalUsers sets the excludeGuestsOrExternalUsers property value. The excludeGuestsOrExternalUsers property
+func (m *ConditionalAccessUsers) SetExcludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)() {
+    m.excludeGuestsOrExternalUsers = value
 }
 // SetExcludeRoles sets the excludeRoles property value. Role IDs excluded from scope of policy.
 func (m *ConditionalAccessUsers) SetExcludeRoles(value []string)() {
@@ -151,6 +285,10 @@ func (m *ConditionalAccessUsers) SetExcludeUsers(value []string)() {
 func (m *ConditionalAccessUsers) SetIncludeGroups(value []string)() {
     m.includeGroups = value
 }
+// SetIncludeGuestsOrExternalUsers sets the includeGuestsOrExternalUsers property value. The includeGuestsOrExternalUsers property
+func (m *ConditionalAccessUsers) SetIncludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)() {
+    m.includeGuestsOrExternalUsers = value
+}
 // SetIncludeRoles sets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded, or All.
 func (m *ConditionalAccessUsers) SetIncludeRoles(value []string)() {
     m.includeRoles = value
@@ -162,4 +300,27 @@ func (m *ConditionalAccessUsers) SetIncludeUsers(value []string)() {
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *ConditionalAccessUsers) SetOdataType(value *string)() {
     m.odataType = value
+}
+// ConditionalAccessUsersable 
+type ConditionalAccessUsersable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExcludeGroups()([]string)
+    GetExcludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable)
+    GetExcludeRoles()([]string)
+    GetExcludeUsers()([]string)
+    GetIncludeGroups()([]string)
+    GetIncludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable)
+    GetIncludeRoles()([]string)
+    GetIncludeUsers()([]string)
+    GetOdataType()(*string)
+    SetExcludeGroups(value []string)()
+    SetExcludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)()
+    SetExcludeRoles(value []string)()
+    SetExcludeUsers(value []string)()
+    SetIncludeGroups(value []string)()
+    SetIncludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)()
+    SetIncludeRoles(value []string)()
+    SetIncludeUsers(value []string)()
+    SetOdataType(value *string)()
 }

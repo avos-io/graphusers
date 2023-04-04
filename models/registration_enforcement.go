@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // RegistrationEnforcement 
 type RegistrationEnforcement struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Run campaigns to remind users to set up targeted authentication methods.
     authenticationMethodsRegistrationCampaign AuthenticationMethodsRegistrationCampaignable
     // The OdataType property
@@ -18,7 +17,7 @@ type RegistrationEnforcement struct {
 func NewRegistrationEnforcement()(*RegistrationEnforcement) {
     m := &RegistrationEnforcement{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateRegistrationEnforcementFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -26,7 +25,7 @@ func CreateRegistrationEnforcementFromDiscriminatorValue(parseNode i878a80d2330e
     return NewRegistrationEnforcement(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RegistrationEnforcement) GetAdditionalData()(map[string]interface{}) {
+func (m *RegistrationEnforcement) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAuthenticationMethodsRegistrationCampaign gets the authenticationMethodsRegistrationCampaign property value. Run campaigns to remind users to set up targeted authentication methods.
@@ -36,8 +35,26 @@ func (m *RegistrationEnforcement) GetAuthenticationMethodsRegistrationCampaign()
 // GetFieldDeserializers the deserialization information for the current model
 func (m *RegistrationEnforcement) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["authenticationMethodsRegistrationCampaign"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAuthenticationMethodsRegistrationCampaignFromDiscriminatorValue , m.SetAuthenticationMethodsRegistrationCampaign)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["authenticationMethodsRegistrationCampaign"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationMethodsRegistrationCampaignFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthenticationMethodsRegistrationCampaign(val.(AuthenticationMethodsRegistrationCampaignable))
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -67,7 +84,7 @@ func (m *RegistrationEnforcement) Serialize(writer i878a80d2330e89d26896388a3f48
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *RegistrationEnforcement) SetAdditionalData(value map[string]interface{})() {
+func (m *RegistrationEnforcement) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAuthenticationMethodsRegistrationCampaign sets the authenticationMethodsRegistrationCampaign property value. Run campaigns to remind users to set up targeted authentication methods.
@@ -77,4 +94,13 @@ func (m *RegistrationEnforcement) SetAuthenticationMethodsRegistrationCampaign(v
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *RegistrationEnforcement) SetOdataType(value *string)() {
     m.odataType = value
+}
+// RegistrationEnforcementable 
+type RegistrationEnforcementable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAuthenticationMethodsRegistrationCampaign()(AuthenticationMethodsRegistrationCampaignable)
+    GetOdataType()(*string)
+    SetAuthenticationMethodsRegistrationCampaign(value AuthenticationMethodsRegistrationCampaignable)()
+    SetOdataType(value *string)()
 }

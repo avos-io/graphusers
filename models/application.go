@@ -2,7 +2,7 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
+    i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22 "github.com/google/uuid"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -17,6 +17,8 @@ type Application struct {
     appId *string
     // Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne).
     applicationTemplateId *string
+    // The appManagementPolicies property
+    appManagementPolicies []AppManagementPolicyable
     // The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
     appRoles []AppRoleable
     // Specifies the certification status of the application.
@@ -69,20 +71,22 @@ type Application struct {
     publicClient PublicClientApplicationable
     // The verified publisher domain for the application. Read-only. For more information, see How to: Configure an application's publisher domain. Supports $filter (eq, ne, ge, le, startsWith).
     publisherDomain *string
+    // The requestSignatureVerification property
+    requestSignatureVerification RequestSignatureVerificationable
     // Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. For more information, see Limits on requested permissions per app. Not nullable. Supports $filter (eq, not, ge, le).
     requiredResourceAccess []RequiredResourceAccessable
     // The URL where the service exposes SAML metadata for federation. This property is valid only for single-tenant applications. Nullable.
     samlMetadataUrl *string
     // References application or service contact information from a Service or Asset Management database. Nullable.
     serviceManagementReference *string
-    // Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+    // Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
     signInAudience *string
     // Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
     spa SpaApplicationable
     // Custom strings that can be used to categorize and identify the application. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
     tags []string
     // Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-    tokenEncryptionKeyId *string
+    tokenEncryptionKeyId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The tokenIssuancePolicies property
     tokenIssuancePolicies []TokenIssuancePolicyable
     // The tokenLifetimePolicies property
@@ -97,8 +101,8 @@ func NewApplication()(*Application) {
     m := &Application{
         DirectoryObject: *NewDirectoryObject(),
     }
-    odataTypeValue := "#microsoft.graph.application";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.application"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateApplicationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -120,6 +124,10 @@ func (m *Application) GetAppId()(*string) {
 // GetApplicationTemplateId gets the applicationTemplateId property value. Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne).
 func (m *Application) GetApplicationTemplateId()(*string) {
     return m.applicationTemplateId
+}
+// GetAppManagementPolicies gets the appManagementPolicies property value. The appManagementPolicies property
+func (m *Application) GetAppManagementPolicies()([]AppManagementPolicyable) {
+    return m.appManagementPolicies
 }
 // GetAppRoles gets the appRoles property value. The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
 func (m *Application) GetAppRoles()([]AppRoleable) {
@@ -164,47 +172,492 @@ func (m *Application) GetFederatedIdentityCredentials()([]FederatedIdentityCrede
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.DirectoryObject.GetFieldDeserializers()
-    res["addIns"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateAddInFromDiscriminatorValue , m.SetAddIns)
-    res["api"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateApiApplicationFromDiscriminatorValue , m.SetApi)
-    res["appId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAppId)
-    res["applicationTemplateId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetApplicationTemplateId)
-    res["appRoles"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateAppRoleFromDiscriminatorValue , m.SetAppRoles)
-    res["certification"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateCertificationFromDiscriminatorValue , m.SetCertification)
-    res["createdDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetCreatedDateTime)
-    res["createdOnBehalfOf"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateDirectoryObjectFromDiscriminatorValue , m.SetCreatedOnBehalfOf)
-    res["defaultRedirectUri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDefaultRedirectUri)
-    res["description"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDescription)
-    res["disabledByMicrosoftStatus"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisabledByMicrosoftStatus)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["extensionProperties"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateExtensionPropertyFromDiscriminatorValue , m.SetExtensionProperties)
-    res["federatedIdentityCredentials"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateFederatedIdentityCredentialFromDiscriminatorValue , m.SetFederatedIdentityCredentials)
-    res["groupMembershipClaims"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetGroupMembershipClaims)
-    res["homeRealmDiscoveryPolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateHomeRealmDiscoveryPolicyFromDiscriminatorValue , m.SetHomeRealmDiscoveryPolicies)
-    res["identifierUris"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetIdentifierUris)
-    res["info"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateInformationalUrlFromDiscriminatorValue , m.SetInfo)
-    res["isDeviceOnlyAuthSupported"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsDeviceOnlyAuthSupported)
-    res["isFallbackPublicClient"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetIsFallbackPublicClient)
-    res["keyCredentials"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateKeyCredentialFromDiscriminatorValue , m.SetKeyCredentials)
-    res["logo"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetByteArrayValue(m.SetLogo)
-    res["notes"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetNotes)
-    res["oauth2RequirePostResponse"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetBoolValue(m.SetOauth2RequirePostResponse)
-    res["optionalClaims"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateOptionalClaimsFromDiscriminatorValue , m.SetOptionalClaims)
-    res["owners"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateDirectoryObjectFromDiscriminatorValue , m.SetOwners)
-    res["parentalControlSettings"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateParentalControlSettingsFromDiscriminatorValue , m.SetParentalControlSettings)
-    res["passwordCredentials"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreatePasswordCredentialFromDiscriminatorValue , m.SetPasswordCredentials)
-    res["publicClient"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreatePublicClientApplicationFromDiscriminatorValue , m.SetPublicClient)
-    res["publisherDomain"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPublisherDomain)
-    res["requiredResourceAccess"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateRequiredResourceAccessFromDiscriminatorValue , m.SetRequiredResourceAccess)
-    res["samlMetadataUrl"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSamlMetadataUrl)
-    res["serviceManagementReference"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetServiceManagementReference)
-    res["signInAudience"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSignInAudience)
-    res["spa"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateSpaApplicationFromDiscriminatorValue , m.SetSpa)
-    res["tags"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetTags)
-    res["tokenEncryptionKeyId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetTokenEncryptionKeyId)
-    res["tokenIssuancePolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateTokenIssuancePolicyFromDiscriminatorValue , m.SetTokenIssuancePolicies)
-    res["tokenLifetimePolicies"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateTokenLifetimePolicyFromDiscriminatorValue , m.SetTokenLifetimePolicies)
-    res["verifiedPublisher"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateVerifiedPublisherFromDiscriminatorValue , m.SetVerifiedPublisher)
-    res["web"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateWebApplicationFromDiscriminatorValue , m.SetWeb)
+    res["addIns"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAddInFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AddInable, len(val))
+            for i, v := range val {
+                res[i] = v.(AddInable)
+            }
+            m.SetAddIns(res)
+        }
+        return nil
+    }
+    res["api"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateApiApplicationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApi(val.(ApiApplicationable))
+        }
+        return nil
+    }
+    res["appId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAppId(val)
+        }
+        return nil
+    }
+    res["applicationTemplateId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApplicationTemplateId(val)
+        }
+        return nil
+    }
+    res["appManagementPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAppManagementPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AppManagementPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(AppManagementPolicyable)
+            }
+            m.SetAppManagementPolicies(res)
+        }
+        return nil
+    }
+    res["appRoles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAppRoleFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AppRoleable, len(val))
+            for i, v := range val {
+                res[i] = v.(AppRoleable)
+            }
+            m.SetAppRoles(res)
+        }
+        return nil
+    }
+    res["certification"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateCertificationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCertification(val.(Certificationable))
+        }
+        return nil
+    }
+    res["createdDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["createdOnBehalfOf"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateDirectoryObjectFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCreatedOnBehalfOf(val.(DirectoryObjectable))
+        }
+        return nil
+    }
+    res["defaultRedirectUri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultRedirectUri(val)
+        }
+        return nil
+    }
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
+        }
+        return nil
+    }
+    res["disabledByMicrosoftStatus"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisabledByMicrosoftStatus(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["extensionProperties"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateExtensionPropertyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]ExtensionPropertyable, len(val))
+            for i, v := range val {
+                res[i] = v.(ExtensionPropertyable)
+            }
+            m.SetExtensionProperties(res)
+        }
+        return nil
+    }
+    res["federatedIdentityCredentials"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateFederatedIdentityCredentialFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]FederatedIdentityCredentialable, len(val))
+            for i, v := range val {
+                res[i] = v.(FederatedIdentityCredentialable)
+            }
+            m.SetFederatedIdentityCredentials(res)
+        }
+        return nil
+    }
+    res["groupMembershipClaims"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetGroupMembershipClaims(val)
+        }
+        return nil
+    }
+    res["homeRealmDiscoveryPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateHomeRealmDiscoveryPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]HomeRealmDiscoveryPolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(HomeRealmDiscoveryPolicyable)
+            }
+            m.SetHomeRealmDiscoveryPolicies(res)
+        }
+        return nil
+    }
+    res["identifierUris"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetIdentifierUris(res)
+        }
+        return nil
+    }
+    res["info"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateInformationalUrlFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetInfo(val.(InformationalUrlable))
+        }
+        return nil
+    }
+    res["isDeviceOnlyAuthSupported"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsDeviceOnlyAuthSupported(val)
+        }
+        return nil
+    }
+    res["isFallbackPublicClient"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIsFallbackPublicClient(val)
+        }
+        return nil
+    }
+    res["keyCredentials"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateKeyCredentialFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]KeyCredentialable, len(val))
+            for i, v := range val {
+                res[i] = v.(KeyCredentialable)
+            }
+            m.SetKeyCredentials(res)
+        }
+        return nil
+    }
+    res["logo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetByteArrayValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLogo(val)
+        }
+        return nil
+    }
+    res["notes"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotes(val)
+        }
+        return nil
+    }
+    res["oauth2RequirePostResponse"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOauth2RequirePostResponse(val)
+        }
+        return nil
+    }
+    res["optionalClaims"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateOptionalClaimsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOptionalClaims(val.(OptionalClaimsable))
+        }
+        return nil
+    }
+    res["owners"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateDirectoryObjectFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]DirectoryObjectable, len(val))
+            for i, v := range val {
+                res[i] = v.(DirectoryObjectable)
+            }
+            m.SetOwners(res)
+        }
+        return nil
+    }
+    res["parentalControlSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateParentalControlSettingsFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetParentalControlSettings(val.(ParentalControlSettingsable))
+        }
+        return nil
+    }
+    res["passwordCredentials"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreatePasswordCredentialFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]PasswordCredentialable, len(val))
+            for i, v := range val {
+                res[i] = v.(PasswordCredentialable)
+            }
+            m.SetPasswordCredentials(res)
+        }
+        return nil
+    }
+    res["publicClient"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePublicClientApplicationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublicClient(val.(PublicClientApplicationable))
+        }
+        return nil
+    }
+    res["publisherDomain"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPublisherDomain(val)
+        }
+        return nil
+    }
+    res["requestSignatureVerification"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateRequestSignatureVerificationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRequestSignatureVerification(val.(RequestSignatureVerificationable))
+        }
+        return nil
+    }
+    res["requiredResourceAccess"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateRequiredResourceAccessFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]RequiredResourceAccessable, len(val))
+            for i, v := range val {
+                res[i] = v.(RequiredResourceAccessable)
+            }
+            m.SetRequiredResourceAccess(res)
+        }
+        return nil
+    }
+    res["samlMetadataUrl"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSamlMetadataUrl(val)
+        }
+        return nil
+    }
+    res["serviceManagementReference"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServiceManagementReference(val)
+        }
+        return nil
+    }
+    res["signInAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSignInAudience(val)
+        }
+        return nil
+    }
+    res["spa"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSpaApplicationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSpa(val.(SpaApplicationable))
+        }
+        return nil
+    }
+    res["tags"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetTags(res)
+        }
+        return nil
+    }
+    res["tokenEncryptionKeyId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetUUIDValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTokenEncryptionKeyId(val)
+        }
+        return nil
+    }
+    res["tokenIssuancePolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateTokenIssuancePolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]TokenIssuancePolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(TokenIssuancePolicyable)
+            }
+            m.SetTokenIssuancePolicies(res)
+        }
+        return nil
+    }
+    res["tokenLifetimePolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateTokenLifetimePolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]TokenLifetimePolicyable, len(val))
+            for i, v := range val {
+                res[i] = v.(TokenLifetimePolicyable)
+            }
+            m.SetTokenLifetimePolicies(res)
+        }
+        return nil
+    }
+    res["verifiedPublisher"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateVerifiedPublisherFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVerifiedPublisher(val.(VerifiedPublisherable))
+        }
+        return nil
+    }
+    res["web"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateWebApplicationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetWeb(val.(WebApplicationable))
+        }
+        return nil
+    }
     return res
 }
 // GetGroupMembershipClaims gets the groupMembershipClaims property value. Configures the groups claim issued in a user or OAuth 2.0 access token that the application expects. To set this attribute, use one of the following valid string values: None, SecurityGroup (for security groups and Azure AD roles), All (this gets all of the security groups, distribution groups, and Azure AD directory roles that the signed-in user is a member of).
@@ -271,6 +724,10 @@ func (m *Application) GetPublicClient()(PublicClientApplicationable) {
 func (m *Application) GetPublisherDomain()(*string) {
     return m.publisherDomain
 }
+// GetRequestSignatureVerification gets the requestSignatureVerification property value. The requestSignatureVerification property
+func (m *Application) GetRequestSignatureVerification()(RequestSignatureVerificationable) {
+    return m.requestSignatureVerification
+}
 // GetRequiredResourceAccess gets the requiredResourceAccess property value. Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. For more information, see Limits on requested permissions per app. Not nullable. Supports $filter (eq, not, ge, le).
 func (m *Application) GetRequiredResourceAccess()([]RequiredResourceAccessable) {
     return m.requiredResourceAccess
@@ -283,7 +740,7 @@ func (m *Application) GetSamlMetadataUrl()(*string) {
 func (m *Application) GetServiceManagementReference()(*string) {
     return m.serviceManagementReference
 }
-// GetSignInAudience gets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+// GetSignInAudience gets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
 func (m *Application) GetSignInAudience()(*string) {
     return m.signInAudience
 }
@@ -296,7 +753,7 @@ func (m *Application) GetTags()([]string) {
     return m.tags
 }
 // GetTokenEncryptionKeyId gets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-func (m *Application) GetTokenEncryptionKeyId()(*string) {
+func (m *Application) GetTokenEncryptionKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID) {
     return m.tokenEncryptionKeyId
 }
 // GetTokenIssuancePolicies gets the tokenIssuancePolicies property value. The tokenIssuancePolicies property
@@ -322,7 +779,10 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         return err
     }
     if m.GetAddIns() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetAddIns())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAddIns()))
+        for i, v := range m.GetAddIns() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("addIns", cast)
         if err != nil {
             return err
@@ -346,8 +806,21 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
             return err
         }
     }
+    if m.GetAppManagementPolicies() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppManagementPolicies()))
+        for i, v := range m.GetAppManagementPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
+        err = writer.WriteCollectionOfObjectValues("appManagementPolicies", cast)
+        if err != nil {
+            return err
+        }
+    }
     if m.GetAppRoles() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetAppRoles())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppRoles()))
+        for i, v := range m.GetAppRoles() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("appRoles", cast)
         if err != nil {
             return err
@@ -396,14 +869,20 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetExtensionProperties() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetExtensionProperties())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensionProperties()))
+        for i, v := range m.GetExtensionProperties() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("extensionProperties", cast)
         if err != nil {
             return err
         }
     }
     if m.GetFederatedIdentityCredentials() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetFederatedIdentityCredentials())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFederatedIdentityCredentials()))
+        for i, v := range m.GetFederatedIdentityCredentials() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("federatedIdentityCredentials", cast)
         if err != nil {
             return err
@@ -416,7 +895,10 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetHomeRealmDiscoveryPolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetHomeRealmDiscoveryPolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHomeRealmDiscoveryPolicies()))
+        for i, v := range m.GetHomeRealmDiscoveryPolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("homeRealmDiscoveryPolicies", cast)
         if err != nil {
             return err
@@ -447,7 +929,10 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetKeyCredentials() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetKeyCredentials())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetKeyCredentials()))
+        for i, v := range m.GetKeyCredentials() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("keyCredentials", cast)
         if err != nil {
             return err
@@ -478,7 +963,10 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetOwners() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetOwners())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOwners()))
+        for i, v := range m.GetOwners() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("owners", cast)
         if err != nil {
             return err
@@ -491,7 +979,10 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     if m.GetPasswordCredentials() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetPasswordCredentials())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPasswordCredentials()))
+        for i, v := range m.GetPasswordCredentials() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("passwordCredentials", cast)
         if err != nil {
             return err
@@ -509,8 +1000,17 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
             return err
         }
     }
+    {
+        err = writer.WriteObjectValue("requestSignatureVerification", m.GetRequestSignatureVerification())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetRequiredResourceAccess() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetRequiredResourceAccess())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRequiredResourceAccess()))
+        for i, v := range m.GetRequiredResourceAccess() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("requiredResourceAccess", cast)
         if err != nil {
             return err
@@ -547,20 +1047,26 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err = writer.WriteStringValue("tokenEncryptionKeyId", m.GetTokenEncryptionKeyId())
+        err = writer.WriteUUIDValue("tokenEncryptionKeyId", m.GetTokenEncryptionKeyId())
         if err != nil {
             return err
         }
     }
     if m.GetTokenIssuancePolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetTokenIssuancePolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenIssuancePolicies()))
+        for i, v := range m.GetTokenIssuancePolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("tokenIssuancePolicies", cast)
         if err != nil {
             return err
         }
     }
     if m.GetTokenLifetimePolicies() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetTokenLifetimePolicies())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenLifetimePolicies()))
+        for i, v := range m.GetTokenLifetimePolicies() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err = writer.WriteCollectionOfObjectValues("tokenLifetimePolicies", cast)
         if err != nil {
             return err
@@ -595,6 +1101,10 @@ func (m *Application) SetAppId(value *string)() {
 // SetApplicationTemplateId sets the applicationTemplateId property value. Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne).
 func (m *Application) SetApplicationTemplateId(value *string)() {
     m.applicationTemplateId = value
+}
+// SetAppManagementPolicies sets the appManagementPolicies property value. The appManagementPolicies property
+func (m *Application) SetAppManagementPolicies(value []AppManagementPolicyable)() {
+    m.appManagementPolicies = value
 }
 // SetAppRoles sets the appRoles property value. The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
 func (m *Application) SetAppRoles(value []AppRoleable)() {
@@ -700,6 +1210,10 @@ func (m *Application) SetPublicClient(value PublicClientApplicationable)() {
 func (m *Application) SetPublisherDomain(value *string)() {
     m.publisherDomain = value
 }
+// SetRequestSignatureVerification sets the requestSignatureVerification property value. The requestSignatureVerification property
+func (m *Application) SetRequestSignatureVerification(value RequestSignatureVerificationable)() {
+    m.requestSignatureVerification = value
+}
 // SetRequiredResourceAccess sets the requiredResourceAccess property value. Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. For more information, see Limits on requested permissions per app. Not nullable. Supports $filter (eq, not, ge, le).
 func (m *Application) SetRequiredResourceAccess(value []RequiredResourceAccessable)() {
     m.requiredResourceAccess = value
@@ -712,7 +1226,7 @@ func (m *Application) SetSamlMetadataUrl(value *string)() {
 func (m *Application) SetServiceManagementReference(value *string)() {
     m.serviceManagementReference = value
 }
-// SetSignInAudience sets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. Supports $filter (eq, ne, not).
+// SetSignInAudience sets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
 func (m *Application) SetSignInAudience(value *string)() {
     m.signInAudience = value
 }
@@ -725,7 +1239,7 @@ func (m *Application) SetTags(value []string)() {
     m.tags = value
 }
 // SetTokenEncryptionKeyId sets the tokenEncryptionKeyId property value. Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
-func (m *Application) SetTokenEncryptionKeyId(value *string)() {
+func (m *Application) SetTokenEncryptionKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)() {
     m.tokenEncryptionKeyId = value
 }
 // SetTokenIssuancePolicies sets the tokenIssuancePolicies property value. The tokenIssuancePolicies property
@@ -743,4 +1257,95 @@ func (m *Application) SetVerifiedPublisher(value VerifiedPublisherable)() {
 // SetWeb sets the web property value. Specifies settings for a web application.
 func (m *Application) SetWeb(value WebApplicationable)() {
     m.web = value
+}
+// Applicationable 
+type Applicationable interface {
+    DirectoryObjectable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAddIns()([]AddInable)
+    GetApi()(ApiApplicationable)
+    GetAppId()(*string)
+    GetApplicationTemplateId()(*string)
+    GetAppManagementPolicies()([]AppManagementPolicyable)
+    GetAppRoles()([]AppRoleable)
+    GetCertification()(Certificationable)
+    GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCreatedOnBehalfOf()(DirectoryObjectable)
+    GetDefaultRedirectUri()(*string)
+    GetDescription()(*string)
+    GetDisabledByMicrosoftStatus()(*string)
+    GetDisplayName()(*string)
+    GetExtensionProperties()([]ExtensionPropertyable)
+    GetFederatedIdentityCredentials()([]FederatedIdentityCredentialable)
+    GetGroupMembershipClaims()(*string)
+    GetHomeRealmDiscoveryPolicies()([]HomeRealmDiscoveryPolicyable)
+    GetIdentifierUris()([]string)
+    GetInfo()(InformationalUrlable)
+    GetIsDeviceOnlyAuthSupported()(*bool)
+    GetIsFallbackPublicClient()(*bool)
+    GetKeyCredentials()([]KeyCredentialable)
+    GetLogo()([]byte)
+    GetNotes()(*string)
+    GetOauth2RequirePostResponse()(*bool)
+    GetOptionalClaims()(OptionalClaimsable)
+    GetOwners()([]DirectoryObjectable)
+    GetParentalControlSettings()(ParentalControlSettingsable)
+    GetPasswordCredentials()([]PasswordCredentialable)
+    GetPublicClient()(PublicClientApplicationable)
+    GetPublisherDomain()(*string)
+    GetRequestSignatureVerification()(RequestSignatureVerificationable)
+    GetRequiredResourceAccess()([]RequiredResourceAccessable)
+    GetSamlMetadataUrl()(*string)
+    GetServiceManagementReference()(*string)
+    GetSignInAudience()(*string)
+    GetSpa()(SpaApplicationable)
+    GetTags()([]string)
+    GetTokenEncryptionKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
+    GetTokenIssuancePolicies()([]TokenIssuancePolicyable)
+    GetTokenLifetimePolicies()([]TokenLifetimePolicyable)
+    GetVerifiedPublisher()(VerifiedPublisherable)
+    GetWeb()(WebApplicationable)
+    SetAddIns(value []AddInable)()
+    SetApi(value ApiApplicationable)()
+    SetAppId(value *string)()
+    SetApplicationTemplateId(value *string)()
+    SetAppManagementPolicies(value []AppManagementPolicyable)()
+    SetAppRoles(value []AppRoleable)()
+    SetCertification(value Certificationable)()
+    SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCreatedOnBehalfOf(value DirectoryObjectable)()
+    SetDefaultRedirectUri(value *string)()
+    SetDescription(value *string)()
+    SetDisabledByMicrosoftStatus(value *string)()
+    SetDisplayName(value *string)()
+    SetExtensionProperties(value []ExtensionPropertyable)()
+    SetFederatedIdentityCredentials(value []FederatedIdentityCredentialable)()
+    SetGroupMembershipClaims(value *string)()
+    SetHomeRealmDiscoveryPolicies(value []HomeRealmDiscoveryPolicyable)()
+    SetIdentifierUris(value []string)()
+    SetInfo(value InformationalUrlable)()
+    SetIsDeviceOnlyAuthSupported(value *bool)()
+    SetIsFallbackPublicClient(value *bool)()
+    SetKeyCredentials(value []KeyCredentialable)()
+    SetLogo(value []byte)()
+    SetNotes(value *string)()
+    SetOauth2RequirePostResponse(value *bool)()
+    SetOptionalClaims(value OptionalClaimsable)()
+    SetOwners(value []DirectoryObjectable)()
+    SetParentalControlSettings(value ParentalControlSettingsable)()
+    SetPasswordCredentials(value []PasswordCredentialable)()
+    SetPublicClient(value PublicClientApplicationable)()
+    SetPublisherDomain(value *string)()
+    SetRequestSignatureVerification(value RequestSignatureVerificationable)()
+    SetRequiredResourceAccess(value []RequiredResourceAccessable)()
+    SetSamlMetadataUrl(value *string)()
+    SetServiceManagementReference(value *string)()
+    SetSignInAudience(value *string)()
+    SetSpa(value SpaApplicationable)()
+    SetTags(value []string)()
+    SetTokenEncryptionKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
+    SetTokenIssuancePolicies(value []TokenIssuancePolicyable)()
+    SetTokenLifetimePolicies(value []TokenLifetimePolicyable)()
+    SetVerifiedPublisher(value VerifiedPublisherable)()
+    SetWeb(value WebApplicationable)()
 }

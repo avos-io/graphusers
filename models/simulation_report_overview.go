@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SimulationReportOverview 
 type SimulationReportOverview struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The OdataType property
     odataType *string
     // List of recommended actions for a tenant to improve its security posture based on the attack simulation and training campaign attack type.
@@ -24,7 +23,7 @@ type SimulationReportOverview struct {
 func NewSimulationReportOverview()(*SimulationReportOverview) {
     m := &SimulationReportOverview{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSimulationReportOverviewFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,17 +31,66 @@ func CreateSimulationReportOverviewFromDiscriminatorValue(parseNode i878a80d2330
     return NewSimulationReportOverview(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SimulationReportOverview) GetAdditionalData()(map[string]interface{}) {
+func (m *SimulationReportOverview) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SimulationReportOverview) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["recommendedActions"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfObjectValues(CreateRecommendedActionFromDiscriminatorValue , m.SetRecommendedActions)
-    res["resolvedTargetsCount"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt32Value(m.SetResolvedTargetsCount)
-    res["simulationEventsContent"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateSimulationEventsContentFromDiscriminatorValue , m.SetSimulationEventsContent)
-    res["trainingEventsContent"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateTrainingEventsContentFromDiscriminatorValue , m.SetTrainingEventsContent)
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["recommendedActions"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateRecommendedActionFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]RecommendedActionable, len(val))
+            for i, v := range val {
+                res[i] = v.(RecommendedActionable)
+            }
+            m.SetRecommendedActions(res)
+        }
+        return nil
+    }
+    res["resolvedTargetsCount"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetResolvedTargetsCount(val)
+        }
+        return nil
+    }
+    res["simulationEventsContent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSimulationEventsContentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSimulationEventsContent(val.(SimulationEventsContentable))
+        }
+        return nil
+    }
+    res["trainingEventsContent"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTrainingEventsContentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTrainingEventsContent(val.(TrainingEventsContentable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -74,7 +122,10 @@ func (m *SimulationReportOverview) Serialize(writer i878a80d2330e89d26896388a3f4
         }
     }
     if m.GetRecommendedActions() != nil {
-        cast := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.CollectionCast[i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable](m.GetRecommendedActions())
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRecommendedActions()))
+        for i, v := range m.GetRecommendedActions() {
+            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+        }
         err := writer.WriteCollectionOfObjectValues("recommendedActions", cast)
         if err != nil {
             return err
@@ -107,7 +158,7 @@ func (m *SimulationReportOverview) Serialize(writer i878a80d2330e89d26896388a3f4
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SimulationReportOverview) SetAdditionalData(value map[string]interface{})() {
+func (m *SimulationReportOverview) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
@@ -129,4 +180,19 @@ func (m *SimulationReportOverview) SetSimulationEventsContent(value SimulationEv
 // SetTrainingEventsContent sets the trainingEventsContent property value. Summary of assigned trainings in the attack simulation and training campaign.
 func (m *SimulationReportOverview) SetTrainingEventsContent(value TrainingEventsContentable)() {
     m.trainingEventsContent = value
+}
+// SimulationReportOverviewable 
+type SimulationReportOverviewable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetOdataType()(*string)
+    GetRecommendedActions()([]RecommendedActionable)
+    GetResolvedTargetsCount()(*int32)
+    GetSimulationEventsContent()(SimulationEventsContentable)
+    GetTrainingEventsContent()(TrainingEventsContentable)
+    SetOdataType(value *string)()
+    SetRecommendedActions(value []RecommendedActionable)()
+    SetResolvedTargetsCount(value *int32)()
+    SetSimulationEventsContent(value SimulationEventsContentable)()
+    SetTrainingEventsContent(value TrainingEventsContentable)()
 }

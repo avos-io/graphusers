@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -22,8 +21,8 @@ func NewAndroidLobApp()(*AndroidLobApp) {
     m := &AndroidLobApp{
         MobileLobApp: *NewMobileLobApp(),
     }
-    odataTypeValue := "#microsoft.graph.androidLobApp";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.androidLobApp"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateAndroidLobAppFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -33,10 +32,46 @@ func CreateAndroidLobAppFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AndroidLobApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.MobileLobApp.GetFieldDeserializers()
-    res["minimumSupportedOperatingSystem"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAndroidMinimumOperatingSystemFromDiscriminatorValue , m.SetMinimumSupportedOperatingSystem)
-    res["packageId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetPackageId)
-    res["versionCode"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVersionCode)
-    res["versionName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVersionName)
+    res["minimumSupportedOperatingSystem"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAndroidMinimumOperatingSystemFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetMinimumSupportedOperatingSystem(val.(AndroidMinimumOperatingSystemable))
+        }
+        return nil
+    }
+    res["packageId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPackageId(val)
+        }
+        return nil
+    }
+    res["versionCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVersionCode(val)
+        }
+        return nil
+    }
+    res["versionName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVersionName(val)
+        }
+        return nil
+    }
     return res
 }
 // GetMinimumSupportedOperatingSystem gets the minimumSupportedOperatingSystem property value. The value for the minimum applicable operating system.
@@ -102,4 +137,17 @@ func (m *AndroidLobApp) SetVersionCode(value *string)() {
 // SetVersionName sets the versionName property value. The version name of Android Line of Business (LoB) app.
 func (m *AndroidLobApp) SetVersionName(value *string)() {
     m.versionName = value
+}
+// AndroidLobAppable 
+type AndroidLobAppable interface {
+    MobileLobAppable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetMinimumSupportedOperatingSystem()(AndroidMinimumOperatingSystemable)
+    GetPackageId()(*string)
+    GetVersionCode()(*string)
+    GetVersionName()(*string)
+    SetMinimumSupportedOperatingSystem(value AndroidMinimumOperatingSystemable)()
+    SetPackageId(value *string)()
+    SetVersionCode(value *string)()
+    SetVersionName(value *string)()
 }

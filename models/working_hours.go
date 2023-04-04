@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // WorkingHours 
 type WorkingHours struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The days of the week on which the user works.
     daysOfWeek []DayOfWeek
     // The time of the day that the user stops working.
@@ -24,7 +23,7 @@ type WorkingHours struct {
 func NewWorkingHours()(*WorkingHours) {
     m := &WorkingHours{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateWorkingHoursFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreateWorkingHoursFromDiscriminatorValue(parseNode i878a80d2330e89d26896388
     return NewWorkingHours(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkingHours) GetAdditionalData()(map[string]interface{}) {
+func (m *WorkingHours) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDaysOfWeek gets the daysOfWeek property value. The days of the week on which the user works.
@@ -46,11 +45,60 @@ func (m *WorkingHours) GetEndTime()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c0
 // GetFieldDeserializers the deserialization information for the current model
 func (m *WorkingHours) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["daysOfWeek"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfEnumValues(ParseDayOfWeek , m.SetDaysOfWeek)
-    res["endTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeOnlyValue(m.SetEndTime)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["startTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeOnlyValue(m.SetStartTime)
-    res["timeZone"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateTimeZoneBaseFromDiscriminatorValue , m.SetTimeZone)
+    res["daysOfWeek"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfEnumValues(ParseDayOfWeek)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]DayOfWeek, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*DayOfWeek))
+            }
+            m.SetDaysOfWeek(res)
+        }
+        return nil
+    }
+    res["endTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeOnlyValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndTime(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["startTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeOnlyValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStartTime(val)
+        }
+        return nil
+    }
+    res["timeZone"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTimeZoneBaseFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTimeZone(val.(TimeZoneBaseable))
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -106,7 +154,7 @@ func (m *WorkingHours) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *WorkingHours) SetAdditionalData(value map[string]interface{})() {
+func (m *WorkingHours) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDaysOfWeek sets the daysOfWeek property value. The days of the week on which the user works.
@@ -128,4 +176,19 @@ func (m *WorkingHours) SetStartTime(value *i878a80d2330e89d26896388a3f487eef27b0
 // SetTimeZone sets the timeZone property value. The time zone to which the working hours apply.
 func (m *WorkingHours) SetTimeZone(value TimeZoneBaseable)() {
     m.timeZone = value
+}
+// WorkingHoursable 
+type WorkingHoursable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDaysOfWeek()([]DayOfWeek)
+    GetEndTime()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)
+    GetOdataType()(*string)
+    GetStartTime()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)
+    GetTimeZone()(TimeZoneBaseable)
+    SetDaysOfWeek(value []DayOfWeek)()
+    SetEndTime(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)()
+    SetOdataType(value *string)()
+    SetStartTime(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly)()
+    SetTimeZone(value TimeZoneBaseable)()
 }

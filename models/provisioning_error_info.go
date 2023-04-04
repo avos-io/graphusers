@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // ProvisioningErrorInfo 
 type ProvisioningErrorInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Additional details in case of error.
     additionalDetails *string
     // Categorizes the error code. Possible values are failure, nonServiceFailure, success, unknownFutureValue
@@ -26,7 +25,7 @@ type ProvisioningErrorInfo struct {
 func NewProvisioningErrorInfo()(*ProvisioningErrorInfo) {
     m := &ProvisioningErrorInfo{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateProvisioningErrorInfoFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -34,7 +33,7 @@ func CreateProvisioningErrorInfoFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewProvisioningErrorInfo(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ProvisioningErrorInfo) GetAdditionalData()(map[string]interface{}) {
+func (m *ProvisioningErrorInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAdditionalDetails gets the additionalDetails property value. Additional details in case of error.
@@ -52,12 +51,66 @@ func (m *ProvisioningErrorInfo) GetErrorCode()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ProvisioningErrorInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["additionalDetails"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetAdditionalDetails)
-    res["errorCategory"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseProvisioningStatusErrorCategory , m.SetErrorCategory)
-    res["errorCode"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetErrorCode)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["reason"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetReason)
-    res["recommendedAction"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetRecommendedAction)
+    res["additionalDetails"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAdditionalDetails(val)
+        }
+        return nil
+    }
+    res["errorCategory"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseProvisioningStatusErrorCategory)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetErrorCategory(val.(*ProvisioningStatusErrorCategory))
+        }
+        return nil
+    }
+    res["errorCode"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetErrorCode(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["reason"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReason(val)
+        }
+        return nil
+    }
+    res["recommendedAction"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRecommendedAction(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -120,7 +173,7 @@ func (m *ProvisioningErrorInfo) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *ProvisioningErrorInfo) SetAdditionalData(value map[string]interface{})() {
+func (m *ProvisioningErrorInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAdditionalDetails sets the additionalDetails property value. Additional details in case of error.
@@ -146,4 +199,21 @@ func (m *ProvisioningErrorInfo) SetReason(value *string)() {
 // SetRecommendedAction sets the recommendedAction property value. Provides the resolution for the corresponding error.
 func (m *ProvisioningErrorInfo) SetRecommendedAction(value *string)() {
     m.recommendedAction = value
+}
+// ProvisioningErrorInfoable 
+type ProvisioningErrorInfoable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAdditionalDetails()(*string)
+    GetErrorCategory()(*ProvisioningStatusErrorCategory)
+    GetErrorCode()(*string)
+    GetOdataType()(*string)
+    GetReason()(*string)
+    GetRecommendedAction()(*string)
+    SetAdditionalDetails(value *string)()
+    SetErrorCategory(value *ProvisioningStatusErrorCategory)()
+    SetErrorCode(value *string)()
+    SetOdataType(value *string)()
+    SetReason(value *string)()
+    SetRecommendedAction(value *string)()
 }

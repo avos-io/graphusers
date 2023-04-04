@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // DeviceGeoLocation device location
 type DeviceGeoLocation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Altitude, given in meters above sea level
     altitude *float64
     // Heading in degrees from true north
@@ -33,7 +32,7 @@ type DeviceGeoLocation struct {
 func NewDeviceGeoLocation()(*DeviceGeoLocation) {
     m := &DeviceGeoLocation{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateDeviceGeoLocationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -41,7 +40,7 @@ func CreateDeviceGeoLocationFromDiscriminatorValue(parseNode i878a80d2330e89d268
     return NewDeviceGeoLocation(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceGeoLocation) GetAdditionalData()(map[string]interface{}) {
+func (m *DeviceGeoLocation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAltitude gets the altitude property value. Altitude, given in meters above sea level
@@ -51,15 +50,96 @@ func (m *DeviceGeoLocation) GetAltitude()(*float64) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *DeviceGeoLocation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["altitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetAltitude)
-    res["heading"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetHeading)
-    res["horizontalAccuracy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetHorizontalAccuracy)
-    res["lastCollectedDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetLastCollectedDateTime)
-    res["latitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetLatitude)
-    res["longitude"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetLongitude)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["speed"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetSpeed)
-    res["verticalAccuracy"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetFloat64Value(m.SetVerticalAccuracy)
+    res["altitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAltitude(val)
+        }
+        return nil
+    }
+    res["heading"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHeading(val)
+        }
+        return nil
+    }
+    res["horizontalAccuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetHorizontalAccuracy(val)
+        }
+        return nil
+    }
+    res["lastCollectedDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastCollectedDateTime(val)
+        }
+        return nil
+    }
+    res["latitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLatitude(val)
+        }
+        return nil
+    }
+    res["longitude"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLongitude(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["speed"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSpeed(val)
+        }
+        return nil
+    }
+    res["verticalAccuracy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetFloat64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVerticalAccuracy(val)
+        }
+        return nil
+    }
     return res
 }
 // GetHeading gets the heading property value. Heading in degrees from true north
@@ -159,7 +239,7 @@ func (m *DeviceGeoLocation) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *DeviceGeoLocation) SetAdditionalData(value map[string]interface{})() {
+func (m *DeviceGeoLocation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAltitude sets the altitude property value. Altitude, given in meters above sea level
@@ -197,4 +277,27 @@ func (m *DeviceGeoLocation) SetSpeed(value *float64)() {
 // SetVerticalAccuracy sets the verticalAccuracy property value. Accuracy of altitude in meters
 func (m *DeviceGeoLocation) SetVerticalAccuracy(value *float64)() {
     m.verticalAccuracy = value
+}
+// DeviceGeoLocationable 
+type DeviceGeoLocationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAltitude()(*float64)
+    GetHeading()(*float64)
+    GetHorizontalAccuracy()(*float64)
+    GetLastCollectedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLatitude()(*float64)
+    GetLongitude()(*float64)
+    GetOdataType()(*string)
+    GetSpeed()(*float64)
+    GetVerticalAccuracy()(*float64)
+    SetAltitude(value *float64)()
+    SetHeading(value *float64)()
+    SetHorizontalAccuracy(value *float64)()
+    SetLastCollectedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLatitude(value *float64)()
+    SetLongitude(value *float64)()
+    SetOdataType(value *string)()
+    SetSpeed(value *float64)()
+    SetVerticalAccuracy(value *float64)()
 }

@@ -2,14 +2,13 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // UriClickSecurityState 
 type UriClickSecurityState struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The clickAction property
     clickAction *string
     // The clickDateTime property
@@ -29,7 +28,7 @@ type UriClickSecurityState struct {
 func NewUriClickSecurityState()(*UriClickSecurityState) {
     m := &UriClickSecurityState{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateUriClickSecurityStateFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -37,7 +36,7 @@ func CreateUriClickSecurityStateFromDiscriminatorValue(parseNode i878a80d2330e89
     return NewUriClickSecurityState(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UriClickSecurityState) GetAdditionalData()(map[string]interface{}) {
+func (m *UriClickSecurityState) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetClickAction gets the clickAction property value. The clickAction property
@@ -51,13 +50,76 @@ func (m *UriClickSecurityState) GetClickDateTime()(*i336074805fc853987abe6f7fe3a
 // GetFieldDeserializers the deserialization information for the current model
 func (m *UriClickSecurityState) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["clickAction"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetClickAction)
-    res["clickDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetClickDateTime)
-    res["id"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetId)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["sourceId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSourceId)
-    res["uriDomain"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUriDomain)
-    res["verdict"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetVerdict)
+    res["clickAction"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClickAction(val)
+        }
+        return nil
+    }
+    res["clickDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetClickDateTime(val)
+        }
+        return nil
+    }
+    res["id"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetId(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["sourceId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSourceId(val)
+        }
+        return nil
+    }
+    res["uriDomain"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUriDomain(val)
+        }
+        return nil
+    }
+    res["verdict"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetVerdict(val)
+        }
+        return nil
+    }
     return res
 }
 // GetId gets the id property value. The id property
@@ -133,7 +195,7 @@ func (m *UriClickSecurityState) Serialize(writer i878a80d2330e89d26896388a3f487e
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *UriClickSecurityState) SetAdditionalData(value map[string]interface{})() {
+func (m *UriClickSecurityState) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetClickAction sets the clickAction property value. The clickAction property
@@ -163,4 +225,23 @@ func (m *UriClickSecurityState) SetUriDomain(value *string)() {
 // SetVerdict sets the verdict property value. The verdict property
 func (m *UriClickSecurityState) SetVerdict(value *string)() {
     m.verdict = value
+}
+// UriClickSecurityStateable 
+type UriClickSecurityStateable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetClickAction()(*string)
+    GetClickDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetId()(*string)
+    GetOdataType()(*string)
+    GetSourceId()(*string)
+    GetUriDomain()(*string)
+    GetVerdict()(*string)
+    SetClickAction(value *string)()
+    SetClickDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetId(value *string)()
+    SetOdataType(value *string)()
+    SetSourceId(value *string)()
+    SetUriDomain(value *string)()
+    SetVerdict(value *string)()
 }

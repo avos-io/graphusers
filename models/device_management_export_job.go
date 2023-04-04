@@ -2,7 +2,6 @@ package models
 
 import (
     i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e "time"
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -22,7 +21,7 @@ type DeviceManagementExportJob struct {
     // Time that the exported report was requested
     requestDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Columns selected from the report
-    select_escaped []string
+    selectEscaped []string
     // A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
     snapshotId *string
     // Possible statuses associated with a generated report
@@ -48,16 +47,110 @@ func (m *DeviceManagementExportJob) GetExpirationDateTime()(*i336074805fc853987a
 // GetFieldDeserializers the deserialization information for the current model
 func (m *DeviceManagementExportJob) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
-    res["expirationDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetExpirationDateTime)
-    res["filter"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetFilter)
-    res["format"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDeviceManagementReportFileFormat , m.SetFormat)
-    res["localizationType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDeviceManagementExportJobLocalizationType , m.SetLocalizationType)
-    res["reportName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetReportName)
-    res["requestDateTime"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetTimeValue(m.SetRequestDateTime)
-    res["select"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetCollectionOfPrimitiveValues("string" , m.SetSelect)
-    res["snapshotId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetSnapshotId)
-    res["status"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseDeviceManagementReportStatus , m.SetStatus)
-    res["url"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUrl)
+    res["expirationDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExpirationDateTime(val)
+        }
+        return nil
+    }
+    res["filter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFilter(val)
+        }
+        return nil
+    }
+    res["format"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDeviceManagementReportFileFormat)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFormat(val.(*DeviceManagementReportFileFormat))
+        }
+        return nil
+    }
+    res["localizationType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDeviceManagementExportJobLocalizationType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLocalizationType(val.(*DeviceManagementExportJobLocalizationType))
+        }
+        return nil
+    }
+    res["reportName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetReportName(val)
+        }
+        return nil
+    }
+    res["requestDateTime"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetTimeValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRequestDateTime(val)
+        }
+        return nil
+    }
+    res["select"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                res[i] = *(v.(*string))
+            }
+            m.SetSelect(res)
+        }
+        return nil
+    }
+    res["snapshotId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSnapshotId(val)
+        }
+        return nil
+    }
+    res["status"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseDeviceManagementReportStatus)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStatus(val.(*DeviceManagementReportStatus))
+        }
+        return nil
+    }
+    res["url"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUrl(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFilter gets the filter property value. Filters applied on the report
@@ -82,7 +175,7 @@ func (m *DeviceManagementExportJob) GetRequestDateTime()(*i336074805fc853987abe6
 }
 // GetSelect gets the select property value. Columns selected from the report
 func (m *DeviceManagementExportJob) GetSelect()([]string) {
-    return m.select_escaped
+    return m.selectEscaped
 }
 // GetSnapshotId gets the snapshotId property value. A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
 func (m *DeviceManagementExportJob) GetSnapshotId()(*string) {
@@ -193,7 +286,7 @@ func (m *DeviceManagementExportJob) SetRequestDateTime(value *i336074805fc853987
 }
 // SetSelect sets the select property value. Columns selected from the report
 func (m *DeviceManagementExportJob) SetSelect(value []string)() {
-    m.select_escaped = value
+    m.selectEscaped = value
 }
 // SetSnapshotId sets the snapshotId property value. A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
 func (m *DeviceManagementExportJob) SetSnapshotId(value *string)() {
@@ -206,4 +299,29 @@ func (m *DeviceManagementExportJob) SetStatus(value *DeviceManagementReportStatu
 // SetUrl sets the url property value. Temporary location of the exported report
 func (m *DeviceManagementExportJob) SetUrl(value *string)() {
     m.url = value
+}
+// DeviceManagementExportJobable 
+type DeviceManagementExportJobable interface {
+    Entityable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetFilter()(*string)
+    GetFormat()(*DeviceManagementReportFileFormat)
+    GetLocalizationType()(*DeviceManagementExportJobLocalizationType)
+    GetReportName()(*string)
+    GetRequestDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetSelect()([]string)
+    GetSnapshotId()(*string)
+    GetStatus()(*DeviceManagementReportStatus)
+    GetUrl()(*string)
+    SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetFilter(value *string)()
+    SetFormat(value *DeviceManagementReportFileFormat)()
+    SetLocalizationType(value *DeviceManagementExportJobLocalizationType)()
+    SetReportName(value *string)()
+    SetRequestDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetSelect(value []string)()
+    SetSnapshotId(value *string)()
+    SetStatus(value *DeviceManagementReportStatus)()
+    SetUrl(value *string)()
 }

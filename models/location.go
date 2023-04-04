@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Location 
 type Location struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // The street address of the location.
     address PhysicalAddressable
     // The geographic coordinates and elevation of the location.
@@ -32,7 +31,7 @@ type Location struct {
 func NewLocation()(*Location) {
     m := &Location{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateLocationFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -58,7 +57,7 @@ func CreateLocationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f4
     return NewLocation(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Location) GetAdditionalData()(map[string]interface{}) {
+func (m *Location) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetAddress gets the address property value. The street address of the location.
@@ -76,15 +75,96 @@ func (m *Location) GetDisplayName()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Location) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["address"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreatePhysicalAddressFromDiscriminatorValue , m.SetAddress)
-    res["coordinates"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateOutlookGeoCoordinatesFromDiscriminatorValue , m.SetCoordinates)
-    res["displayName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDisplayName)
-    res["locationEmailAddress"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLocationEmailAddress)
-    res["locationType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseLocationType , m.SetLocationType)
-    res["locationUri"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetLocationUri)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["uniqueId"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetUniqueId)
-    res["uniqueIdType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetEnumValue(ParseLocationUniqueIdType , m.SetUniqueIdType)
+    res["address"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePhysicalAddressFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAddress(val.(PhysicalAddressable))
+        }
+        return nil
+    }
+    res["coordinates"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateOutlookGeoCoordinatesFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCoordinates(val.(OutlookGeoCoordinatesable))
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
+        }
+        return nil
+    }
+    res["locationEmailAddress"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLocationEmailAddress(val)
+        }
+        return nil
+    }
+    res["locationType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseLocationType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLocationType(val.(*LocationType))
+        }
+        return nil
+    }
+    res["locationUri"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLocationUri(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["uniqueId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUniqueId(val)
+        }
+        return nil
+    }
+    res["uniqueIdType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseLocationUniqueIdType)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUniqueIdType(val.(*LocationUniqueIdType))
+        }
+        return nil
+    }
     return res
 }
 // GetLocationEmailAddress gets the locationEmailAddress property value. Optional email address of the location.
@@ -178,7 +258,7 @@ func (m *Location) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Location) SetAdditionalData(value map[string]interface{})() {
+func (m *Location) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetAddress sets the address property value. The street address of the location.
@@ -216,4 +296,27 @@ func (m *Location) SetUniqueId(value *string)() {
 // SetUniqueIdType sets the uniqueIdType property value. For internal use only.
 func (m *Location) SetUniqueIdType(value *LocationUniqueIdType)() {
     m.uniqueIdType = value
+}
+// Locationable 
+type Locationable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAddress()(PhysicalAddressable)
+    GetCoordinates()(OutlookGeoCoordinatesable)
+    GetDisplayName()(*string)
+    GetLocationEmailAddress()(*string)
+    GetLocationType()(*LocationType)
+    GetLocationUri()(*string)
+    GetOdataType()(*string)
+    GetUniqueId()(*string)
+    GetUniqueIdType()(*LocationUniqueIdType)
+    SetAddress(value PhysicalAddressable)()
+    SetCoordinates(value OutlookGeoCoordinatesable)()
+    SetDisplayName(value *string)()
+    SetLocationEmailAddress(value *string)()
+    SetLocationType(value *LocationType)()
+    SetLocationUri(value *string)()
+    SetOdataType(value *string)()
+    SetUniqueId(value *string)()
+    SetUniqueIdType(value *LocationUniqueIdType)()
 }

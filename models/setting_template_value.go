@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // SettingTemplateValue 
 type SettingTemplateValue struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Default value for the setting.
     defaultValue *string
     // Description of the setting.
@@ -18,13 +17,13 @@ type SettingTemplateValue struct {
     // The OdataType property
     odataType *string
     // Type of the setting.
-    type_escaped *string
+    typeEscaped *string
 }
 // NewSettingTemplateValue instantiates a new settingTemplateValue and sets the default values.
 func NewSettingTemplateValue()(*SettingTemplateValue) {
     m := &SettingTemplateValue{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateSettingTemplateValueFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -32,7 +31,7 @@ func CreateSettingTemplateValueFromDiscriminatorValue(parseNode i878a80d2330e89d
     return NewSettingTemplateValue(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SettingTemplateValue) GetAdditionalData()(map[string]interface{}) {
+func (m *SettingTemplateValue) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDefaultValue gets the defaultValue property value. Default value for the setting.
@@ -46,11 +45,56 @@ func (m *SettingTemplateValue) GetDescription()(*string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SettingTemplateValue) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["defaultValue"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDefaultValue)
-    res["description"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetDescription)
-    res["name"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetName)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetType)
+    res["defaultValue"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDefaultValue(val)
+        }
+        return nil
+    }
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
+        }
+        return nil
+    }
+    res["name"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetName(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetName gets the name property value. Name of the setting.
@@ -63,7 +107,7 @@ func (m *SettingTemplateValue) GetOdataType()(*string) {
 }
 // GetType gets the type property value. Type of the setting.
 func (m *SettingTemplateValue) GetType()(*string) {
-    return m.type_escaped
+    return m.typeEscaped
 }
 // Serialize serializes information the current object
 func (m *SettingTemplateValue) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -106,7 +150,7 @@ func (m *SettingTemplateValue) Serialize(writer i878a80d2330e89d26896388a3f487ee
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *SettingTemplateValue) SetAdditionalData(value map[string]interface{})() {
+func (m *SettingTemplateValue) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDefaultValue sets the defaultValue property value. Default value for the setting.
@@ -127,5 +171,20 @@ func (m *SettingTemplateValue) SetOdataType(value *string)() {
 }
 // SetType sets the type property value. Type of the setting.
 func (m *SettingTemplateValue) SetType(value *string)() {
-    m.type_escaped = value
+    m.typeEscaped = value
+}
+// SettingTemplateValueable 
+type SettingTemplateValueable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDefaultValue()(*string)
+    GetDescription()(*string)
+    GetName()(*string)
+    GetOdataType()(*string)
+    GetType()(*string)
+    SetDefaultValue(value *string)()
+    SetDescription(value *string)()
+    SetName(value *string)()
+    SetOdataType(value *string)()
+    SetType(value *string)()
 }

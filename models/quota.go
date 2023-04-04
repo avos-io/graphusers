@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // Quota 
 type Quota struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Total space consumed by files in the recycle bin, in bytes. Read-only.
     deleted *int64
     // The OdataType property
@@ -28,7 +27,7 @@ type Quota struct {
 func NewQuota()(*Quota) {
     m := &Quota{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateQuotaFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -36,7 +35,7 @@ func CreateQuotaFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
     return NewQuota(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Quota) GetAdditionalData()(map[string]interface{}) {
+func (m *Quota) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetDeleted gets the deleted property value. Total space consumed by files in the recycle bin, in bytes. Read-only.
@@ -46,13 +45,76 @@ func (m *Quota) GetDeleted()(*int64) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Quota) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["deleted"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetDeleted)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
-    res["remaining"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetRemaining)
-    res["state"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetState)
-    res["storagePlanInformation"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateStoragePlanInformationFromDiscriminatorValue , m.SetStoragePlanInformation)
-    res["total"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetTotal)
-    res["used"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetInt64Value(m.SetUsed)
+    res["deleted"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDeleted(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
+    res["remaining"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRemaining(val)
+        }
+        return nil
+    }
+    res["state"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetState(val)
+        }
+        return nil
+    }
+    res["storagePlanInformation"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateStoragePlanInformationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetStoragePlanInformation(val.(StoragePlanInformationable))
+        }
+        return nil
+    }
+    res["total"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTotal(val)
+        }
+        return nil
+    }
+    res["used"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt64Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetUsed(val)
+        }
+        return nil
+    }
     return res
 }
 // GetOdataType gets the @odata.type property value. The OdataType property
@@ -132,7 +194,7 @@ func (m *Quota) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *Quota) SetAdditionalData(value map[string]interface{})() {
+func (m *Quota) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetDeleted sets the deleted property value. Total space consumed by files in the recycle bin, in bytes. Read-only.
@@ -162,4 +224,23 @@ func (m *Quota) SetTotal(value *int64)() {
 // SetUsed sets the used property value. Total space used, in bytes. Read-only.
 func (m *Quota) SetUsed(value *int64)() {
     m.used = value
+}
+// Quotaable 
+type Quotaable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetDeleted()(*int64)
+    GetOdataType()(*string)
+    GetRemaining()(*int64)
+    GetState()(*string)
+    GetStoragePlanInformation()(StoragePlanInformationable)
+    GetTotal()(*int64)
+    GetUsed()(*int64)
+    SetDeleted(value *int64)()
+    SetOdataType(value *string)()
+    SetRemaining(value *int64)()
+    SetState(value *string)()
+    SetStoragePlanInformation(value StoragePlanInformationable)()
+    SetTotal(value *int64)()
+    SetUsed(value *int64)()
 }

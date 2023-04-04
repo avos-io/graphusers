@@ -1,7 +1,6 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
@@ -18,8 +17,8 @@ func NewOmaSettingStringXml()(*OmaSettingStringXml) {
     m := &OmaSettingStringXml{
         OmaSetting: *NewOmaSetting(),
     }
-    odataTypeValue := "#microsoft.graph.omaSettingStringXml";
-    m.SetOdataType(&odataTypeValue);
+    odataTypeValue := "#microsoft.graph.omaSettingStringXml"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateOmaSettingStringXmlFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -29,8 +28,26 @@ func CreateOmaSettingStringXmlFromDiscriminatorValue(parseNode i878a80d2330e89d2
 // GetFieldDeserializers the deserialization information for the current model
 func (m *OmaSettingStringXml) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.OmaSetting.GetFieldDeserializers()
-    res["fileName"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetFileName)
-    res["value"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetByteArrayValue(m.SetValue)
+    res["fileName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetFileName(val)
+        }
+        return nil
+    }
+    res["value"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetByteArrayValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetValue(val)
+        }
+        return nil
+    }
     return res
 }
 // GetFileName gets the fileName property value. File name associated with the Value property (.xml).
@@ -68,4 +85,13 @@ func (m *OmaSettingStringXml) SetFileName(value *string)() {
 // SetValue sets the value property value. Value. (UTF8 encoded byte array)
 func (m *OmaSettingStringXml) SetValue(value []byte)() {
     m.value = value
+}
+// OmaSettingStringXmlable 
+type OmaSettingStringXmlable interface {
+    OmaSettingable
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetFileName()(*string)
+    GetValue()([]byte)
+    SetFileName(value *string)()
+    SetValue(value []byte)()
 }

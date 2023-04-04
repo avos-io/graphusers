@@ -1,14 +1,13 @@
 package models
 
 import (
-    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f "github.com/microsoft/kiota-abstractions-go"
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
 // AccessReviewNotificationRecipientItem 
 type AccessReviewNotificationRecipientItem struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-    additionalData map[string]interface{}
+    additionalData map[string]any
     // Determines the recipient of the notification email.
     notificationRecipientScope AccessReviewNotificationRecipientScopeable
     // Indicates the type of access review email to be sent. Supported template type is CompletedAdditionalRecipients, which sends review completion notifications to the recipients.
@@ -20,7 +19,7 @@ type AccessReviewNotificationRecipientItem struct {
 func NewAccessReviewNotificationRecipientItem()(*AccessReviewNotificationRecipientItem) {
     m := &AccessReviewNotificationRecipientItem{
     }
-    m.SetAdditionalData(make(map[string]interface{}));
+    m.SetAdditionalData(make(map[string]any))
     return m
 }
 // CreateAccessReviewNotificationRecipientItemFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -28,15 +27,42 @@ func CreateAccessReviewNotificationRecipientItemFromDiscriminatorValue(parseNode
     return NewAccessReviewNotificationRecipientItem(), nil
 }
 // GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessReviewNotificationRecipientItem) GetAdditionalData()(map[string]interface{}) {
+func (m *AccessReviewNotificationRecipientItem) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessReviewNotificationRecipientItem) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
-    res["notificationRecipientScope"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetObjectValue(CreateAccessReviewNotificationRecipientScopeFromDiscriminatorValue , m.SetNotificationRecipientScope)
-    res["notificationTemplateType"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetNotificationTemplateType)
-    res["@odata.type"] = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.SetStringValue(m.SetOdataType)
+    res["notificationRecipientScope"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccessReviewNotificationRecipientScopeFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotificationRecipientScope(val.(AccessReviewNotificationRecipientScopeable))
+        }
+        return nil
+    }
+    res["notificationTemplateType"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetNotificationTemplateType(val)
+        }
+        return nil
+    }
+    res["@odata.type"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOdataType(val)
+        }
+        return nil
+    }
     return res
 }
 // GetNotificationRecipientScope gets the notificationRecipientScope property value. Determines the recipient of the notification email.
@@ -80,7 +106,7 @@ func (m *AccessReviewNotificationRecipientItem) Serialize(writer i878a80d2330e89
     return nil
 }
 // SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-func (m *AccessReviewNotificationRecipientItem) SetAdditionalData(value map[string]interface{})() {
+func (m *AccessReviewNotificationRecipientItem) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
 // SetNotificationRecipientScope sets the notificationRecipientScope property value. Determines the recipient of the notification email.
@@ -94,4 +120,15 @@ func (m *AccessReviewNotificationRecipientItem) SetNotificationTemplateType(valu
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AccessReviewNotificationRecipientItem) SetOdataType(value *string)() {
     m.odataType = value
+}
+// AccessReviewNotificationRecipientItemable 
+type AccessReviewNotificationRecipientItemable interface {
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
+    i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetNotificationRecipientScope()(AccessReviewNotificationRecipientScopeable)
+    GetNotificationTemplateType()(*string)
+    GetOdataType()(*string)
+    SetNotificationRecipientScope(value AccessReviewNotificationRecipientScopeable)()
+    SetNotificationTemplateType(value *string)()
+    SetOdataType(value *string)()
 }
