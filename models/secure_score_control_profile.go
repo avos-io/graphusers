@@ -36,7 +36,7 @@ type SecureScoreControlProfile struct {
     remediationImpact *string
     // Service that owns the control (Exchange, Sharepoint, Azure AD).
     service *string
-    // List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,
+    // List of threats the control mitigates (accountBreach, dataDeletion, dataExfiltration, dataSpillage,
     threats []string
     // The tier property
     tier *string
@@ -47,7 +47,7 @@ type SecureScoreControlProfile struct {
     // The vendorInformation property
     vendorInformation SecurityVendorInformationable
 }
-// NewSecureScoreControlProfile instantiates a new SecureScoreControlProfile and sets the default values.
+// NewSecureScoreControlProfile instantiates a new secureScoreControlProfile and sets the default values.
 func NewSecureScoreControlProfile()(*SecureScoreControlProfile) {
     m := &SecureScoreControlProfile{
         Entity: *NewEntity(),
@@ -127,7 +127,9 @@ func (m *SecureScoreControlProfile) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]ComplianceInformationable, len(val))
             for i, v := range val {
-                res[i] = v.(ComplianceInformationable)
+                if v != nil {
+                    res[i] = v.(ComplianceInformationable)
+                }
             }
             m.SetComplianceInformation(res)
         }
@@ -151,7 +153,9 @@ func (m *SecureScoreControlProfile) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]SecureScoreControlStateUpdateable, len(val))
             for i, v := range val {
-                res[i] = v.(SecureScoreControlStateUpdateable)
+                if v != nil {
+                    res[i] = v.(SecureScoreControlStateUpdateable)
+                }
             }
             m.SetControlStateUpdates(res)
         }
@@ -245,7 +249,9 @@ func (m *SecureScoreControlProfile) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetThreats(res)
         }
@@ -321,7 +327,7 @@ func (m *SecureScoreControlProfile) GetRemediationImpact()(*string) {
 func (m *SecureScoreControlProfile) GetService()(*string) {
     return m.service
 }
-// GetThreats gets the threats property value. List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,
+// GetThreats gets the threats property value. List of threats the control mitigates (accountBreach, dataDeletion, dataExfiltration, dataSpillage,
 func (m *SecureScoreControlProfile) GetThreats()([]string) {
     return m.threats
 }
@@ -368,7 +374,9 @@ func (m *SecureScoreControlProfile) Serialize(writer i878a80d2330e89d26896388a3f
     if m.GetComplianceInformation() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetComplianceInformation()))
         for i, v := range m.GetComplianceInformation() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("complianceInformation", cast)
         if err != nil {
@@ -384,7 +392,9 @@ func (m *SecureScoreControlProfile) Serialize(writer i878a80d2330e89d26896388a3f
     if m.GetControlStateUpdates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetControlStateUpdates()))
         for i, v := range m.GetControlStateUpdates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("controlStateUpdates", cast)
         if err != nil {
@@ -527,7 +537,7 @@ func (m *SecureScoreControlProfile) SetRemediationImpact(value *string)() {
 func (m *SecureScoreControlProfile) SetService(value *string)() {
     m.service = value
 }
-// SetThreats sets the threats property value. List of threats the control mitigates (accountBreach,dataDeletion,dataExfiltration,dataSpillage,
+// SetThreats sets the threats property value. List of threats the control mitigates (accountBreach, dataDeletion, dataExfiltration, dataSpillage,
 func (m *SecureScoreControlProfile) SetThreats(value []string)() {
     m.threats = value
 }

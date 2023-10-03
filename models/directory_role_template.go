@@ -12,7 +12,7 @@ type DirectoryRoleTemplate struct {
     // The display name to set for the directory role. Read-only.
     displayName *string
 }
-// NewDirectoryRoleTemplate instantiates a new DirectoryRoleTemplate and sets the default values.
+// NewDirectoryRoleTemplate instantiates a new directoryRoleTemplate and sets the default values.
 func NewDirectoryRoleTemplate()(*DirectoryRoleTemplate) {
     m := &DirectoryRoleTemplate{
         DirectoryObject: *NewDirectoryObject(),

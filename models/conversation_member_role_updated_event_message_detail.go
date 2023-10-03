@@ -14,7 +14,7 @@ type ConversationMemberRoleUpdatedEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewConversationMemberRoleUpdatedEventMessageDetail instantiates a new ConversationMemberRoleUpdatedEventMessageDetail and sets the default values.
+// NewConversationMemberRoleUpdatedEventMessageDetail instantiates a new conversationMemberRoleUpdatedEventMessageDetail and sets the default values.
 func NewConversationMemberRoleUpdatedEventMessageDetail()(*ConversationMemberRoleUpdatedEventMessageDetail) {
     m := &ConversationMemberRoleUpdatedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),
@@ -46,7 +46,9 @@ func (m *ConversationMemberRoleUpdatedEventMessageDetail) GetFieldDeserializers(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetConversationMemberRoles(res)
         }

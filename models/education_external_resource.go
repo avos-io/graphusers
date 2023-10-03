@@ -10,7 +10,7 @@ type EducationExternalResource struct {
     // Location of the resource. Required
     webUrl *string
 }
-// NewEducationExternalResource instantiates a new EducationExternalResource and sets the default values.
+// NewEducationExternalResource instantiates a new educationExternalResource and sets the default values.
 func NewEducationExternalResource()(*EducationExternalResource) {
     m := &EducationExternalResource{
         EducationResource: *NewEducationResource(),

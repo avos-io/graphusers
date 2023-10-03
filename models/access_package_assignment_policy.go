@@ -8,7 +8,7 @@ import (
 // AccessPackageAssignmentPolicy 
 type AccessPackageAssignmentPolicy struct {
     Entity
-    // Access package containing this policy. Read-only.
+    // Access package containing this policy. Read-only.  Supports $expand.
     accessPackage AccessPackageable
     // Principals that can be assigned the access package through this policy. The possible values are: notSpecified, specificDirectoryUsers, specificConnectedOrganizationUsers, specificDirectoryServicePrincipals, allMemberUsers, allDirectoryUsers, allDirectoryServicePrincipals, allConfiguredConnectedOrganizationUsers, allExternalUsers, unknownFutureValue.
     allowedTargetScope *AllowedTargetScope
@@ -18,6 +18,8 @@ type AccessPackageAssignmentPolicy struct {
     catalog AccessPackageCatalogable
     // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+    customExtensionStageSettings []CustomExtensionStageSettingable
     // The description of the policy.
     description *string
     // The display name of the policy.
@@ -48,7 +50,7 @@ func NewAccessPackageAssignmentPolicy()(*AccessPackageAssignmentPolicy) {
 func CreateAccessPackageAssignmentPolicyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAccessPackageAssignmentPolicy(), nil
 }
-// GetAccessPackage gets the accessPackage property value. Access package containing this policy. Read-only.
+// GetAccessPackage gets the accessPackage property value. Access package containing this policy. Read-only.  Supports $expand.
 func (m *AccessPackageAssignmentPolicy) GetAccessPackage()(AccessPackageable) {
     return m.accessPackage
 }
@@ -67,6 +69,10 @@ func (m *AccessPackageAssignmentPolicy) GetCatalog()(AccessPackageCatalogable) {
 // GetCreatedDateTime gets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AccessPackageAssignmentPolicy) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
+}
+// GetCustomExtensionStageSettings gets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+func (m *AccessPackageAssignmentPolicy) GetCustomExtensionStageSettings()([]CustomExtensionStageSettingable) {
+    return m.customExtensionStageSettings
 }
 // GetDescription gets the description property value. The description of the policy.
 func (m *AccessPackageAssignmentPolicy) GetDescription()(*string) {
@@ -133,6 +139,22 @@ func (m *AccessPackageAssignmentPolicy) GetFieldDeserializers()(map[string]func(
         }
         return nil
     }
+    res["customExtensionStageSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateCustomExtensionStageSettingFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]CustomExtensionStageSettingable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(CustomExtensionStageSettingable)
+                }
+            }
+            m.SetCustomExtensionStageSettings(res)
+        }
+        return nil
+    }
     res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -181,7 +203,9 @@ func (m *AccessPackageAssignmentPolicy) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]AccessPackageQuestionable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessPackageQuestionable)
+                if v != nil {
+                    res[i] = v.(AccessPackageQuestionable)
+                }
             }
             m.SetQuestions(res)
         }
@@ -225,7 +249,9 @@ func (m *AccessPackageAssignmentPolicy) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]SubjectSetable, len(val))
             for i, v := range val {
-                res[i] = v.(SubjectSetable)
+                if v != nil {
+                    res[i] = v.(SubjectSetable)
+                }
             }
             m.SetSpecificAllowedTargets(res)
         }
@@ -294,6 +320,18 @@ func (m *AccessPackageAssignmentPolicy) Serialize(writer i878a80d2330e89d2689638
             return err
         }
     }
+    if m.GetCustomExtensionStageSettings() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCustomExtensionStageSettings()))
+        for i, v := range m.GetCustomExtensionStageSettings() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("customExtensionStageSettings", cast)
+        if err != nil {
+            return err
+        }
+    }
     {
         err = writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
@@ -321,7 +359,9 @@ func (m *AccessPackageAssignmentPolicy) Serialize(writer i878a80d2330e89d2689638
     if m.GetQuestions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetQuestions()))
         for i, v := range m.GetQuestions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("questions", cast)
         if err != nil {
@@ -349,7 +389,9 @@ func (m *AccessPackageAssignmentPolicy) Serialize(writer i878a80d2330e89d2689638
     if m.GetSpecificAllowedTargets() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSpecificAllowedTargets()))
         for i, v := range m.GetSpecificAllowedTargets() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("specificAllowedTargets", cast)
         if err != nil {
@@ -358,7 +400,7 @@ func (m *AccessPackageAssignmentPolicy) Serialize(writer i878a80d2330e89d2689638
     }
     return nil
 }
-// SetAccessPackage sets the accessPackage property value. Access package containing this policy. Read-only.
+// SetAccessPackage sets the accessPackage property value. Access package containing this policy. Read-only.  Supports $expand.
 func (m *AccessPackageAssignmentPolicy) SetAccessPackage(value AccessPackageable)() {
     m.accessPackage = value
 }
@@ -377,6 +419,10 @@ func (m *AccessPackageAssignmentPolicy) SetCatalog(value AccessPackageCatalogabl
 // SetCreatedDateTime sets the createdDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AccessPackageAssignmentPolicy) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
+}
+// SetCustomExtensionStageSettings sets the customExtensionStageSettings property value. The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+func (m *AccessPackageAssignmentPolicy) SetCustomExtensionStageSettings(value []CustomExtensionStageSettingable)() {
+    m.customExtensionStageSettings = value
 }
 // SetDescription sets the description property value. The description of the policy.
 func (m *AccessPackageAssignmentPolicy) SetDescription(value *string)() {
@@ -423,6 +469,7 @@ type AccessPackageAssignmentPolicyable interface {
     GetAutomaticRequestSettings()(AccessPackageAutomaticRequestSettingsable)
     GetCatalog()(AccessPackageCatalogable)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCustomExtensionStageSettings()([]CustomExtensionStageSettingable)
     GetDescription()(*string)
     GetDisplayName()(*string)
     GetExpiration()(ExpirationPatternable)
@@ -437,6 +484,7 @@ type AccessPackageAssignmentPolicyable interface {
     SetAutomaticRequestSettings(value AccessPackageAutomaticRequestSettingsable)()
     SetCatalog(value AccessPackageCatalogable)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCustomExtensionStageSettings(value []CustomExtensionStageSettingable)()
     SetDescription(value *string)()
     SetDisplayName(value *string)()
     SetExpiration(value ExpirationPatternable)()

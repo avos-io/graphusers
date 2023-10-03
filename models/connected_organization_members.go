@@ -12,7 +12,7 @@ type ConnectedOrganizationMembers struct {
     // The name of the connected organization.
     description *string
 }
-// NewConnectedOrganizationMembers instantiates a new ConnectedOrganizationMembers and sets the default values.
+// NewConnectedOrganizationMembers instantiates a new connectedOrganizationMembers and sets the default values.
 func NewConnectedOrganizationMembers()(*ConnectedOrganizationMembers) {
     m := &ConnectedOrganizationMembers{
         SubjectSet: *NewSubjectSet(),

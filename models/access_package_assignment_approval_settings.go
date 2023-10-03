@@ -8,9 +8,9 @@ import (
 type AccessPackageAssignmentApprovalSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // If false, then approval is not required for new requests in this policy.
+    // If false, then approval isn't required for new requests in this policy.
     isApprovalRequiredForAdd *bool
-    // If false, then approval is not required for updates to requests in this policy.
+    // If false, then approval isn't required for updates to requests in this policy.
     isApprovalRequiredForUpdate *bool
     // The OdataType property
     odataType *string
@@ -73,7 +73,9 @@ func (m *AccessPackageAssignmentApprovalSettings) GetFieldDeserializers()(map[st
         if val != nil {
             res := make([]AccessPackageApprovalStageable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessPackageApprovalStageable)
+                if v != nil {
+                    res[i] = v.(AccessPackageApprovalStageable)
+                }
             }
             m.SetStages(res)
         }
@@ -81,11 +83,11 @@ func (m *AccessPackageAssignmentApprovalSettings) GetFieldDeserializers()(map[st
     }
     return res
 }
-// GetIsApprovalRequiredForAdd gets the isApprovalRequiredForAdd property value. If false, then approval is not required for new requests in this policy.
+// GetIsApprovalRequiredForAdd gets the isApprovalRequiredForAdd property value. If false, then approval isn't required for new requests in this policy.
 func (m *AccessPackageAssignmentApprovalSettings) GetIsApprovalRequiredForAdd()(*bool) {
     return m.isApprovalRequiredForAdd
 }
-// GetIsApprovalRequiredForUpdate gets the isApprovalRequiredForUpdate property value. If false, then approval is not required for updates to requests in this policy.
+// GetIsApprovalRequiredForUpdate gets the isApprovalRequiredForUpdate property value. If false, then approval isn't required for updates to requests in this policy.
 func (m *AccessPackageAssignmentApprovalSettings) GetIsApprovalRequiredForUpdate()(*bool) {
     return m.isApprovalRequiredForUpdate
 }
@@ -120,7 +122,9 @@ func (m *AccessPackageAssignmentApprovalSettings) Serialize(writer i878a80d2330e
     if m.GetStages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetStages()))
         for i, v := range m.GetStages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("stages", cast)
         if err != nil {
@@ -139,11 +143,11 @@ func (m *AccessPackageAssignmentApprovalSettings) Serialize(writer i878a80d2330e
 func (m *AccessPackageAssignmentApprovalSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetIsApprovalRequiredForAdd sets the isApprovalRequiredForAdd property value. If false, then approval is not required for new requests in this policy.
+// SetIsApprovalRequiredForAdd sets the isApprovalRequiredForAdd property value. If false, then approval isn't required for new requests in this policy.
 func (m *AccessPackageAssignmentApprovalSettings) SetIsApprovalRequiredForAdd(value *bool)() {
     m.isApprovalRequiredForAdd = value
 }
-// SetIsApprovalRequiredForUpdate sets the isApprovalRequiredForUpdate property value. If false, then approval is not required for updates to requests in this policy.
+// SetIsApprovalRequiredForUpdate sets the isApprovalRequiredForUpdate property value. If false, then approval isn't required for updates to requests in this policy.
 func (m *AccessPackageAssignmentApprovalSettings) SetIsApprovalRequiredForUpdate(value *bool)() {
     m.isApprovalRequiredForUpdate = value
 }

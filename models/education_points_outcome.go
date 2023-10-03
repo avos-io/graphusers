@@ -12,7 +12,7 @@ type EducationPointsOutcome struct {
     // A copy of the points property that is made when the grade is released to the student.
     publishedPoints EducationAssignmentPointsGradeable
 }
-// NewEducationPointsOutcome instantiates a new EducationPointsOutcome and sets the default values.
+// NewEducationPointsOutcome instantiates a new educationPointsOutcome and sets the default values.
 func NewEducationPointsOutcome()(*EducationPointsOutcome) {
     m := &EducationPointsOutcome{
         EducationOutcome: *NewEducationOutcome(),

@@ -16,7 +16,7 @@ type KeyCredential struct {
     displayName *string
     // The date and time at which the credential expires. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.
+    // The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.  From a .cer certificate, you can read the key using the Convert.ToBase64String() method. For more information, see Get the certificate key.
     key []byte
     // The unique identifier (GUID) for the key.
     keyId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
@@ -135,7 +135,7 @@ func (m *KeyCredential) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -151,7 +151,7 @@ func (m *KeyCredential) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     }
     return res
 }
-// GetKey gets the key property value. The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.
+// GetKey gets the key property value. The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.  From a .cer certificate, you can read the key using the Convert.ToBase64String() method. For more information, see Get the certificate key.
 func (m *KeyCredential) GetKey()([]byte) {
     return m.key
 }
@@ -167,8 +167,8 @@ func (m *KeyCredential) GetOdataType()(*string) {
 func (m *KeyCredential) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.startDateTime
 }
-// GetType gets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
-func (m *KeyCredential) GetType()(*string) {
+// GetTypeEscaped gets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
+func (m *KeyCredential) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // GetUsage gets the usage property value. A string that describes the purpose for which the key can be used; for example, Verify.
@@ -220,7 +220,7 @@ func (m *KeyCredential) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -255,7 +255,7 @@ func (m *KeyCredential) SetDisplayName(value *string)() {
 func (m *KeyCredential) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.endDateTime = value
 }
-// SetKey sets the key property value. The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.
+// SetKey sets the key property value. The certificate's raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.  From a .cer certificate, you can read the key using the Convert.ToBase64String() method. For more information, see Get the certificate key.
 func (m *KeyCredential) SetKey(value []byte)() {
     m.key = value
 }
@@ -271,8 +271,8 @@ func (m *KeyCredential) SetOdataType(value *string)() {
 func (m *KeyCredential) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.startDateTime = value
 }
-// SetType sets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
-func (m *KeyCredential) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. The type of key credential; for example, Symmetric, AsymmetricX509Cert.
+func (m *KeyCredential) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SetUsage sets the usage property value. A string that describes the purpose for which the key can be used; for example, Verify.
@@ -290,7 +290,7 @@ type KeyCredentialable interface {
     GetKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetOdataType()(*string)
     GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetUsage()(*string)
     SetCustomKeyIdentifier(value []byte)()
     SetDisplayName(value *string)()
@@ -299,6 +299,6 @@ type KeyCredentialable interface {
     SetKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetOdataType(value *string)()
     SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetUsage(value *string)()
 }

@@ -14,7 +14,7 @@ type CallStartedEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewCallStartedEventMessageDetail instantiates a new CallStartedEventMessageDetail and sets the default values.
+// NewCallStartedEventMessageDetail instantiates a new callStartedEventMessageDetail and sets the default values.
 func NewCallStartedEventMessageDetail()(*CallStartedEventMessageDetail) {
     m := &CallStartedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

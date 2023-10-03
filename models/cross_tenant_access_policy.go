@@ -14,7 +14,7 @@ type CrossTenantAccessPolicy struct {
     // Defines partner-specific configurations for external Azure Active Directory organizations.
     partners []CrossTenantAccessPolicyConfigurationPartnerable
 }
-// NewCrossTenantAccessPolicy instantiates a new CrossTenantAccessPolicy and sets the default values.
+// NewCrossTenantAccessPolicy instantiates a new crossTenantAccessPolicy and sets the default values.
 func NewCrossTenantAccessPolicy()(*CrossTenantAccessPolicy) {
     m := &CrossTenantAccessPolicy{
         PolicyBase: *NewPolicyBase(),
@@ -31,8 +31,8 @@ func CreateCrossTenantAccessPolicyFromDiscriminatorValue(parseNode i878a80d2330e
 func (m *CrossTenantAccessPolicy) GetAllowedCloudEndpoints()([]string) {
     return m.allowedCloudEndpoints
 }
-// GetDefault gets the default property value. Defines the default configuration for how your organization interacts with external Azure Active Directory organizations.
-func (m *CrossTenantAccessPolicy) GetDefault()(CrossTenantAccessPolicyConfigurationDefaultable) {
+// GetDefaultEscaped gets the default property value. Defines the default configuration for how your organization interacts with external Azure Active Directory organizations.
+func (m *CrossTenantAccessPolicy) GetDefaultEscaped()(CrossTenantAccessPolicyConfigurationDefaultable) {
     return m.defaultEscaped
 }
 // GetFieldDeserializers the deserialization information for the current model
@@ -46,7 +46,9 @@ func (m *CrossTenantAccessPolicy) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetAllowedCloudEndpoints(res)
         }
@@ -58,7 +60,7 @@ func (m *CrossTenantAccessPolicy) GetFieldDeserializers()(map[string]func(i878a8
             return err
         }
         if val != nil {
-            m.SetDefault(val.(CrossTenantAccessPolicyConfigurationDefaultable))
+            m.SetDefaultEscaped(val.(CrossTenantAccessPolicyConfigurationDefaultable))
         }
         return nil
     }
@@ -70,7 +72,9 @@ func (m *CrossTenantAccessPolicy) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]CrossTenantAccessPolicyConfigurationPartnerable, len(val))
             for i, v := range val {
-                res[i] = v.(CrossTenantAccessPolicyConfigurationPartnerable)
+                if v != nil {
+                    res[i] = v.(CrossTenantAccessPolicyConfigurationPartnerable)
+                }
             }
             m.SetPartners(res)
         }
@@ -95,7 +99,7 @@ func (m *CrossTenantAccessPolicy) Serialize(writer i878a80d2330e89d26896388a3f48
         }
     }
     {
-        err = writer.WriteObjectValue("default", m.GetDefault())
+        err = writer.WriteObjectValue("default", m.GetDefaultEscaped())
         if err != nil {
             return err
         }
@@ -103,7 +107,9 @@ func (m *CrossTenantAccessPolicy) Serialize(writer i878a80d2330e89d26896388a3f48
     if m.GetPartners() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPartners()))
         for i, v := range m.GetPartners() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("partners", cast)
         if err != nil {
@@ -116,8 +122,8 @@ func (m *CrossTenantAccessPolicy) Serialize(writer i878a80d2330e89d26896388a3f48
 func (m *CrossTenantAccessPolicy) SetAllowedCloudEndpoints(value []string)() {
     m.allowedCloudEndpoints = value
 }
-// SetDefault sets the default property value. Defines the default configuration for how your organization interacts with external Azure Active Directory organizations.
-func (m *CrossTenantAccessPolicy) SetDefault(value CrossTenantAccessPolicyConfigurationDefaultable)() {
+// SetDefaultEscaped sets the default property value. Defines the default configuration for how your organization interacts with external Azure Active Directory organizations.
+func (m *CrossTenantAccessPolicy) SetDefaultEscaped(value CrossTenantAccessPolicyConfigurationDefaultable)() {
     m.defaultEscaped = value
 }
 // SetPartners sets the partners property value. Defines partner-specific configurations for external Azure Active Directory organizations.
@@ -129,9 +135,9 @@ type CrossTenantAccessPolicyable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     PolicyBaseable
     GetAllowedCloudEndpoints()([]string)
-    GetDefault()(CrossTenantAccessPolicyConfigurationDefaultable)
+    GetDefaultEscaped()(CrossTenantAccessPolicyConfigurationDefaultable)
     GetPartners()([]CrossTenantAccessPolicyConfigurationPartnerable)
     SetAllowedCloudEndpoints(value []string)()
-    SetDefault(value CrossTenantAccessPolicyConfigurationDefaultable)()
+    SetDefaultEscaped(value CrossTenantAccessPolicyConfigurationDefaultable)()
     SetPartners(value []CrossTenantAccessPolicyConfigurationPartnerable)()
 }

@@ -11,7 +11,7 @@ type AuthenticationContextClassReference struct {
     description *string
     // The display name is the friendly name of the authenticationContextClassReference object. This value should be used to identify the authentication context class reference when building user-facing admin experiences. For example, a selection UX.
     displayName *string
-    // Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it is set to false, it should not be shown in authentication context selection UX, or used to protect app resources. It will be shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
+    // Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it's set to false, it shouldn't be shown in authentication context selection UX, or used to protect app resources. It's shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
     isAvailable *bool
 }
 // NewAuthenticationContextClassReference instantiates a new authenticationContextClassReference and sets the default values.
@@ -68,7 +68,7 @@ func (m *AuthenticationContextClassReference) GetFieldDeserializers()(map[string
     }
     return res
 }
-// GetIsAvailable gets the isAvailable property value. Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it is set to false, it should not be shown in authentication context selection UX, or used to protect app resources. It will be shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
+// GetIsAvailable gets the isAvailable property value. Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it's set to false, it shouldn't be shown in authentication context selection UX, or used to protect app resources. It's shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
 func (m *AuthenticationContextClassReference) GetIsAvailable()(*bool) {
     return m.isAvailable
 }
@@ -106,7 +106,7 @@ func (m *AuthenticationContextClassReference) SetDescription(value *string)() {
 func (m *AuthenticationContextClassReference) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetIsAvailable sets the isAvailable property value. Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it is set to false, it should not be shown in authentication context selection UX, or used to protect app resources. It will be shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
+// SetIsAvailable sets the isAvailable property value. Indicates whether the authenticationContextClassReference has been published by the security admin and is ready for use by apps. When it's set to false, it shouldn't be shown in authentication context selection UX, or used to protect app resources. It's shown and available for Conditional Access policy authoring. The default value is false.  Supports $filter (eq).
 func (m *AuthenticationContextClassReference) SetIsAvailable(value *bool)() {
     m.isAvailable = value
 }

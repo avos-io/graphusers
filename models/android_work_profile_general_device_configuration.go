@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// AndroidWorkProfileGeneralDeviceConfiguration 
+// AndroidWorkProfileGeneralDeviceConfiguration android Work Profile general device configuration.
 type AndroidWorkProfileGeneralDeviceConfiguration struct {
     DeviceConfiguration
     // Indicates whether or not to block fingerprint unlock.
@@ -76,7 +76,7 @@ type AndroidWorkProfileGeneralDeviceConfiguration struct {
     // Password is required or not for work profile
     workProfileRequirePassword *bool
 }
-// NewAndroidWorkProfileGeneralDeviceConfiguration instantiates a new AndroidWorkProfileGeneralDeviceConfiguration and sets the default values.
+// NewAndroidWorkProfileGeneralDeviceConfiguration instantiates a new androidWorkProfileGeneralDeviceConfiguration and sets the default values.
 func NewAndroidWorkProfileGeneralDeviceConfiguration()(*AndroidWorkProfileGeneralDeviceConfiguration) {
     m := &AndroidWorkProfileGeneralDeviceConfiguration{
         DeviceConfiguration: *NewDeviceConfiguration(),

@@ -12,7 +12,7 @@ type DomainIdentitySource struct {
     // The domain name. Read only.
     domainName *string
 }
-// NewDomainIdentitySource instantiates a new DomainIdentitySource and sets the default values.
+// NewDomainIdentitySource instantiates a new domainIdentitySource and sets the default values.
 func NewDomainIdentitySource()(*DomainIdentitySource) {
     m := &DomainIdentitySource{
         IdentitySource: *NewIdentitySource(),

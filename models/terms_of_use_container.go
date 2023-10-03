@@ -12,7 +12,7 @@ type TermsOfUseContainer struct {
     // Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).
     agreements []Agreementable
 }
-// NewTermsOfUseContainer instantiates a new TermsOfUseContainer and sets the default values.
+// NewTermsOfUseContainer instantiates a new termsOfUseContainer and sets the default values.
 func NewTermsOfUseContainer()(*TermsOfUseContainer) {
     m := &TermsOfUseContainer{
         Entity: *NewEntity(),
@@ -42,7 +42,9 @@ func (m *TermsOfUseContainer) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]AgreementAcceptanceable, len(val))
             for i, v := range val {
-                res[i] = v.(AgreementAcceptanceable)
+                if v != nil {
+                    res[i] = v.(AgreementAcceptanceable)
+                }
             }
             m.SetAgreementAcceptances(res)
         }
@@ -56,7 +58,9 @@ func (m *TermsOfUseContainer) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]Agreementable, len(val))
             for i, v := range val {
-                res[i] = v.(Agreementable)
+                if v != nil {
+                    res[i] = v.(Agreementable)
+                }
             }
             m.SetAgreements(res)
         }
@@ -73,7 +77,9 @@ func (m *TermsOfUseContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetAgreementAcceptances() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAgreementAcceptances()))
         for i, v := range m.GetAgreementAcceptances() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("agreementAcceptances", cast)
         if err != nil {
@@ -83,7 +89,9 @@ func (m *TermsOfUseContainer) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetAgreements() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAgreements()))
         for i, v := range m.GetAgreements() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("agreements", cast)
         if err != nil {

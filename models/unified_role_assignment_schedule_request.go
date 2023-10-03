@@ -40,7 +40,7 @@ type UnifiedRoleAssignmentScheduleRequest struct {
     // Ticket details linked to the role assignment request including details of the ticket number and ticket system.
     ticketInfo TicketInfoable
 }
-// NewUnifiedRoleAssignmentScheduleRequest instantiates a new UnifiedRoleAssignmentScheduleRequest and sets the default values.
+// NewUnifiedRoleAssignmentScheduleRequest instantiates a new unifiedRoleAssignmentScheduleRequest and sets the default values.
 func NewUnifiedRoleAssignmentScheduleRequest()(*UnifiedRoleAssignmentScheduleRequest) {
     m := &UnifiedRoleAssignmentScheduleRequest{
         Request: *NewRequest(),

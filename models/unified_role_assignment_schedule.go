@@ -16,7 +16,7 @@ type UnifiedRoleAssignmentSchedule struct {
     // The period of the role assignment. It can represent a single occurrence or multiple recurrences.
     scheduleInfo RequestScheduleable
 }
-// NewUnifiedRoleAssignmentSchedule instantiates a new UnifiedRoleAssignmentSchedule and sets the default values.
+// NewUnifiedRoleAssignmentSchedule instantiates a new unifiedRoleAssignmentSchedule and sets the default values.
 func NewUnifiedRoleAssignmentSchedule()(*UnifiedRoleAssignmentSchedule) {
     m := &UnifiedRoleAssignmentSchedule{
         UnifiedRoleScheduleBase: *NewUnifiedRoleScheduleBase(),

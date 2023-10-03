@@ -8,13 +8,13 @@ import (
 type CalculatedColumn struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // For dateTime output types, the format of the value. Must be one of dateOnly or dateTime.
+    // For dateTime output types, the format of the value. Possible values are: dateOnly or dateTime.
     format *string
     // The formula used to compute the value for this column.
     formula *string
     // The OdataType property
     odataType *string
-    // The output type used to format values in this column. Must be one of boolean, currency, dateTime, number, or text.
+    // The output type used to format values in this column. Possible values are: boolean, currency, dateTime, number, or text.
     outputType *string
 }
 // NewCalculatedColumn instantiates a new calculatedColumn and sets the default values.
@@ -77,7 +77,7 @@ func (m *CalculatedColumn) GetFieldDeserializers()(map[string]func(i878a80d2330e
     }
     return res
 }
-// GetFormat gets the format property value. For dateTime output types, the format of the value. Must be one of dateOnly or dateTime.
+// GetFormat gets the format property value. For dateTime output types, the format of the value. Possible values are: dateOnly or dateTime.
 func (m *CalculatedColumn) GetFormat()(*string) {
     return m.format
 }
@@ -89,7 +89,7 @@ func (m *CalculatedColumn) GetFormula()(*string) {
 func (m *CalculatedColumn) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOutputType gets the outputType property value. The output type used to format values in this column. Must be one of boolean, currency, dateTime, number, or text.
+// GetOutputType gets the outputType property value. The output type used to format values in this column. Possible values are: boolean, currency, dateTime, number, or text.
 func (m *CalculatedColumn) GetOutputType()(*string) {
     return m.outputType
 }
@@ -131,7 +131,7 @@ func (m *CalculatedColumn) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *CalculatedColumn) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetFormat sets the format property value. For dateTime output types, the format of the value. Must be one of dateOnly or dateTime.
+// SetFormat sets the format property value. For dateTime output types, the format of the value. Possible values are: dateOnly or dateTime.
 func (m *CalculatedColumn) SetFormat(value *string)() {
     m.format = value
 }
@@ -143,7 +143,7 @@ func (m *CalculatedColumn) SetFormula(value *string)() {
 func (m *CalculatedColumn) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOutputType sets the outputType property value. The output type used to format values in this column. Must be one of boolean, currency, dateTime, number, or text.
+// SetOutputType sets the outputType property value. The output type used to format values in this column. Possible values are: boolean, currency, dateTime, number, or text.
 func (m *CalculatedColumn) SetOutputType(value *string)() {
     m.outputType = value
 }

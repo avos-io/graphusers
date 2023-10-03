@@ -86,7 +86,9 @@ func (m *CallRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]Modality, len(val))
             for i, v := range val {
-                res[i] = *(v.(*Modality))
+                if v != nil {
+                    res[i] = *(v.(*Modality))
+                }
             }
             m.SetModalities(res)
         }
@@ -110,7 +112,9 @@ func (m *CallRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable, len(val))
             for i, v := range val {
-                res[i] = v.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable)
+                if v != nil {
+                    res[i] = v.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable)
+                }
             }
             m.SetParticipants(res)
         }
@@ -124,7 +128,9 @@ func (m *CallRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]Sessionable, len(val))
             for i, v := range val {
-                res[i] = v.(Sessionable)
+                if v != nil {
+                    res[i] = v.(Sessionable)
+                }
             }
             m.SetSessions(res)
         }
@@ -146,7 +152,7 @@ func (m *CallRecord) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
             return err
         }
         if val != nil {
-            m.SetType(val.(*CallType))
+            m.SetTypeEscaped(val.(*CallType))
         }
         return nil
     }
@@ -190,8 +196,8 @@ func (m *CallRecord) GetSessions()([]Sessionable) {
 func (m *CallRecord) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.startDateTime
 }
-// GetType gets the type property value. The type property
-func (m *CallRecord) GetType()(*CallType) {
+// GetTypeEscaped gets the type property value. The type property
+func (m *CallRecord) GetTypeEscaped()(*CallType) {
     return m.typeEscaped
 }
 // GetVersion gets the version property value. Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.
@@ -237,7 +243,9 @@ func (m *CallRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetParticipants() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetParticipants()))
         for i, v := range m.GetParticipants() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("participants", cast)
         if err != nil {
@@ -247,7 +255,9 @@ func (m *CallRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetSessions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSessions()))
         for i, v := range m.GetSessions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("sessions", cast)
         if err != nil {
@@ -260,8 +270,8 @@ func (m *CallRecord) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err = writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -307,8 +317,8 @@ func (m *CallRecord) SetSessions(value []Sessionable)() {
 func (m *CallRecord) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.startDateTime = value
 }
-// SetType sets the type property value. The type property
-func (m *CallRecord) SetType(value *CallType)() {
+// SetTypeEscaped sets the type property value. The type property
+func (m *CallRecord) SetTypeEscaped(value *CallType)() {
     m.typeEscaped = value
 }
 // SetVersion sets the version property value. Monotonically increasing version of the call record. Higher version call records with the same id includes additional data compared to the lower version.
@@ -327,7 +337,7 @@ type CallRecordable interface {
     GetParticipants()([]i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable)
     GetSessions()([]Sessionable)
     GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetType()(*CallType)
+    GetTypeEscaped()(*CallType)
     GetVersion()(*int64)
     SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetJoinWebUrl(value *string)()
@@ -337,6 +347,6 @@ type CallRecordable interface {
     SetParticipants(value []i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable)()
     SetSessions(value []Sessionable)()
     SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetType(value *CallType)()
+    SetTypeEscaped(value *CallType)()
     SetVersion(value *int64)()
 }

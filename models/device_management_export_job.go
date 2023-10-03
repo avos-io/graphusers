@@ -115,9 +115,11 @@ func (m *DeviceManagementExportJob) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
-            m.SetSelect(res)
+            m.SetSelectEscaped(res)
         }
         return nil
     }
@@ -173,8 +175,8 @@ func (m *DeviceManagementExportJob) GetReportName()(*string) {
 func (m *DeviceManagementExportJob) GetRequestDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.requestDateTime
 }
-// GetSelect gets the select property value. Columns selected from the report
-func (m *DeviceManagementExportJob) GetSelect()([]string) {
+// GetSelectEscaped gets the select property value. Columns selected from the report
+func (m *DeviceManagementExportJob) GetSelectEscaped()([]string) {
     return m.selectEscaped
 }
 // GetSnapshotId gets the snapshotId property value. A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
@@ -233,8 +235,8 @@ func (m *DeviceManagementExportJob) Serialize(writer i878a80d2330e89d26896388a3f
             return err
         }
     }
-    if m.GetSelect() != nil {
-        err = writer.WriteCollectionOfStringValues("select", m.GetSelect())
+    if m.GetSelectEscaped() != nil {
+        err = writer.WriteCollectionOfStringValues("select", m.GetSelectEscaped())
         if err != nil {
             return err
         }
@@ -284,8 +286,8 @@ func (m *DeviceManagementExportJob) SetReportName(value *string)() {
 func (m *DeviceManagementExportJob) SetRequestDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.requestDateTime = value
 }
-// SetSelect sets the select property value. Columns selected from the report
-func (m *DeviceManagementExportJob) SetSelect(value []string)() {
+// SetSelectEscaped sets the select property value. Columns selected from the report
+func (m *DeviceManagementExportJob) SetSelectEscaped(value []string)() {
     m.selectEscaped = value
 }
 // SetSnapshotId sets the snapshotId property value. A snapshot is an identifiable subset of the dataset represented by the ReportName. A sessionId or CachedReportConfiguration id can be used here. If a sessionId is specified, Filter, Select, and OrderBy are applied to the data represented by the sessionId. Filter, Select, and OrderBy cannot be specified together with a CachedReportConfiguration id.
@@ -310,7 +312,7 @@ type DeviceManagementExportJobable interface {
     GetLocalizationType()(*DeviceManagementExportJobLocalizationType)
     GetReportName()(*string)
     GetRequestDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
-    GetSelect()([]string)
+    GetSelectEscaped()([]string)
     GetSnapshotId()(*string)
     GetStatus()(*DeviceManagementReportStatus)
     GetUrl()(*string)
@@ -320,7 +322,7 @@ type DeviceManagementExportJobable interface {
     SetLocalizationType(value *DeviceManagementExportJobLocalizationType)()
     SetReportName(value *string)()
     SetRequestDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
-    SetSelect(value []string)()
+    SetSelectEscaped(value []string)()
     SetSnapshotId(value *string)()
     SetStatus(value *DeviceManagementReportStatus)()
     SetUrl(value *string)()

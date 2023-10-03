@@ -25,7 +25,7 @@ type EnterpriseCodeSigningCertificate struct {
     // The date time of CodeSigning Cert when it is uploaded (using ISO 8601 format, in UTC time). Uploading a valid cert file through the Intune admin console will automatically populate this value in the HTTP response. Supports: $filter, $select, $top, $OrderBy, $skip. $Search is not supported.
     uploadDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
-// NewEnterpriseCodeSigningCertificate instantiates a new EnterpriseCodeSigningCertificate and sets the default values.
+// NewEnterpriseCodeSigningCertificate instantiates a new enterpriseCodeSigningCertificate and sets the default values.
 func NewEnterpriseCodeSigningCertificate()(*EnterpriseCodeSigningCertificate) {
     m := &EnterpriseCodeSigningCertificate{
         Entity: *NewEntity(),

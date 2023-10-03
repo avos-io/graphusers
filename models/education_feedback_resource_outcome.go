@@ -12,7 +12,7 @@ type EducationFeedbackResourceOutcome struct {
     // The status of the feedback resource. The possible values are: notPublished, pendingPublish, published, failedPublish, unknownFutureValue.
     resourceStatus *EducationFeedbackResourceOutcomeStatus
 }
-// NewEducationFeedbackResourceOutcome instantiates a new EducationFeedbackResourceOutcome and sets the default values.
+// NewEducationFeedbackResourceOutcome instantiates a new educationFeedbackResourceOutcome and sets the default values.
 func NewEducationFeedbackResourceOutcome()(*EducationFeedbackResourceOutcome) {
     m := &EducationFeedbackResourceOutcome{
         EducationOutcome: *NewEducationOutcome(),

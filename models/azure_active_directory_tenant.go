@@ -12,7 +12,7 @@ type AzureActiveDirectoryTenant struct {
     // The ID of the Azure Active Directory tenant. Read only.
     tenantId *string
 }
-// NewAzureActiveDirectoryTenant instantiates a new AzureActiveDirectoryTenant and sets the default values.
+// NewAzureActiveDirectoryTenant instantiates a new azureActiveDirectoryTenant and sets the default values.
 func NewAzureActiveDirectoryTenant()(*AzureActiveDirectoryTenant) {
     m := &AzureActiveDirectoryTenant{
         IdentitySource: *NewIdentitySource(),

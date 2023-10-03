@@ -9,10 +9,10 @@ type ProvisionedIdentity struct {
     Identity
     // Details of the identity.
     details DetailsInfoable
-    // Type of identity that has been provisioned, such as 'user' or 'group'.
+    // Type of identity that has been provisioned, such as 'user' or 'group'. Supports $filter (eq, contains).
     identityType *string
 }
-// NewProvisionedIdentity instantiates a new ProvisionedIdentity and sets the default values.
+// NewProvisionedIdentity instantiates a new provisionedIdentity and sets the default values.
 func NewProvisionedIdentity()(*ProvisionedIdentity) {
     m := &ProvisionedIdentity{
         Identity: *NewIdentity(),
@@ -54,7 +54,7 @@ func (m *ProvisionedIdentity) GetFieldDeserializers()(map[string]func(i878a80d23
     }
     return res
 }
-// GetIdentityType gets the identityType property value. Type of identity that has been provisioned, such as 'user' or 'group'.
+// GetIdentityType gets the identityType property value. Type of identity that has been provisioned, such as 'user' or 'group'. Supports $filter (eq, contains).
 func (m *ProvisionedIdentity) GetIdentityType()(*string) {
     return m.identityType
 }
@@ -82,7 +82,7 @@ func (m *ProvisionedIdentity) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *ProvisionedIdentity) SetDetails(value DetailsInfoable)() {
     m.details = value
 }
-// SetIdentityType sets the identityType property value. Type of identity that has been provisioned, such as 'user' or 'group'.
+// SetIdentityType sets the identityType property value. Type of identity that has been provisioned, such as 'user' or 'group'. Supports $filter (eq, contains).
 func (m *ProvisionedIdentity) SetIdentityType(value *string)() {
     m.identityType = value
 }

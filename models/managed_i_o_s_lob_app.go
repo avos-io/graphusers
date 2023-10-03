@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// ManagedIOSLobApp 
+// ManagedIOSLobApp contains properties and inherited properties for Managed iOS Line Of Business apps.
 type ManagedIOSLobApp struct {
     ManagedMobileLobApp
     // Contains properties of the possible iOS device types the mobile app can run on.
@@ -21,7 +21,7 @@ type ManagedIOSLobApp struct {
     // The version number of managed iOS Line of Business (LoB) app.
     versionNumber *string
 }
-// NewManagedIOSLobApp instantiates a new ManagedIOSLobApp and sets the default values.
+// NewManagedIOSLobApp instantiates a new managedIOSLobApp and sets the default values.
 func NewManagedIOSLobApp()(*ManagedIOSLobApp) {
     m := &ManagedIOSLobApp{
         ManagedMobileLobApp: *NewManagedMobileLobApp(),

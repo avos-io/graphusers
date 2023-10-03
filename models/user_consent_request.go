@@ -12,7 +12,7 @@ type UserConsentRequest struct {
     // The user's justification for requiring access to the app. Supports $filter (eq only) and $orderby.
     reason *string
 }
-// NewUserConsentRequest instantiates a new UserConsentRequest and sets the default values.
+// NewUserConsentRequest instantiates a new userConsentRequest and sets the default values.
 func NewUserConsentRequest()(*UserConsentRequest) {
     m := &UserConsentRequest{
         Request: *NewRequest(),

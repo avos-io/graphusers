@@ -23,7 +23,7 @@ type Printer struct {
     // A list of task triggers that are associated with the printer.
     taskTriggers []PrintTaskTriggerable
 }
-// NewPrinter instantiates a new Printer and sets the default values.
+// NewPrinter instantiates a new printer and sets the default values.
 func NewPrinter()(*Printer) {
     m := &Printer{
         PrinterBase: *NewPrinterBase(),
@@ -51,7 +51,9 @@ func (m *Printer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]PrintConnectorable, len(val))
             for i, v := range val {
-                res[i] = v.(PrintConnectorable)
+                if v != nil {
+                    res[i] = v.(PrintConnectorable)
+                }
             }
             m.SetConnectors(res)
         }
@@ -105,7 +107,9 @@ func (m *Printer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]PrinterShareable, len(val))
             for i, v := range val {
-                res[i] = v.(PrinterShareable)
+                if v != nil {
+                    res[i] = v.(PrinterShareable)
+                }
             }
             m.SetShares(res)
         }
@@ -119,7 +123,9 @@ func (m *Printer) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268963
         if val != nil {
             res := make([]PrintTaskTriggerable, len(val))
             for i, v := range val {
-                res[i] = v.(PrintTaskTriggerable)
+                if v != nil {
+                    res[i] = v.(PrintTaskTriggerable)
+                }
             }
             m.SetTaskTriggers(res)
         }
@@ -160,7 +166,9 @@ func (m *Printer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetConnectors() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetConnectors()))
         for i, v := range m.GetConnectors() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("connectors", cast)
         if err != nil {
@@ -194,7 +202,9 @@ func (m *Printer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetShares() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetShares()))
         for i, v := range m.GetShares() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("shares", cast)
         if err != nil {
@@ -204,7 +214,9 @@ func (m *Printer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     if m.GetTaskTriggers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTaskTriggers()))
         for i, v := range m.GetTaskTriggers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("taskTriggers", cast)
         if err != nil {

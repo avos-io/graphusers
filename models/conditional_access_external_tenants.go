@@ -8,7 +8,7 @@ import (
 type ConditionalAccessExternalTenants struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The membershipKind property
+    // The membership kind. Possible values are: all, enumerated, unknownFutureValue. The enumerated member references an conditionalAccessEnumeratedExternalTenants object.
     membershipKind *ConditionalAccessExternalTenantsMembershipKind
     // The OdataType property
     odataType *string
@@ -73,7 +73,7 @@ func (m *ConditionalAccessExternalTenants) GetFieldDeserializers()(map[string]fu
     }
     return res
 }
-// GetMembershipKind gets the membershipKind property value. The membershipKind property
+// GetMembershipKind gets the membershipKind property value. The membership kind. Possible values are: all, enumerated, unknownFutureValue. The enumerated member references an conditionalAccessEnumeratedExternalTenants object.
 func (m *ConditionalAccessExternalTenants) GetMembershipKind()(*ConditionalAccessExternalTenantsMembershipKind) {
     return m.membershipKind
 }
@@ -108,7 +108,7 @@ func (m *ConditionalAccessExternalTenants) Serialize(writer i878a80d2330e89d2689
 func (m *ConditionalAccessExternalTenants) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetMembershipKind sets the membershipKind property value. The membershipKind property
+// SetMembershipKind sets the membershipKind property value. The membership kind. Possible values are: all, enumerated, unknownFutureValue. The enumerated member references an conditionalAccessEnumeratedExternalTenants object.
 func (m *ConditionalAccessExternalTenants) SetMembershipKind(value *ConditionalAccessExternalTenantsMembershipKind)() {
     m.membershipKind = value
 }

@@ -8,6 +8,8 @@ import (
 type PublicationFacet struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // User who has checked out the file.
+    checkedOutBy IdentitySetable
     // The state of publication for this document. Either published or checkout. Read-only.
     level *string
     // The OdataType property
@@ -30,9 +32,23 @@ func CreatePublicationFacetFromDiscriminatorValue(parseNode i878a80d2330e89d2689
 func (m *PublicationFacet) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetCheckedOutBy gets the checkedOutBy property value. User who has checked out the file.
+func (m *PublicationFacet) GetCheckedOutBy()(IdentitySetable) {
+    return m.checkedOutBy
+}
 // GetFieldDeserializers the deserialization information for the current model
 func (m *PublicationFacet) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["checkedOutBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateIdentitySetFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetCheckedOutBy(val.(IdentitySetable))
+        }
+        return nil
+    }
     res["level"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -80,6 +96,12 @@ func (m *PublicationFacet) GetVersionId()(*string) {
 // Serialize serializes information the current object
 func (m *PublicationFacet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
+        err := writer.WriteObjectValue("checkedOutBy", m.GetCheckedOutBy())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("level", m.GetLevel())
         if err != nil {
             return err
@@ -109,6 +131,10 @@ func (m *PublicationFacet) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
 func (m *PublicationFacet) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetCheckedOutBy sets the checkedOutBy property value. User who has checked out the file.
+func (m *PublicationFacet) SetCheckedOutBy(value IdentitySetable)() {
+    m.checkedOutBy = value
+}
 // SetLevel sets the level property value. The state of publication for this document. Either published or checkout. Read-only.
 func (m *PublicationFacet) SetLevel(value *string)() {
     m.level = value
@@ -125,9 +151,11 @@ func (m *PublicationFacet) SetVersionId(value *string)() {
 type PublicationFacetable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetCheckedOutBy()(IdentitySetable)
     GetLevel()(*string)
     GetOdataType()(*string)
     GetVersionId()(*string)
+    SetCheckedOutBy(value IdentitySetable)()
     SetLevel(value *string)()
     SetOdataType(value *string)()
     SetVersionId(value *string)()

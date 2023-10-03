@@ -12,7 +12,7 @@ type JoinMeetingIdMeetingInfo struct {
     // The passcode used to join the meeting. Optional.
     passcode *string
 }
-// NewJoinMeetingIdMeetingInfo instantiates a new JoinMeetingIdMeetingInfo and sets the default values.
+// NewJoinMeetingIdMeetingInfo instantiates a new joinMeetingIdMeetingInfo and sets the default values.
 func NewJoinMeetingIdMeetingInfo()(*JoinMeetingIdMeetingInfo) {
     m := &JoinMeetingIdMeetingInfo{
         MeetingInfo: *NewMeetingInfo(),

@@ -11,7 +11,7 @@ type Certification struct {
     additionalData map[string]any
     // URL that shows certification details for the application.
     certificationDetailsUrl *string
-    // The timestamp when the current certification for the application will expire.
+    // The timestamp when the current certification for the application expires.
     certificationExpirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Indicates whether the application is certified by Microsoft.
     isCertifiedByMicrosoft *bool
@@ -41,7 +41,7 @@ func (m *Certification) GetAdditionalData()(map[string]any) {
 func (m *Certification) GetCertificationDetailsUrl()(*string) {
     return m.certificationDetailsUrl
 }
-// GetCertificationExpirationDateTime gets the certificationExpirationDateTime property value. The timestamp when the current certification for the application will expire.
+// GetCertificationExpirationDateTime gets the certificationExpirationDateTime property value. The timestamp when the current certification for the application expires.
 func (m *Certification) GetCertificationExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.certificationExpirationDateTime
 }
@@ -168,7 +168,7 @@ func (m *Certification) SetAdditionalData(value map[string]any)() {
 func (m *Certification) SetCertificationDetailsUrl(value *string)() {
     m.certificationDetailsUrl = value
 }
-// SetCertificationExpirationDateTime sets the certificationExpirationDateTime property value. The timestamp when the current certification for the application will expire.
+// SetCertificationExpirationDateTime sets the certificationExpirationDateTime property value. The timestamp when the current certification for the application expires.
 func (m *Certification) SetCertificationExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.certificationExpirationDateTime = value
 }

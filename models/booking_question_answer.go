@@ -83,7 +83,9 @@ func (m *BookingQuestionAnswer) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetAnswerOptions(res)
         }
@@ -137,7 +139,9 @@ func (m *BookingQuestionAnswer) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetSelectedOptions(res)
         }

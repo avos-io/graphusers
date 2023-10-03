@@ -8,15 +8,15 @@ import (
 // AccessReviewHistoryInstance 
 type AccessReviewHistoryInstance struct {
     Entity
-    // Uri which can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
+    // Uri that can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
     downloadUri *string
     // Timestamp when this instance and associated data expires and the history is deleted. Required.
     expirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Timestamp when all of the available data for this instance was collected. This will be set after this instance's status is set to done. Required.
+    // Timestamp when all of the available data for this instance was collected and is set after this instance's status is set to done. Required.
     fulfilledDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Timestamp, reviews ending on or before this date will be included in the fetched history data.
+    // Timestamp reviews ending on or before this date will be included in the fetched history data.
     reviewHistoryPeriodEndDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Timestamp, reviews starting on or after this date will be included in the fetched history data.
+    // Timestamp reviews starting on or after this date will be included in the fetched history data.
     reviewHistoryPeriodStartDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Timestamp when the instance's history data is scheduled to be generated.
     runDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
@@ -34,7 +34,7 @@ func NewAccessReviewHistoryInstance()(*AccessReviewHistoryInstance) {
 func CreateAccessReviewHistoryInstanceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAccessReviewHistoryInstance(), nil
 }
-// GetDownloadUri gets the downloadUri property value. Uri which can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
+// GetDownloadUri gets the downloadUri property value. Uri that can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
 func (m *AccessReviewHistoryInstance) GetDownloadUri()(*string) {
     return m.downloadUri
 }
@@ -117,15 +117,15 @@ func (m *AccessReviewHistoryInstance) GetFieldDeserializers()(map[string]func(i8
     }
     return res
 }
-// GetFulfilledDateTime gets the fulfilledDateTime property value. Timestamp when all of the available data for this instance was collected. This will be set after this instance's status is set to done. Required.
+// GetFulfilledDateTime gets the fulfilledDateTime property value. Timestamp when all of the available data for this instance was collected and is set after this instance's status is set to done. Required.
 func (m *AccessReviewHistoryInstance) GetFulfilledDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.fulfilledDateTime
 }
-// GetReviewHistoryPeriodEndDateTime gets the reviewHistoryPeriodEndDateTime property value. Timestamp, reviews ending on or before this date will be included in the fetched history data.
+// GetReviewHistoryPeriodEndDateTime gets the reviewHistoryPeriodEndDateTime property value. Timestamp reviews ending on or before this date will be included in the fetched history data.
 func (m *AccessReviewHistoryInstance) GetReviewHistoryPeriodEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.reviewHistoryPeriodEndDateTime
 }
-// GetReviewHistoryPeriodStartDateTime gets the reviewHistoryPeriodStartDateTime property value. Timestamp, reviews starting on or after this date will be included in the fetched history data.
+// GetReviewHistoryPeriodStartDateTime gets the reviewHistoryPeriodStartDateTime property value. Timestamp reviews starting on or after this date will be included in the fetched history data.
 func (m *AccessReviewHistoryInstance) GetReviewHistoryPeriodStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.reviewHistoryPeriodStartDateTime
 }
@@ -188,7 +188,7 @@ func (m *AccessReviewHistoryInstance) Serialize(writer i878a80d2330e89d26896388a
     }
     return nil
 }
-// SetDownloadUri sets the downloadUri property value. Uri which can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
+// SetDownloadUri sets the downloadUri property value. Uri that can be used to retrieve review history data. This URI will be active for 24 hours after being generated. Required.
 func (m *AccessReviewHistoryInstance) SetDownloadUri(value *string)() {
     m.downloadUri = value
 }
@@ -196,15 +196,15 @@ func (m *AccessReviewHistoryInstance) SetDownloadUri(value *string)() {
 func (m *AccessReviewHistoryInstance) SetExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expirationDateTime = value
 }
-// SetFulfilledDateTime sets the fulfilledDateTime property value. Timestamp when all of the available data for this instance was collected. This will be set after this instance's status is set to done. Required.
+// SetFulfilledDateTime sets the fulfilledDateTime property value. Timestamp when all of the available data for this instance was collected and is set after this instance's status is set to done. Required.
 func (m *AccessReviewHistoryInstance) SetFulfilledDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.fulfilledDateTime = value
 }
-// SetReviewHistoryPeriodEndDateTime sets the reviewHistoryPeriodEndDateTime property value. Timestamp, reviews ending on or before this date will be included in the fetched history data.
+// SetReviewHistoryPeriodEndDateTime sets the reviewHistoryPeriodEndDateTime property value. Timestamp reviews ending on or before this date will be included in the fetched history data.
 func (m *AccessReviewHistoryInstance) SetReviewHistoryPeriodEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.reviewHistoryPeriodEndDateTime = value
 }
-// SetReviewHistoryPeriodStartDateTime sets the reviewHistoryPeriodStartDateTime property value. Timestamp, reviews starting on or after this date will be included in the fetched history data.
+// SetReviewHistoryPeriodStartDateTime sets the reviewHistoryPeriodStartDateTime property value. Timestamp reviews starting on or after this date will be included in the fetched history data.
 func (m *AccessReviewHistoryInstance) SetReviewHistoryPeriodStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.reviewHistoryPeriodStartDateTime = value
 }

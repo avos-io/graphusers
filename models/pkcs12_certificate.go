@@ -12,7 +12,7 @@ type Pkcs12Certificate struct {
     // Represents the pfx content that is sent. The value should be a base-64 encoded version of the actual certificate content. Required.
     pkcs12Value *string
 }
-// NewPkcs12Certificate instantiates a new Pkcs12Certificate and sets the default values.
+// NewPkcs12Certificate instantiates a new pkcs12Certificate and sets the default values.
 func NewPkcs12Certificate()(*Pkcs12Certificate) {
     m := &Pkcs12Certificate{
         ApiAuthenticationConfigurationBase: *NewApiAuthenticationConfigurationBase(),

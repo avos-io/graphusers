@@ -10,7 +10,7 @@ type TeamworkApplicationIdentity struct {
     // Type of application that is referenced. Possible values are: aadApplication, bot, tenantBot, office365Connector, outgoingWebhook, and unknownFutureValue.
     applicationIdentityType *TeamworkApplicationIdentityType
 }
-// NewTeamworkApplicationIdentity instantiates a new TeamworkApplicationIdentity and sets the default values.
+// NewTeamworkApplicationIdentity instantiates a new teamworkApplicationIdentity and sets the default values.
 func NewTeamworkApplicationIdentity()(*TeamworkApplicationIdentity) {
     m := &TeamworkApplicationIdentity{
         Identity: *NewIdentity(),

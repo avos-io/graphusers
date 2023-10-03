@@ -6,7 +6,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// AuditEvent 
+// AuditEvent a class containing the properties for Audit Event.
 type AuditEvent struct {
     Entity
     // Friendly name of the activity.
@@ -32,7 +32,7 @@ type AuditEvent struct {
     // Resources being modified.
     resources []AuditResourceable
 }
-// NewAuditEvent instantiates a new AuditEvent and sets the default values.
+// NewAuditEvent instantiates a new auditEvent and sets the default values.
 func NewAuditEvent()(*AuditEvent) {
     m := &AuditEvent{
         Entity: *NewEntity(),
@@ -194,7 +194,9 @@ func (m *AuditEvent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]AuditResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(AuditResourceable)
+                if v != nil {
+                    res[i] = v.(AuditResourceable)
+                }
             }
             m.SetResources(res)
         }
@@ -275,7 +277,9 @@ func (m *AuditEvent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResources()))
         for i, v := range m.GetResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("resources", cast)
         if err != nil {

@@ -11,12 +11,14 @@ type PolicyRoot struct {
     activityBasedTimeoutPolicies []ActivityBasedTimeoutPolicyable
     // The policy by which consent requests are created and managed for the entire tenant.
     adminConsentRequestPolicy AdminConsentRequestPolicyable
-    // The appManagementPolicies property
+    // The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
     appManagementPolicies []AppManagementPolicyable
     // The policy configuration of the self-service sign-up experience of external users.
     authenticationFlowsPolicy AuthenticationFlowsPolicyable
-    // The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+    // The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).
     authenticationMethodsPolicy AuthenticationMethodsPolicyable
+    // The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
+    authenticationStrengthPolicies []AuthenticationStrengthPolicyable
     // The policy that controls Azure AD authorization settings.
     authorizationPolicy AuthorizationPolicyable
     // The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
@@ -25,7 +27,7 @@ type PolicyRoot struct {
     conditionalAccessPolicies []ConditionalAccessPolicyable
     // The custom rules that define an access scenario when interacting with external Azure AD tenants.
     crossTenantAccessPolicy CrossTenantAccessPolicyable
-    // The defaultAppManagementPolicy property
+    // The tenant-wide policy that enforces app management restrictions for all applications and service principals.
     defaultAppManagementPolicy TenantAppManagementPolicyable
     // The feature rollout policy associated with a directory object.
     featureRolloutPolicies []FeatureRolloutPolicyable
@@ -44,7 +46,7 @@ type PolicyRoot struct {
     // The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.
     tokenLifetimePolicies []TokenLifetimePolicyable
 }
-// NewPolicyRoot instantiates a new PolicyRoot and sets the default values.
+// NewPolicyRoot instantiates a new policyRoot and sets the default values.
 func NewPolicyRoot()(*PolicyRoot) {
     m := &PolicyRoot{
         Entity: *NewEntity(),
@@ -63,7 +65,7 @@ func (m *PolicyRoot) GetActivityBasedTimeoutPolicies()([]ActivityBasedTimeoutPol
 func (m *PolicyRoot) GetAdminConsentRequestPolicy()(AdminConsentRequestPolicyable) {
     return m.adminConsentRequestPolicy
 }
-// GetAppManagementPolicies gets the appManagementPolicies property value. The appManagementPolicies property
+// GetAppManagementPolicies gets the appManagementPolicies property value. The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
 func (m *PolicyRoot) GetAppManagementPolicies()([]AppManagementPolicyable) {
     return m.appManagementPolicies
 }
@@ -71,9 +73,13 @@ func (m *PolicyRoot) GetAppManagementPolicies()([]AppManagementPolicyable) {
 func (m *PolicyRoot) GetAuthenticationFlowsPolicy()(AuthenticationFlowsPolicyable) {
     return m.authenticationFlowsPolicy
 }
-// GetAuthenticationMethodsPolicy gets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+// GetAuthenticationMethodsPolicy gets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).
 func (m *PolicyRoot) GetAuthenticationMethodsPolicy()(AuthenticationMethodsPolicyable) {
     return m.authenticationMethodsPolicy
+}
+// GetAuthenticationStrengthPolicies gets the authenticationStrengthPolicies property value. The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
+func (m *PolicyRoot) GetAuthenticationStrengthPolicies()([]AuthenticationStrengthPolicyable) {
+    return m.authenticationStrengthPolicies
 }
 // GetAuthorizationPolicy gets the authorizationPolicy property value. The policy that controls Azure AD authorization settings.
 func (m *PolicyRoot) GetAuthorizationPolicy()(AuthorizationPolicyable) {
@@ -91,7 +97,7 @@ func (m *PolicyRoot) GetConditionalAccessPolicies()([]ConditionalAccessPolicyabl
 func (m *PolicyRoot) GetCrossTenantAccessPolicy()(CrossTenantAccessPolicyable) {
     return m.crossTenantAccessPolicy
 }
-// GetDefaultAppManagementPolicy gets the defaultAppManagementPolicy property value. The defaultAppManagementPolicy property
+// GetDefaultAppManagementPolicy gets the defaultAppManagementPolicy property value. The tenant-wide policy that enforces app management restrictions for all applications and service principals.
 func (m *PolicyRoot) GetDefaultAppManagementPolicy()(TenantAppManagementPolicyable) {
     return m.defaultAppManagementPolicy
 }
@@ -110,7 +116,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]ActivityBasedTimeoutPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(ActivityBasedTimeoutPolicyable)
+                if v != nil {
+                    res[i] = v.(ActivityBasedTimeoutPolicyable)
+                }
             }
             m.SetActivityBasedTimeoutPolicies(res)
         }
@@ -134,7 +142,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]AppManagementPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(AppManagementPolicyable)
+                if v != nil {
+                    res[i] = v.(AppManagementPolicyable)
+                }
             }
             m.SetAppManagementPolicies(res)
         }
@@ -160,6 +170,22 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["authenticationStrengthPolicies"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateAuthenticationStrengthPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]AuthenticationStrengthPolicyable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(AuthenticationStrengthPolicyable)
+                }
+            }
+            m.SetAuthenticationStrengthPolicies(res)
+        }
+        return nil
+    }
     res["authorizationPolicy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateAuthorizationPolicyFromDiscriminatorValue)
         if err != nil {
@@ -178,7 +204,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]ClaimsMappingPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(ClaimsMappingPolicyable)
+                if v != nil {
+                    res[i] = v.(ClaimsMappingPolicyable)
+                }
             }
             m.SetClaimsMappingPolicies(res)
         }
@@ -192,7 +220,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]ConditionalAccessPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(ConditionalAccessPolicyable)
+                if v != nil {
+                    res[i] = v.(ConditionalAccessPolicyable)
+                }
             }
             m.SetConditionalAccessPolicies(res)
         }
@@ -226,7 +256,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]FeatureRolloutPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(FeatureRolloutPolicyable)
+                if v != nil {
+                    res[i] = v.(FeatureRolloutPolicyable)
+                }
             }
             m.SetFeatureRolloutPolicies(res)
         }
@@ -240,7 +272,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]HomeRealmDiscoveryPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(HomeRealmDiscoveryPolicyable)
+                if v != nil {
+                    res[i] = v.(HomeRealmDiscoveryPolicyable)
+                }
             }
             m.SetHomeRealmDiscoveryPolicies(res)
         }
@@ -264,7 +298,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]PermissionGrantPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(PermissionGrantPolicyable)
+                if v != nil {
+                    res[i] = v.(PermissionGrantPolicyable)
+                }
             }
             m.SetPermissionGrantPolicies(res)
         }
@@ -278,7 +314,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]UnifiedRoleManagementPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(UnifiedRoleManagementPolicyable)
+                if v != nil {
+                    res[i] = v.(UnifiedRoleManagementPolicyable)
+                }
             }
             m.SetRoleManagementPolicies(res)
         }
@@ -292,7 +330,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]UnifiedRoleManagementPolicyAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(UnifiedRoleManagementPolicyAssignmentable)
+                if v != nil {
+                    res[i] = v.(UnifiedRoleManagementPolicyAssignmentable)
+                }
             }
             m.SetRoleManagementPolicyAssignments(res)
         }
@@ -306,7 +346,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]TokenIssuancePolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(TokenIssuancePolicyable)
+                if v != nil {
+                    res[i] = v.(TokenIssuancePolicyable)
+                }
             }
             m.SetTokenIssuancePolicies(res)
         }
@@ -320,7 +362,9 @@ func (m *PolicyRoot) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         if val != nil {
             res := make([]TokenLifetimePolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(TokenLifetimePolicyable)
+                if v != nil {
+                    res[i] = v.(TokenLifetimePolicyable)
+                }
             }
             m.SetTokenLifetimePolicies(res)
         }
@@ -365,7 +409,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetActivityBasedTimeoutPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetActivityBasedTimeoutPolicies()))
         for i, v := range m.GetActivityBasedTimeoutPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("activityBasedTimeoutPolicies", cast)
         if err != nil {
@@ -381,7 +427,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetAppManagementPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppManagementPolicies()))
         for i, v := range m.GetAppManagementPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appManagementPolicies", cast)
         if err != nil {
@@ -400,6 +448,18 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
+    if m.GetAuthenticationStrengthPolicies() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAuthenticationStrengthPolicies()))
+        for i, v := range m.GetAuthenticationStrengthPolicies() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("authenticationStrengthPolicies", cast)
+        if err != nil {
+            return err
+        }
+    }
     {
         err = writer.WriteObjectValue("authorizationPolicy", m.GetAuthorizationPolicy())
         if err != nil {
@@ -409,7 +469,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetClaimsMappingPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetClaimsMappingPolicies()))
         for i, v := range m.GetClaimsMappingPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("claimsMappingPolicies", cast)
         if err != nil {
@@ -419,7 +481,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetConditionalAccessPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetConditionalAccessPolicies()))
         for i, v := range m.GetConditionalAccessPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("conditionalAccessPolicies", cast)
         if err != nil {
@@ -441,7 +505,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetFeatureRolloutPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFeatureRolloutPolicies()))
         for i, v := range m.GetFeatureRolloutPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("featureRolloutPolicies", cast)
         if err != nil {
@@ -451,7 +517,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetHomeRealmDiscoveryPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHomeRealmDiscoveryPolicies()))
         for i, v := range m.GetHomeRealmDiscoveryPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("homeRealmDiscoveryPolicies", cast)
         if err != nil {
@@ -467,7 +535,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetPermissionGrantPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPermissionGrantPolicies()))
         for i, v := range m.GetPermissionGrantPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("permissionGrantPolicies", cast)
         if err != nil {
@@ -477,7 +547,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetRoleManagementPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoleManagementPolicies()))
         for i, v := range m.GetRoleManagementPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("roleManagementPolicies", cast)
         if err != nil {
@@ -487,7 +559,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetRoleManagementPolicyAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRoleManagementPolicyAssignments()))
         for i, v := range m.GetRoleManagementPolicyAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("roleManagementPolicyAssignments", cast)
         if err != nil {
@@ -497,7 +571,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetTokenIssuancePolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenIssuancePolicies()))
         for i, v := range m.GetTokenIssuancePolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tokenIssuancePolicies", cast)
         if err != nil {
@@ -507,7 +583,9 @@ func (m *PolicyRoot) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetTokenLifetimePolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenLifetimePolicies()))
         for i, v := range m.GetTokenLifetimePolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tokenLifetimePolicies", cast)
         if err != nil {
@@ -524,7 +602,7 @@ func (m *PolicyRoot) SetActivityBasedTimeoutPolicies(value []ActivityBasedTimeou
 func (m *PolicyRoot) SetAdminConsentRequestPolicy(value AdminConsentRequestPolicyable)() {
     m.adminConsentRequestPolicy = value
 }
-// SetAppManagementPolicies sets the appManagementPolicies property value. The appManagementPolicies property
+// SetAppManagementPolicies sets the appManagementPolicies property value. The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
 func (m *PolicyRoot) SetAppManagementPolicies(value []AppManagementPolicyable)() {
     m.appManagementPolicies = value
 }
@@ -532,9 +610,13 @@ func (m *PolicyRoot) SetAppManagementPolicies(value []AppManagementPolicyable)()
 func (m *PolicyRoot) SetAuthenticationFlowsPolicy(value AuthenticationFlowsPolicyable)() {
     m.authenticationFlowsPolicy = value
 }
-// SetAuthenticationMethodsPolicy sets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).
+// SetAuthenticationMethodsPolicy sets the authenticationMethodsPolicy property value. The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).
 func (m *PolicyRoot) SetAuthenticationMethodsPolicy(value AuthenticationMethodsPolicyable)() {
     m.authenticationMethodsPolicy = value
+}
+// SetAuthenticationStrengthPolicies sets the authenticationStrengthPolicies property value. The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.
+func (m *PolicyRoot) SetAuthenticationStrengthPolicies(value []AuthenticationStrengthPolicyable)() {
+    m.authenticationStrengthPolicies = value
 }
 // SetAuthorizationPolicy sets the authorizationPolicy property value. The policy that controls Azure AD authorization settings.
 func (m *PolicyRoot) SetAuthorizationPolicy(value AuthorizationPolicyable)() {
@@ -552,7 +634,7 @@ func (m *PolicyRoot) SetConditionalAccessPolicies(value []ConditionalAccessPolic
 func (m *PolicyRoot) SetCrossTenantAccessPolicy(value CrossTenantAccessPolicyable)() {
     m.crossTenantAccessPolicy = value
 }
-// SetDefaultAppManagementPolicy sets the defaultAppManagementPolicy property value. The defaultAppManagementPolicy property
+// SetDefaultAppManagementPolicy sets the defaultAppManagementPolicy property value. The tenant-wide policy that enforces app management restrictions for all applications and service principals.
 func (m *PolicyRoot) SetDefaultAppManagementPolicy(value TenantAppManagementPolicyable)() {
     m.defaultAppManagementPolicy = value
 }
@@ -597,6 +679,7 @@ type PolicyRootable interface {
     GetAppManagementPolicies()([]AppManagementPolicyable)
     GetAuthenticationFlowsPolicy()(AuthenticationFlowsPolicyable)
     GetAuthenticationMethodsPolicy()(AuthenticationMethodsPolicyable)
+    GetAuthenticationStrengthPolicies()([]AuthenticationStrengthPolicyable)
     GetAuthorizationPolicy()(AuthorizationPolicyable)
     GetClaimsMappingPolicies()([]ClaimsMappingPolicyable)
     GetConditionalAccessPolicies()([]ConditionalAccessPolicyable)
@@ -615,6 +698,7 @@ type PolicyRootable interface {
     SetAppManagementPolicies(value []AppManagementPolicyable)()
     SetAuthenticationFlowsPolicy(value AuthenticationFlowsPolicyable)()
     SetAuthenticationMethodsPolicy(value AuthenticationMethodsPolicyable)()
+    SetAuthenticationStrengthPolicies(value []AuthenticationStrengthPolicyable)()
     SetAuthorizationPolicy(value AuthorizationPolicyable)()
     SetClaimsMappingPolicies(value []ClaimsMappingPolicyable)()
     SetConditionalAccessPolicies(value []ConditionalAccessPolicyable)()

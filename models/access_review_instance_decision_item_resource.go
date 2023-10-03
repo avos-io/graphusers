@@ -97,7 +97,7 @@ func (m *AccessReviewInstanceDecisionItemResource) GetFieldDeserializers()(map[s
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -111,8 +111,8 @@ func (m *AccessReviewInstanceDecisionItemResource) GetId()(*string) {
 func (m *AccessReviewInstanceDecisionItemResource) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.
-func (m *AccessReviewInstanceDecisionItemResource) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.
+func (m *AccessReviewInstanceDecisionItemResource) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -136,7 +136,7 @@ func (m *AccessReviewInstanceDecisionItemResource) Serialize(writer i878a80d2330
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -165,8 +165,8 @@ func (m *AccessReviewInstanceDecisionItemResource) SetId(value *string)() {
 func (m *AccessReviewInstanceDecisionItemResource) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.
-func (m *AccessReviewInstanceDecisionItemResource) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.
+func (m *AccessReviewInstanceDecisionItemResource) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // AccessReviewInstanceDecisionItemResourceable 
@@ -176,9 +176,9 @@ type AccessReviewInstanceDecisionItemResourceable interface {
     GetDisplayName()(*string)
     GetId()(*string)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetDisplayName(value *string)()
     SetId(value *string)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

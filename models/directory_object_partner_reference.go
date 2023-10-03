@@ -17,7 +17,7 @@ type DirectoryObjectPartnerReference struct {
     // The type of the referenced object in the partner tenant. Read-only.
     objectType *string
 }
-// NewDirectoryObjectPartnerReference instantiates a new DirectoryObjectPartnerReference and sets the default values.
+// NewDirectoryObjectPartnerReference instantiates a new directoryObjectPartnerReference and sets the default values.
 func NewDirectoryObjectPartnerReference()(*DirectoryObjectPartnerReference) {
     m := &DirectoryObjectPartnerReference{
         DirectoryObject: *NewDirectoryObject(),

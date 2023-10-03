@@ -49,7 +49,7 @@ type ServicePrincipalRiskDetection struct {
     // Indicates the type of token issuer for the detected sign-in risk. The possible values are: AzureAD.
     tokenIssuerType *TokenIssuerType
 }
-// NewServicePrincipalRiskDetection instantiates a new ServicePrincipalRiskDetection and sets the default values.
+// NewServicePrincipalRiskDetection instantiates a new servicePrincipalRiskDetection and sets the default values.
 func NewServicePrincipalRiskDetection()(*ServicePrincipalRiskDetection) {
     m := &ServicePrincipalRiskDetection{
         Entity: *NewEntity(),
@@ -179,7 +179,9 @@ func (m *ServicePrincipalRiskDetection) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetKeyIds(res)
         }

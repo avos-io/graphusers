@@ -4,13 +4,13 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// WindowsAppXAppAssignmentSettings 
+// WindowsAppXAppAssignmentSettings contains properties used when assigning a Windows AppX mobile app to a group.
 type WindowsAppXAppAssignmentSettings struct {
     MobileAppAssignmentSettings
-    // Whether or not to use device execution context for Windows AppX mobile app.
+    // When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
     useDeviceContext *bool
 }
-// NewWindowsAppXAppAssignmentSettings instantiates a new WindowsAppXAppAssignmentSettings and sets the default values.
+// NewWindowsAppXAppAssignmentSettings instantiates a new windowsAppXAppAssignmentSettings and sets the default values.
 func NewWindowsAppXAppAssignmentSettings()(*WindowsAppXAppAssignmentSettings) {
     m := &WindowsAppXAppAssignmentSettings{
         MobileAppAssignmentSettings: *NewMobileAppAssignmentSettings(),
@@ -38,7 +38,7 @@ func (m *WindowsAppXAppAssignmentSettings) GetFieldDeserializers()(map[string]fu
     }
     return res
 }
-// GetUseDeviceContext gets the useDeviceContext property value. Whether or not to use device execution context for Windows AppX mobile app.
+// GetUseDeviceContext gets the useDeviceContext property value. When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
 func (m *WindowsAppXAppAssignmentSettings) GetUseDeviceContext()(*bool) {
     return m.useDeviceContext
 }
@@ -56,7 +56,7 @@ func (m *WindowsAppXAppAssignmentSettings) Serialize(writer i878a80d2330e89d2689
     }
     return nil
 }
-// SetUseDeviceContext sets the useDeviceContext property value. Whether or not to use device execution context for Windows AppX mobile app.
+// SetUseDeviceContext sets the useDeviceContext property value. When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has been set to TRUE it cannot be changed.
 func (m *WindowsAppXAppAssignmentSettings) SetUseDeviceContext(value *bool)() {
     m.useDeviceContext = value
 }

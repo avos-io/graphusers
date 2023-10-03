@@ -9,10 +9,10 @@ type UnifiedRoleManagementPolicyExpirationRule struct {
     UnifiedRoleManagementPolicyRule
     // Indicates whether expiration is required or if it's a permanently active assignment or eligibility.
     isExpirationRequired *bool
-    // The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.
+    // The maximum duration allowed for eligibility or assignment that isn't permanent. Required when isExpirationRequired is true.
     maximumDuration *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
 }
-// NewUnifiedRoleManagementPolicyExpirationRule instantiates a new UnifiedRoleManagementPolicyExpirationRule and sets the default values.
+// NewUnifiedRoleManagementPolicyExpirationRule instantiates a new unifiedRoleManagementPolicyExpirationRule and sets the default values.
 func NewUnifiedRoleManagementPolicyExpirationRule()(*UnifiedRoleManagementPolicyExpirationRule) {
     m := &UnifiedRoleManagementPolicyExpirationRule{
         UnifiedRoleManagementPolicyRule: *NewUnifiedRoleManagementPolicyRule(),
@@ -54,7 +54,7 @@ func (m *UnifiedRoleManagementPolicyExpirationRule) GetFieldDeserializers()(map[
 func (m *UnifiedRoleManagementPolicyExpirationRule) GetIsExpirationRequired()(*bool) {
     return m.isExpirationRequired
 }
-// GetMaximumDuration gets the maximumDuration property value. The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.
+// GetMaximumDuration gets the maximumDuration property value. The maximum duration allowed for eligibility or assignment that isn't permanent. Required when isExpirationRequired is true.
 func (m *UnifiedRoleManagementPolicyExpirationRule) GetMaximumDuration()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
     return m.maximumDuration
 }
@@ -82,7 +82,7 @@ func (m *UnifiedRoleManagementPolicyExpirationRule) Serialize(writer i878a80d233
 func (m *UnifiedRoleManagementPolicyExpirationRule) SetIsExpirationRequired(value *bool)() {
     m.isExpirationRequired = value
 }
-// SetMaximumDuration sets the maximumDuration property value. The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.
+// SetMaximumDuration sets the maximumDuration property value. The maximum duration allowed for eligibility or assignment that isn't permanent. Required when isExpirationRequired is true.
 func (m *UnifiedRoleManagementPolicyExpirationRule) SetMaximumDuration(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
     m.maximumDuration = value
 }

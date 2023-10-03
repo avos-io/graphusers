@@ -14,7 +14,7 @@ type ResultInfo struct {
     message *string
     // The OdataType property
     odataType *string
-    // The result sub-code.
+    // The result subcode.
     subcode *int32
 }
 // NewResultInfo instantiates a new resultInfo and sets the default values.
@@ -89,7 +89,7 @@ func (m *ResultInfo) GetMessage()(*string) {
 func (m *ResultInfo) GetOdataType()(*string) {
     return m.odataType
 }
-// GetSubcode gets the subcode property value. The result sub-code.
+// GetSubcode gets the subcode property value. The result subcode.
 func (m *ResultInfo) GetSubcode()(*int32) {
     return m.subcode
 }
@@ -143,7 +143,7 @@ func (m *ResultInfo) SetMessage(value *string)() {
 func (m *ResultInfo) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetSubcode sets the subcode property value. The result sub-code.
+// SetSubcode sets the subcode property value. The result subcode.
 func (m *ResultInfo) SetSubcode(value *int32)() {
     m.subcode = value
 }

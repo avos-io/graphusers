@@ -8,12 +8,7 @@ import (
 
 // GetAvailableExtensionPropertiesRequestBuilder provides operations to call the getAvailableExtensionProperties method.
 type GetAvailableExtensionPropertiesRequestBuilder struct {
-    // Path parameters for the request
-    pathParameters map[string]string
-    // The request adapter to use to execute the requests.
-    requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter
-    // Url template to use to build the URL for the current request builder
-    urlTemplate string
+    i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.BaseRequestBuilder
 }
 // GetAvailableExtensionPropertiesRequestBuilderPostRequestConfiguration configuration for the request such as headers, query parameters, and middleware options.
 type GetAvailableExtensionPropertiesRequestBuilderPostRequestConfiguration struct {
@@ -25,14 +20,8 @@ type GetAvailableExtensionPropertiesRequestBuilderPostRequestConfiguration struc
 // NewGetAvailableExtensionPropertiesRequestBuilderInternal instantiates a new GetAvailableExtensionPropertiesRequestBuilder and sets the default values.
 func NewGetAvailableExtensionPropertiesRequestBuilderInternal(pathParameters map[string]string, requestAdapter i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestAdapter)(*GetAvailableExtensionPropertiesRequestBuilder) {
     m := &GetAvailableExtensionPropertiesRequestBuilder{
+        BaseRequestBuilder: *i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewBaseRequestBuilder(requestAdapter, "{+baseurl}/groups/getAvailableExtensionProperties", pathParameters),
     }
-    m.urlTemplate = "{+baseurl}/groups/getAvailableExtensionProperties";
-    urlTplParams := make(map[string]string)
-    for idx, item := range pathParameters {
-        urlTplParams[idx] = item
-    }
-    m.pathParameters = urlTplParams
-    m.requestAdapter = requestAdapter
     return m
 }
 // NewGetAvailableExtensionPropertiesRequestBuilder instantiates a new GetAvailableExtensionPropertiesRequestBuilder and sets the default values.
@@ -41,10 +30,10 @@ func NewGetAvailableExtensionPropertiesRequestBuilder(rawUrl string, requestAdap
     urlParams["request-raw-url"] = rawUrl
     return NewGetAvailableExtensionPropertiesRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Post return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization
+// Post return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties: This API is supported in the following national cloud deployments.
 // [Find more info here]
 // 
-// [Find more info here]: https://docs.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
+// [Find more info here]: https://learn.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0
 func (m *GetAvailableExtensionPropertiesRequestBuilder) Post(ctx context.Context, body GetAvailableExtensionPropertiesPostRequestBodyable, requestConfiguration *GetAvailableExtensionPropertiesRequestBuilderPostRequestConfiguration)(GetAvailableExtensionPropertiesResponseable, error) {
     requestInfo, err := m.ToPostRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -54,7 +43,7 @@ func (m *GetAvailableExtensionPropertiesRequestBuilder) Post(ctx context.Context
         "4XX": i42049ece93d9a63e1eca3944b9014beb5e382587d98b67237a4e6ba308528453.CreateODataErrorFromDiscriminatorValue,
         "5XX": i42049ece93d9a63e1eca3944b9014beb5e382587d98b67237a4e6ba308528453.CreateODataErrorFromDiscriminatorValue,
     }
-    res, err := m.requestAdapter.Send(ctx, requestInfo, CreateGetAvailableExtensionPropertiesResponseFromDiscriminatorValue, errorMapping)
+    res, err := m.BaseRequestBuilder.RequestAdapter.Send(ctx, requestInfo, CreateGetAvailableExtensionPropertiesResponseFromDiscriminatorValue, errorMapping)
     if err != nil {
         return nil, err
     }
@@ -63,14 +52,14 @@ func (m *GetAvailableExtensionPropertiesRequestBuilder) Post(ctx context.Context
     }
     return res.(GetAvailableExtensionPropertiesResponseable), nil
 }
-// ToPostRequestInformation return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization
+// ToPostRequestInformation return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties: This API is supported in the following national cloud deployments.
 func (m *GetAvailableExtensionPropertiesRequestBuilder) ToPostRequestInformation(ctx context.Context, body GetAvailableExtensionPropertiesPostRequestBodyable, requestConfiguration *GetAvailableExtensionPropertiesRequestBuilderPostRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
-    requestInfo.UrlTemplate = m.urlTemplate
-    requestInfo.PathParameters = m.pathParameters
+    requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate
+    requestInfo.PathParameters = m.BaseRequestBuilder.PathParameters
     requestInfo.Method = i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.POST
     requestInfo.Headers.Add("Accept", "application/json")
-    err := requestInfo.SetContentFromParsable(ctx, m.requestAdapter, "application/json", body)
+    err := requestInfo.SetContentFromParsable(ctx, m.BaseRequestBuilder.RequestAdapter, "application/json", body)
     if err != nil {
         return nil, err
     }
@@ -79,4 +68,8 @@ func (m *GetAvailableExtensionPropertiesRequestBuilder) ToPostRequestInformation
         requestInfo.AddRequestOptions(requestConfiguration.Options)
     }
     return requestInfo, nil
+}
+// WithUrl returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
+func (m *GetAvailableExtensionPropertiesRequestBuilder) WithUrl(rawUrl string)(*GetAvailableExtensionPropertiesRequestBuilder) {
+    return NewGetAvailableExtensionPropertiesRequestBuilder(rawUrl, m.BaseRequestBuilder.RequestAdapter);
 }

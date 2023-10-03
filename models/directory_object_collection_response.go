@@ -10,7 +10,7 @@ type DirectoryObjectCollectionResponse struct {
     // The value property
     value []DirectoryObjectable
 }
-// NewDirectoryObjectCollectionResponse instantiates a new DirectoryObjectCollectionResponse and sets the default values.
+// NewDirectoryObjectCollectionResponse instantiates a new directoryObjectCollectionResponse and sets the default values.
 func NewDirectoryObjectCollectionResponse()(*DirectoryObjectCollectionResponse) {
     m := &DirectoryObjectCollectionResponse{
         BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
@@ -32,7 +32,9 @@ func (m *DirectoryObjectCollectionResponse) GetFieldDeserializers()(map[string]f
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetValue(res)
         }
@@ -53,7 +55,9 @@ func (m *DirectoryObjectCollectionResponse) Serialize(writer i878a80d2330e89d268
     if m.GetValue() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetValue()))
         for i, v := range m.GetValue() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("value", cast)
         if err != nil {

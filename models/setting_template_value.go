@@ -91,7 +91,7 @@ func (m *SettingTemplateValue) GetFieldDeserializers()(map[string]func(i878a80d2
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -105,8 +105,8 @@ func (m *SettingTemplateValue) GetName()(*string) {
 func (m *SettingTemplateValue) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. Type of the setting.
-func (m *SettingTemplateValue) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Type of the setting.
+func (m *SettingTemplateValue) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -136,7 +136,7 @@ func (m *SettingTemplateValue) Serialize(writer i878a80d2330e89d26896388a3f487ee
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -169,8 +169,8 @@ func (m *SettingTemplateValue) SetName(value *string)() {
 func (m *SettingTemplateValue) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. Type of the setting.
-func (m *SettingTemplateValue) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Type of the setting.
+func (m *SettingTemplateValue) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SettingTemplateValueable 
@@ -181,10 +181,10 @@ type SettingTemplateValueable interface {
     GetDescription()(*string)
     GetName()(*string)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetDefaultValue(value *string)()
     SetDescription(value *string)()
     SetName(value *string)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

@@ -10,7 +10,7 @@ type EducationAssignmentPointsGradeType struct {
     // Max points possible for this assignment.
     maxPoints *float32
 }
-// NewEducationAssignmentPointsGradeType instantiates a new EducationAssignmentPointsGradeType and sets the default values.
+// NewEducationAssignmentPointsGradeType instantiates a new educationAssignmentPointsGradeType and sets the default values.
 func NewEducationAssignmentPointsGradeType()(*EducationAssignmentPointsGradeType) {
     m := &EducationAssignmentPointsGradeType{
         EducationAssignmentGradeType: *NewEducationAssignmentGradeType(),

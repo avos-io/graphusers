@@ -12,7 +12,7 @@ type AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource struc
     // Identifier of the access package to which access has been granted.
     accessPackageId *string
 }
-// NewAccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource instantiates a new AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource and sets the default values.
+// NewAccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource instantiates a new accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource and sets the default values.
 func NewAccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource()(*AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource) {
     m := &AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource{
         AccessReviewInstanceDecisionItemResource: *NewAccessReviewInstanceDecisionItemResource(),

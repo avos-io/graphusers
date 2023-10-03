@@ -16,7 +16,7 @@ type SignInFrequencySessionControl struct {
     // The number of days or hours.
     value *int32
 }
-// NewSignInFrequencySessionControl instantiates a new SignInFrequencySessionControl and sets the default values.
+// NewSignInFrequencySessionControl instantiates a new signInFrequencySessionControl and sets the default values.
 func NewSignInFrequencySessionControl()(*SignInFrequencySessionControl) {
     m := &SignInFrequencySessionControl{
         ConditionalAccessSessionControl: *NewConditionalAccessSessionControl(),
@@ -62,7 +62,7 @@ func (m *SignInFrequencySessionControl) GetFieldDeserializers()(map[string]func(
             return err
         }
         if val != nil {
-            m.SetType(val.(*SigninFrequencyType))
+            m.SetTypeEscaped(val.(*SigninFrequencyType))
         }
         return nil
     }
@@ -82,8 +82,8 @@ func (m *SignInFrequencySessionControl) GetFieldDeserializers()(map[string]func(
 func (m *SignInFrequencySessionControl) GetFrequencyInterval()(*SignInFrequencyInterval) {
     return m.frequencyInterval
 }
-// GetType gets the type property value. Possible values are: days, hours.
-func (m *SignInFrequencySessionControl) GetType()(*SigninFrequencyType) {
+// GetTypeEscaped gets the type property value. Possible values are: days, hours.
+func (m *SignInFrequencySessionControl) GetTypeEscaped()(*SigninFrequencyType) {
     return m.typeEscaped
 }
 // GetValue gets the value property value. The number of days or hours.
@@ -110,8 +110,8 @@ func (m *SignInFrequencySessionControl) Serialize(writer i878a80d2330e89d2689638
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err = writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -133,8 +133,8 @@ func (m *SignInFrequencySessionControl) SetAuthenticationType(value *SignInFrequ
 func (m *SignInFrequencySessionControl) SetFrequencyInterval(value *SignInFrequencyInterval)() {
     m.frequencyInterval = value
 }
-// SetType sets the type property value. Possible values are: days, hours.
-func (m *SignInFrequencySessionControl) SetType(value *SigninFrequencyType)() {
+// SetTypeEscaped sets the type property value. Possible values are: days, hours.
+func (m *SignInFrequencySessionControl) SetTypeEscaped(value *SigninFrequencyType)() {
     m.typeEscaped = value
 }
 // SetValue sets the value property value. The number of days or hours.
@@ -147,10 +147,10 @@ type SignInFrequencySessionControlable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAuthenticationType()(*SignInFrequencyAuthenticationType)
     GetFrequencyInterval()(*SignInFrequencyInterval)
-    GetType()(*SigninFrequencyType)
+    GetTypeEscaped()(*SigninFrequencyType)
     GetValue()(*int32)
     SetAuthenticationType(value *SignInFrequencyAuthenticationType)()
     SetFrequencyInterval(value *SignInFrequencyInterval)()
-    SetType(value *SigninFrequencyType)()
+    SetTypeEscaped(value *SigninFrequencyType)()
     SetValue(value *int32)()
 }

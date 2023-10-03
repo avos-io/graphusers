@@ -22,7 +22,7 @@ type NetworkInfo struct {
     ipAddress *string
     // Link speed in bits per second reported by the network adapter used by the media endpoint.
     linkSpeed *int64
-    // The media access control (MAC) address of the media endpoint's network device.
+    // The media access control (MAC) address of the media endpoint's network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.
     macAddress *string
     // The networkTransportProtocol property
     networkTransportProtocol *NetworkTransportProtocol
@@ -279,7 +279,9 @@ func (m *NetworkInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]TraceRouteHopable, len(val))
             for i, v := range val {
-                res[i] = v.(TraceRouteHopable)
+                if v != nil {
+                    res[i] = v.(TraceRouteHopable)
+                }
             }
             m.SetTraceRouteHops(res)
         }
@@ -385,7 +387,7 @@ func (m *NetworkInfo) GetIpAddress()(*string) {
 func (m *NetworkInfo) GetLinkSpeed()(*int64) {
     return m.linkSpeed
 }
-// GetMacAddress gets the macAddress property value. The media access control (MAC) address of the media endpoint's network device.
+// GetMacAddress gets the macAddress property value. The media access control (MAC) address of the media endpoint's network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.
 func (m *NetworkInfo) GetMacAddress()(*string) {
     return m.macAddress
 }
@@ -574,7 +576,9 @@ func (m *NetworkInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetTraceRouteHops() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTraceRouteHops()))
         for i, v := range m.GetTraceRouteHops() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("traceRouteHops", cast)
         if err != nil {
@@ -677,7 +681,7 @@ func (m *NetworkInfo) SetIpAddress(value *string)() {
 func (m *NetworkInfo) SetLinkSpeed(value *int64)() {
     m.linkSpeed = value
 }
-// SetMacAddress sets the macAddress property value. The media access control (MAC) address of the media endpoint's network device.
+// SetMacAddress sets the macAddress property value. The media access control (MAC) address of the media endpoint's network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.
 func (m *NetworkInfo) SetMacAddress(value *string)() {
     m.macAddress = value
 }

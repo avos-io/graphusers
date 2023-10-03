@@ -12,7 +12,7 @@ type TeamUnarchivedEventMessageDetail struct {
     // Unique identifier of the team.
     teamId *string
 }
-// NewTeamUnarchivedEventMessageDetail instantiates a new TeamUnarchivedEventMessageDetail and sets the default values.
+// NewTeamUnarchivedEventMessageDetail instantiates a new teamUnarchivedEventMessageDetail and sets the default values.
 func NewTeamUnarchivedEventMessageDetail()(*TeamUnarchivedEventMessageDetail) {
     m := &TeamUnarchivedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

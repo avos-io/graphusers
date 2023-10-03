@@ -20,7 +20,7 @@ type DomainDnsSrvRecord struct {
     // Value to use when configuring the weight property of the SRV record at the DNS host.
     weight *int32
 }
-// NewDomainDnsSrvRecord instantiates a new DomainDnsSrvRecord and sets the default values.
+// NewDomainDnsSrvRecord instantiates a new domainDnsSrvRecord and sets the default values.
 func NewDomainDnsSrvRecord()(*DomainDnsSrvRecord) {
     m := &DomainDnsSrvRecord{
         DomainDnsRecord: *NewDomainDnsRecord(),

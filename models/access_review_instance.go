@@ -27,7 +27,7 @@ type AccessReviewInstance struct {
     // Specifies the status of an accessReview. Possible values: Initializing, NotStarted, Starting, InProgress, Completing, Completed, AutoReviewing, and AutoReviewed. Supports $select, $orderby, and $filter (eq only). Read-only.
     status *string
 }
-// NewAccessReviewInstance instantiates a new AccessReviewInstance and sets the default values.
+// NewAccessReviewInstance instantiates a new accessReviewInstance and sets the default values.
 func NewAccessReviewInstance()(*AccessReviewInstance) {
     m := &AccessReviewInstance{
         Entity: *NewEntity(),
@@ -65,7 +65,9 @@ func (m *AccessReviewInstance) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]AccessReviewReviewerable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewReviewerable)
+                if v != nil {
+                    res[i] = v.(AccessReviewReviewerable)
+                }
             }
             m.SetContactedReviewers(res)
         }
@@ -79,7 +81,9 @@ func (m *AccessReviewInstance) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]AccessReviewInstanceDecisionItemable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewInstanceDecisionItemable)
+                if v != nil {
+                    res[i] = v.(AccessReviewInstanceDecisionItemable)
+                }
             }
             m.SetDecisions(res)
         }
@@ -103,7 +107,9 @@ func (m *AccessReviewInstance) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]AccessReviewReviewerScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewReviewerScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewReviewerScopeable)
+                }
             }
             m.SetFallbackReviewers(res)
         }
@@ -117,7 +123,9 @@ func (m *AccessReviewInstance) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]AccessReviewReviewerScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewReviewerScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewReviewerScopeable)
+                }
             }
             m.SetReviewers(res)
         }
@@ -141,7 +149,9 @@ func (m *AccessReviewInstance) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]AccessReviewStageable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewStageable)
+                if v != nil {
+                    res[i] = v.(AccessReviewStageable)
+                }
             }
             m.SetStages(res)
         }
@@ -198,7 +208,9 @@ func (m *AccessReviewInstance) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetContactedReviewers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetContactedReviewers()))
         for i, v := range m.GetContactedReviewers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("contactedReviewers", cast)
         if err != nil {
@@ -208,7 +220,9 @@ func (m *AccessReviewInstance) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetDecisions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDecisions()))
         for i, v := range m.GetDecisions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("decisions", cast)
         if err != nil {
@@ -224,7 +238,9 @@ func (m *AccessReviewInstance) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetFallbackReviewers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFallbackReviewers()))
         for i, v := range m.GetFallbackReviewers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("fallbackReviewers", cast)
         if err != nil {
@@ -234,7 +250,9 @@ func (m *AccessReviewInstance) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetReviewers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReviewers()))
         for i, v := range m.GetReviewers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("reviewers", cast)
         if err != nil {
@@ -250,7 +268,9 @@ func (m *AccessReviewInstance) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetStages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetStages()))
         for i, v := range m.GetStages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("stages", cast)
         if err != nil {

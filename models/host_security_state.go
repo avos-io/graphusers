@@ -20,7 +20,7 @@ type HostSecurityState struct {
     netBiosName *string
     // The OdataType property
     odataType *string
-    // Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+    // Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
     os *string
     // Private (not routable) IPv4 or IPv6 address (see RFC 1918) at the time of the alert.
     privateIpAddress *string
@@ -173,7 +173,7 @@ func (m *HostSecurityState) GetNetBiosName()(*string) {
 func (m *HostSecurityState) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOs gets the os property value. Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+// GetOs gets the os property value. Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
 func (m *HostSecurityState) GetOs()(*string) {
     return m.os
 }
@@ -287,7 +287,7 @@ func (m *HostSecurityState) SetNetBiosName(value *string)() {
 func (m *HostSecurityState) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOs sets the os property value. Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+// SetOs sets the os property value. Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
 func (m *HostSecurityState) SetOs(value *string)() {
     m.os = value
 }

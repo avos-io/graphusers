@@ -8,9 +8,9 @@ import (
 type ComplianceInformation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Collection of the certification controls associated with certification
+    // Collection of the certification controls associated with the certification.
     certificationControls []CertificationControlable
-    // Compliance certification name (for example, ISO 27018:2014, GDPR, FedRAMP, NIST 800-171)
+    // The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
     certificationName *string
     // The OdataType property
     odataType *string
@@ -30,11 +30,11 @@ func CreateComplianceInformationFromDiscriminatorValue(parseNode i878a80d2330e89
 func (m *ComplianceInformation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCertificationControls gets the certificationControls property value. Collection of the certification controls associated with certification
+// GetCertificationControls gets the certificationControls property value. Collection of the certification controls associated with the certification.
 func (m *ComplianceInformation) GetCertificationControls()([]CertificationControlable) {
     return m.certificationControls
 }
-// GetCertificationName gets the certificationName property value. Compliance certification name (for example, ISO 27018:2014, GDPR, FedRAMP, NIST 800-171)
+// GetCertificationName gets the certificationName property value. The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
 func (m *ComplianceInformation) GetCertificationName()(*string) {
     return m.certificationName
 }
@@ -49,7 +49,9 @@ func (m *ComplianceInformation) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]CertificationControlable, len(val))
             for i, v := range val {
-                res[i] = v.(CertificationControlable)
+                if v != nil {
+                    res[i] = v.(CertificationControlable)
+                }
             }
             m.SetCertificationControls(res)
         }
@@ -86,7 +88,9 @@ func (m *ComplianceInformation) Serialize(writer i878a80d2330e89d26896388a3f487e
     if m.GetCertificationControls() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCertificationControls()))
         for i, v := range m.GetCertificationControls() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("certificationControls", cast)
         if err != nil {
@@ -117,11 +121,11 @@ func (m *ComplianceInformation) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *ComplianceInformation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCertificationControls sets the certificationControls property value. Collection of the certification controls associated with certification
+// SetCertificationControls sets the certificationControls property value. Collection of the certification controls associated with the certification.
 func (m *ComplianceInformation) SetCertificationControls(value []CertificationControlable)() {
     m.certificationControls = value
 }
-// SetCertificationName sets the certificationName property value. Compliance certification name (for example, ISO 27018:2014, GDPR, FedRAMP, NIST 800-171)
+// SetCertificationName sets the certificationName property value. The name of the compliance certification, for example, ISO 27018:2014, GDPR, FedRAMP, and NIST 800-171.
 func (m *ComplianceInformation) SetCertificationName(value *string)() {
     m.certificationName = value
 }

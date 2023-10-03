@@ -12,7 +12,7 @@ type InsightIdentity struct {
     address *string
     // The display name of the user who shared the item.
     displayName *string
-    // The id of the user who shared the item.
+    // The ID of the user who shared the item.
     id *string
     // The OdataType property
     odataType *string
@@ -85,7 +85,7 @@ func (m *InsightIdentity) GetFieldDeserializers()(map[string]func(i878a80d2330e8
     }
     return res
 }
-// GetId gets the id property value. The id of the user who shared the item.
+// GetId gets the id property value. The ID of the user who shared the item.
 func (m *InsightIdentity) GetId()(*string) {
     return m.id
 }
@@ -139,7 +139,7 @@ func (m *InsightIdentity) SetAddress(value *string)() {
 func (m *InsightIdentity) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetId sets the id property value. The id of the user who shared the item.
+// SetId sets the id property value. The ID of the user who shared the item.
 func (m *InsightIdentity) SetId(value *string)() {
     m.id = value
 }

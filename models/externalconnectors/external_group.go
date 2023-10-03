@@ -15,7 +15,7 @@ type ExternalGroup struct {
     // A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.
     members []Identityable
 }
-// NewExternalGroup instantiates a new ExternalGroup and sets the default values.
+// NewExternalGroup instantiates a new externalGroup and sets the default values.
 func NewExternalGroup()(*ExternalGroup) {
     m := &ExternalGroup{
         Entity: *i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.NewEntity(),
@@ -65,7 +65,9 @@ func (m *ExternalGroup) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]Identityable, len(val))
             for i, v := range val {
-                res[i] = v.(Identityable)
+                if v != nil {
+                    res[i] = v.(Identityable)
+                }
             }
             m.SetMembers(res)
         }
@@ -98,7 +100,9 @@ func (m *ExternalGroup) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetMembers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMembers()))
         for i, v := range m.GetMembers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("members", cast)
         if err != nil {

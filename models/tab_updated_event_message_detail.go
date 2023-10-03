@@ -12,7 +12,7 @@ type TabUpdatedEventMessageDetail struct {
     // Unique identifier of the tab.
     tabId *string
 }
-// NewTabUpdatedEventMessageDetail instantiates a new TabUpdatedEventMessageDetail and sets the default values.
+// NewTabUpdatedEventMessageDetail instantiates a new tabUpdatedEventMessageDetail and sets the default values.
 func NewTabUpdatedEventMessageDetail()(*TabUpdatedEventMessageDetail) {
     m := &TabUpdatedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

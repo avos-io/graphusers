@@ -14,6 +14,8 @@ type ConditionalAccessClientApplications struct {
     includeServicePrincipals []string
     // The OdataType property
     odataType *string
+    // The servicePrincipalFilter property
+    servicePrincipalFilter ConditionalAccessFilterable
 }
 // NewConditionalAccessClientApplications instantiates a new conditionalAccessClientApplications and sets the default values.
 func NewConditionalAccessClientApplications()(*ConditionalAccessClientApplications) {
@@ -45,7 +47,9 @@ func (m *ConditionalAccessClientApplications) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExcludeServicePrincipals(res)
         }
@@ -59,7 +63,9 @@ func (m *ConditionalAccessClientApplications) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeServicePrincipals(res)
         }
@@ -75,6 +81,16 @@ func (m *ConditionalAccessClientApplications) GetFieldDeserializers()(map[string
         }
         return nil
     }
+    res["servicePrincipalFilter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateConditionalAccessFilterFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServicePrincipalFilter(val.(ConditionalAccessFilterable))
+        }
+        return nil
+    }
     return res
 }
 // GetIncludeServicePrincipals gets the includeServicePrincipals property value. Service principal IDs included in the policy scope, or ServicePrincipalsInMyTenant.
@@ -84,6 +100,10 @@ func (m *ConditionalAccessClientApplications) GetIncludeServicePrincipals()([]st
 // GetOdataType gets the @odata.type property value. The OdataType property
 func (m *ConditionalAccessClientApplications) GetOdataType()(*string) {
     return m.odataType
+}
+// GetServicePrincipalFilter gets the servicePrincipalFilter property value. The servicePrincipalFilter property
+func (m *ConditionalAccessClientApplications) GetServicePrincipalFilter()(ConditionalAccessFilterable) {
+    return m.servicePrincipalFilter
 }
 // Serialize serializes information the current object
 func (m *ConditionalAccessClientApplications) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -101,6 +121,12 @@ func (m *ConditionalAccessClientApplications) Serialize(writer i878a80d2330e89d2
     }
     {
         err := writer.WriteStringValue("@odata.type", m.GetOdataType())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("servicePrincipalFilter", m.GetServicePrincipalFilter())
         if err != nil {
             return err
         }
@@ -129,6 +155,10 @@ func (m *ConditionalAccessClientApplications) SetIncludeServicePrincipals(value 
 func (m *ConditionalAccessClientApplications) SetOdataType(value *string)() {
     m.odataType = value
 }
+// SetServicePrincipalFilter sets the servicePrincipalFilter property value. The servicePrincipalFilter property
+func (m *ConditionalAccessClientApplications) SetServicePrincipalFilter(value ConditionalAccessFilterable)() {
+    m.servicePrincipalFilter = value
+}
 // ConditionalAccessClientApplicationsable 
 type ConditionalAccessClientApplicationsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
@@ -136,7 +166,9 @@ type ConditionalAccessClientApplicationsable interface {
     GetExcludeServicePrincipals()([]string)
     GetIncludeServicePrincipals()([]string)
     GetOdataType()(*string)
+    GetServicePrincipalFilter()(ConditionalAccessFilterable)
     SetExcludeServicePrincipals(value []string)()
     SetIncludeServicePrincipals(value []string)()
     SetOdataType(value *string)()
+    SetServicePrincipalFilter(value ConditionalAccessFilterable)()
 }

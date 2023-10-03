@@ -13,7 +13,7 @@ type MessageUnpinnedEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewMessageUnpinnedEventMessageDetail instantiates a new MessageUnpinnedEventMessageDetail and sets the default values.
+// NewMessageUnpinnedEventMessageDetail instantiates a new messageUnpinnedEventMessageDetail and sets the default values.
 func NewMessageUnpinnedEventMessageDetail()(*MessageUnpinnedEventMessageDetail) {
     m := &MessageUnpinnedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

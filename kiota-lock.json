@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "2A6E574D9C7DC860FBCB586D2669EEC0CAC9746F0193F23755827E346D3A9823BF23DD79121E5D0D8EF4F028D619F480A7FB9AB64129B70D0D825646D61953D2",
+  "descriptionHash": "C65751E0E69004D19FD52A1162E603E362AFAC997ED7EBF8399F7E955AE9447302BDDCB61853B847C5A79B3D795226742FF39F1F81507260CF43972E53B90A08",
   "descriptionLocation": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.0.1",
+  "kiotaVersion": "1.6.1",
   "clientClassName": "Client",
   "clientNamespaceName": "github.com/avos-io/graphusers",
   "language": "Go",
@@ -11,7 +11,8 @@
   "serializers": [
     "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",
     "Microsoft.Kiota.Serialization.Text.TextSerializationWriterFactory",
-    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory"
+    "Microsoft.Kiota.Serialization.Form.FormSerializationWriterFactory",
+    "Microsoft.Kiota.Serialization.Multipart.MultipartSerializationWriterFactory"
   ],
   "deserializers": [
     "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory",
@@ -28,6 +29,7 @@
   "includePatterns": [
     "/users",
     "/users/*",
+    "/users/*/memberOf",
     "/users/*/memberOf/**",
     "/groups",
     "/groups/*",

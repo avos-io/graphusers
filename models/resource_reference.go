@@ -61,7 +61,7 @@ func (m *ResourceReference) GetFieldDeserializers()(map[string]func(i878a80d2330
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -85,8 +85,8 @@ func (m *ResourceReference) GetId()(*string) {
 func (m *ResourceReference) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
-func (m *ResourceReference) GetType()(*string) {
+// GetTypeEscaped gets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
+func (m *ResourceReference) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // GetWebUrl gets the webUrl property value. A URL leading to the referenced item.
@@ -108,7 +108,7 @@ func (m *ResourceReference) Serialize(writer i878a80d2330e89d26896388a3f487eef27
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -139,8 +139,8 @@ func (m *ResourceReference) SetId(value *string)() {
 func (m *ResourceReference) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
-func (m *ResourceReference) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. A string value that can be used to classify the item, such as 'microsoft.graph.driveItem'
+func (m *ResourceReference) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SetWebUrl sets the webUrl property value. A URL leading to the referenced item.
@@ -153,10 +153,10 @@ type ResourceReferenceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*string)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetWebUrl()(*string)
     SetId(value *string)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetWebUrl(value *string)()
 }

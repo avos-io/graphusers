@@ -8,7 +8,7 @@ import (
 type ProvisioningErrorInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Additional details in case of error.
+    // Additional details if there's error.
     additionalDetails *string
     // Categorizes the error code. Possible values are failure, nonServiceFailure, success, unknownFutureValue
     errorCategory *ProvisioningStatusErrorCategory
@@ -36,7 +36,7 @@ func CreateProvisioningErrorInfoFromDiscriminatorValue(parseNode i878a80d2330e89
 func (m *ProvisioningErrorInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAdditionalDetails gets the additionalDetails property value. Additional details in case of error.
+// GetAdditionalDetails gets the additionalDetails property value. Additional details if there's error.
 func (m *ProvisioningErrorInfo) GetAdditionalDetails()(*string) {
     return m.additionalDetails
 }
@@ -176,7 +176,7 @@ func (m *ProvisioningErrorInfo) Serialize(writer i878a80d2330e89d26896388a3f487e
 func (m *ProvisioningErrorInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAdditionalDetails sets the additionalDetails property value. Additional details in case of error.
+// SetAdditionalDetails sets the additionalDetails property value. Additional details if there's error.
 func (m *ProvisioningErrorInfo) SetAdditionalDetails(value *string)() {
     m.additionalDetails = value
 }

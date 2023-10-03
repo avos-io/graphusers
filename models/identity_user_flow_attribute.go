@@ -11,7 +11,7 @@ type IdentityUserFlowAttribute struct {
     dataType *IdentityUserFlowAttributeDataType
     // The description of the user flow attribute that's shown to the user at the time of sign-up.
     description *string
-    // The display name of the user flow attribute.
+    // The display name of the user flow attribute.  Supports $filter (eq, ne).
     displayName *string
     // The userFlowAttributeType property
     userFlowAttributeType *IdentityUserFlowAttributeType
@@ -55,7 +55,7 @@ func (m *IdentityUserFlowAttribute) GetDataType()(*IdentityUserFlowAttributeData
 func (m *IdentityUserFlowAttribute) GetDescription()(*string) {
     return m.description
 }
-// GetDisplayName gets the displayName property value. The display name of the user flow attribute.
+// GetDisplayName gets the displayName property value. The display name of the user flow attribute.  Supports $filter (eq, ne).
 func (m *IdentityUserFlowAttribute) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -150,7 +150,7 @@ func (m *IdentityUserFlowAttribute) SetDataType(value *IdentityUserFlowAttribute
 func (m *IdentityUserFlowAttribute) SetDescription(value *string)() {
     m.description = value
 }
-// SetDisplayName sets the displayName property value. The display name of the user flow attribute.
+// SetDisplayName sets the displayName property value. The display name of the user flow attribute.  Supports $filter (eq, ne).
 func (m *IdentityUserFlowAttribute) SetDisplayName(value *string)() {
     m.displayName = value
 }

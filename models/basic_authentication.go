@@ -7,12 +7,12 @@ import (
 // BasicAuthentication 
 type BasicAuthentication struct {
     ApiAuthenticationConfigurationBase
-    // The password. It is not returned in the responses.
+    // The password. It isn't returned in the responses.
     password *string
     // The username.
     username *string
 }
-// NewBasicAuthentication instantiates a new BasicAuthentication and sets the default values.
+// NewBasicAuthentication instantiates a new basicAuthentication and sets the default values.
 func NewBasicAuthentication()(*BasicAuthentication) {
     m := &BasicAuthentication{
         ApiAuthenticationConfigurationBase: *NewApiAuthenticationConfigurationBase(),
@@ -50,7 +50,7 @@ func (m *BasicAuthentication) GetFieldDeserializers()(map[string]func(i878a80d23
     }
     return res
 }
-// GetPassword gets the password property value. The password. It is not returned in the responses.
+// GetPassword gets the password property value. The password. It isn't returned in the responses.
 func (m *BasicAuthentication) GetPassword()(*string) {
     return m.password
 }
@@ -78,7 +78,7 @@ func (m *BasicAuthentication) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
-// SetPassword sets the password property value. The password. It is not returned in the responses.
+// SetPassword sets the password property value. The password. It isn't returned in the responses.
 func (m *BasicAuthentication) SetPassword(value *string)() {
     m.password = value
 }

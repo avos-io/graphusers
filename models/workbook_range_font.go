@@ -9,11 +9,11 @@ type WorkbookRangeFont struct {
     Entity
     // Represents the bold status of font.
     bold *bool
-    // HTML color code representation of the text color. E.g. #FF0000 represents Red.
+    // HTML color code representation of the text color. for example #FF0000 represents Red.
     color *string
     // Represents the italic status of the font.
     italic *bool
-    // Font name (e.g. 'Calibri')
+    // Font name (for example 'Calibri')
     name *string
     // Font size.
     size *float64
@@ -35,7 +35,7 @@ func CreateWorkbookRangeFontFromDiscriminatorValue(parseNode i878a80d2330e89d268
 func (m *WorkbookRangeFont) GetBold()(*bool) {
     return m.bold
 }
-// GetColor gets the color property value. HTML color code representation of the text color. E.g. #FF0000 represents Red.
+// GetColor gets the color property value. HTML color code representation of the text color. for example #FF0000 represents Red.
 func (m *WorkbookRangeFont) GetColor()(*string) {
     return m.color
 }
@@ -108,7 +108,7 @@ func (m *WorkbookRangeFont) GetFieldDeserializers()(map[string]func(i878a80d2330
 func (m *WorkbookRangeFont) GetItalic()(*bool) {
     return m.italic
 }
-// GetName gets the name property value. Font name (e.g. 'Calibri')
+// GetName gets the name property value. Font name (for example 'Calibri')
 func (m *WorkbookRangeFont) GetName()(*string) {
     return m.name
 }
@@ -168,7 +168,7 @@ func (m *WorkbookRangeFont) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 func (m *WorkbookRangeFont) SetBold(value *bool)() {
     m.bold = value
 }
-// SetColor sets the color property value. HTML color code representation of the text color. E.g. #FF0000 represents Red.
+// SetColor sets the color property value. HTML color code representation of the text color. for example #FF0000 represents Red.
 func (m *WorkbookRangeFont) SetColor(value *string)() {
     m.color = value
 }
@@ -176,7 +176,7 @@ func (m *WorkbookRangeFont) SetColor(value *string)() {
 func (m *WorkbookRangeFont) SetItalic(value *bool)() {
     m.italic = value
 }
-// SetName sets the name property value. Font name (e.g. 'Calibri')
+// SetName sets the name property value. Font name (for example 'Calibri')
 func (m *WorkbookRangeFont) SetName(value *string)() {
     m.name = value
 }

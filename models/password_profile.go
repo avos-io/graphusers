@@ -14,7 +14,7 @@ type PasswordProfile struct {
     forceChangePasswordNextSignInWithMfa *bool
     // The OdataType property
     odataType *string
-    // The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user’s passwordPolicies property. By default, a strong password is required.
+    // The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user's passwordPolicies property. By default, a strong password is required.
     password *string
 }
 // NewPasswordProfile instantiates a new passwordProfile and sets the default values.
@@ -89,7 +89,7 @@ func (m *PasswordProfile) GetForceChangePasswordNextSignInWithMfa()(*bool) {
 func (m *PasswordProfile) GetOdataType()(*string) {
     return m.odataType
 }
-// GetPassword gets the password property value. The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user’s passwordPolicies property. By default, a strong password is required.
+// GetPassword gets the password property value. The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user's passwordPolicies property. By default, a strong password is required.
 func (m *PasswordProfile) GetPassword()(*string) {
     return m.password
 }
@@ -143,7 +143,7 @@ func (m *PasswordProfile) SetForceChangePasswordNextSignInWithMfa(value *bool)()
 func (m *PasswordProfile) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetPassword sets the password property value. The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user’s passwordPolicies property. By default, a strong password is required.
+// SetPassword sets the password property value. The password for the user. This property is required when a user is created. It can be updated, but the user will be required to change the password on the next login. The password must satisfy minimum requirements as specified by the user's passwordPolicies property. By default, a strong password is required.
 func (m *PasswordProfile) SetPassword(value *string)() {
     m.password = value
 }

@@ -8,7 +8,7 @@ import (
 // AgreementFileProperties 
 type AgreementFileProperties struct {
     Entity
-    // The date time representing when the file was created.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    // The date time representing when the file was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Localized display name of the policy file of an agreement. The localized display name is shown to end users who view the agreement.
     displayName *string
@@ -16,14 +16,14 @@ type AgreementFileProperties struct {
     fileData AgreementFileDataable
     // Name of the agreement file (for example, TOU.pdf). Read-only.
     fileName *string
-    // If none of the languages matches the client preference, indicates whether this is the default agreement file . If none of the files are marked as default, the first one is treated as the default. Read-only.
+    // If none of the languages matches the client preference, indicates whether this is the default agreement file. If none of the files are marked as default, the first one is treated as the default. Read-only.
     isDefault *bool
     // Indicates whether the agreement file is a major version update. Major version updates invalidate the agreement's acceptances on the corresponding language.
     isMajorVersion *bool
     // The language of the agreement file in the format 'languagecode2-country/regioncode2'. 'languagecode2' is a lowercase two-letter code derived from ISO 639-1, while 'country/regioncode2' is derived from ISO 3166 and usually consists of two uppercase letters, or a BCP-47 language tag. For example, U.S. English is en-US. Read-only.
     language *string
 }
-// NewAgreementFileProperties instantiates a new AgreementFileProperties and sets the default values.
+// NewAgreementFileProperties instantiates a new agreementFileProperties and sets the default values.
 func NewAgreementFileProperties()(*AgreementFileProperties) {
     m := &AgreementFileProperties{
         Entity: *NewEntity(),
@@ -56,7 +56,7 @@ func CreateAgreementFilePropertiesFromDiscriminatorValue(parseNode i878a80d2330e
     }
     return NewAgreementFileProperties(), nil
 }
-// GetCreatedDateTime gets the createdDateTime property value. The date time representing when the file was created.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+// GetCreatedDateTime gets the createdDateTime property value. The date time representing when the file was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AgreementFileProperties) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
@@ -147,7 +147,7 @@ func (m *AgreementFileProperties) GetFileData()(AgreementFileDataable) {
 func (m *AgreementFileProperties) GetFileName()(*string) {
     return m.fileName
 }
-// GetIsDefault gets the isDefault property value. If none of the languages matches the client preference, indicates whether this is the default agreement file . If none of the files are marked as default, the first one is treated as the default. Read-only.
+// GetIsDefault gets the isDefault property value. If none of the languages matches the client preference, indicates whether this is the default agreement file. If none of the files are marked as default, the first one is treated as the default. Read-only.
 func (m *AgreementFileProperties) GetIsDefault()(*bool) {
     return m.isDefault
 }
@@ -209,7 +209,7 @@ func (m *AgreementFileProperties) Serialize(writer i878a80d2330e89d26896388a3f48
     }
     return nil
 }
-// SetCreatedDateTime sets the createdDateTime property value. The date time representing when the file was created.The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+// SetCreatedDateTime sets the createdDateTime property value. The date time representing when the file was created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AgreementFileProperties) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
@@ -225,7 +225,7 @@ func (m *AgreementFileProperties) SetFileData(value AgreementFileDataable)() {
 func (m *AgreementFileProperties) SetFileName(value *string)() {
     m.fileName = value
 }
-// SetIsDefault sets the isDefault property value. If none of the languages matches the client preference, indicates whether this is the default agreement file . If none of the files are marked as default, the first one is treated as the default. Read-only.
+// SetIsDefault sets the isDefault property value. If none of the languages matches the client preference, indicates whether this is the default agreement file. If none of the files are marked as default, the first one is treated as the default. Read-only.
 func (m *AgreementFileProperties) SetIsDefault(value *bool)() {
     m.isDefault = value
 }

@@ -10,7 +10,7 @@ type PersistentBrowserSessionControl struct {
     // Possible values are: always, never.
     mode *PersistentBrowserSessionMode
 }
-// NewPersistentBrowserSessionControl instantiates a new PersistentBrowserSessionControl and sets the default values.
+// NewPersistentBrowserSessionControl instantiates a new persistentBrowserSessionControl and sets the default values.
 func NewPersistentBrowserSessionControl()(*PersistentBrowserSessionControl) {
     m := &PersistentBrowserSessionControl{
         ConditionalAccessSessionControl: *NewConditionalAccessSessionControl(),

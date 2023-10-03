@@ -9,7 +9,7 @@ import (
 type TermsExpiration struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of 1 month.
+    // Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of one month.
     frequency *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
     // The OdataType property
     odataType *string
@@ -66,7 +66,7 @@ func (m *TermsExpiration) GetFieldDeserializers()(map[string]func(i878a80d2330e8
     }
     return res
 }
-// GetFrequency gets the frequency property value. Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of 1 month.
+// GetFrequency gets the frequency property value. Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of one month.
 func (m *TermsExpiration) GetFrequency()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
     return m.frequency
 }
@@ -110,7 +110,7 @@ func (m *TermsExpiration) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 func (m *TermsExpiration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetFrequency sets the frequency property value. Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of 1 month.
+// SetFrequency sets the frequency property value. Represents the frequency at which the terms will expire, after its first expiration as set in startDateTime. The value is represented in ISO 8601 format for durations. For example, PT1M represents a time period of one month.
 func (m *TermsExpiration) SetFrequency(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
     m.frequency = value
 }

@@ -24,7 +24,7 @@ type EducationSubmission struct {
     returnedBy IdentitySetable
     // Moment in time when the submission was returned. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     returnedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Read-only. Possible values are: working, submitted, released, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
+    // Read-only. Possible values are: working, submitted, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
     status *EducationSubmissionStatus
     // User who moved the resource into the submitted state.
     submittedBy IdentitySetable
@@ -37,7 +37,7 @@ type EducationSubmission struct {
     // Moment in time when the submission was moved from submitted into the working state. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
     unsubmittedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
-// NewEducationSubmission instantiates a new EducationSubmission and sets the default values.
+// NewEducationSubmission instantiates a new educationSubmission and sets the default values.
 func NewEducationSubmission()(*EducationSubmission) {
     m := &EducationSubmission{
         Entity: *NewEntity(),
@@ -59,7 +59,9 @@ func (m *EducationSubmission) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationOutcomeable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationOutcomeable)
+                if v != nil {
+                    res[i] = v.(EducationOutcomeable)
+                }
             }
             m.SetOutcomes(res)
         }
@@ -103,7 +105,9 @@ func (m *EducationSubmission) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationSubmissionResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationSubmissionResourceable)
+                if v != nil {
+                    res[i] = v.(EducationSubmissionResourceable)
+                }
             }
             m.SetResources(res)
         }
@@ -177,7 +181,9 @@ func (m *EducationSubmission) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationSubmissionResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationSubmissionResourceable)
+                if v != nil {
+                    res[i] = v.(EducationSubmissionResourceable)
+                }
             }
             m.SetSubmittedResources(res)
         }
@@ -237,7 +243,7 @@ func (m *EducationSubmission) GetReturnedBy()(IdentitySetable) {
 func (m *EducationSubmission) GetReturnedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.returnedDateTime
 }
-// GetStatus gets the status property value. Read-only. Possible values are: working, submitted, released, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
+// GetStatus gets the status property value. Read-only. Possible values are: working, submitted, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
 func (m *EducationSubmission) GetStatus()(*EducationSubmissionStatus) {
     return m.status
 }
@@ -270,7 +276,9 @@ func (m *EducationSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetOutcomes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOutcomes()))
         for i, v := range m.GetOutcomes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("outcomes", cast)
         if err != nil {
@@ -286,7 +294,9 @@ func (m *EducationSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResources()))
         for i, v := range m.GetResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("resources", cast)
         if err != nil {
@@ -296,7 +306,9 @@ func (m *EducationSubmission) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetSubmittedResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSubmittedResources()))
         for i, v := range m.GetSubmittedResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("submittedResources", cast)
         if err != nil {
@@ -337,7 +349,7 @@ func (m *EducationSubmission) SetReturnedBy(value IdentitySetable)() {
 func (m *EducationSubmission) SetReturnedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.returnedDateTime = value
 }
-// SetStatus sets the status property value. Read-only. Possible values are: working, submitted, released, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
+// SetStatus sets the status property value. Read-only. Possible values are: working, submitted, returned, and reassigned. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: reassigned.
 func (m *EducationSubmission) SetStatus(value *EducationSubmissionStatus)() {
     m.status = value
 }

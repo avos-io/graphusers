@@ -8,9 +8,9 @@ import (
 type MicrosoftAuthenticatorFeatureSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Determines whether the user's Authenticator app will show them the client app they are signing into.
+    // Determines whether the user's Authenticator app shows them the client app they're signing into.
     displayAppInformationRequiredState AuthenticationMethodFeatureConfigurationable
-    // Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+    // Determines whether the user's Authenticator app shows them the geographic location of where the authentication request originated from.
     displayLocationInformationRequiredState AuthenticationMethodFeatureConfigurationable
     // The OdataType property
     odataType *string
@@ -30,11 +30,11 @@ func CreateMicrosoftAuthenticatorFeatureSettingsFromDiscriminatorValue(parseNode
 func (m *MicrosoftAuthenticatorFeatureSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetDisplayAppInformationRequiredState gets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
+// GetDisplayAppInformationRequiredState gets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app shows them the client app they're signing into.
 func (m *MicrosoftAuthenticatorFeatureSettings) GetDisplayAppInformationRequiredState()(AuthenticationMethodFeatureConfigurationable) {
     return m.displayAppInformationRequiredState
 }
-// GetDisplayLocationInformationRequiredState gets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+// GetDisplayLocationInformationRequiredState gets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app shows them the geographic location of where the authentication request originated from.
 func (m *MicrosoftAuthenticatorFeatureSettings) GetDisplayLocationInformationRequiredState()(AuthenticationMethodFeatureConfigurationable) {
     return m.displayLocationInformationRequiredState
 }
@@ -109,11 +109,11 @@ func (m *MicrosoftAuthenticatorFeatureSettings) Serialize(writer i878a80d2330e89
 func (m *MicrosoftAuthenticatorFeatureSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetDisplayAppInformationRequiredState sets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app will show them the client app they are signing into.
+// SetDisplayAppInformationRequiredState sets the displayAppInformationRequiredState property value. Determines whether the user's Authenticator app shows them the client app they're signing into.
 func (m *MicrosoftAuthenticatorFeatureSettings) SetDisplayAppInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)() {
     m.displayAppInformationRequiredState = value
 }
-// SetDisplayLocationInformationRequiredState sets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app will show them the geographic location of where the authentication request originated from.
+// SetDisplayLocationInformationRequiredState sets the displayLocationInformationRequiredState property value. Determines whether the user's Authenticator app shows them the geographic location of where the authentication request originated from.
 func (m *MicrosoftAuthenticatorFeatureSettings) SetDisplayLocationInformationRequiredState(value AuthenticationMethodFeatureConfigurationable)() {
     m.displayLocationInformationRequiredState = value
 }

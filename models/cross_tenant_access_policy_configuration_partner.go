@@ -8,6 +8,8 @@ import (
 type CrossTenantAccessPolicyConfigurationPartner struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+    automaticUserConsentSettings InboundOutboundPolicyConfigurationable
     // Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
     b2bCollaborationInbound CrossTenantAccessPolicyB2BSettingable
     // Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B collaboration.
@@ -16,6 +18,8 @@ type CrossTenantAccessPolicyConfigurationPartner struct {
     b2bDirectConnectInbound CrossTenantAccessPolicyB2BSettingable
     // Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B direct connect.
     b2bDirectConnectOutbound CrossTenantAccessPolicyB2BSettingable
+    // Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+    identitySynchronization CrossTenantIdentitySyncPolicyPartnerable
     // Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
     inboundTrust CrossTenantAccessPolicyInboundTrustable
     // Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
@@ -40,6 +44,10 @@ func CreateCrossTenantAccessPolicyConfigurationPartnerFromDiscriminatorValue(par
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetAutomaticUserConsentSettings gets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+func (m *CrossTenantAccessPolicyConfigurationPartner) GetAutomaticUserConsentSettings()(InboundOutboundPolicyConfigurationable) {
+    return m.automaticUserConsentSettings
+}
 // GetB2bCollaborationInbound gets the b2bCollaborationInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetB2bCollaborationInbound()(CrossTenantAccessPolicyB2BSettingable) {
     return m.b2bCollaborationInbound
@@ -59,6 +67,16 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) GetB2bDirectConnectOutboun
 // GetFieldDeserializers the deserialization information for the current model
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["automaticUserConsentSettings"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateInboundOutboundPolicyConfigurationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAutomaticUserConsentSettings(val.(InboundOutboundPolicyConfigurationable))
+        }
+        return nil
+    }
     res["b2bCollaborationInbound"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetObjectValue(CreateCrossTenantAccessPolicyB2BSettingFromDiscriminatorValue)
         if err != nil {
@@ -96,6 +114,16 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) GetFieldDeserializers()(ma
         }
         if val != nil {
             m.SetB2bDirectConnectOutbound(val.(CrossTenantAccessPolicyB2BSettingable))
+        }
+        return nil
+    }
+    res["identitySynchronization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateCrossTenantIdentitySyncPolicyPartnerFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIdentitySynchronization(val.(CrossTenantIdentitySyncPolicyPartnerable))
         }
         return nil
     }
@@ -141,6 +169,10 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) GetFieldDeserializers()(ma
     }
     return res
 }
+// GetIdentitySynchronization gets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+func (m *CrossTenantAccessPolicyConfigurationPartner) GetIdentitySynchronization()(CrossTenantIdentitySyncPolicyPartnerable) {
+    return m.identitySynchronization
+}
 // GetInboundTrust gets the inboundTrust property value. Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetInboundTrust()(CrossTenantAccessPolicyInboundTrustable) {
     return m.inboundTrust
@@ -159,6 +191,12 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) GetTenantId()(*string) {
 }
 // Serialize serializes information the current object
 func (m *CrossTenantAccessPolicyConfigurationPartner) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteObjectValue("automaticUserConsentSettings", m.GetAutomaticUserConsentSettings())
+        if err != nil {
+            return err
+        }
+    }
     {
         err := writer.WriteObjectValue("b2bCollaborationInbound", m.GetB2bCollaborationInbound())
         if err != nil {
@@ -179,6 +217,12 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) Serialize(writer i878a80d2
     }
     {
         err := writer.WriteObjectValue("b2bDirectConnectOutbound", m.GetB2bDirectConnectOutbound())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteObjectValue("identitySynchronization", m.GetIdentitySynchronization())
         if err != nil {
             return err
         }
@@ -219,6 +263,10 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) Serialize(writer i878a80d2
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetAutomaticUserConsentSettings sets the automaticUserConsentSettings property value. Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+func (m *CrossTenantAccessPolicyConfigurationPartner) SetAutomaticUserConsentSettings(value InboundOutboundPolicyConfigurationable)() {
+    m.automaticUserConsentSettings = value
+}
 // SetB2bCollaborationInbound sets the b2bCollaborationInbound property value. Defines your partner-specific configuration for users from other organizations accessing your resources via Azure AD B2B collaboration.
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetB2bCollaborationInbound(value CrossTenantAccessPolicyB2BSettingable)() {
     m.b2bCollaborationInbound = value
@@ -234,6 +282,10 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) SetB2bDirectConnectInbound
 // SetB2bDirectConnectOutbound sets the b2bDirectConnectOutbound property value. Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B direct connect.
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetB2bDirectConnectOutbound(value CrossTenantAccessPolicyB2BSettingable)() {
     m.b2bDirectConnectOutbound = value
+}
+// SetIdentitySynchronization sets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+func (m *CrossTenantAccessPolicyConfigurationPartner) SetIdentitySynchronization(value CrossTenantIdentitySyncPolicyPartnerable)() {
+    m.identitySynchronization = value
 }
 // SetInboundTrust sets the inboundTrust property value. Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetInboundTrust(value CrossTenantAccessPolicyInboundTrustable)() {
@@ -255,18 +307,22 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) SetTenantId(value *string)
 type CrossTenantAccessPolicyConfigurationPartnerable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAutomaticUserConsentSettings()(InboundOutboundPolicyConfigurationable)
     GetB2bCollaborationInbound()(CrossTenantAccessPolicyB2BSettingable)
     GetB2bCollaborationOutbound()(CrossTenantAccessPolicyB2BSettingable)
     GetB2bDirectConnectInbound()(CrossTenantAccessPolicyB2BSettingable)
     GetB2bDirectConnectOutbound()(CrossTenantAccessPolicyB2BSettingable)
+    GetIdentitySynchronization()(CrossTenantIdentitySyncPolicyPartnerable)
     GetInboundTrust()(CrossTenantAccessPolicyInboundTrustable)
     GetIsServiceProvider()(*bool)
     GetOdataType()(*string)
     GetTenantId()(*string)
+    SetAutomaticUserConsentSettings(value InboundOutboundPolicyConfigurationable)()
     SetB2bCollaborationInbound(value CrossTenantAccessPolicyB2BSettingable)()
     SetB2bCollaborationOutbound(value CrossTenantAccessPolicyB2BSettingable)()
     SetB2bDirectConnectInbound(value CrossTenantAccessPolicyB2BSettingable)()
     SetB2bDirectConnectOutbound(value CrossTenantAccessPolicyB2BSettingable)()
+    SetIdentitySynchronization(value CrossTenantIdentitySyncPolicyPartnerable)()
     SetInboundTrust(value CrossTenantAccessPolicyInboundTrustable)()
     SetIsServiceProvider(value *bool)()
     SetOdataType(value *string)()

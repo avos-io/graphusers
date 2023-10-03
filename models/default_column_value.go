@@ -8,11 +8,11 @@ import (
 type DefaultColumnValue struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The formula used to compute the default value for this column.
+    // The formula used to compute the default value for the column.
     formula *string
     // The OdataType property
     odataType *string
-    // The direct value to use as the default value for this column.
+    // The direct value to use as the default value for the column.
     value *string
 }
 // NewDefaultColumnValue instantiates a new defaultColumnValue and sets the default values.
@@ -65,7 +65,7 @@ func (m *DefaultColumnValue) GetFieldDeserializers()(map[string]func(i878a80d233
     }
     return res
 }
-// GetFormula gets the formula property value. The formula used to compute the default value for this column.
+// GetFormula gets the formula property value. The formula used to compute the default value for the column.
 func (m *DefaultColumnValue) GetFormula()(*string) {
     return m.formula
 }
@@ -73,7 +73,7 @@ func (m *DefaultColumnValue) GetFormula()(*string) {
 func (m *DefaultColumnValue) GetOdataType()(*string) {
     return m.odataType
 }
-// GetValue gets the value property value. The direct value to use as the default value for this column.
+// GetValue gets the value property value. The direct value to use as the default value for the column.
 func (m *DefaultColumnValue) GetValue()(*string) {
     return m.value
 }
@@ -109,7 +109,7 @@ func (m *DefaultColumnValue) Serialize(writer i878a80d2330e89d26896388a3f487eef2
 func (m *DefaultColumnValue) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetFormula sets the formula property value. The formula used to compute the default value for this column.
+// SetFormula sets the formula property value. The formula used to compute the default value for the column.
 func (m *DefaultColumnValue) SetFormula(value *string)() {
     m.formula = value
 }
@@ -117,7 +117,7 @@ func (m *DefaultColumnValue) SetFormula(value *string)() {
 func (m *DefaultColumnValue) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetValue sets the value property value. The direct value to use as the default value for this column.
+// SetValue sets the value property value. The direct value to use as the default value for the column.
 func (m *DefaultColumnValue) SetValue(value *string)() {
     m.value = value
 }

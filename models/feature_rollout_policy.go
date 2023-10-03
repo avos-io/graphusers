@@ -20,7 +20,7 @@ type FeatureRolloutPolicy struct {
     // Indicates whether the feature rollout is enabled.
     isEnabled *bool
 }
-// NewFeatureRolloutPolicy instantiates a new FeatureRolloutPolicy and sets the default values.
+// NewFeatureRolloutPolicy instantiates a new featureRolloutPolicy and sets the default values.
 func NewFeatureRolloutPolicy()(*FeatureRolloutPolicy) {
     m := &FeatureRolloutPolicy{
         Entity: *NewEntity(),
@@ -58,7 +58,9 @@ func (m *FeatureRolloutPolicy) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetAppliesTo(res)
         }
@@ -133,7 +135,9 @@ func (m *FeatureRolloutPolicy) Serialize(writer i878a80d2330e89d26896388a3f487ee
     if m.GetAppliesTo() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppliesTo()))
         for i, v := range m.GetAppliesTo() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appliesTo", cast)
         if err != nil {

@@ -16,6 +16,8 @@ type AuthenticationMethodsPolicy struct {
     displayName *string
     // The date and time of the last update to the policy. Read-only.
     lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+    policyMigrationState *AuthenticationMethodsPolicyMigrationState
     // The version of the policy in use. Read-only.
     policyVersion *string
     // The reconfirmationInDays property
@@ -23,7 +25,7 @@ type AuthenticationMethodsPolicy struct {
     // Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication methods.
     registrationEnforcement RegistrationEnforcementable
 }
-// NewAuthenticationMethodsPolicy instantiates a new AuthenticationMethodsPolicy and sets the default values.
+// NewAuthenticationMethodsPolicy instantiates a new authenticationMethodsPolicy and sets the default values.
 func NewAuthenticationMethodsPolicy()(*AuthenticationMethodsPolicy) {
     m := &AuthenticationMethodsPolicy{
         Entity: *NewEntity(),
@@ -57,7 +59,9 @@ func (m *AuthenticationMethodsPolicy) GetFieldDeserializers()(map[string]func(i8
         if val != nil {
             res := make([]AuthenticationMethodConfigurationable, len(val))
             for i, v := range val {
-                res[i] = v.(AuthenticationMethodConfigurationable)
+                if v != nil {
+                    res[i] = v.(AuthenticationMethodConfigurationable)
+                }
             }
             m.SetAuthenticationMethodConfigurations(res)
         }
@@ -90,6 +94,16 @@ func (m *AuthenticationMethodsPolicy) GetFieldDeserializers()(map[string]func(i8
         }
         if val != nil {
             m.SetLastModifiedDateTime(val)
+        }
+        return nil
+    }
+    res["policyMigrationState"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetEnumValue(ParseAuthenticationMethodsPolicyMigrationState)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPolicyMigrationState(val.(*AuthenticationMethodsPolicyMigrationState))
         }
         return nil
     }
@@ -129,6 +143,10 @@ func (m *AuthenticationMethodsPolicy) GetFieldDeserializers()(map[string]func(i8
 func (m *AuthenticationMethodsPolicy) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.lastModifiedDateTime
 }
+// GetPolicyMigrationState gets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+func (m *AuthenticationMethodsPolicy) GetPolicyMigrationState()(*AuthenticationMethodsPolicyMigrationState) {
+    return m.policyMigrationState
+}
 // GetPolicyVersion gets the policyVersion property value. The version of the policy in use. Read-only.
 func (m *AuthenticationMethodsPolicy) GetPolicyVersion()(*string) {
     return m.policyVersion
@@ -150,7 +168,9 @@ func (m *AuthenticationMethodsPolicy) Serialize(writer i878a80d2330e89d26896388a
     if m.GetAuthenticationMethodConfigurations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAuthenticationMethodConfigurations()))
         for i, v := range m.GetAuthenticationMethodConfigurations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("authenticationMethodConfigurations", cast)
         if err != nil {
@@ -171,6 +191,13 @@ func (m *AuthenticationMethodsPolicy) Serialize(writer i878a80d2330e89d26896388a
     }
     {
         err = writer.WriteTimeValue("lastModifiedDateTime", m.GetLastModifiedDateTime())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetPolicyMigrationState() != nil {
+        cast := (*m.GetPolicyMigrationState()).String()
+        err = writer.WriteStringValue("policyMigrationState", &cast)
         if err != nil {
             return err
         }
@@ -211,6 +238,10 @@ func (m *AuthenticationMethodsPolicy) SetDisplayName(value *string)() {
 func (m *AuthenticationMethodsPolicy) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.lastModifiedDateTime = value
 }
+// SetPolicyMigrationState sets the policyMigrationState property value. The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.
+func (m *AuthenticationMethodsPolicy) SetPolicyMigrationState(value *AuthenticationMethodsPolicyMigrationState)() {
+    m.policyMigrationState = value
+}
 // SetPolicyVersion sets the policyVersion property value. The version of the policy in use. Read-only.
 func (m *AuthenticationMethodsPolicy) SetPolicyVersion(value *string)() {
     m.policyVersion = value
@@ -231,6 +262,7 @@ type AuthenticationMethodsPolicyable interface {
     GetDescription()(*string)
     GetDisplayName()(*string)
     GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetPolicyMigrationState()(*AuthenticationMethodsPolicyMigrationState)
     GetPolicyVersion()(*string)
     GetReconfirmationInDays()(*int32)
     GetRegistrationEnforcement()(RegistrationEnforcementable)
@@ -238,6 +270,7 @@ type AuthenticationMethodsPolicyable interface {
     SetDescription(value *string)()
     SetDisplayName(value *string)()
     SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetPolicyMigrationState(value *AuthenticationMethodsPolicyMigrationState)()
     SetPolicyVersion(value *string)()
     SetReconfirmationInDays(value *int32)()
     SetRegistrationEnforcement(value RegistrationEnforcementable)()

@@ -4,13 +4,13 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// OmaSettingFloatingPoint 
+// OmaSettingFloatingPoint oMA Settings Floating Point definition.
 type OmaSettingFloatingPoint struct {
     OmaSetting
     // Value.
     value *float32
 }
-// NewOmaSettingFloatingPoint instantiates a new OmaSettingFloatingPoint and sets the default values.
+// NewOmaSettingFloatingPoint instantiates a new omaSettingFloatingPoint and sets the default values.
 func NewOmaSettingFloatingPoint()(*OmaSettingFloatingPoint) {
     m := &OmaSettingFloatingPoint{
         OmaSetting: *NewOmaSetting(),

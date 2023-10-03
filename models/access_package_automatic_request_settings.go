@@ -8,11 +8,11 @@ import (
 type AccessPackageAutomaticRequestSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The gracePeriodBeforeAccessRemoval property
+    // The duration for which access must be retained before the target's access is revoked once they leave the allowed target scope.
     gracePeriodBeforeAccessRemoval *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
     // The OdataType property
     odataType *string
-    // The removeAccessWhenTargetLeavesAllowedTargets property
+    // Indicates whether automatic assignment must be removed for targets who move out of the allowed target scope.
     removeAccessWhenTargetLeavesAllowedTargets *bool
     // If set to true, automatic assignments will be created for targets in the allowed target scope.
     requestAccessForAllowedTargets *bool
@@ -77,7 +77,7 @@ func (m *AccessPackageAutomaticRequestSettings) GetFieldDeserializers()(map[stri
     }
     return res
 }
-// GetGracePeriodBeforeAccessRemoval gets the gracePeriodBeforeAccessRemoval property value. The gracePeriodBeforeAccessRemoval property
+// GetGracePeriodBeforeAccessRemoval gets the gracePeriodBeforeAccessRemoval property value. The duration for which access must be retained before the target's access is revoked once they leave the allowed target scope.
 func (m *AccessPackageAutomaticRequestSettings) GetGracePeriodBeforeAccessRemoval()(*i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration) {
     return m.gracePeriodBeforeAccessRemoval
 }
@@ -85,7 +85,7 @@ func (m *AccessPackageAutomaticRequestSettings) GetGracePeriodBeforeAccessRemova
 func (m *AccessPackageAutomaticRequestSettings) GetOdataType()(*string) {
     return m.odataType
 }
-// GetRemoveAccessWhenTargetLeavesAllowedTargets gets the removeAccessWhenTargetLeavesAllowedTargets property value. The removeAccessWhenTargetLeavesAllowedTargets property
+// GetRemoveAccessWhenTargetLeavesAllowedTargets gets the removeAccessWhenTargetLeavesAllowedTargets property value. Indicates whether automatic assignment must be removed for targets who move out of the allowed target scope.
 func (m *AccessPackageAutomaticRequestSettings) GetRemoveAccessWhenTargetLeavesAllowedTargets()(*bool) {
     return m.removeAccessWhenTargetLeavesAllowedTargets
 }
@@ -131,7 +131,7 @@ func (m *AccessPackageAutomaticRequestSettings) Serialize(writer i878a80d2330e89
 func (m *AccessPackageAutomaticRequestSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetGracePeriodBeforeAccessRemoval sets the gracePeriodBeforeAccessRemoval property value. The gracePeriodBeforeAccessRemoval property
+// SetGracePeriodBeforeAccessRemoval sets the gracePeriodBeforeAccessRemoval property value. The duration for which access must be retained before the target's access is revoked once they leave the allowed target scope.
 func (m *AccessPackageAutomaticRequestSettings) SetGracePeriodBeforeAccessRemoval(value *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration)() {
     m.gracePeriodBeforeAccessRemoval = value
 }
@@ -139,7 +139,7 @@ func (m *AccessPackageAutomaticRequestSettings) SetGracePeriodBeforeAccessRemova
 func (m *AccessPackageAutomaticRequestSettings) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetRemoveAccessWhenTargetLeavesAllowedTargets sets the removeAccessWhenTargetLeavesAllowedTargets property value. The removeAccessWhenTargetLeavesAllowedTargets property
+// SetRemoveAccessWhenTargetLeavesAllowedTargets sets the removeAccessWhenTargetLeavesAllowedTargets property value. Indicates whether automatic assignment must be removed for targets who move out of the allowed target scope.
 func (m *AccessPackageAutomaticRequestSettings) SetRemoveAccessWhenTargetLeavesAllowedTargets(value *bool)() {
     m.removeAccessWhenTargetLeavesAllowedTargets = value
 }

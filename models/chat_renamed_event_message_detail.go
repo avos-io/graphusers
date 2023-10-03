@@ -14,7 +14,7 @@ type ChatRenamedEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewChatRenamedEventMessageDetail instantiates a new ChatRenamedEventMessageDetail and sets the default values.
+// NewChatRenamedEventMessageDetail instantiates a new chatRenamedEventMessageDetail and sets the default values.
 func NewChatRenamedEventMessageDetail()(*ChatRenamedEventMessageDetail) {
     m := &ChatRenamedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

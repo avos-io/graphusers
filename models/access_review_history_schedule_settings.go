@@ -12,7 +12,7 @@ type AccessReviewHistoryScheduleSettings struct {
     odataType *string
     // The recurrence property
     recurrence PatternedRecurrenceable
-    // A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the 1st of every month, the reportRange is P1M. In this case, on the first of every month, access review history data will be collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
+    // A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the first of every month, the reportRange is P1M. In this case, on the first of every month, access review history data is collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
     reportRange *string
 }
 // NewAccessReviewHistoryScheduleSettings instantiates a new accessReviewHistoryScheduleSettings and sets the default values.
@@ -73,7 +73,7 @@ func (m *AccessReviewHistoryScheduleSettings) GetOdataType()(*string) {
 func (m *AccessReviewHistoryScheduleSettings) GetRecurrence()(PatternedRecurrenceable) {
     return m.recurrence
 }
-// GetReportRange gets the reportRange property value. A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the 1st of every month, the reportRange is P1M. In this case, on the first of every month, access review history data will be collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
+// GetReportRange gets the reportRange property value. A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the first of every month, the reportRange is P1M. In this case, on the first of every month, access review history data is collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
 func (m *AccessReviewHistoryScheduleSettings) GetReportRange()(*string) {
     return m.reportRange
 }
@@ -117,7 +117,7 @@ func (m *AccessReviewHistoryScheduleSettings) SetOdataType(value *string)() {
 func (m *AccessReviewHistoryScheduleSettings) SetRecurrence(value PatternedRecurrenceable)() {
     m.recurrence = value
 }
-// SetReportRange sets the reportRange property value. A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the 1st of every month, the reportRange is P1M. In this case, on the first of every month, access review history data will be collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
+// SetReportRange sets the reportRange property value. A duration string in ISO 8601 duration format specifying the lookback period of the generated review history data. For example, if a history definition is scheduled to run on the first of every month, the reportRange is P1M. In this case, on the first of every month, access review history data is collected containing only the previous month's review data. Note: Only years, months, and days ISO 8601 properties are supported. Required.
 func (m *AccessReviewHistoryScheduleSettings) SetReportRange(value *string)() {
     m.reportRange = value
 }

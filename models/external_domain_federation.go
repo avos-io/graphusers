@@ -14,7 +14,7 @@ type ExternalDomainFederation struct {
     // The issuerURI of the incoming federation. Read only.
     issuerUri *string
 }
-// NewExternalDomainFederation instantiates a new ExternalDomainFederation and sets the default values.
+// NewExternalDomainFederation instantiates a new externalDomainFederation and sets the default values.
 func NewExternalDomainFederation()(*ExternalDomainFederation) {
     m := &ExternalDomainFederation{
         IdentitySource: *NewIdentitySource(),

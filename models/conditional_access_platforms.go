@@ -45,7 +45,9 @@ func (m *ConditionalAccessPlatforms) GetFieldDeserializers()(map[string]func(i87
         if val != nil {
             res := make([]ConditionalAccessDevicePlatform, len(val))
             for i, v := range val {
-                res[i] = *(v.(*ConditionalAccessDevicePlatform))
+                if v != nil {
+                    res[i] = *(v.(*ConditionalAccessDevicePlatform))
+                }
             }
             m.SetExcludePlatforms(res)
         }
@@ -59,7 +61,9 @@ func (m *ConditionalAccessPlatforms) GetFieldDeserializers()(map[string]func(i87
         if val != nil {
             res := make([]ConditionalAccessDevicePlatform, len(val))
             for i, v := range val {
-                res[i] = *(v.(*ConditionalAccessDevicePlatform))
+                if v != nil {
+                    res[i] = *(v.(*ConditionalAccessDevicePlatform))
+                }
             }
             m.SetIncludePlatforms(res)
         }

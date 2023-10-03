@@ -9,7 +9,7 @@ type WorkbookRangeFormat struct {
     Entity
     // Collection of border objects that apply to the overall range selected Read-only.
     borders []WorkbookRangeBorderable
-    // Gets or sets the width of all colums within the range. If the column widths are not uniform, null will be returned.
+    // Gets or sets the width of all columns within the range. If the column widths aren't uniform, null will be returned.
     columnWidth *float64
     // Returns the fill object defined on the overall range. Read-only.
     fill WorkbookRangeFillable
@@ -19,7 +19,7 @@ type WorkbookRangeFormat struct {
     horizontalAlignment *string
     // Returns the format protection object for a range. Read-only.
     protection WorkbookFormatProtectionable
-    // Gets or sets the height of all rows in the range. If the row heights are not uniform null will be returned.
+    // Gets or sets the height of all rows in the range. If the row heights aren't uniform null will be returned.
     rowHeight *float64
     // Represents the vertical alignment for the specified object. The possible values are: Top, Center, Bottom, Justify, Distributed.
     verticalAlignment *string
@@ -41,7 +41,7 @@ func CreateWorkbookRangeFormatFromDiscriminatorValue(parseNode i878a80d2330e89d2
 func (m *WorkbookRangeFormat) GetBorders()([]WorkbookRangeBorderable) {
     return m.borders
 }
-// GetColumnWidth gets the columnWidth property value. Gets or sets the width of all colums within the range. If the column widths are not uniform, null will be returned.
+// GetColumnWidth gets the columnWidth property value. Gets or sets the width of all columns within the range. If the column widths aren't uniform, null will be returned.
 func (m *WorkbookRangeFormat) GetColumnWidth()(*float64) {
     return m.columnWidth
 }
@@ -56,7 +56,9 @@ func (m *WorkbookRangeFormat) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]WorkbookRangeBorderable, len(val))
             for i, v := range val {
-                res[i] = v.(WorkbookRangeBorderable)
+                if v != nil {
+                    res[i] = v.(WorkbookRangeBorderable)
+                }
             }
             m.SetBorders(res)
         }
@@ -160,7 +162,7 @@ func (m *WorkbookRangeFormat) GetHorizontalAlignment()(*string) {
 func (m *WorkbookRangeFormat) GetProtection()(WorkbookFormatProtectionable) {
     return m.protection
 }
-// GetRowHeight gets the rowHeight property value. Gets or sets the height of all rows in the range. If the row heights are not uniform null will be returned.
+// GetRowHeight gets the rowHeight property value. Gets or sets the height of all rows in the range. If the row heights aren't uniform null will be returned.
 func (m *WorkbookRangeFormat) GetRowHeight()(*float64) {
     return m.rowHeight
 }
@@ -181,7 +183,9 @@ func (m *WorkbookRangeFormat) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetBorders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetBorders()))
         for i, v := range m.GetBorders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("borders", cast)
         if err != nil {
@@ -242,7 +246,7 @@ func (m *WorkbookRangeFormat) Serialize(writer i878a80d2330e89d26896388a3f487eef
 func (m *WorkbookRangeFormat) SetBorders(value []WorkbookRangeBorderable)() {
     m.borders = value
 }
-// SetColumnWidth sets the columnWidth property value. Gets or sets the width of all colums within the range. If the column widths are not uniform, null will be returned.
+// SetColumnWidth sets the columnWidth property value. Gets or sets the width of all columns within the range. If the column widths aren't uniform, null will be returned.
 func (m *WorkbookRangeFormat) SetColumnWidth(value *float64)() {
     m.columnWidth = value
 }
@@ -262,7 +266,7 @@ func (m *WorkbookRangeFormat) SetHorizontalAlignment(value *string)() {
 func (m *WorkbookRangeFormat) SetProtection(value WorkbookFormatProtectionable)() {
     m.protection = value
 }
-// SetRowHeight sets the rowHeight property value. Gets or sets the height of all rows in the range. If the row heights are not uniform null will be returned.
+// SetRowHeight sets the rowHeight property value. Gets or sets the height of all rows in the range. If the row heights aren't uniform null will be returned.
 func (m *WorkbookRangeFormat) SetRowHeight(value *float64)() {
     m.rowHeight = value
 }

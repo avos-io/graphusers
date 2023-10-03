@@ -12,7 +12,7 @@ type ChannelUnsetAsFavoriteByDefaultEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewChannelUnsetAsFavoriteByDefaultEventMessageDetail instantiates a new ChannelUnsetAsFavoriteByDefaultEventMessageDetail and sets the default values.
+// NewChannelUnsetAsFavoriteByDefaultEventMessageDetail instantiates a new channelUnsetAsFavoriteByDefaultEventMessageDetail and sets the default values.
 func NewChannelUnsetAsFavoriteByDefaultEventMessageDetail()(*ChannelUnsetAsFavoriteByDefaultEventMessageDetail) {
     m := &ChannelUnsetAsFavoriteByDefaultEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

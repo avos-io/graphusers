@@ -14,7 +14,7 @@ type MailAssessmentRequest struct {
     // The mail recipient whose policies are used to assess the mail.
     recipientEmail *string
 }
-// NewMailAssessmentRequest instantiates a new MailAssessmentRequest and sets the default values.
+// NewMailAssessmentRequest instantiates a new mailAssessmentRequest and sets the default values.
 func NewMailAssessmentRequest()(*MailAssessmentRequest) {
     m := &MailAssessmentRequest{
         ThreatAssessmentRequest: *NewThreatAssessmentRequest(),

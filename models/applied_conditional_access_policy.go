@@ -18,7 +18,7 @@ type AppliedConditionalAccessPolicy struct {
     id *string
     // The OdataType property
     odataType *string
-    // Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
+    // Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions weren't met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
     result *AppliedConditionalAccessPolicyResult
 }
 // NewAppliedConditionalAccessPolicy instantiates a new appliedConditionalAccessPolicy and sets the default values.
@@ -69,7 +69,9 @@ func (m *AppliedConditionalAccessPolicy) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetEnforcedGrantControls(res)
         }
@@ -83,7 +85,9 @@ func (m *AppliedConditionalAccessPolicy) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetEnforcedSessionControls(res)
         }
@@ -129,7 +133,7 @@ func (m *AppliedConditionalAccessPolicy) GetId()(*string) {
 func (m *AppliedConditionalAccessPolicy) GetOdataType()(*string) {
     return m.odataType
 }
-// GetResult gets the result property value. Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
+// GetResult gets the result property value. Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions weren't met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
 func (m *AppliedConditionalAccessPolicy) GetResult()(*AppliedConditionalAccessPolicyResult) {
     return m.result
 }
@@ -204,7 +208,7 @@ func (m *AppliedConditionalAccessPolicy) SetId(value *string)() {
 func (m *AppliedConditionalAccessPolicy) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetResult sets the result property value. Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
+// SetResult sets the result property value. Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn't applied because policy conditions weren't met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.
 func (m *AppliedConditionalAccessPolicy) SetResult(value *AppliedConditionalAccessPolicyResult)() {
     m.result = value
 }

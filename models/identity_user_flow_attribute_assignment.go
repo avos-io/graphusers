@@ -9,9 +9,9 @@ type IdentityUserFlowAttributeAssignment struct {
     Entity
     // The display name of the identityUserFlowAttribute within a user flow.
     displayName *string
-    // Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user cannot complete sign-up without providing a value.
+    // Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user can't complete sign-up without providing a value.
     isOptional *bool
-    // Determines whether the identityUserFlowAttribute requires verification. This is only used for verifying the user's phone number or email address.
+    // Determines whether the identityUserFlowAttribute requires verification, and is only used for verifying the user's phone number or email address.
     requiresVerification *bool
     // The user attribute that you want to add to your user flow.
     userAttribute IdentityUserFlowAttributeable
@@ -86,7 +86,9 @@ func (m *IdentityUserFlowAttributeAssignment) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]UserAttributeValuesItemable, len(val))
             for i, v := range val {
-                res[i] = v.(UserAttributeValuesItemable)
+                if v != nil {
+                    res[i] = v.(UserAttributeValuesItemable)
+                }
             }
             m.SetUserAttributeValues(res)
         }
@@ -104,11 +106,11 @@ func (m *IdentityUserFlowAttributeAssignment) GetFieldDeserializers()(map[string
     }
     return res
 }
-// GetIsOptional gets the isOptional property value. Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user cannot complete sign-up without providing a value.
+// GetIsOptional gets the isOptional property value. Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user can't complete sign-up without providing a value.
 func (m *IdentityUserFlowAttributeAssignment) GetIsOptional()(*bool) {
     return m.isOptional
 }
-// GetRequiresVerification gets the requiresVerification property value. Determines whether the identityUserFlowAttribute requires verification. This is only used for verifying the user's phone number or email address.
+// GetRequiresVerification gets the requiresVerification property value. Determines whether the identityUserFlowAttribute requires verification, and is only used for verifying the user's phone number or email address.
 func (m *IdentityUserFlowAttributeAssignment) GetRequiresVerification()(*bool) {
     return m.requiresVerification
 }
@@ -157,7 +159,9 @@ func (m *IdentityUserFlowAttributeAssignment) Serialize(writer i878a80d2330e89d2
     if m.GetUserAttributeValues() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserAttributeValues()))
         for i, v := range m.GetUserAttributeValues() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userAttributeValues", cast)
         if err != nil {
@@ -177,11 +181,11 @@ func (m *IdentityUserFlowAttributeAssignment) Serialize(writer i878a80d2330e89d2
 func (m *IdentityUserFlowAttributeAssignment) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetIsOptional sets the isOptional property value. Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user cannot complete sign-up without providing a value.
+// SetIsOptional sets the isOptional property value. Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value. false means the user can't complete sign-up without providing a value.
 func (m *IdentityUserFlowAttributeAssignment) SetIsOptional(value *bool)() {
     m.isOptional = value
 }
-// SetRequiresVerification sets the requiresVerification property value. Determines whether the identityUserFlowAttribute requires verification. This is only used for verifying the user's phone number or email address.
+// SetRequiresVerification sets the requiresVerification property value. Determines whether the identityUserFlowAttribute requires verification, and is only used for verifying the user's phone number or email address.
 func (m *IdentityUserFlowAttributeAssignment) SetRequiresVerification(value *bool)() {
     m.requiresVerification = value
 }

@@ -14,7 +14,7 @@ type TeamsAppInstalledEventMessageDetail struct {
     // Unique identifier of the teamsApp.
     teamsAppId *string
 }
-// NewTeamsAppInstalledEventMessageDetail instantiates a new TeamsAppInstalledEventMessageDetail and sets the default values.
+// NewTeamsAppInstalledEventMessageDetail instantiates a new teamsAppInstalledEventMessageDetail and sets the default values.
 func NewTeamsAppInstalledEventMessageDetail()(*TeamsAppInstalledEventMessageDetail) {
     m := &TeamsAppInstalledEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

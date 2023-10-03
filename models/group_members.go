@@ -12,7 +12,7 @@ type GroupMembers struct {
     // The ID of the group in Azure AD.
     groupId *string
 }
-// NewGroupMembers instantiates a new GroupMembers and sets the default values.
+// NewGroupMembers instantiates a new groupMembers and sets the default values.
 func NewGroupMembers()(*GroupMembers) {
     m := &GroupMembers{
         SubjectSet: *NewSubjectSet(),

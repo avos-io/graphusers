@@ -60,7 +60,7 @@ func (m *ResourceAccess) GetFieldDeserializers()(map[string]func(i878a80d2330e89
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -74,8 +74,8 @@ func (m *ResourceAccess) GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770
 func (m *ResourceAccess) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. Specifies whether the id property references a delegated permission or an app role (application permission). The possible values are: Scope (for delegated permissions) or Role (for app roles).
-func (m *ResourceAccess) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Specifies whether the id property references a delegated permission or an app role (application permission). The possible values are: Scope (for delegated permissions) or Role (for app roles).
+func (m *ResourceAccess) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -93,7 +93,7 @@ func (m *ResourceAccess) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -118,8 +118,8 @@ func (m *ResourceAccess) SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf
 func (m *ResourceAccess) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. Specifies whether the id property references a delegated permission or an app role (application permission). The possible values are: Scope (for delegated permissions) or Role (for app roles).
-func (m *ResourceAccess) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Specifies whether the id property references a delegated permission or an app role (application permission). The possible values are: Scope (for delegated permissions) or Role (for app roles).
+func (m *ResourceAccess) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // ResourceAccessable 
@@ -128,8 +128,8 @@ type ResourceAccessable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

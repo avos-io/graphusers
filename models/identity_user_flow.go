@@ -12,7 +12,7 @@ type IdentityUserFlow struct {
     // The userFlowTypeVersion property
     userFlowTypeVersion *float32
 }
-// NewIdentityUserFlow instantiates a new IdentityUserFlow and sets the default values.
+// NewIdentityUserFlow instantiates a new identityUserFlow and sets the default values.
 func NewIdentityUserFlow()(*IdentityUserFlow) {
     m := &IdentityUserFlow{
         Entity: *NewEntity(),

@@ -87,7 +87,7 @@ type Alert struct {
     // Threat intelligence pertaining to one or more vulnerabilities related to this alert.
     vulnerabilityStates []VulnerabilityStateable
 }
-// NewAlert instantiates a new Alert and sets the default values.
+// NewAlert instantiates a new alert and sets the default values.
 func NewAlert()(*Alert) {
     m := &Alert{
         Entity: *NewEntity(),
@@ -179,7 +179,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AlertDetectionable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertDetectionable)
+                if v != nil {
+                    res[i] = v.(AlertDetectionable)
+                }
             }
             m.SetAlertDetections(res)
         }
@@ -243,7 +245,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]CloudAppSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(CloudAppSecurityStateable)
+                if v != nil {
+                    res[i] = v.(CloudAppSecurityStateable)
+                }
             }
             m.SetCloudAppStates(res)
         }
@@ -257,7 +261,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetComments(res)
         }
@@ -301,7 +307,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetDetectionIds(res)
         }
@@ -335,7 +343,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]FileSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(FileSecurityStateable)
+                if v != nil {
+                    res[i] = v.(FileSecurityStateable)
+                }
             }
             m.SetFileStates(res)
         }
@@ -349,7 +359,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AlertHistoryStateable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertHistoryStateable)
+                if v != nil {
+                    res[i] = v.(AlertHistoryStateable)
+                }
             }
             m.SetHistoryStates(res)
         }
@@ -363,7 +375,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]HostSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(HostSecurityStateable)
+                if v != nil {
+                    res[i] = v.(HostSecurityStateable)
+                }
             }
             m.SetHostStates(res)
         }
@@ -377,7 +391,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncidentIds(res)
         }
@@ -391,7 +407,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]InvestigationSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(InvestigationSecurityStateable)
+                if v != nil {
+                    res[i] = v.(InvestigationSecurityStateable)
+                }
             }
             m.SetInvestigationSecurityStates(res)
         }
@@ -425,7 +443,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]MalwareStateable, len(val))
             for i, v := range val {
-                res[i] = v.(MalwareStateable)
+                if v != nil {
+                    res[i] = v.(MalwareStateable)
+                }
             }
             m.SetMalwareStates(res)
         }
@@ -439,7 +459,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]MessageSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(MessageSecurityStateable)
+                if v != nil {
+                    res[i] = v.(MessageSecurityStateable)
+                }
             }
             m.SetMessageSecurityStates(res)
         }
@@ -453,7 +475,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]NetworkConnectionable, len(val))
             for i, v := range val {
-                res[i] = v.(NetworkConnectionable)
+                if v != nil {
+                    res[i] = v.(NetworkConnectionable)
+                }
             }
             m.SetNetworkConnections(res)
         }
@@ -467,7 +491,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]Processable, len(val))
             for i, v := range val {
-                res[i] = v.(Processable)
+                if v != nil {
+                    res[i] = v.(Processable)
+                }
             }
             m.SetProcesses(res)
         }
@@ -481,7 +507,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetRecommendedActions(res)
         }
@@ -495,7 +523,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]RegistryKeyStateable, len(val))
             for i, v := range val {
-                res[i] = v.(RegistryKeyStateable)
+                if v != nil {
+                    res[i] = v.(RegistryKeyStateable)
+                }
             }
             m.SetRegistryKeyStates(res)
         }
@@ -509,7 +539,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]SecurityResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(SecurityResourceable)
+                if v != nil {
+                    res[i] = v.(SecurityResourceable)
+                }
             }
             m.SetSecurityResources(res)
         }
@@ -533,7 +565,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetSourceMaterials(res)
         }
@@ -557,7 +591,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTags(res)
         }
@@ -581,7 +617,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AlertTriggerable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertTriggerable)
+                if v != nil {
+                    res[i] = v.(AlertTriggerable)
+                }
             }
             m.SetTriggers(res)
         }
@@ -595,7 +633,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]UriClickSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(UriClickSecurityStateable)
+                if v != nil {
+                    res[i] = v.(UriClickSecurityStateable)
+                }
             }
             m.SetUriClickSecurityStates(res)
         }
@@ -609,7 +649,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]UserSecurityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(UserSecurityStateable)
+                if v != nil {
+                    res[i] = v.(UserSecurityStateable)
+                }
             }
             m.SetUserStates(res)
         }
@@ -633,7 +675,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]VulnerabilityStateable, len(val))
             for i, v := range val {
-                res[i] = v.(VulnerabilityStateable)
+                if v != nil {
+                    res[i] = v.(VulnerabilityStateable)
+                }
             }
             m.SetVulnerabilityStates(res)
         }
@@ -752,7 +796,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetAlertDetections() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAlertDetections()))
         for i, v := range m.GetAlertDetections() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("alertDetections", cast)
         if err != nil {
@@ -792,7 +838,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetCloudAppStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCloudAppStates()))
         for i, v := range m.GetCloudAppStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("cloudAppStates", cast)
         if err != nil {
@@ -845,7 +893,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetFileStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFileStates()))
         for i, v := range m.GetFileStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("fileStates", cast)
         if err != nil {
@@ -855,7 +905,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetHistoryStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHistoryStates()))
         for i, v := range m.GetHistoryStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("historyStates", cast)
         if err != nil {
@@ -865,7 +917,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetHostStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHostStates()))
         for i, v := range m.GetHostStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("hostStates", cast)
         if err != nil {
@@ -881,7 +935,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetInvestigationSecurityStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetInvestigationSecurityStates()))
         for i, v := range m.GetInvestigationSecurityStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("investigationSecurityStates", cast)
         if err != nil {
@@ -903,7 +959,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMalwareStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMalwareStates()))
         for i, v := range m.GetMalwareStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("malwareStates", cast)
         if err != nil {
@@ -913,7 +971,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetMessageSecurityStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMessageSecurityStates()))
         for i, v := range m.GetMessageSecurityStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("messageSecurityStates", cast)
         if err != nil {
@@ -923,7 +983,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetNetworkConnections() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetNetworkConnections()))
         for i, v := range m.GetNetworkConnections() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("networkConnections", cast)
         if err != nil {
@@ -933,7 +995,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetProcesses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProcesses()))
         for i, v := range m.GetProcesses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("processes", cast)
         if err != nil {
@@ -949,7 +1013,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetRegistryKeyStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRegistryKeyStates()))
         for i, v := range m.GetRegistryKeyStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("registryKeyStates", cast)
         if err != nil {
@@ -959,7 +1025,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetSecurityResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSecurityResources()))
         for i, v := range m.GetSecurityResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("securityResources", cast)
         if err != nil {
@@ -1001,7 +1069,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetTriggers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTriggers()))
         for i, v := range m.GetTriggers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("triggers", cast)
         if err != nil {
@@ -1011,7 +1081,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetUriClickSecurityStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUriClickSecurityStates()))
         for i, v := range m.GetUriClickSecurityStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("uriClickSecurityStates", cast)
         if err != nil {
@@ -1021,7 +1093,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetUserStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserStates()))
         for i, v := range m.GetUserStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userStates", cast)
         if err != nil {
@@ -1037,7 +1111,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetVulnerabilityStates() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetVulnerabilityStates()))
         for i, v := range m.GetVulnerabilityStates() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("vulnerabilityStates", cast)
         if err != nil {

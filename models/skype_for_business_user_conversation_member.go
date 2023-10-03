@@ -12,7 +12,7 @@ type SkypeForBusinessUserConversationMember struct {
     // Azure Active Directory ID of the user.
     userId *string
 }
-// NewSkypeForBusinessUserConversationMember instantiates a new SkypeForBusinessUserConversationMember and sets the default values.
+// NewSkypeForBusinessUserConversationMember instantiates a new skypeForBusinessUserConversationMember and sets the default values.
 func NewSkypeForBusinessUserConversationMember()(*SkypeForBusinessUserConversationMember) {
     m := &SkypeForBusinessUserConversationMember{
         ConversationMember: *NewConversationMember(),

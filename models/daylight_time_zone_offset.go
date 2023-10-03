@@ -10,7 +10,7 @@ type DaylightTimeZoneOffset struct {
     // The time offset from Coordinated Universal Time (UTC) for daylight saving time. This value is in minutes.
     daylightBias *int32
 }
-// NewDaylightTimeZoneOffset instantiates a new DaylightTimeZoneOffset and sets the default values.
+// NewDaylightTimeZoneOffset instantiates a new daylightTimeZoneOffset and sets the default values.
 func NewDaylightTimeZoneOffset()(*DaylightTimeZoneOffset) {
     m := &DaylightTimeZoneOffset{
         StandardTimeZoneOffset: *NewStandardTimeZoneOffset(),

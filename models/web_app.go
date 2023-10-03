@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// WebApp 
+// WebApp contains properties and inherited properties for web apps.
 type WebApp struct {
     MobileApp
     // The web app URL. This property cannot be PATCHed.
@@ -12,7 +12,7 @@ type WebApp struct {
     // Whether or not to use managed browser. This property is only applicable for Android and IOS.
     useManagedBrowser *bool
 }
-// NewWebApp instantiates a new WebApp and sets the default values.
+// NewWebApp instantiates a new webApp and sets the default values.
 func NewWebApp()(*WebApp) {
     m := &WebApp{
         MobileApp: *NewMobileApp(),

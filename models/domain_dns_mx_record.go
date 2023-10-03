@@ -12,7 +12,7 @@ type DomainDnsMxRecord struct {
     // Value used when configuring the Preference/Priority property of the MX record at the DNS host.
     preference *int32
 }
-// NewDomainDnsMxRecord instantiates a new DomainDnsMxRecord and sets the default values.
+// NewDomainDnsMxRecord instantiates a new domainDnsMxRecord and sets the default values.
 func NewDomainDnsMxRecord()(*DomainDnsMxRecord) {
     m := &DomainDnsMxRecord{
         DomainDnsRecord: *NewDomainDnsRecord(),

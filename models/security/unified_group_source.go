@@ -13,7 +13,7 @@ type UnifiedGroupSource struct {
     // Specifies which sources are included in this group. Possible values are: mailbox, site.
     includedSources *SourceType
 }
-// NewUnifiedGroupSource instantiates a new UnifiedGroupSource and sets the default values.
+// NewUnifiedGroupSource instantiates a new unifiedGroupSource and sets the default values.
 func NewUnifiedGroupSource()(*UnifiedGroupSource) {
     m := &UnifiedGroupSource{
         DataSource: *NewDataSource(),

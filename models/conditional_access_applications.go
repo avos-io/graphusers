@@ -8,6 +8,8 @@ import (
 type ConditionalAccessApplications struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The applicationFilter property
+    applicationFilter ConditionalAccessFilterable
     // Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
     excludeApplications []string
     // Can be one of the following:  The list of client IDs (appId) the policy applies to, unless explicitly excluded (in excludeApplications)  All  Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
@@ -34,6 +36,10 @@ func CreateConditionalAccessApplicationsFromDiscriminatorValue(parseNode i878a80
 func (m *ConditionalAccessApplications) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
+// GetApplicationFilter gets the applicationFilter property value. The applicationFilter property
+func (m *ConditionalAccessApplications) GetApplicationFilter()(ConditionalAccessFilterable) {
+    return m.applicationFilter
+}
 // GetExcludeApplications gets the excludeApplications property value. Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
 func (m *ConditionalAccessApplications) GetExcludeApplications()([]string) {
     return m.excludeApplications
@@ -41,6 +47,16 @@ func (m *ConditionalAccessApplications) GetExcludeApplications()([]string) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessApplications) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["applicationFilter"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateConditionalAccessFilterFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetApplicationFilter(val.(ConditionalAccessFilterable))
+        }
+        return nil
+    }
     res["excludeApplications"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
@@ -49,7 +65,9 @@ func (m *ConditionalAccessApplications) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExcludeApplications(res)
         }
@@ -63,7 +81,9 @@ func (m *ConditionalAccessApplications) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeApplications(res)
         }
@@ -77,7 +97,9 @@ func (m *ConditionalAccessApplications) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeAuthenticationContextClassReferences(res)
         }
@@ -91,7 +113,9 @@ func (m *ConditionalAccessApplications) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeUserActions(res)
         }
@@ -127,6 +151,12 @@ func (m *ConditionalAccessApplications) GetOdataType()(*string) {
 }
 // Serialize serializes information the current object
 func (m *ConditionalAccessApplications) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteObjectValue("applicationFilter", m.GetApplicationFilter())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetExcludeApplications() != nil {
         err := writer.WriteCollectionOfStringValues("excludeApplications", m.GetExcludeApplications())
         if err != nil {
@@ -169,6 +199,10 @@ func (m *ConditionalAccessApplications) Serialize(writer i878a80d2330e89d2689638
 func (m *ConditionalAccessApplications) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
+// SetApplicationFilter sets the applicationFilter property value. The applicationFilter property
+func (m *ConditionalAccessApplications) SetApplicationFilter(value ConditionalAccessFilterable)() {
+    m.applicationFilter = value
+}
 // SetExcludeApplications sets the excludeApplications property value. Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365
 func (m *ConditionalAccessApplications) SetExcludeApplications(value []string)() {
     m.excludeApplications = value
@@ -193,11 +227,13 @@ func (m *ConditionalAccessApplications) SetOdataType(value *string)() {
 type ConditionalAccessApplicationsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetApplicationFilter()(ConditionalAccessFilterable)
     GetExcludeApplications()([]string)
     GetIncludeApplications()([]string)
     GetIncludeAuthenticationContextClassReferences()([]string)
     GetIncludeUserActions()([]string)
     GetOdataType()(*string)
+    SetApplicationFilter(value ConditionalAccessFilterable)()
     SetExcludeApplications(value []string)()
     SetIncludeApplications(value []string)()
     SetIncludeAuthenticationContextClassReferences(value []string)()

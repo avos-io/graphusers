@@ -12,24 +12,24 @@ type AccessReviewHistoryDefinition struct {
     createdBy UserIdentityable
     // Timestamp when the access review definition was created.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions will be included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
+    // Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions are included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
     decisions []AccessReviewHistoryDecisionFilter
     // Name for the access review history data collection. Required.
     displayName *string
-    // If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
+    // If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that doesn't recur will have exactly one instance.
     instances []AccessReviewHistoryInstanceable
-    // A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+    // A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
     reviewHistoryPeriodEndDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+    // A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
     reviewHistoryPeriodStartDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime are not defined. Not supported yet.
+    // The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime aren't defined. Not supported yet.
     scheduleSettings AccessReviewHistoryScheduleSettingsable
     // Used to scope what reviews are included in the fetched history data. Fetches reviews whose scope matches with this provided scope. Required.
     scopes []AccessReviewScopeable
     // Represents the status of the review history data collection. The possible values are: done, inProgress, error, requested, unknownFutureValue.
     status *AccessReviewHistoryStatus
 }
-// NewAccessReviewHistoryDefinition instantiates a new AccessReviewHistoryDefinition and sets the default values.
+// NewAccessReviewHistoryDefinition instantiates a new accessReviewHistoryDefinition and sets the default values.
 func NewAccessReviewHistoryDefinition()(*AccessReviewHistoryDefinition) {
     m := &AccessReviewHistoryDefinition{
         Entity: *NewEntity(),
@@ -48,7 +48,7 @@ func (m *AccessReviewHistoryDefinition) GetCreatedBy()(UserIdentityable) {
 func (m *AccessReviewHistoryDefinition) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
-// GetDecisions gets the decisions property value. Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions will be included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
+// GetDecisions gets the decisions property value. Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions are included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
 func (m *AccessReviewHistoryDefinition) GetDecisions()([]AccessReviewHistoryDecisionFilter) {
     return m.decisions
 }
@@ -87,7 +87,9 @@ func (m *AccessReviewHistoryDefinition) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]AccessReviewHistoryDecisionFilter, len(val))
             for i, v := range val {
-                res[i] = *(v.(*AccessReviewHistoryDecisionFilter))
+                if v != nil {
+                    res[i] = *(v.(*AccessReviewHistoryDecisionFilter))
+                }
             }
             m.SetDecisions(res)
         }
@@ -111,7 +113,9 @@ func (m *AccessReviewHistoryDefinition) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]AccessReviewHistoryInstanceable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewHistoryInstanceable)
+                if v != nil {
+                    res[i] = v.(AccessReviewHistoryInstanceable)
+                }
             }
             m.SetInstances(res)
         }
@@ -155,7 +159,9 @@ func (m *AccessReviewHistoryDefinition) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]AccessReviewScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewScopeable)
+                }
             }
             m.SetScopes(res)
         }
@@ -173,19 +179,19 @@ func (m *AccessReviewHistoryDefinition) GetFieldDeserializers()(map[string]func(
     }
     return res
 }
-// GetInstances gets the instances property value. If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
+// GetInstances gets the instances property value. If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that doesn't recur will have exactly one instance.
 func (m *AccessReviewHistoryDefinition) GetInstances()([]AccessReviewHistoryInstanceable) {
     return m.instances
 }
-// GetReviewHistoryPeriodEndDateTime gets the reviewHistoryPeriodEndDateTime property value. A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+// GetReviewHistoryPeriodEndDateTime gets the reviewHistoryPeriodEndDateTime property value. A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
 func (m *AccessReviewHistoryDefinition) GetReviewHistoryPeriodEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.reviewHistoryPeriodEndDateTime
 }
-// GetReviewHistoryPeriodStartDateTime gets the reviewHistoryPeriodStartDateTime property value. A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+// GetReviewHistoryPeriodStartDateTime gets the reviewHistoryPeriodStartDateTime property value. A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
 func (m *AccessReviewHistoryDefinition) GetReviewHistoryPeriodStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.reviewHistoryPeriodStartDateTime
 }
-// GetScheduleSettings gets the scheduleSettings property value. The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime are not defined. Not supported yet.
+// GetScheduleSettings gets the scheduleSettings property value. The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime aren't defined. Not supported yet.
 func (m *AccessReviewHistoryDefinition) GetScheduleSettings()(AccessReviewHistoryScheduleSettingsable) {
     return m.scheduleSettings
 }
@@ -230,7 +236,9 @@ func (m *AccessReviewHistoryDefinition) Serialize(writer i878a80d2330e89d2689638
     if m.GetInstances() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetInstances()))
         for i, v := range m.GetInstances() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("instances", cast)
         if err != nil {
@@ -258,7 +266,9 @@ func (m *AccessReviewHistoryDefinition) Serialize(writer i878a80d2330e89d2689638
     if m.GetScopes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetScopes()))
         for i, v := range m.GetScopes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("scopes", cast)
         if err != nil {
@@ -282,7 +292,7 @@ func (m *AccessReviewHistoryDefinition) SetCreatedBy(value UserIdentityable)() {
 func (m *AccessReviewHistoryDefinition) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetDecisions sets the decisions property value. Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions will be included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
+// SetDecisions sets the decisions property value. Determines which review decisions will be included in the fetched review history data if specified. Optional on create. All decisions are included by default if no decisions are provided on create. Possible values are: approve, deny, dontKnow, notReviewed, and notNotified.
 func (m *AccessReviewHistoryDefinition) SetDecisions(value []AccessReviewHistoryDecisionFilter)() {
     m.decisions = value
 }
@@ -290,19 +300,19 @@ func (m *AccessReviewHistoryDefinition) SetDecisions(value []AccessReviewHistory
 func (m *AccessReviewHistoryDefinition) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetInstances sets the instances property value. If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
+// SetInstances sets the instances property value. If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that doesn't recur will have exactly one instance.
 func (m *AccessReviewHistoryDefinition) SetInstances(value []AccessReviewHistoryInstanceable)() {
     m.instances = value
 }
-// SetReviewHistoryPeriodEndDateTime sets the reviewHistoryPeriodEndDateTime property value. A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+// SetReviewHistoryPeriodEndDateTime sets the reviewHistoryPeriodEndDateTime property value. A timestamp. Reviews ending on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
 func (m *AccessReviewHistoryDefinition) SetReviewHistoryPeriodEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.reviewHistoryPeriodEndDateTime = value
 }
-// SetReviewHistoryPeriodStartDateTime sets the reviewHistoryPeriodStartDateTime property value. A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings is not defined.
+// SetReviewHistoryPeriodStartDateTime sets the reviewHistoryPeriodStartDateTime property value. A timestamp. Reviews starting on or before this date will be included in the fetched history data. Only required if scheduleSettings isn't defined.
 func (m *AccessReviewHistoryDefinition) SetReviewHistoryPeriodStartDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.reviewHistoryPeriodStartDateTime = value
 }
-// SetScheduleSettings sets the scheduleSettings property value. The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime are not defined. Not supported yet.
+// SetScheduleSettings sets the scheduleSettings property value. The settings for a recurring access review history definition series. Only required if reviewHistoryPeriodStartDateTime or reviewHistoryPeriodEndDateTime aren't defined. Not supported yet.
 func (m *AccessReviewHistoryDefinition) SetScheduleSettings(value AccessReviewHistoryScheduleSettingsable)() {
     m.scheduleSettings = value
 }

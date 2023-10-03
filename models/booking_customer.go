@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// BookingCustomer 
+// BookingCustomer represents a customer of the business.
 type BookingCustomer struct {
     BookingCustomerBase
     // Addresses associated with the customer. The attribute type of physicalAddress is not supported in v1.0. Internally we map the addresses to the type others.
@@ -16,7 +16,7 @@ type BookingCustomer struct {
     // Phone numbers associated with the customer, including home, business and mobile numbers.
     phones []Phoneable
 }
-// NewBookingCustomer instantiates a new BookingCustomer and sets the default values.
+// NewBookingCustomer instantiates a new bookingCustomer and sets the default values.
 func NewBookingCustomer()(*BookingCustomer) {
     m := &BookingCustomer{
         BookingCustomerBase: *NewBookingCustomerBase(),
@@ -52,7 +52,9 @@ func (m *BookingCustomer) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         if val != nil {
             res := make([]PhysicalAddressable, len(val))
             for i, v := range val {
-                res[i] = v.(PhysicalAddressable)
+                if v != nil {
+                    res[i] = v.(PhysicalAddressable)
+                }
             }
             m.SetAddresses(res)
         }
@@ -86,7 +88,9 @@ func (m *BookingCustomer) GetFieldDeserializers()(map[string]func(i878a80d2330e8
         if val != nil {
             res := make([]Phoneable, len(val))
             for i, v := range val {
-                res[i] = v.(Phoneable)
+                if v != nil {
+                    res[i] = v.(Phoneable)
+                }
             }
             m.SetPhones(res)
         }
@@ -107,7 +111,9 @@ func (m *BookingCustomer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     if m.GetAddresses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAddresses()))
         for i, v := range m.GetAddresses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("addresses", cast)
         if err != nil {
@@ -129,7 +135,9 @@ func (m *BookingCustomer) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     if m.GetPhones() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPhones()))
         for i, v := range m.GetPhones() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("phones", cast)
         if err != nil {

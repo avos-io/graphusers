@@ -68,7 +68,9 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ColumnDefinitionable, len(val))
             for i, v := range val {
-                res[i] = v.(ColumnDefinitionable)
+                if v != nil {
+                    res[i] = v.(ColumnDefinitionable)
+                }
             }
             m.SetColumns(res)
         }
@@ -82,7 +84,9 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ContentTypeable, len(val))
             for i, v := range val {
-                res[i] = v.(ContentTypeable)
+                if v != nil {
+                    res[i] = v.(ContentTypeable)
+                }
             }
             m.SetContentTypes(res)
         }
@@ -116,7 +120,9 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ListItemable, len(val))
             for i, v := range val {
-                res[i] = v.(ListItemable)
+                if v != nil {
+                    res[i] = v.(ListItemable)
+                }
             }
             m.SetItems(res)
         }
@@ -140,7 +146,9 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]RichLongRunningOperationable, len(val))
             for i, v := range val {
-                res[i] = v.(RichLongRunningOperationable)
+                if v != nil {
+                    res[i] = v.(RichLongRunningOperationable)
+                }
             }
             m.SetOperations(res)
         }
@@ -164,7 +172,9 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]Subscriptionable, len(val))
             for i, v := range val {
-                res[i] = v.(Subscriptionable)
+                if v != nil {
+                    res[i] = v.(Subscriptionable)
+                }
             }
             m.SetSubscriptions(res)
         }
@@ -215,7 +225,9 @@ func (m *List) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetColumns() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetColumns()))
         for i, v := range m.GetColumns() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("columns", cast)
         if err != nil {
@@ -225,7 +237,9 @@ func (m *List) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetContentTypes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetContentTypes()))
         for i, v := range m.GetContentTypes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("contentTypes", cast)
         if err != nil {
@@ -247,7 +261,9 @@ func (m *List) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetItems() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetItems()))
         for i, v := range m.GetItems() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("items", cast)
         if err != nil {
@@ -263,7 +279,9 @@ func (m *List) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetOperations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOperations()))
         for i, v := range m.GetOperations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("operations", cast)
         if err != nil {
@@ -279,7 +297,9 @@ func (m *List) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetSubscriptions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSubscriptions()))
         for i, v := range m.GetSubscriptions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("subscriptions", cast)
         if err != nil {

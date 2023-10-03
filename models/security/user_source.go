@@ -14,7 +14,7 @@ type UserSource struct {
     // The URL of the user's OneDrive for Business site. Read-only.
     siteWebUrl *string
 }
-// NewUserSource instantiates a new UserSource and sets the default values.
+// NewUserSource instantiates a new userSource and sets the default values.
 func NewUserSource()(*UserSource) {
     m := &UserSource{
         DataSource: *NewDataSource(),

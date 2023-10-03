@@ -12,7 +12,7 @@ type EdiscoveryAddToReviewSetOperation struct {
     // eDiscovery search that gets added to review set.
     search EdiscoverySearchable
 }
-// NewEdiscoveryAddToReviewSetOperation instantiates a new EdiscoveryAddToReviewSetOperation and sets the default values.
+// NewEdiscoveryAddToReviewSetOperation instantiates a new ediscoveryAddToReviewSetOperation and sets the default values.
 func NewEdiscoveryAddToReviewSetOperation()(*EdiscoveryAddToReviewSetOperation) {
     m := &EdiscoveryAddToReviewSetOperation{
         CaseOperation: *NewCaseOperation(),

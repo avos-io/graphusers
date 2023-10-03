@@ -12,7 +12,7 @@ type RoomList struct {
     // The rooms property
     rooms []Roomable
 }
-// NewRoomList instantiates a new RoomList and sets the default values.
+// NewRoomList instantiates a new roomList and sets the default values.
 func NewRoomList()(*RoomList) {
     m := &RoomList{
         Place: *NewPlace(),
@@ -50,7 +50,9 @@ func (m *RoomList) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]Roomable, len(val))
             for i, v := range val {
-                res[i] = v.(Roomable)
+                if v != nil {
+                    res[i] = v.(Roomable)
+                }
             }
             m.SetRooms(res)
         }
@@ -77,7 +79,9 @@ func (m *RoomList) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetRooms() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRooms()))
         for i, v := range m.GetRooms() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rooms", cast)
         if err != nil {

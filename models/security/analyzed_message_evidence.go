@@ -45,11 +45,13 @@ type AnalyzedMessageEvidence struct {
     // Uniform resource name (URN) of the automated investigation where the cluster was identified.
     urn *string
 }
-// NewAnalyzedMessageEvidence instantiates a new AnalyzedMessageEvidence and sets the default values.
+// NewAnalyzedMessageEvidence instantiates a new analyzedMessageEvidence and sets the default values.
 func NewAnalyzedMessageEvidence()(*AnalyzedMessageEvidence) {
     m := &AnalyzedMessageEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.analyzedMessageEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateAnalyzedMessageEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -213,7 +215,9 @@ func (m *AnalyzedMessageEvidence) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetThreatDetectionMethods(res)
         }
@@ -227,7 +231,9 @@ func (m *AnalyzedMessageEvidence) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetThreats(res)
         }
@@ -251,7 +257,9 @@ func (m *AnalyzedMessageEvidence) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetUrls(res)
         }

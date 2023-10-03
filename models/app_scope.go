@@ -9,10 +9,10 @@ type AppScope struct {
     Entity
     // Provides the display name of the app-specific resource represented by the app scope. Provided for display purposes since appScopeId is often an immutable, non-human-readable id. Read-only.
     displayName *string
-    // Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
+    // Describes the type of app-specific resource represented by the app scope and is provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
     typeEscaped *string
 }
-// NewAppScope instantiates a new AppScope and sets the default values.
+// NewAppScope instantiates a new appScope and sets the default values.
 func NewAppScope()(*AppScope) {
     m := &AppScope{
         Entity: *NewEntity(),
@@ -46,14 +46,14 @@ func (m *AppScope) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
     return res
 }
-// GetType gets the type property value. Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
-func (m *AppScope) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Describes the type of app-specific resource represented by the app scope and is provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
+func (m *AppScope) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -69,7 +69,7 @@ func (m *AppScope) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
         }
     }
     {
-        err = writer.WriteStringValue("type", m.GetType())
+        err = writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -80,8 +80,8 @@ func (m *AppScope) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
 func (m *AppScope) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetType sets the type property value. Describes the type of app-specific resource represented by the app scope. Provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
-func (m *AppScope) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Describes the type of app-specific resource represented by the app scope and is provided for display purposes, so a user interface can convey to the user the kind of app specific resource represented by the app scope. Read-only.
+func (m *AppScope) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // AppScopeable 
@@ -89,7 +89,7 @@ type AppScopeable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetDisplayName()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetDisplayName(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

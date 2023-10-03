@@ -10,7 +10,7 @@ type FollowupFlag struct {
     additionalData map[string]any
     // The date and time that the follow-up was finished.
     completedDateTime DateTimeTimeZoneable
-    // The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+    // The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
     dueDateTime DateTimeTimeZoneable
     // The status for follow-up for an item. Possible values are notFlagged, complete, and flagged.
     flagStatus *FollowupFlagStatus
@@ -38,7 +38,7 @@ func (m *FollowupFlag) GetAdditionalData()(map[string]any) {
 func (m *FollowupFlag) GetCompletedDateTime()(DateTimeTimeZoneable) {
     return m.completedDateTime
 }
-// GetDueDateTime gets the dueDateTime property value. The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+// GetDueDateTime gets the dueDateTime property value. The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
 func (m *FollowupFlag) GetDueDateTime()(DateTimeTimeZoneable) {
     return m.dueDateTime
 }
@@ -158,7 +158,7 @@ func (m *FollowupFlag) SetAdditionalData(value map[string]any)() {
 func (m *FollowupFlag) SetCompletedDateTime(value DateTimeTimeZoneable)() {
     m.completedDateTime = value
 }
-// SetDueDateTime sets the dueDateTime property value. The date and time that the follow up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you will get a 400 Bad Request response.
+// SetDueDateTime sets the dueDateTime property value. The date and time that the follow-up is to be finished. Note: To set the due date, you must also specify the startDateTime; otherwise, you get a 400 Bad Request response.
 func (m *FollowupFlag) SetDueDateTime(value DateTimeTimeZoneable)() {
     m.dueDateTime = value
 }

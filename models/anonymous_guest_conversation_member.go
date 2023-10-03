@@ -10,7 +10,7 @@ type AnonymousGuestConversationMember struct {
     // Unique ID that represents the user. Note: This ID can change if the user leaves and rejoins the meeting, or joins from a different device.
     anonymousGuestId *string
 }
-// NewAnonymousGuestConversationMember instantiates a new AnonymousGuestConversationMember and sets the default values.
+// NewAnonymousGuestConversationMember instantiates a new anonymousGuestConversationMember and sets the default values.
 func NewAnonymousGuestConversationMember()(*AnonymousGuestConversationMember) {
     m := &AnonymousGuestConversationMember{
         ConversationMember: *NewConversationMember(),

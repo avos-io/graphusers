@@ -8,7 +8,7 @@ import (
 type ContentTypeInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The id of the content type.
+    // The ID of the content type.
     id *string
     // The name of the content type.
     name *string
@@ -65,7 +65,7 @@ func (m *ContentTypeInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e8
     }
     return res
 }
-// GetId gets the id property value. The id of the content type.
+// GetId gets the id property value. The ID of the content type.
 func (m *ContentTypeInfo) GetId()(*string) {
     return m.id
 }
@@ -109,7 +109,7 @@ func (m *ContentTypeInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
 func (m *ContentTypeInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetId sets the id property value. The id of the content type.
+// SetId sets the id property value. The ID of the content type.
 func (m *ContentTypeInfo) SetId(value *string)() {
     m.id = value
 }

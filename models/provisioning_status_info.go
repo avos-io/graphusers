@@ -8,7 +8,7 @@ import (
 type ProvisioningStatusInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The errorInformation property
+    // If status isn't success/ skipped details for the error are contained in this.
     errorInformation ProvisioningErrorInfoable
     // The OdataType property
     odataType *string
@@ -30,7 +30,7 @@ func CreateProvisioningStatusInfoFromDiscriminatorValue(parseNode i878a80d2330e8
 func (m *ProvisioningStatusInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetErrorInformation gets the errorInformation property value. The errorInformation property
+// GetErrorInformation gets the errorInformation property value. If status isn't success/ skipped details for the error are contained in this.
 func (m *ProvisioningStatusInfo) GetErrorInformation()(ProvisioningErrorInfoable) {
     return m.errorInformation
 }
@@ -110,7 +110,7 @@ func (m *ProvisioningStatusInfo) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *ProvisioningStatusInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetErrorInformation sets the errorInformation property value. The errorInformation property
+// SetErrorInformation sets the errorInformation property value. If status isn't success/ skipped details for the error are contained in this.
 func (m *ProvisioningStatusInfo) SetErrorInformation(value ProvisioningErrorInfoable)() {
     m.errorInformation = value
 }

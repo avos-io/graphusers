@@ -8,19 +8,19 @@ import (
 type AccessPackageAssignmentRequestorSettings struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // If false, the requestor is not permitted to include a schedule in their request.
+    // False indicates that the requestor isn't permitted to include a schedule in their request.
     allowCustomAssignmentSchedule *bool
-    // If true, allows on-behalf-of requestors to create a request to add access for another principal.
+    // True allows on-behalf-of requestors to create a request to add access for another principal.
     enableOnBehalfRequestorsToAddAccess *bool
-    // If true, allows on-behalf-of requestors to create a request to remove access for another principal.
+    // True allows on-behalf-of requestors to create a request to remove access for another principal.
     enableOnBehalfRequestorsToRemoveAccess *bool
-    // If true, allows on-behalf-of requestors to create a request to update access for another principal.
+    // True allows on-behalf-of requestors to create a request to update access for another principal.
     enableOnBehalfRequestorsToUpdateAccess *bool
-    // If true, allows requestors to create a request to add access for themselves.
+    // True allows requestors to create a request to add access for themselves.
     enableTargetsToSelfAddAccess *bool
-    // If true, allows requestors to create a request to remove their access.
+    // True allows requestors to create a request to remove their access.
     enableTargetsToSelfRemoveAccess *bool
-    // If true, allows requestors to create a request to update their access.
+    // True allows requestors to create a request to update their access.
     enableTargetsToSelfUpdateAccess *bool
     // The OdataType property
     odataType *string
@@ -42,31 +42,31 @@ func CreateAccessPackageAssignmentRequestorSettingsFromDiscriminatorValue(parseN
 func (m *AccessPackageAssignmentRequestorSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAllowCustomAssignmentSchedule gets the allowCustomAssignmentSchedule property value. If false, the requestor is not permitted to include a schedule in their request.
+// GetAllowCustomAssignmentSchedule gets the allowCustomAssignmentSchedule property value. False indicates that the requestor isn't permitted to include a schedule in their request.
 func (m *AccessPackageAssignmentRequestorSettings) GetAllowCustomAssignmentSchedule()(*bool) {
     return m.allowCustomAssignmentSchedule
 }
-// GetEnableOnBehalfRequestorsToAddAccess gets the enableOnBehalfRequestorsToAddAccess property value. If true, allows on-behalf-of requestors to create a request to add access for another principal.
+// GetEnableOnBehalfRequestorsToAddAccess gets the enableOnBehalfRequestorsToAddAccess property value. True allows on-behalf-of requestors to create a request to add access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToAddAccess()(*bool) {
     return m.enableOnBehalfRequestorsToAddAccess
 }
-// GetEnableOnBehalfRequestorsToRemoveAccess gets the enableOnBehalfRequestorsToRemoveAccess property value. If true, allows on-behalf-of requestors to create a request to remove access for another principal.
+// GetEnableOnBehalfRequestorsToRemoveAccess gets the enableOnBehalfRequestorsToRemoveAccess property value. True allows on-behalf-of requestors to create a request to remove access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToRemoveAccess()(*bool) {
     return m.enableOnBehalfRequestorsToRemoveAccess
 }
-// GetEnableOnBehalfRequestorsToUpdateAccess gets the enableOnBehalfRequestorsToUpdateAccess property value. If true, allows on-behalf-of requestors to create a request to update access for another principal.
+// GetEnableOnBehalfRequestorsToUpdateAccess gets the enableOnBehalfRequestorsToUpdateAccess property value. True allows on-behalf-of requestors to create a request to update access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableOnBehalfRequestorsToUpdateAccess()(*bool) {
     return m.enableOnBehalfRequestorsToUpdateAccess
 }
-// GetEnableTargetsToSelfAddAccess gets the enableTargetsToSelfAddAccess property value. If true, allows requestors to create a request to add access for themselves.
+// GetEnableTargetsToSelfAddAccess gets the enableTargetsToSelfAddAccess property value. True allows requestors to create a request to add access for themselves.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfAddAccess()(*bool) {
     return m.enableTargetsToSelfAddAccess
 }
-// GetEnableTargetsToSelfRemoveAccess gets the enableTargetsToSelfRemoveAccess property value. If true, allows requestors to create a request to remove their access.
+// GetEnableTargetsToSelfRemoveAccess gets the enableTargetsToSelfRemoveAccess property value. True allows requestors to create a request to remove their access.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfRemoveAccess()(*bool) {
     return m.enableTargetsToSelfRemoveAccess
 }
-// GetEnableTargetsToSelfUpdateAccess gets the enableTargetsToSelfUpdateAccess property value. If true, allows requestors to create a request to update their access.
+// GetEnableTargetsToSelfUpdateAccess gets the enableTargetsToSelfUpdateAccess property value. True allows requestors to create a request to update their access.
 func (m *AccessPackageAssignmentRequestorSettings) GetEnableTargetsToSelfUpdateAccess()(*bool) {
     return m.enableTargetsToSelfUpdateAccess
 }
@@ -161,7 +161,9 @@ func (m *AccessPackageAssignmentRequestorSettings) GetFieldDeserializers()(map[s
         if val != nil {
             res := make([]SubjectSetable, len(val))
             for i, v := range val {
-                res[i] = v.(SubjectSetable)
+                if v != nil {
+                    res[i] = v.(SubjectSetable)
+                }
             }
             m.SetOnBehalfRequestors(res)
         }
@@ -230,7 +232,9 @@ func (m *AccessPackageAssignmentRequestorSettings) Serialize(writer i878a80d2330
     if m.GetOnBehalfRequestors() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOnBehalfRequestors()))
         for i, v := range m.GetOnBehalfRequestors() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("onBehalfRequestors", cast)
         if err != nil {
@@ -249,31 +253,31 @@ func (m *AccessPackageAssignmentRequestorSettings) Serialize(writer i878a80d2330
 func (m *AccessPackageAssignmentRequestorSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAllowCustomAssignmentSchedule sets the allowCustomAssignmentSchedule property value. If false, the requestor is not permitted to include a schedule in their request.
+// SetAllowCustomAssignmentSchedule sets the allowCustomAssignmentSchedule property value. False indicates that the requestor isn't permitted to include a schedule in their request.
 func (m *AccessPackageAssignmentRequestorSettings) SetAllowCustomAssignmentSchedule(value *bool)() {
     m.allowCustomAssignmentSchedule = value
 }
-// SetEnableOnBehalfRequestorsToAddAccess sets the enableOnBehalfRequestorsToAddAccess property value. If true, allows on-behalf-of requestors to create a request to add access for another principal.
+// SetEnableOnBehalfRequestorsToAddAccess sets the enableOnBehalfRequestorsToAddAccess property value. True allows on-behalf-of requestors to create a request to add access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToAddAccess(value *bool)() {
     m.enableOnBehalfRequestorsToAddAccess = value
 }
-// SetEnableOnBehalfRequestorsToRemoveAccess sets the enableOnBehalfRequestorsToRemoveAccess property value. If true, allows on-behalf-of requestors to create a request to remove access for another principal.
+// SetEnableOnBehalfRequestorsToRemoveAccess sets the enableOnBehalfRequestorsToRemoveAccess property value. True allows on-behalf-of requestors to create a request to remove access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToRemoveAccess(value *bool)() {
     m.enableOnBehalfRequestorsToRemoveAccess = value
 }
-// SetEnableOnBehalfRequestorsToUpdateAccess sets the enableOnBehalfRequestorsToUpdateAccess property value. If true, allows on-behalf-of requestors to create a request to update access for another principal.
+// SetEnableOnBehalfRequestorsToUpdateAccess sets the enableOnBehalfRequestorsToUpdateAccess property value. True allows on-behalf-of requestors to create a request to update access for another principal.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableOnBehalfRequestorsToUpdateAccess(value *bool)() {
     m.enableOnBehalfRequestorsToUpdateAccess = value
 }
-// SetEnableTargetsToSelfAddAccess sets the enableTargetsToSelfAddAccess property value. If true, allows requestors to create a request to add access for themselves.
+// SetEnableTargetsToSelfAddAccess sets the enableTargetsToSelfAddAccess property value. True allows requestors to create a request to add access for themselves.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfAddAccess(value *bool)() {
     m.enableTargetsToSelfAddAccess = value
 }
-// SetEnableTargetsToSelfRemoveAccess sets the enableTargetsToSelfRemoveAccess property value. If true, allows requestors to create a request to remove their access.
+// SetEnableTargetsToSelfRemoveAccess sets the enableTargetsToSelfRemoveAccess property value. True allows requestors to create a request to remove their access.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfRemoveAccess(value *bool)() {
     m.enableTargetsToSelfRemoveAccess = value
 }
-// SetEnableTargetsToSelfUpdateAccess sets the enableTargetsToSelfUpdateAccess property value. If true, allows requestors to create a request to update their access.
+// SetEnableTargetsToSelfUpdateAccess sets the enableTargetsToSelfUpdateAccess property value. True allows requestors to create a request to update their access.
 func (m *AccessPackageAssignmentRequestorSettings) SetEnableTargetsToSelfUpdateAccess(value *bool)() {
     m.enableTargetsToSelfUpdateAccess = value
 }

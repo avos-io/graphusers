@@ -7,14 +7,14 @@ import (
 // AppManagementPolicy 
 type AppManagementPolicy struct {
     PolicyBase
-    // The appliesTo property
+    // Collection of applications and service principals to which the policy is applied.
     appliesTo []DirectoryObjectable
-    // The isEnabled property
+    // Denotes whether the policy is enabled.
     isEnabled *bool
-    // The restrictions property
+    // Restrictions that apply to an application or service principal object.
     restrictions AppManagementConfigurationable
 }
-// NewAppManagementPolicy instantiates a new AppManagementPolicy and sets the default values.
+// NewAppManagementPolicy instantiates a new appManagementPolicy and sets the default values.
 func NewAppManagementPolicy()(*AppManagementPolicy) {
     m := &AppManagementPolicy{
         PolicyBase: *NewPolicyBase(),
@@ -27,7 +27,7 @@ func NewAppManagementPolicy()(*AppManagementPolicy) {
 func CreateAppManagementPolicyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAppManagementPolicy(), nil
 }
-// GetAppliesTo gets the appliesTo property value. The appliesTo property
+// GetAppliesTo gets the appliesTo property value. Collection of applications and service principals to which the policy is applied.
 func (m *AppManagementPolicy) GetAppliesTo()([]DirectoryObjectable) {
     return m.appliesTo
 }
@@ -42,7 +42,9 @@ func (m *AppManagementPolicy) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetAppliesTo(res)
         }
@@ -70,11 +72,11 @@ func (m *AppManagementPolicy) GetFieldDeserializers()(map[string]func(i878a80d23
     }
     return res
 }
-// GetIsEnabled gets the isEnabled property value. The isEnabled property
+// GetIsEnabled gets the isEnabled property value. Denotes whether the policy is enabled.
 func (m *AppManagementPolicy) GetIsEnabled()(*bool) {
     return m.isEnabled
 }
-// GetRestrictions gets the restrictions property value. The restrictions property
+// GetRestrictions gets the restrictions property value. Restrictions that apply to an application or service principal object.
 func (m *AppManagementPolicy) GetRestrictions()(AppManagementConfigurationable) {
     return m.restrictions
 }
@@ -87,7 +89,9 @@ func (m *AppManagementPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetAppliesTo() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppliesTo()))
         for i, v := range m.GetAppliesTo() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appliesTo", cast)
         if err != nil {
@@ -108,15 +112,15 @@ func (m *AppManagementPolicy) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
-// SetAppliesTo sets the appliesTo property value. The appliesTo property
+// SetAppliesTo sets the appliesTo property value. Collection of applications and service principals to which the policy is applied.
 func (m *AppManagementPolicy) SetAppliesTo(value []DirectoryObjectable)() {
     m.appliesTo = value
 }
-// SetIsEnabled sets the isEnabled property value. The isEnabled property
+// SetIsEnabled sets the isEnabled property value. Denotes whether the policy is enabled.
 func (m *AppManagementPolicy) SetIsEnabled(value *bool)() {
     m.isEnabled = value
 }
-// SetRestrictions sets the restrictions property value. The restrictions property
+// SetRestrictions sets the restrictions property value. Restrictions that apply to an application or service principal object.
 func (m *AppManagementPolicy) SetRestrictions(value AppManagementConfigurationable)() {
     m.restrictions = value
 }

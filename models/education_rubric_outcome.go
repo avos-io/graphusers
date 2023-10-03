@@ -16,7 +16,7 @@ type EducationRubricOutcome struct {
     // The level that the teacher has selected for each quality while grading this assignment.
     rubricQualitySelectedLevels []RubricQualitySelectedColumnModelable
 }
-// NewEducationRubricOutcome instantiates a new EducationRubricOutcome and sets the default values.
+// NewEducationRubricOutcome instantiates a new educationRubricOutcome and sets the default values.
 func NewEducationRubricOutcome()(*EducationRubricOutcome) {
     m := &EducationRubricOutcome{
         EducationOutcome: *NewEducationOutcome(),
@@ -40,7 +40,9 @@ func (m *EducationRubricOutcome) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]RubricQualityFeedbackModelable, len(val))
             for i, v := range val {
-                res[i] = v.(RubricQualityFeedbackModelable)
+                if v != nil {
+                    res[i] = v.(RubricQualityFeedbackModelable)
+                }
             }
             m.SetPublishedRubricQualityFeedback(res)
         }
@@ -54,7 +56,9 @@ func (m *EducationRubricOutcome) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]RubricQualitySelectedColumnModelable, len(val))
             for i, v := range val {
-                res[i] = v.(RubricQualitySelectedColumnModelable)
+                if v != nil {
+                    res[i] = v.(RubricQualitySelectedColumnModelable)
+                }
             }
             m.SetPublishedRubricQualitySelectedLevels(res)
         }
@@ -68,7 +72,9 @@ func (m *EducationRubricOutcome) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]RubricQualityFeedbackModelable, len(val))
             for i, v := range val {
-                res[i] = v.(RubricQualityFeedbackModelable)
+                if v != nil {
+                    res[i] = v.(RubricQualityFeedbackModelable)
+                }
             }
             m.SetRubricQualityFeedback(res)
         }
@@ -82,7 +88,9 @@ func (m *EducationRubricOutcome) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]RubricQualitySelectedColumnModelable, len(val))
             for i, v := range val {
-                res[i] = v.(RubricQualitySelectedColumnModelable)
+                if v != nil {
+                    res[i] = v.(RubricQualitySelectedColumnModelable)
+                }
             }
             m.SetRubricQualitySelectedLevels(res)
         }
@@ -115,7 +123,9 @@ func (m *EducationRubricOutcome) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetPublishedRubricQualityFeedback() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPublishedRubricQualityFeedback()))
         for i, v := range m.GetPublishedRubricQualityFeedback() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("publishedRubricQualityFeedback", cast)
         if err != nil {
@@ -125,7 +135,9 @@ func (m *EducationRubricOutcome) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetPublishedRubricQualitySelectedLevels() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPublishedRubricQualitySelectedLevels()))
         for i, v := range m.GetPublishedRubricQualitySelectedLevels() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("publishedRubricQualitySelectedLevels", cast)
         if err != nil {
@@ -135,7 +147,9 @@ func (m *EducationRubricOutcome) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetRubricQualityFeedback() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRubricQualityFeedback()))
         for i, v := range m.GetRubricQualityFeedback() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rubricQualityFeedback", cast)
         if err != nil {
@@ -145,7 +159,9 @@ func (m *EducationRubricOutcome) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetRubricQualitySelectedLevels() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRubricQualitySelectedLevels()))
         for i, v := range m.GetRubricQualitySelectedLevels() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rubricQualitySelectedLevels", cast)
         if err != nil {

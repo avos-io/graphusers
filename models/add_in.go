@@ -64,7 +64,9 @@ func (m *AddIn) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]KeyValueable, len(val))
             for i, v := range val {
-                res[i] = v.(KeyValueable)
+                if v != nil {
+                    res[i] = v.(KeyValueable)
+                }
             }
             m.SetProperties(res)
         }
@@ -76,7 +78,7 @@ func (m *AddIn) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -94,8 +96,8 @@ func (m *AddIn) GetOdataType()(*string) {
 func (m *AddIn) GetProperties()([]KeyValueable) {
     return m.properties
 }
-// GetType gets the type property value. The type property
-func (m *AddIn) GetType()(*string) {
+// GetTypeEscaped gets the type property value. The type property
+func (m *AddIn) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -115,7 +117,9 @@ func (m *AddIn) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProperties()))
         for i, v := range m.GetProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("properties", cast)
         if err != nil {
@@ -123,7 +127,7 @@ func (m *AddIn) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -152,8 +156,8 @@ func (m *AddIn) SetOdataType(value *string)() {
 func (m *AddIn) SetProperties(value []KeyValueable)() {
     m.properties = value
 }
-// SetType sets the type property value. The type property
-func (m *AddIn) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. The type property
+func (m *AddIn) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // AddInable 
@@ -163,9 +167,9 @@ type AddInable interface {
     GetId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetOdataType()(*string)
     GetProperties()([]KeyValueable)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetOdataType(value *string)()
     SetProperties(value []KeyValueable)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

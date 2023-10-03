@@ -10,11 +10,13 @@ type UrlEvidence struct {
     // The Unique Resource Locator (URL).
     url *string
 }
-// NewUrlEvidence instantiates a new UrlEvidence and sets the default values.
+// NewUrlEvidence instantiates a new urlEvidence and sets the default values.
 func NewUrlEvidence()(*UrlEvidence) {
     m := &UrlEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.urlEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateUrlEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

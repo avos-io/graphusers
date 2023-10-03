@@ -13,7 +13,7 @@ type PrinterBase struct {
     defaults PrinterDefaultsable
     // The name of the printer/printerShare.
     displayName *string
-    // Whether the printer/printerShare is currently accepting new print jobs.
+    // Specifies whether the printer/printerShare is currently accepting new print jobs.
     isAcceptingJobs *bool
     // The list of jobs that are queued for printing by the printer/printerShare.
     jobs []PrintJobable
@@ -120,7 +120,9 @@ func (m *PrinterBase) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]PrintJobable, len(val))
             for i, v := range val {
-                res[i] = v.(PrintJobable)
+                if v != nil {
+                    res[i] = v.(PrintJobable)
+                }
             }
             m.SetJobs(res)
         }
@@ -168,7 +170,7 @@ func (m *PrinterBase) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
     }
     return res
 }
-// GetIsAcceptingJobs gets the isAcceptingJobs property value. Whether the printer/printerShare is currently accepting new print jobs.
+// GetIsAcceptingJobs gets the isAcceptingJobs property value. Specifies whether the printer/printerShare is currently accepting new print jobs.
 func (m *PrinterBase) GetIsAcceptingJobs()(*bool) {
     return m.isAcceptingJobs
 }
@@ -225,7 +227,9 @@ func (m *PrinterBase) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetJobs() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetJobs()))
         for i, v := range m.GetJobs() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("jobs", cast)
         if err != nil {
@@ -270,7 +274,7 @@ func (m *PrinterBase) SetDefaults(value PrinterDefaultsable)() {
 func (m *PrinterBase) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetIsAcceptingJobs sets the isAcceptingJobs property value. Whether the printer/printerShare is currently accepting new print jobs.
+// SetIsAcceptingJobs sets the isAcceptingJobs property value. Specifies whether the printer/printerShare is currently accepting new print jobs.
 func (m *PrinterBase) SetIsAcceptingJobs(value *bool)() {
     m.isAcceptingJobs = value
 }

@@ -11,11 +11,11 @@ type Invitation struct {
     invitedUser Userable
     // The display name of the user being invited.
     invitedUserDisplayName *string
-    // The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
+    // The email address of the user being invited. Required. The following special characters aren't permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
     invitedUserEmailAddress *string
     // Additional configuration for the message being sent to the invited user, including customizing message text, language and cc recipient list.
     invitedUserMessageInfo InvitedUserMessageInfoable
-    // The userType of the user being invited. By default, this is Guest. You can invite as Member if you are a company administrator.
+    // The userType of the user being invited. By default, this is Guest. You can invite as Member if you're a company administrator.
     invitedUserType *string
     // The URL the user can use to redeem their invitation. Read-only.
     inviteRedeemUrl *string
@@ -28,7 +28,7 @@ type Invitation struct {
     // The status of the invitation. Possible values are: PendingAcceptance, Completed, InProgress, and Error.
     status *string
 }
-// NewInvitation instantiates a new Invitation and sets the default values.
+// NewInvitation instantiates a new invitation and sets the default values.
 func NewInvitation()(*Invitation) {
     m := &Invitation{
         Entity: *NewEntity(),
@@ -152,7 +152,7 @@ func (m *Invitation) GetInvitedUser()(Userable) {
 func (m *Invitation) GetInvitedUserDisplayName()(*string) {
     return m.invitedUserDisplayName
 }
-// GetInvitedUserEmailAddress gets the invitedUserEmailAddress property value. The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
+// GetInvitedUserEmailAddress gets the invitedUserEmailAddress property value. The email address of the user being invited. Required. The following special characters aren't permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
 func (m *Invitation) GetInvitedUserEmailAddress()(*string) {
     return m.invitedUserEmailAddress
 }
@@ -160,7 +160,7 @@ func (m *Invitation) GetInvitedUserEmailAddress()(*string) {
 func (m *Invitation) GetInvitedUserMessageInfo()(InvitedUserMessageInfoable) {
     return m.invitedUserMessageInfo
 }
-// GetInvitedUserType gets the invitedUserType property value. The userType of the user being invited. By default, this is Guest. You can invite as Member if you are a company administrator.
+// GetInvitedUserType gets the invitedUserType property value. The userType of the user being invited. By default, this is Guest. You can invite as Member if you're a company administrator.
 func (m *Invitation) GetInvitedUserType()(*string) {
     return m.invitedUserType
 }
@@ -260,7 +260,7 @@ func (m *Invitation) SetInvitedUser(value Userable)() {
 func (m *Invitation) SetInvitedUserDisplayName(value *string)() {
     m.invitedUserDisplayName = value
 }
-// SetInvitedUserEmailAddress sets the invitedUserEmailAddress property value. The email address of the user being invited. Required. The following special characters are not permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
+// SetInvitedUserEmailAddress sets the invitedUserEmailAddress property value. The email address of the user being invited. Required. The following special characters aren't permitted in the email address:Tilde (~)Exclamation point (!)Number sign (#)Dollar sign ($)Percent (%)Circumflex (^)Ampersand (&)Asterisk (*)Parentheses (( ))Plus sign (+)Equal sign (=)Brackets ([ ])Braces ({ })Backslash (/)Slash mark (/)Pipe (/|)Semicolon (;)Colon (:)Quotation marks (')Angle brackets (< >)Question mark (?)Comma (,)However, the following exceptions apply:A period (.) or a hyphen (-) is permitted anywhere in the user name, except at the beginning or end of the name.An underscore (_) is permitted anywhere in the user name. This includes at the beginning or end of the name.
 func (m *Invitation) SetInvitedUserEmailAddress(value *string)() {
     m.invitedUserEmailAddress = value
 }
@@ -268,7 +268,7 @@ func (m *Invitation) SetInvitedUserEmailAddress(value *string)() {
 func (m *Invitation) SetInvitedUserMessageInfo(value InvitedUserMessageInfoable)() {
     m.invitedUserMessageInfo = value
 }
-// SetInvitedUserType sets the invitedUserType property value. The userType of the user being invited. By default, this is Guest. You can invite as Member if you are a company administrator.
+// SetInvitedUserType sets the invitedUserType property value. The userType of the user being invited. By default, this is Guest. You can invite as Member if you're a company administrator.
 func (m *Invitation) SetInvitedUserType(value *string)() {
     m.invitedUserType = value
 }

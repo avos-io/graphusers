@@ -12,7 +12,7 @@ type BookingQuestionAssignment struct {
     isRequired *bool
     // The OdataType property
     odataType *string
-    // Indicates whether it is mandatory to answer the custom question.
+    // Indicates whether it's mandatory to answer the custom question.
     questionId *string
 }
 // NewBookingQuestionAssignment instantiates a new bookingQuestionAssignment and sets the default values.
@@ -73,7 +73,7 @@ func (m *BookingQuestionAssignment) GetIsRequired()(*bool) {
 func (m *BookingQuestionAssignment) GetOdataType()(*string) {
     return m.odataType
 }
-// GetQuestionId gets the questionId property value. Indicates whether it is mandatory to answer the custom question.
+// GetQuestionId gets the questionId property value. Indicates whether it's mandatory to answer the custom question.
 func (m *BookingQuestionAssignment) GetQuestionId()(*string) {
     return m.questionId
 }
@@ -117,7 +117,7 @@ func (m *BookingQuestionAssignment) SetIsRequired(value *bool)() {
 func (m *BookingQuestionAssignment) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetQuestionId sets the questionId property value. Indicates whether it is mandatory to answer the custom question.
+// SetQuestionId sets the questionId property value. Indicates whether it's mandatory to answer the custom question.
 func (m *BookingQuestionAssignment) SetQuestionId(value *string)() {
     m.questionId = value
 }

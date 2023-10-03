@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// BookingCustomQuestion 
+// BookingCustomQuestion represents a custom question of the business.
 type BookingCustomQuestion struct {
     Entity
     // The expected answer type. The possible values are: text, radioButton, unknownFutureValue.
@@ -14,7 +14,7 @@ type BookingCustomQuestion struct {
     // The question.
     displayName *string
 }
-// NewBookingCustomQuestion instantiates a new BookingCustomQuestion and sets the default values.
+// NewBookingCustomQuestion instantiates a new bookingCustomQuestion and sets the default values.
 func NewBookingCustomQuestion()(*BookingCustomQuestion) {
     m := &BookingCustomQuestion{
         Entity: *NewEntity(),
@@ -58,7 +58,9 @@ func (m *BookingCustomQuestion) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetAnswerOptions(res)
         }

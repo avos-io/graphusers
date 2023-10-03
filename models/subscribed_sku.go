@@ -8,22 +8,28 @@ import (
 // SubscribedSku 
 type SubscribedSku struct {
     Entity
-    // For example, 'User' or 'Company'.
+    // The unique ID of the account this SKU belongs to.
+    accountId *string
+    // The name of the account this SKU belongs to.
+    accountName *string
+    // The target class for this SKU. Only SKUs with target class User are assignable. Possible values are: 'User', 'Company'.
     appliesTo *string
-    // Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut. The capabilityStatus is Enabled if the prepaidUnits property has at least 1 unit that is enabled, and LockedOut if the customer cancelled their subscription.
+    // Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
     capabilityStatus *string
     // The number of licenses that have been assigned.
     consumedUnits *int32
     // Information about the number and status of prepaid licenses.
     prepaidUnits LicenseUnitsDetailable
-    // Information about the service plans that are available with the SKU. Not nullable
+    // Information about the service plans that are available with the SKU. Not nullable.
     servicePlans []ServicePlanInfoable
     // The unique identifier (GUID) for the service SKU.
     skuId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
     // The SKU part number; for example: 'AAD_PREMIUM' or 'RMSBASIC'. To get a list of commercial subscriptions that an organization has acquired, see List subscribedSkus.
     skuPartNumber *string
+    // The subscriptionIds property
+    subscriptionIds []string
 }
-// NewSubscribedSku instantiates a new SubscribedSku and sets the default values.
+// NewSubscribedSku instantiates a new subscribedSku and sets the default values.
 func NewSubscribedSku()(*SubscribedSku) {
     m := &SubscribedSku{
         Entity: *NewEntity(),
@@ -34,11 +40,19 @@ func NewSubscribedSku()(*SubscribedSku) {
 func CreateSubscribedSkuFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewSubscribedSku(), nil
 }
-// GetAppliesTo gets the appliesTo property value. For example, 'User' or 'Company'.
+// GetAccountId gets the accountId property value. The unique ID of the account this SKU belongs to.
+func (m *SubscribedSku) GetAccountId()(*string) {
+    return m.accountId
+}
+// GetAccountName gets the accountName property value. The name of the account this SKU belongs to.
+func (m *SubscribedSku) GetAccountName()(*string) {
+    return m.accountName
+}
+// GetAppliesTo gets the appliesTo property value. The target class for this SKU. Only SKUs with target class User are assignable. Possible values are: 'User', 'Company'.
 func (m *SubscribedSku) GetAppliesTo()(*string) {
     return m.appliesTo
 }
-// GetCapabilityStatus gets the capabilityStatus property value. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut. The capabilityStatus is Enabled if the prepaidUnits property has at least 1 unit that is enabled, and LockedOut if the customer cancelled their subscription.
+// GetCapabilityStatus gets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
 func (m *SubscribedSku) GetCapabilityStatus()(*string) {
     return m.capabilityStatus
 }
@@ -49,6 +63,26 @@ func (m *SubscribedSku) GetConsumedUnits()(*int32) {
 // GetFieldDeserializers the deserialization information for the current model
 func (m *SubscribedSku) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
+    res["accountId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccountId(val)
+        }
+        return nil
+    }
+    res["accountName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAccountName(val)
+        }
+        return nil
+    }
     res["appliesTo"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -97,7 +131,9 @@ func (m *SubscribedSku) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]ServicePlanInfoable, len(val))
             for i, v := range val {
-                res[i] = v.(ServicePlanInfoable)
+                if v != nil {
+                    res[i] = v.(ServicePlanInfoable)
+                }
             }
             m.SetServicePlans(res)
         }
@@ -123,13 +159,29 @@ func (m *SubscribedSku) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         return nil
     }
+    res["subscriptionIds"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetSubscriptionIds(res)
+        }
+        return nil
+    }
     return res
 }
 // GetPrepaidUnits gets the prepaidUnits property value. Information about the number and status of prepaid licenses.
 func (m *SubscribedSku) GetPrepaidUnits()(LicenseUnitsDetailable) {
     return m.prepaidUnits
 }
-// GetServicePlans gets the servicePlans property value. Information about the service plans that are available with the SKU. Not nullable
+// GetServicePlans gets the servicePlans property value. Information about the service plans that are available with the SKU. Not nullable.
 func (m *SubscribedSku) GetServicePlans()([]ServicePlanInfoable) {
     return m.servicePlans
 }
@@ -141,11 +193,27 @@ func (m *SubscribedSku) GetSkuId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf67
 func (m *SubscribedSku) GetSkuPartNumber()(*string) {
     return m.skuPartNumber
 }
+// GetSubscriptionIds gets the subscriptionIds property value. The subscriptionIds property
+func (m *SubscribedSku) GetSubscriptionIds()([]string) {
+    return m.subscriptionIds
+}
 // Serialize serializes information the current object
 func (m *SubscribedSku) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     err := m.Entity.Serialize(writer)
     if err != nil {
         return err
+    }
+    {
+        err = writer.WriteStringValue("accountId", m.GetAccountId())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("accountName", m.GetAccountName())
+        if err != nil {
+            return err
+        }
     }
     {
         err = writer.WriteStringValue("appliesTo", m.GetAppliesTo())
@@ -174,7 +242,9 @@ func (m *SubscribedSku) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     if m.GetServicePlans() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetServicePlans()))
         for i, v := range m.GetServicePlans() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("servicePlans", cast)
         if err != nil {
@@ -193,13 +263,27 @@ func (m *SubscribedSku) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
             return err
         }
     }
+    if m.GetSubscriptionIds() != nil {
+        err = writer.WriteCollectionOfStringValues("subscriptionIds", m.GetSubscriptionIds())
+        if err != nil {
+            return err
+        }
+    }
     return nil
 }
-// SetAppliesTo sets the appliesTo property value. For example, 'User' or 'Company'.
+// SetAccountId sets the accountId property value. The unique ID of the account this SKU belongs to.
+func (m *SubscribedSku) SetAccountId(value *string)() {
+    m.accountId = value
+}
+// SetAccountName sets the accountName property value. The name of the account this SKU belongs to.
+func (m *SubscribedSku) SetAccountName(value *string)() {
+    m.accountName = value
+}
+// SetAppliesTo sets the appliesTo property value. The target class for this SKU. Only SKUs with target class User are assignable. Possible values are: 'User', 'Company'.
 func (m *SubscribedSku) SetAppliesTo(value *string)() {
     m.appliesTo = value
 }
-// SetCapabilityStatus sets the capabilityStatus property value. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut. The capabilityStatus is Enabled if the prepaidUnits property has at least 1 unit that is enabled, and LockedOut if the customer cancelled their subscription.
+// SetCapabilityStatus sets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
 func (m *SubscribedSku) SetCapabilityStatus(value *string)() {
     m.capabilityStatus = value
 }
@@ -211,7 +295,7 @@ func (m *SubscribedSku) SetConsumedUnits(value *int32)() {
 func (m *SubscribedSku) SetPrepaidUnits(value LicenseUnitsDetailable)() {
     m.prepaidUnits = value
 }
-// SetServicePlans sets the servicePlans property value. Information about the service plans that are available with the SKU. Not nullable
+// SetServicePlans sets the servicePlans property value. Information about the service plans that are available with the SKU. Not nullable.
 func (m *SubscribedSku) SetServicePlans(value []ServicePlanInfoable)() {
     m.servicePlans = value
 }
@@ -223,10 +307,16 @@ func (m *SubscribedSku) SetSkuId(value *i561e97a8befe7661a44c8f54600992b4207a3a0
 func (m *SubscribedSku) SetSkuPartNumber(value *string)() {
     m.skuPartNumber = value
 }
+// SetSubscriptionIds sets the subscriptionIds property value. The subscriptionIds property
+func (m *SubscribedSku) SetSubscriptionIds(value []string)() {
+    m.subscriptionIds = value
+}
 // SubscribedSkuable 
 type SubscribedSkuable interface {
     Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAccountId()(*string)
+    GetAccountName()(*string)
     GetAppliesTo()(*string)
     GetCapabilityStatus()(*string)
     GetConsumedUnits()(*int32)
@@ -234,6 +324,9 @@ type SubscribedSkuable interface {
     GetServicePlans()([]ServicePlanInfoable)
     GetSkuId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetSkuPartNumber()(*string)
+    GetSubscriptionIds()([]string)
+    SetAccountId(value *string)()
+    SetAccountName(value *string)()
     SetAppliesTo(value *string)()
     SetCapabilityStatus(value *string)()
     SetConsumedUnits(value *int32)()
@@ -241,4 +334,5 @@ type SubscribedSkuable interface {
     SetServicePlans(value []ServicePlanInfoable)()
     SetSkuId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetSkuPartNumber(value *string)()
+    SetSubscriptionIds(value []string)()
 }

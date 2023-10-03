@@ -12,7 +12,7 @@ type WorkbookFormatProtection struct {
     // Indicates if Excel locks the cells in the object. A null value indicates that the entire range doesn't have uniform lock setting.
     locked *bool
 }
-// NewWorkbookFormatProtection instantiates a new WorkbookFormatProtection and sets the default values.
+// NewWorkbookFormatProtection instantiates a new workbookFormatProtection and sets the default values.
 func NewWorkbookFormatProtection()(*WorkbookFormatProtection) {
     m := &WorkbookFormatProtection{
         Entity: *NewEntity(),

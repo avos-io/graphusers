@@ -10,7 +10,7 @@ type EducationFileResource struct {
     // Location on disk of the file resource.
     fileUrl *string
 }
-// NewEducationFileResource instantiates a new EducationFileResource and sets the default values.
+// NewEducationFileResource instantiates a new educationFileResource and sets the default values.
 func NewEducationFileResource()(*EducationFileResource) {
     m := &EducationFileResource{
         EducationResource: *NewEducationResource(),

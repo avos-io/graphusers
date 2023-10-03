@@ -11,14 +11,14 @@ type B2xIdentityUserFlow struct {
     apiConnectorConfiguration UserFlowApiConnectorConfigurationable
     // The identity providers included in the user flow.
     identityProviders []IdentityProviderable
-    // The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.
+    // The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
     languages []UserFlowLanguageConfigurationable
     // The user attribute assignments included in the user flow.
     userAttributeAssignments []IdentityUserFlowAttributeAssignmentable
     // The userFlowIdentityProviders property
     userFlowIdentityProviders []IdentityProviderBaseable
 }
-// NewB2xIdentityUserFlow instantiates a new B2xIdentityUserFlow and sets the default values.
+// NewB2xIdentityUserFlow instantiates a new b2xIdentityUserFlow and sets the default values.
 func NewB2xIdentityUserFlow()(*B2xIdentityUserFlow) {
     m := &B2xIdentityUserFlow{
         IdentityUserFlow: *NewIdentityUserFlow(),
@@ -54,7 +54,9 @@ func (m *B2xIdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]IdentityProviderable, len(val))
             for i, v := range val {
-                res[i] = v.(IdentityProviderable)
+                if v != nil {
+                    res[i] = v.(IdentityProviderable)
+                }
             }
             m.SetIdentityProviders(res)
         }
@@ -68,7 +70,9 @@ func (m *B2xIdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]UserFlowLanguageConfigurationable, len(val))
             for i, v := range val {
-                res[i] = v.(UserFlowLanguageConfigurationable)
+                if v != nil {
+                    res[i] = v.(UserFlowLanguageConfigurationable)
+                }
             }
             m.SetLanguages(res)
         }
@@ -82,7 +86,9 @@ func (m *B2xIdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]IdentityUserFlowAttributeAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(IdentityUserFlowAttributeAssignmentable)
+                if v != nil {
+                    res[i] = v.(IdentityUserFlowAttributeAssignmentable)
+                }
             }
             m.SetUserAttributeAssignments(res)
         }
@@ -96,7 +102,9 @@ func (m *B2xIdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]IdentityProviderBaseable, len(val))
             for i, v := range val {
-                res[i] = v.(IdentityProviderBaseable)
+                if v != nil {
+                    res[i] = v.(IdentityProviderBaseable)
+                }
             }
             m.SetUserFlowIdentityProviders(res)
         }
@@ -108,7 +116,7 @@ func (m *B2xIdentityUserFlow) GetFieldDeserializers()(map[string]func(i878a80d23
 func (m *B2xIdentityUserFlow) GetIdentityProviders()([]IdentityProviderable) {
     return m.identityProviders
 }
-// GetLanguages gets the languages property value. The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.
+// GetLanguages gets the languages property value. The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
 func (m *B2xIdentityUserFlow) GetLanguages()([]UserFlowLanguageConfigurationable) {
     return m.languages
 }
@@ -135,7 +143,9 @@ func (m *B2xIdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetIdentityProviders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetIdentityProviders()))
         for i, v := range m.GetIdentityProviders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("identityProviders", cast)
         if err != nil {
@@ -145,7 +155,9 @@ func (m *B2xIdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetLanguages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLanguages()))
         for i, v := range m.GetLanguages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("languages", cast)
         if err != nil {
@@ -155,7 +167,9 @@ func (m *B2xIdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetUserAttributeAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserAttributeAssignments()))
         for i, v := range m.GetUserAttributeAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userAttributeAssignments", cast)
         if err != nil {
@@ -165,7 +179,9 @@ func (m *B2xIdentityUserFlow) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetUserFlowIdentityProviders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserFlowIdentityProviders()))
         for i, v := range m.GetUserFlowIdentityProviders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userFlowIdentityProviders", cast)
         if err != nil {
@@ -182,7 +198,7 @@ func (m *B2xIdentityUserFlow) SetApiConnectorConfiguration(value UserFlowApiConn
 func (m *B2xIdentityUserFlow) SetIdentityProviders(value []IdentityProviderable)() {
     m.identityProviders = value
 }
-// SetLanguages sets the languages property value. The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.
+// SetLanguages sets the languages property value. The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
 func (m *B2xIdentityUserFlow) SetLanguages(value []UserFlowLanguageConfigurationable)() {
     m.languages = value
 }

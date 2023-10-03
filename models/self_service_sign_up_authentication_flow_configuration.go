@@ -8,7 +8,7 @@ import (
 type SelfServiceSignUpAuthenticationFlowConfiguration struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property is not a key. Required.
+    // Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property isn't a key. Required.
     isEnabled *bool
     // The OdataType property
     odataType *string
@@ -53,7 +53,7 @@ func (m *SelfServiceSignUpAuthenticationFlowConfiguration) GetFieldDeserializers
     }
     return res
 }
-// GetIsEnabled gets the isEnabled property value. Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property is not a key. Required.
+// GetIsEnabled gets the isEnabled property value. Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property isn't a key. Required.
 func (m *SelfServiceSignUpAuthenticationFlowConfiguration) GetIsEnabled()(*bool) {
     return m.isEnabled
 }
@@ -87,7 +87,7 @@ func (m *SelfServiceSignUpAuthenticationFlowConfiguration) Serialize(writer i878
 func (m *SelfServiceSignUpAuthenticationFlowConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetIsEnabled sets the isEnabled property value. Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property is not a key. Required.
+// SetIsEnabled sets the isEnabled property value. Indicates whether self-service sign-up flow is enabled or disabled. The default value is false. This property isn't a key. Required.
 func (m *SelfServiceSignUpAuthenticationFlowConfiguration) SetIsEnabled(value *bool)() {
     m.isEnabled = value
 }

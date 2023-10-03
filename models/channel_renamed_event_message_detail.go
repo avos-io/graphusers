@@ -14,7 +14,7 @@ type ChannelRenamedEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewChannelRenamedEventMessageDetail instantiates a new ChannelRenamedEventMessageDetail and sets the default values.
+// NewChannelRenamedEventMessageDetail instantiates a new channelRenamedEventMessageDetail and sets the default values.
 func NewChannelRenamedEventMessageDetail()(*ChannelRenamedEventMessageDetail) {
     m := &ChannelRenamedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

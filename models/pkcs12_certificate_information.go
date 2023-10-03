@@ -8,7 +8,7 @@ import (
 type Pkcs12CertificateInformation struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate which is not yet expired but whose notBefore time is in the past.
+    // Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate that isn't yet expired but whose notBefore time is in the past.
     isActive *bool
     // The certificate's expiry. This value is a NumericDate as defined in RFC 7519 (A JSON numeric value representing the number of seconds from 1970-01-01T00:00:00Z UTC until the specified UTC date/time, ignoring leap seconds.)
     notAfter *int64
@@ -89,7 +89,7 @@ func (m *Pkcs12CertificateInformation) GetFieldDeserializers()(map[string]func(i
     }
     return res
 }
-// GetIsActive gets the isActive property value. Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate which is not yet expired but whose notBefore time is in the past.
+// GetIsActive gets the isActive property value. Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate that isn't yet expired but whose notBefore time is in the past.
 func (m *Pkcs12CertificateInformation) GetIsActive()(*bool) {
     return m.isActive
 }
@@ -153,7 +153,7 @@ func (m *Pkcs12CertificateInformation) Serialize(writer i878a80d2330e89d26896388
 func (m *Pkcs12CertificateInformation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetIsActive sets the isActive property value. Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate which is not yet expired but whose notBefore time is in the past.
+// SetIsActive sets the isActive property value. Represents whether the certificate is the active certificate to be used for calling the API connector. The active certificate is the most recently uploaded certificate that isn't yet expired but whose notBefore time is in the past.
 func (m *Pkcs12CertificateInformation) SetIsActive(value *bool)() {
     m.isActive = value
 }

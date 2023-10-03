@@ -10,7 +10,7 @@ type DeletedTeam struct {
     // The channels that are either shared with this deleted team or created in this deleted team.
     channels []Channelable
 }
-// NewDeletedTeam instantiates a new DeletedTeam and sets the default values.
+// NewDeletedTeam instantiates a new deletedTeam and sets the default values.
 func NewDeletedTeam()(*DeletedTeam) {
     m := &DeletedTeam{
         Entity: *NewEntity(),
@@ -36,7 +36,9 @@ func (m *DeletedTeam) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]Channelable, len(val))
             for i, v := range val {
-                res[i] = v.(Channelable)
+                if v != nil {
+                    res[i] = v.(Channelable)
+                }
             }
             m.SetChannels(res)
         }
@@ -53,7 +55,9 @@ func (m *DeletedTeam) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetChannels() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetChannels()))
         for i, v := range m.GetChannels() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("channels", cast)
         if err != nil {

@@ -83,7 +83,7 @@ func (m *Phone) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
             return err
         }
         if val != nil {
-            m.SetType(val.(*PhoneType))
+            m.SetTypeEscaped(val.(*PhoneType))
         }
         return nil
     }
@@ -105,8 +105,8 @@ func (m *Phone) GetOdataType()(*string) {
 func (m *Phone) GetRegion()(*string) {
     return m.region
 }
-// GetType gets the type property value. The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
-func (m *Phone) GetType()(*PhoneType) {
+// GetTypeEscaped gets the type property value. The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
+func (m *Phone) GetTypeEscaped()(*PhoneType) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -135,8 +135,8 @@ func (m *Phone) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err := writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -170,8 +170,8 @@ func (m *Phone) SetOdataType(value *string)() {
 func (m *Phone) SetRegion(value *string)() {
     m.region = value
 }
-// SetType sets the type property value. The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
-func (m *Phone) SetType(value *PhoneType)() {
+// SetTypeEscaped sets the type property value. The type of phone number. The possible values are: home, business, mobile, other, assistant, homeFax, businessFax, otherFax, pager, radio.
+func (m *Phone) SetTypeEscaped(value *PhoneType)() {
     m.typeEscaped = value
 }
 // Phoneable 
@@ -182,10 +182,10 @@ type Phoneable interface {
     GetNumber()(*string)
     GetOdataType()(*string)
     GetRegion()(*string)
-    GetType()(*PhoneType)
+    GetTypeEscaped()(*PhoneType)
     SetLanguage(value *string)()
     SetNumber(value *string)()
     SetOdataType(value *string)()
     SetRegion(value *string)()
-    SetType(value *PhoneType)()
+    SetTypeEscaped(value *PhoneType)()
 }

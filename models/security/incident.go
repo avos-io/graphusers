@@ -21,12 +21,16 @@ type Incident struct {
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Array of custom tags associated with an incident.
     customTags []string
+    // The description property
+    description *string
     // Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
     determination *AlertDetermination
     // The incident name.
     displayName *string
     // The URL for the incident page in the Microsoft 365 Defender portal.
     incidentWebUrl *string
+    // The lastModifiedBy property
+    lastModifiedBy *string
     // Time when the incident was last updated.
     lastUpdateDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Only populated in case an incident is grouped together with another incident, as part of the logic that processes incidents. In such a case, the status property is redirected.
@@ -35,6 +39,8 @@ type Incident struct {
     severity *AlertSeverity
     // The status property
     status *IncidentStatus
+    // The systemTags property
+    systemTags []string
     // The Azure Active Directory tenant in which the alert was created.
     tenantId *string
 }
@@ -73,6 +79,10 @@ func (m *Incident) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f307
 func (m *Incident) GetCustomTags()([]string) {
     return m.customTags
 }
+// GetDescription gets the description property value. The description property
+func (m *Incident) GetDescription()(*string) {
+    return m.description
+}
 // GetDetermination gets the determination property value. Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
 func (m *Incident) GetDetermination()(*AlertDetermination) {
     return m.determination
@@ -92,7 +102,9 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]Alertable, len(val))
             for i, v := range val {
-                res[i] = v.(Alertable)
+                if v != nil {
+                    res[i] = v.(Alertable)
+                }
             }
             m.SetAlerts(res)
         }
@@ -126,7 +138,9 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]AlertCommentable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertCommentable)
+                if v != nil {
+                    res[i] = v.(AlertCommentable)
+                }
             }
             m.SetComments(res)
         }
@@ -150,9 +164,21 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetCustomTags(res)
+        }
+        return nil
+    }
+    res["description"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDescription(val)
         }
         return nil
     }
@@ -183,6 +209,16 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         if val != nil {
             m.SetIncidentWebUrl(val)
+        }
+        return nil
+    }
+    res["lastModifiedBy"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLastModifiedBy(val)
         }
         return nil
     }
@@ -226,6 +262,22 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
         }
         return nil
     }
+    res["systemTags"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetSystemTags(res)
+        }
+        return nil
+    }
     res["tenantId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -241,6 +293,10 @@ func (m *Incident) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896
 // GetIncidentWebUrl gets the incidentWebUrl property value. The URL for the incident page in the Microsoft 365 Defender portal.
 func (m *Incident) GetIncidentWebUrl()(*string) {
     return m.incidentWebUrl
+}
+// GetLastModifiedBy gets the lastModifiedBy property value. The lastModifiedBy property
+func (m *Incident) GetLastModifiedBy()(*string) {
+    return m.lastModifiedBy
 }
 // GetLastUpdateDateTime gets the lastUpdateDateTime property value. Time when the incident was last updated.
 func (m *Incident) GetLastUpdateDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
@@ -258,6 +314,10 @@ func (m *Incident) GetSeverity()(*AlertSeverity) {
 func (m *Incident) GetStatus()(*IncidentStatus) {
     return m.status
 }
+// GetSystemTags gets the systemTags property value. The systemTags property
+func (m *Incident) GetSystemTags()([]string) {
+    return m.systemTags
+}
 // GetTenantId gets the tenantId property value. The Azure Active Directory tenant in which the alert was created.
 func (m *Incident) GetTenantId()(*string) {
     return m.tenantId
@@ -271,7 +331,9 @@ func (m *Incident) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetAlerts() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAlerts()))
         for i, v := range m.GetAlerts() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("alerts", cast)
         if err != nil {
@@ -294,7 +356,9 @@ func (m *Incident) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetComments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetComments()))
         for i, v := range m.GetComments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("comments", cast)
         if err != nil {
@@ -309,6 +373,12 @@ func (m *Incident) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     }
     if m.GetCustomTags() != nil {
         err = writer.WriteCollectionOfStringValues("customTags", m.GetCustomTags())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("description", m.GetDescription())
         if err != nil {
             return err
         }
@@ -328,6 +398,12 @@ func (m *Incident) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     }
     {
         err = writer.WriteStringValue("incidentWebUrl", m.GetIncidentWebUrl())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteStringValue("lastModifiedBy", m.GetLastModifiedBy())
         if err != nil {
             return err
         }
@@ -354,6 +430,12 @@ func (m *Incident) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c01
     if m.GetStatus() != nil {
         cast := (*m.GetStatus()).String()
         err = writer.WriteStringValue("status", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetSystemTags() != nil {
+        err = writer.WriteCollectionOfStringValues("systemTags", m.GetSystemTags())
         if err != nil {
             return err
         }
@@ -390,6 +472,10 @@ func (m *Incident) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6
 func (m *Incident) SetCustomTags(value []string)() {
     m.customTags = value
 }
+// SetDescription sets the description property value. The description property
+func (m *Incident) SetDescription(value *string)() {
+    m.description = value
+}
 // SetDetermination sets the determination property value. Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.
 func (m *Incident) SetDetermination(value *AlertDetermination)() {
     m.determination = value
@@ -401,6 +487,10 @@ func (m *Incident) SetDisplayName(value *string)() {
 // SetIncidentWebUrl sets the incidentWebUrl property value. The URL for the incident page in the Microsoft 365 Defender portal.
 func (m *Incident) SetIncidentWebUrl(value *string)() {
     m.incidentWebUrl = value
+}
+// SetLastModifiedBy sets the lastModifiedBy property value. The lastModifiedBy property
+func (m *Incident) SetLastModifiedBy(value *string)() {
+    m.lastModifiedBy = value
 }
 // SetLastUpdateDateTime sets the lastUpdateDateTime property value. Time when the incident was last updated.
 func (m *Incident) SetLastUpdateDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
@@ -418,6 +508,10 @@ func (m *Incident) SetSeverity(value *AlertSeverity)() {
 func (m *Incident) SetStatus(value *IncidentStatus)() {
     m.status = value
 }
+// SetSystemTags sets the systemTags property value. The systemTags property
+func (m *Incident) SetSystemTags(value []string)() {
+    m.systemTags = value
+}
 // SetTenantId sets the tenantId property value. The Azure Active Directory tenant in which the alert was created.
 func (m *Incident) SetTenantId(value *string)() {
     m.tenantId = value
@@ -432,13 +526,16 @@ type Incidentable interface {
     GetComments()([]AlertCommentable)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCustomTags()([]string)
+    GetDescription()(*string)
     GetDetermination()(*AlertDetermination)
     GetDisplayName()(*string)
     GetIncidentWebUrl()(*string)
+    GetLastModifiedBy()(*string)
     GetLastUpdateDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetRedirectIncidentId()(*string)
     GetSeverity()(*AlertSeverity)
     GetStatus()(*IncidentStatus)
+    GetSystemTags()([]string)
     GetTenantId()(*string)
     SetAlerts(value []Alertable)()
     SetAssignedTo(value *string)()
@@ -446,12 +543,15 @@ type Incidentable interface {
     SetComments(value []AlertCommentable)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCustomTags(value []string)()
+    SetDescription(value *string)()
     SetDetermination(value *AlertDetermination)()
     SetDisplayName(value *string)()
     SetIncidentWebUrl(value *string)()
+    SetLastModifiedBy(value *string)()
     SetLastUpdateDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetRedirectIncidentId(value *string)()
     SetSeverity(value *AlertSeverity)()
     SetStatus(value *IncidentStatus)()
+    SetSystemTags(value []string)()
     SetTenantId(value *string)()
 }

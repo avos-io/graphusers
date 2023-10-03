@@ -7,23 +7,25 @@ import (
 // IpEvidence 
 type IpEvidence struct {
     AlertEvidence
-    // The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
+    // The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc.
     countryLetterCode *string
     // The value of the IP Address, can be either in V4 address or V6 address format.
     ipAddress *string
 }
-// NewIpEvidence instantiates a new IpEvidence and sets the default values.
+// NewIpEvidence instantiates a new ipEvidence and sets the default values.
 func NewIpEvidence()(*IpEvidence) {
     m := &IpEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.ipEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateIpEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
 func CreateIpEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewIpEvidence(), nil
 }
-// GetCountryLetterCode gets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
+// GetCountryLetterCode gets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc.
 func (m *IpEvidence) GetCountryLetterCode()(*string) {
     return m.countryLetterCode
 }
@@ -76,7 +78,7 @@ func (m *IpEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetCountryLetterCode sets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc..).
+// SetCountryLetterCode sets the countryLetterCode property value. The two-letter country code according to ISO 3166 format, for example: US, UK, CA, etc.
 func (m *IpEvidence) SetCountryLetterCode(value *string)() {
     m.countryLetterCode = value
 }

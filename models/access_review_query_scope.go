@@ -14,7 +14,7 @@ type AccessReviewQueryScope struct {
     // Indicates the type of query. Types include MicrosoftGraph and ARM.
     queryType *string
 }
-// NewAccessReviewQueryScope instantiates a new AccessReviewQueryScope and sets the default values.
+// NewAccessReviewQueryScope instantiates a new accessReviewQueryScope and sets the default values.
 func NewAccessReviewQueryScope()(*AccessReviewQueryScope) {
     m := &AccessReviewQueryScope{
         AccessReviewScope: *NewAccessReviewScope(),

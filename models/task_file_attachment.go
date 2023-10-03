@@ -10,7 +10,7 @@ type TaskFileAttachment struct {
     // The base64-encoded contents of the file.
     contentBytes []byte
 }
-// NewTaskFileAttachment instantiates a new TaskFileAttachment and sets the default values.
+// NewTaskFileAttachment instantiates a new taskFileAttachment and sets the default values.
 func NewTaskFileAttachment()(*TaskFileAttachment) {
     m := &TaskFileAttachment{
         AttachmentBase: *NewAttachmentBase(),

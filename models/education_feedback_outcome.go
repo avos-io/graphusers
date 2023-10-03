@@ -12,7 +12,7 @@ type EducationFeedbackOutcome struct {
     // A copy of the feedback property that is made when the grade is released to the student.
     publishedFeedback EducationFeedbackable
 }
-// NewEducationFeedbackOutcome instantiates a new EducationFeedbackOutcome and sets the default values.
+// NewEducationFeedbackOutcome instantiates a new educationFeedbackOutcome and sets the default values.
 func NewEducationFeedbackOutcome()(*EducationFeedbackOutcome) {
     m := &EducationFeedbackOutcome{
         EducationOutcome: *NewEducationOutcome(),

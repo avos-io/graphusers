@@ -11,13 +11,15 @@ type Alert struct {
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entity
     // The adversary or activity group that is associated with this alert.
     actorDisplayName *string
+    // The alertPolicyId property
+    alertPolicyId *string
     // URL for the alert page in the Microsoft 365 Defender portal.
     alertWebUrl *string
     // Owner of the alert, or null if no owner is assigned.
     assignedTo *string
     // The attack kill-chain category that the alert belongs to. Aligned with the MITRE ATT&CK framework.
     category *string
-    // Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, benignPositive, unknownFutureValue.
+    // Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
     classification *AlertClassification
     // Array of comments created by the Security Operations (SecOps) team during the alert management process.
     comments []AlertCommentable
@@ -25,7 +27,7 @@ type Alert struct {
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // String value describing each alert.
     description *string
-    // Detection technology or sensor that identified the notable component or activity.
+    // Detection technology or sensor that identified the notable component or activity. Possible values are: unknown, microsoftDefenderForEndpoint, antivirus, smartScreen, customTi, microsoftDefenderForOffice365, automatedInvestigation, microsoftThreatExperts, customDetection, microsoftDefenderForIdentity, cloudAppSecurity, microsoft365Defender, azureAdIdentityProtection, manual, microsoftDataLossPrevention, appGovernancePolicy, appGovernanceDetection, unknownFutureValue, microsoftDefenderForCloud. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: microsoftDefenderForCloud.
     detectionSource *DetectionSource
     // The ID of the detector that triggered the alert.
     detectorId *string
@@ -81,6 +83,10 @@ func CreateAlertFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487e
 func (m *Alert) GetActorDisplayName()(*string) {
     return m.actorDisplayName
 }
+// GetAlertPolicyId gets the alertPolicyId property value. The alertPolicyId property
+func (m *Alert) GetAlertPolicyId()(*string) {
+    return m.alertPolicyId
+}
 // GetAlertWebUrl gets the alertWebUrl property value. URL for the alert page in the Microsoft 365 Defender portal.
 func (m *Alert) GetAlertWebUrl()(*string) {
     return m.alertWebUrl
@@ -93,7 +99,7 @@ func (m *Alert) GetAssignedTo()(*string) {
 func (m *Alert) GetCategory()(*string) {
     return m.category
 }
-// GetClassification gets the classification property value. Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, benignPositive, unknownFutureValue.
+// GetClassification gets the classification property value. Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
 func (m *Alert) GetClassification()(*AlertClassification) {
     return m.classification
 }
@@ -109,7 +115,7 @@ func (m *Alert) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a1
 func (m *Alert) GetDescription()(*string) {
     return m.description
 }
-// GetDetectionSource gets the detectionSource property value. Detection technology or sensor that identified the notable component or activity.
+// GetDetectionSource gets the detectionSource property value. Detection technology or sensor that identified the notable component or activity. Possible values are: unknown, microsoftDefenderForEndpoint, antivirus, smartScreen, customTi, microsoftDefenderForOffice365, automatedInvestigation, microsoftThreatExperts, customDetection, microsoftDefenderForIdentity, cloudAppSecurity, microsoft365Defender, azureAdIdentityProtection, manual, microsoftDataLossPrevention, appGovernancePolicy, appGovernanceDetection, unknownFutureValue, microsoftDefenderForCloud. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: microsoftDefenderForCloud.
 func (m *Alert) GetDetectionSource()(*DetectionSource) {
     return m.detectionSource
 }
@@ -135,6 +141,16 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         }
         if val != nil {
             m.SetActorDisplayName(val)
+        }
+        return nil
+    }
+    res["alertPolicyId"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAlertPolicyId(val)
         }
         return nil
     }
@@ -186,7 +202,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AlertCommentable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertCommentable)
+                if v != nil {
+                    res[i] = v.(AlertCommentable)
+                }
             }
             m.SetComments(res)
         }
@@ -250,7 +268,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]AlertEvidenceable, len(val))
             for i, v := range val {
-                res[i] = v.(AlertEvidenceable)
+                if v != nil {
+                    res[i] = v.(AlertEvidenceable)
+                }
             }
             m.SetEvidence(res)
         }
@@ -314,7 +334,9 @@ func (m *Alert) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetMitreTechniques(res)
         }
@@ -499,6 +521,12 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
         }
     }
     {
+        err = writer.WriteStringValue("alertPolicyId", m.GetAlertPolicyId())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteStringValue("alertWebUrl", m.GetAlertWebUrl())
         if err != nil {
             return err
@@ -526,7 +554,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetComments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetComments()))
         for i, v := range m.GetComments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("comments", cast)
         if err != nil {
@@ -568,7 +598,9 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
     if m.GetEvidence() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetEvidence()))
         for i, v := range m.GetEvidence() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("evidence", cast)
         if err != nil {
@@ -680,6 +712,10 @@ func (m *Alert) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c4
 func (m *Alert) SetActorDisplayName(value *string)() {
     m.actorDisplayName = value
 }
+// SetAlertPolicyId sets the alertPolicyId property value. The alertPolicyId property
+func (m *Alert) SetAlertPolicyId(value *string)() {
+    m.alertPolicyId = value
+}
 // SetAlertWebUrl sets the alertWebUrl property value. URL for the alert page in the Microsoft 365 Defender portal.
 func (m *Alert) SetAlertWebUrl(value *string)() {
     m.alertWebUrl = value
@@ -692,7 +728,7 @@ func (m *Alert) SetAssignedTo(value *string)() {
 func (m *Alert) SetCategory(value *string)() {
     m.category = value
 }
-// SetClassification sets the classification property value. Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, benignPositive, unknownFutureValue.
+// SetClassification sets the classification property value. Specifies whether the alert represents a true threat. Possible values are: unknown, falsePositive, truePositive, informationalExpectedActivity, unknownFutureValue.
 func (m *Alert) SetClassification(value *AlertClassification)() {
     m.classification = value
 }
@@ -708,7 +744,7 @@ func (m *Alert) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f30
 func (m *Alert) SetDescription(value *string)() {
     m.description = value
 }
-// SetDetectionSource sets the detectionSource property value. Detection technology or sensor that identified the notable component or activity.
+// SetDetectionSource sets the detectionSource property value. Detection technology or sensor that identified the notable component or activity. Possible values are: unknown, microsoftDefenderForEndpoint, antivirus, smartScreen, customTi, microsoftDefenderForOffice365, automatedInvestigation, microsoftThreatExperts, customDetection, microsoftDefenderForIdentity, cloudAppSecurity, microsoft365Defender, azureAdIdentityProtection, manual, microsoftDataLossPrevention, appGovernancePolicy, appGovernanceDetection, unknownFutureValue, microsoftDefenderForCloud. You must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: microsoftDefenderForCloud.
 func (m *Alert) SetDetectionSource(value *DetectionSource)() {
     m.detectionSource = value
 }
@@ -793,6 +829,7 @@ type Alertable interface {
     i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Entityable
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetActorDisplayName()(*string)
+    GetAlertPolicyId()(*string)
     GetAlertWebUrl()(*string)
     GetAssignedTo()(*string)
     GetCategory()(*string)
@@ -821,6 +858,7 @@ type Alertable interface {
     GetThreatFamilyName()(*string)
     GetTitle()(*string)
     SetActorDisplayName(value *string)()
+    SetAlertPolicyId(value *string)()
     SetAlertWebUrl(value *string)()
     SetAssignedTo(value *string)()
     SetCategory(value *string)()

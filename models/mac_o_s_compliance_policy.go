@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// MacOSCompliancePolicy 
+// MacOSCompliancePolicy this class contains compliance settings for Mac OS.
 type MacOSCompliancePolicy struct {
     DeviceCompliancePolicy
     // Require that devices have enabled device threat protection.
@@ -42,7 +42,7 @@ type MacOSCompliancePolicy struct {
     // Require that devices have enabled system integrity protection.
     systemIntegrityProtectionEnabled *bool
 }
-// NewMacOSCompliancePolicy instantiates a new MacOSCompliancePolicy and sets the default values.
+// NewMacOSCompliancePolicy instantiates a new macOSCompliancePolicy and sets the default values.
 func NewMacOSCompliancePolicy()(*MacOSCompliancePolicy) {
     m := &MacOSCompliancePolicy{
         DeviceCompliancePolicy: *NewDeviceCompliancePolicy(),

@@ -28,7 +28,7 @@ type EventMessage struct {
     // The type property
     typeEscaped *EventType
 }
-// NewEventMessage instantiates a new EventMessage and sets the default values.
+// NewEventMessage instantiates a new eventMessage and sets the default values.
 func NewEventMessage()(*EventMessage) {
     m := &EventMessage{
         Message: *NewMessage(),
@@ -168,7 +168,7 @@ func (m *EventMessage) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
             return err
         }
         if val != nil {
-            m.SetType(val.(*EventType))
+            m.SetTypeEscaped(val.(*EventType))
         }
         return nil
     }
@@ -202,8 +202,8 @@ func (m *EventMessage) GetRecurrence()(PatternedRecurrenceable) {
 func (m *EventMessage) GetStartDateTime()(DateTimeTimeZoneable) {
     return m.startDateTime
 }
-// GetType gets the type property value. The type property
-func (m *EventMessage) GetType()(*EventType) {
+// GetTypeEscaped gets the type property value. The type property
+func (m *EventMessage) GetTypeEscaped()(*EventType) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -267,8 +267,8 @@ func (m *EventMessage) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
             return err
         }
     }
-    if m.GetType() != nil {
-        cast := (*m.GetType()).String()
+    if m.GetTypeEscaped() != nil {
+        cast := (*m.GetTypeEscaped()).String()
         err = writer.WriteStringValue("type", &cast)
         if err != nil {
             return err
@@ -312,8 +312,8 @@ func (m *EventMessage) SetRecurrence(value PatternedRecurrenceable)() {
 func (m *EventMessage) SetStartDateTime(value DateTimeTimeZoneable)() {
     m.startDateTime = value
 }
-// SetType sets the type property value. The type property
-func (m *EventMessage) SetType(value *EventType)() {
+// SetTypeEscaped sets the type property value. The type property
+func (m *EventMessage) SetTypeEscaped(value *EventType)() {
     m.typeEscaped = value
 }
 // EventMessageable 
@@ -329,7 +329,7 @@ type EventMessageable interface {
     GetMeetingMessageType()(*MeetingMessageType)
     GetRecurrence()(PatternedRecurrenceable)
     GetStartDateTime()(DateTimeTimeZoneable)
-    GetType()(*EventType)
+    GetTypeEscaped()(*EventType)
     SetEndDateTime(value DateTimeTimeZoneable)()
     SetEvent(value Eventable)()
     SetIsAllDay(value *bool)()
@@ -339,5 +339,5 @@ type EventMessageable interface {
     SetMeetingMessageType(value *MeetingMessageType)()
     SetRecurrence(value PatternedRecurrenceable)()
     SetStartDateTime(value DateTimeTimeZoneable)()
-    SetType(value *EventType)()
+    SetTypeEscaped(value *EventType)()
 }

@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// IosLobApp 
+// IosLobApp contains properties and inherited properties for iOS Line Of Business apps.
 type IosLobApp struct {
     MobileLobApp
     // Contains properties of the possible iOS device types the mobile app can run on.
@@ -21,7 +21,7 @@ type IosLobApp struct {
     // The version number of iOS Line of Business (LoB) app.
     versionNumber *string
 }
-// NewIosLobApp instantiates a new IosLobApp and sets the default values.
+// NewIosLobApp instantiates a new iosLobApp and sets the default values.
 func NewIosLobApp()(*IosLobApp) {
     m := &IosLobApp{
         MobileLobApp: *NewMobileLobApp(),

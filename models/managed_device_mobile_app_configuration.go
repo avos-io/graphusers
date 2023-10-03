@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// ManagedDeviceMobileAppConfiguration 
+// ManagedDeviceMobileAppConfiguration an abstract class for Mobile app configuration for enrolled devices.
 type ManagedDeviceMobileAppConfiguration struct {
     Entity
     // The list of group assignemenets for app configration.
@@ -31,7 +31,7 @@ type ManagedDeviceMobileAppConfiguration struct {
     // Version of the device configuration.
     version *int32
 }
-// NewManagedDeviceMobileAppConfiguration instantiates a new ManagedDeviceMobileAppConfiguration and sets the default values.
+// NewManagedDeviceMobileAppConfiguration instantiates a new managedDeviceMobileAppConfiguration and sets the default values.
 func NewManagedDeviceMobileAppConfiguration()(*ManagedDeviceMobileAppConfiguration) {
     m := &ManagedDeviceMobileAppConfiguration{
         Entity: *NewEntity(),
@@ -95,7 +95,9 @@ func (m *ManagedDeviceMobileAppConfiguration) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]ManagedDeviceMobileAppConfigurationAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(ManagedDeviceMobileAppConfigurationAssignmentable)
+                if v != nil {
+                    res[i] = v.(ManagedDeviceMobileAppConfigurationAssignmentable)
+                }
             }
             m.SetAssignments(res)
         }
@@ -129,7 +131,9 @@ func (m *ManagedDeviceMobileAppConfiguration) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]ManagedDeviceMobileAppConfigurationDeviceStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(ManagedDeviceMobileAppConfigurationDeviceStatusable)
+                if v != nil {
+                    res[i] = v.(ManagedDeviceMobileAppConfigurationDeviceStatusable)
+                }
             }
             m.SetDeviceStatuses(res)
         }
@@ -173,7 +177,9 @@ func (m *ManagedDeviceMobileAppConfiguration) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTargetedMobileApps(res)
         }
@@ -187,7 +193,9 @@ func (m *ManagedDeviceMobileAppConfiguration) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]ManagedDeviceMobileAppConfigurationUserStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(ManagedDeviceMobileAppConfigurationUserStatusable)
+                if v != nil {
+                    res[i] = v.(ManagedDeviceMobileAppConfigurationUserStatusable)
+                }
             }
             m.SetUserStatuses(res)
         }
@@ -244,7 +252,9 @@ func (m *ManagedDeviceMobileAppConfiguration) Serialize(writer i878a80d2330e89d2
     if m.GetAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignments()))
         for i, v := range m.GetAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignments", cast)
         if err != nil {
@@ -266,7 +276,9 @@ func (m *ManagedDeviceMobileAppConfiguration) Serialize(writer i878a80d2330e89d2
     if m.GetDeviceStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceStatuses()))
         for i, v := range m.GetDeviceStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceStatuses", cast)
         if err != nil {
@@ -300,7 +312,9 @@ func (m *ManagedDeviceMobileAppConfiguration) Serialize(writer i878a80d2330e89d2
     if m.GetUserStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserStatuses()))
         for i, v := range m.GetUserStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userStatuses", cast)
         if err != nil {
