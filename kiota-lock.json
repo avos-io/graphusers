@@ -32,6 +32,7 @@
     "/users/*/memberOf",
     "/users/*/memberOf/**",
     "/users/*/checkMemberGroups",
+    "/users/*/checkMemberGroups/**",
     "/groups",
     "/groups/*",
     "/groups/*/members/**"

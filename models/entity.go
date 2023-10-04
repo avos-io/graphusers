@@ -878,6 +878,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewPhoneAuthenticationMethod(), nil
                     case "#microsoft.graph.pinnedChatMessageInfo":
                         return NewPinnedChatMessageInfo(), nil
+                    case "#microsoft.graph.place":
+                        return NewPlace(), nil
                     case "#microsoft.graph.planner":
                         return NewPlanner(), nil
                     case "#microsoft.graph.plannerAssignedToTaskBoardTaskFormat":
@@ -1000,6 +1002,10 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewRoleAssignment(), nil
                     case "#microsoft.graph.roleDefinition":
                         return NewRoleDefinition(), nil
+                    case "#microsoft.graph.room":
+                        return NewRoom(), nil
+                    case "#microsoft.graph.roomList":
+                        return NewRoomList(), nil
                     case "#microsoft.graph.samlOrWsFedExternalDomainFederation":
                         return NewSamlOrWsFedExternalDomainFederation(), nil
                     case "#microsoft.graph.samlOrWsFedProvider":
@@ -1138,6 +1144,8 @@ func CreateEntityFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487
                         return NewTeamsTab(), nil
                     case "#microsoft.graph.teamsTemplate":
                         return NewTeamsTemplate(), nil
+                    case "#microsoft.graph.teamwork":
+                        return NewTeamwork(), nil
                     case "#microsoft.graph.teamworkBot":
                         return NewTeamworkBot(), nil
                     case "#microsoft.graph.teamworkHostedContent":
