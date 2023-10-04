@@ -58,6 +58,8 @@ func CreateDeviceCompliancePolicyFromDiscriminatorValue(parseNode i878a80d2330e8
                         return NewAndroidCompliancePolicy(), nil
                     case "#microsoft.graph.androidWorkProfileCompliancePolicy":
                         return NewAndroidWorkProfileCompliancePolicy(), nil
+                    case "#microsoft.graph.iosCompliancePolicy":
+                        return NewIosCompliancePolicy(), nil
                     case "#microsoft.graph.macOSCompliancePolicy":
                         return NewMacOSCompliancePolicy(), nil
                     case "#microsoft.graph.windows10CompliancePolicy":

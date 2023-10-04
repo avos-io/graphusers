@@ -8,6 +8,7 @@ generate
 -i /users/*
 -i /users/*/memberOf
 -i /users/*/memberOf/**
+-i /users/*/checkMemberGroups
 -i /groups
 -i /groups/*
 -i /groups/*/members/**
