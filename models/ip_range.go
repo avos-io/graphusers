@@ -46,7 +46,7 @@ func CreateIpRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f48
     }
     return NewIpRange(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *IpRange) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -85,7 +85,7 @@ func (m *IpRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *IpRange) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -1,12 +1,13 @@
 {
-  "descriptionHash": "74603D8267BBAF869338D4072B4BEAD16654F01F80F3024C40CA81ECAA92C4834EABD2F0916C7055060A6AEB55365C24C8AC5DC234D5E08DA45B3A2E32513F9E",
+  "descriptionHash": "6A3803E37104D96D7D267AE0F0C1C16ADC1F16C8C6806484783E985399233BD73FA69771D8E15A871381E1D7206C44FC88271D313B287837300BEBAB98BD8320",
   "descriptionLocation": "https://raw.githubusercontent.com/microsoftgraph/msgraph-metadata/master/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.6.1",
+  "kiotaVersion": "1.7.0",
   "clientClassName": "Client",
   "clientNamespaceName": "github.com/avos-io/graphusers",
   "language": "Go",
   "usesBackingStore": false,
+  "excludeBackwardCompatible": false,
   "includeAdditionalData": true,
   "serializers": [
     "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory",

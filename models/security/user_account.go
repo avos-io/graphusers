@@ -38,7 +38,7 @@ func CreateUserAccountFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a
 func (m *UserAccount) GetAccountName()(*string) {
     return m.accountName
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserAccount) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -197,7 +197,7 @@ func (m *UserAccount) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
 func (m *UserAccount) SetAccountName(value *string)() {
     m.accountName = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserAccount) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

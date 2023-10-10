@@ -18,7 +18,7 @@ type CrossTenantAccessPolicyConfigurationPartner struct {
     b2bDirectConnectInbound CrossTenantAccessPolicyB2BSettingable
     // Defines your partner-specific configuration for users in your organization going outbound to access resources in another organization via Azure AD B2B direct connect.
     b2bDirectConnectOutbound CrossTenantAccessPolicyB2BSettingable
-    // Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+    // Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
     identitySynchronization CrossTenantIdentitySyncPolicyPartnerable
     // Determines the partner-specific configuration for trusting other Conditional Access claims from external Azure AD organizations.
     inboundTrust CrossTenantAccessPolicyInboundTrustable
@@ -40,7 +40,7 @@ func NewCrossTenantAccessPolicyConfigurationPartner()(*CrossTenantAccessPolicyCo
 func CreateCrossTenantAccessPolicyConfigurationPartnerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewCrossTenantAccessPolicyConfigurationPartner(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -169,7 +169,7 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) GetFieldDeserializers()(ma
     }
     return res
 }
-// GetIdentitySynchronization gets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+// GetIdentitySynchronization gets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
 func (m *CrossTenantAccessPolicyConfigurationPartner) GetIdentitySynchronization()(CrossTenantIdentitySyncPolicyPartnerable) {
     return m.identitySynchronization
 }
@@ -259,7 +259,7 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) Serialize(writer i878a80d2
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -283,7 +283,7 @@ func (m *CrossTenantAccessPolicyConfigurationPartner) SetB2bDirectConnectInbound
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetB2bDirectConnectOutbound(value CrossTenantAccessPolicyB2BSettingable)() {
     m.b2bDirectConnectOutbound = value
 }
-// SetIdentitySynchronization sets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.
+// SetIdentitySynchronization sets the identitySynchronization property value. Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.
 func (m *CrossTenantAccessPolicyConfigurationPartner) SetIdentitySynchronization(value CrossTenantIdentitySyncPolicyPartnerable)() {
     m.identitySynchronization = value
 }

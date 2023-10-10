@@ -22,11 +22,11 @@ type OnlineMeeting struct {
     allowTeamworkReactions *bool
     // The attendance reports of an online meeting. Read-only.
     attendanceReports []MeetingAttendanceReportable
-    // The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+    // The attendeeReport property
     attendeeReport []byte
     // The phone access (dial-in) information for an online meeting. Read-only.
     audioConferencing AudioConferencingable
-    // Settings related to a live event.
+    // The broadcastSettings property
     broadcastSettings BroadcastMeetingSettingsable
     // The chat information associated with this online meeting.
     chatInfo ChatInfoable
@@ -36,7 +36,7 @@ type OnlineMeeting struct {
     endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The externalId property
     externalId *string
-    // Indicates if this is a Teams live event.
+    // The isBroadcast property
     isBroadcast *bool
     // Indicates whether to announce when callers join or leave.
     isEntryExitAnnounced *bool
@@ -58,7 +58,7 @@ type OnlineMeeting struct {
     startDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The subject of the online meeting.
     subject *string
-    // The transcripts property
+    // The transcripts of an online meeting. Read-only.
     transcripts []CallTranscriptable
     // The video teleconferencing ID. Read-only.
     videoTeleconferenceId *string
@@ -104,7 +104,7 @@ func (m *OnlineMeeting) GetAllowTeamworkReactions()(*bool) {
 func (m *OnlineMeeting) GetAttendanceReports()([]MeetingAttendanceReportable) {
     return m.attendanceReports
 }
-// GetAttendeeReport gets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+// GetAttendeeReport gets the attendeeReport property value. The attendeeReport property
 func (m *OnlineMeeting) GetAttendeeReport()([]byte) {
     return m.attendeeReport
 }
@@ -112,7 +112,7 @@ func (m *OnlineMeeting) GetAttendeeReport()([]byte) {
 func (m *OnlineMeeting) GetAudioConferencing()(AudioConferencingable) {
     return m.audioConferencing
 }
-// GetBroadcastSettings gets the broadcastSettings property value. Settings related to a live event.
+// GetBroadcastSettings gets the broadcastSettings property value. The broadcastSettings property
 func (m *OnlineMeeting) GetBroadcastSettings()(BroadcastMeetingSettingsable) {
     return m.broadcastSettings
 }
@@ -429,7 +429,7 @@ func (m *OnlineMeeting) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
     }
     return res
 }
-// GetIsBroadcast gets the isBroadcast property value. Indicates if this is a Teams live event.
+// GetIsBroadcast gets the isBroadcast property value. The isBroadcast property
 func (m *OnlineMeeting) GetIsBroadcast()(*bool) {
     return m.isBroadcast
 }
@@ -473,7 +473,7 @@ func (m *OnlineMeeting) GetStartDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f
 func (m *OnlineMeeting) GetSubject()(*string) {
     return m.subject
 }
-// GetTranscripts gets the transcripts property value. The transcripts property
+// GetTranscripts gets the transcripts property value. The transcripts of an online meeting. Read-only.
 func (m *OnlineMeeting) GetTranscripts()([]CallTranscriptable) {
     return m.transcripts
 }
@@ -704,7 +704,7 @@ func (m *OnlineMeeting) SetAllowTeamworkReactions(value *bool)() {
 func (m *OnlineMeeting) SetAttendanceReports(value []MeetingAttendanceReportable)() {
     m.attendanceReports = value
 }
-// SetAttendeeReport sets the attendeeReport property value. The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+// SetAttendeeReport sets the attendeeReport property value. The attendeeReport property
 func (m *OnlineMeeting) SetAttendeeReport(value []byte)() {
     m.attendeeReport = value
 }
@@ -712,7 +712,7 @@ func (m *OnlineMeeting) SetAttendeeReport(value []byte)() {
 func (m *OnlineMeeting) SetAudioConferencing(value AudioConferencingable)() {
     m.audioConferencing = value
 }
-// SetBroadcastSettings sets the broadcastSettings property value. Settings related to a live event.
+// SetBroadcastSettings sets the broadcastSettings property value. The broadcastSettings property
 func (m *OnlineMeeting) SetBroadcastSettings(value BroadcastMeetingSettingsable)() {
     m.broadcastSettings = value
 }
@@ -732,7 +732,7 @@ func (m *OnlineMeeting) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a
 func (m *OnlineMeeting) SetExternalId(value *string)() {
     m.externalId = value
 }
-// SetIsBroadcast sets the isBroadcast property value. Indicates if this is a Teams live event.
+// SetIsBroadcast sets the isBroadcast property value. The isBroadcast property
 func (m *OnlineMeeting) SetIsBroadcast(value *bool)() {
     m.isBroadcast = value
 }
@@ -776,7 +776,7 @@ func (m *OnlineMeeting) SetStartDateTime(value *i336074805fc853987abe6f7fe3ad97a
 func (m *OnlineMeeting) SetSubject(value *string)() {
     m.subject = value
 }
-// SetTranscripts sets the transcripts property value. The transcripts property
+// SetTranscripts sets the transcripts property value. The transcripts of an online meeting. Read-only.
 func (m *OnlineMeeting) SetTranscripts(value []CallTranscriptable)() {
     m.transcripts = value
 }

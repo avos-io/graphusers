@@ -18,7 +18,7 @@ type GroupItemRequestBuilderDeleteRequestConfiguration struct {
     // Request options
     Options []i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestOption
 }
-// GroupItemRequestBuilderGetQueryParameters get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is supported in the following national cloud deployments.
+// GroupItemRequestBuilderGetQueryParameters get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is available in the following national cloud deployments.
 type GroupItemRequestBuilderGetQueryParameters struct {
     // Expand related entities
     Expand []string `uriparametername:"%24expand"`
@@ -54,7 +54,7 @@ func NewGroupItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee2633
     urlParams["request-raw-url"] = rawUrl
     return NewGroupItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems. This API is supported in the following national cloud deployments.
+// Delete delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems. This API is available in the following national cloud deployments.
 // [Find more info here]
 // 
 // [Find more info here]: https://learn.microsoft.com/graph/api/group-delete?view=graph-rest-1.0
@@ -73,7 +73,7 @@ func (m *GroupItemRequestBuilder) Delete(ctx context.Context, requestConfigurati
     }
     return nil
 }
-// Get get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is supported in the following national cloud deployments.
+// Get get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is available in the following national cloud deployments.
 // [Find more info here]
 // 
 // [Find more info here]: https://learn.microsoft.com/graph/api/group-get?view=graph-rest-1.0
@@ -99,10 +99,10 @@ func (m *GroupItemRequestBuilder) Get(ctx context.Context, requestConfiguration 
 func (m *GroupItemRequestBuilder) Members()(*ItemMembersRequestBuilder) {
     return NewItemMembersRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Patch add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups. This API is supported in the following national cloud deployments.
+// Patch update the properties of a group object. This API is available in the following national cloud deployments.
 // [Find more info here]
 // 
-// [Find more info here]: https://learn.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0
+// [Find more info here]: https://learn.microsoft.com/graph/api/group-update?view=graph-rest-1.0
 func (m *GroupItemRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Groupable, requestConfiguration *GroupItemRequestBuilderPatchRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Groupable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -121,7 +121,7 @@ func (m *GroupItemRequestBuilder) Patch(ctx context.Context, body i43734bed85aef
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Groupable), nil
 }
-// ToDeleteRequestInformation delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems. This API is supported in the following national cloud deployments.
+// ToDeleteRequestInformation delete group. When deleted, Microsoft 365 groups are moved to a temporary container and can be restored within 30 days. After that time, they're permanently deleted. This isn't applicable to Security groups and Distribution groups which are permanently deleted immediately. To learn more, see deletedItems. This API is available in the following national cloud deployments.
 func (m *GroupItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *GroupItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate
@@ -133,7 +133,7 @@ func (m *GroupItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context
     }
     return requestInfo, nil
 }
-// ToGetRequestInformation get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is supported in the following national cloud deployments.
+// ToGetRequestInformation get the properties and relationships of a group object. This operation returns by default only a subset of all the available properties, as noted in the Properties section. To get properties that aren't_ returned by default, specify them in a $select OData query option. The hasMembersWithLicenseErrors and isArchived properties are an exception and aren't returned in the $select query. This API is available in the following national cloud deployments.
 func (m *GroupItemRequestBuilder) ToGetRequestInformation(ctx context.Context, requestConfiguration *GroupItemRequestBuilderGetRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate
@@ -149,7 +149,7 @@ func (m *GroupItemRequestBuilder) ToGetRequestInformation(ctx context.Context, r
     }
     return requestInfo, nil
 }
-// ToPatchRequestInformation add a member to a security or Microsoft 365 group through the members navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups. This API is supported in the following national cloud deployments.
+// ToPatchRequestInformation update the properties of a group object. This API is available in the following national cloud deployments.
 func (m *GroupItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Groupable, requestConfiguration *GroupItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate

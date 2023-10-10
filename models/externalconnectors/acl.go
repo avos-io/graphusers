@@ -32,7 +32,7 @@ func CreateAclFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef
 func (m *Acl) GetAccessType()(*AccessType) {
     return m.accessType
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Acl) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -133,7 +133,7 @@ func (m *Acl) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493
 func (m *Acl) SetAccessType(value *AccessType)() {
     m.accessType = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Acl) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

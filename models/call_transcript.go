@@ -8,17 +8,17 @@ import (
 // CallTranscript 
 type CallTranscript struct {
     Entity
-    // The content property
+    // The content of the transcript. Read-only.
     content []byte
-    // The createdDateTime property
+    // Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The meetingId property
+    // The unique identifier of the online meeting related to this transcript. Read-only.
     meetingId *string
-    // The meetingOrganizer property
+    // The identity information of the organizer of the onlineMeeting related to this transcript. Read-only.
     meetingOrganizer IdentitySetable
-    // The metadataContent property
+    // The time-aligned metadata of the utterances in the transcript. Read-only.
     metadataContent []byte
-    // The transcriptContentUrl property
+    // The URL that can be used to access the content of the transcript. Read-only.
     transcriptContentUrl *string
 }
 // NewCallTranscript instantiates a new callTranscript and sets the default values.
@@ -32,11 +32,11 @@ func NewCallTranscript()(*CallTranscript) {
 func CreateCallTranscriptFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewCallTranscript(), nil
 }
-// GetContent gets the content property value. The content property
+// GetContent gets the content property value. The content of the transcript. Read-only.
 func (m *CallTranscript) GetContent()([]byte) {
     return m.content
 }
-// GetCreatedDateTime gets the createdDateTime property value. The createdDateTime property
+// GetCreatedDateTime gets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *CallTranscript) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
@@ -105,19 +105,19 @@ func (m *CallTranscript) GetFieldDeserializers()(map[string]func(i878a80d2330e89
     }
     return res
 }
-// GetMeetingId gets the meetingId property value. The meetingId property
+// GetMeetingId gets the meetingId property value. The unique identifier of the online meeting related to this transcript. Read-only.
 func (m *CallTranscript) GetMeetingId()(*string) {
     return m.meetingId
 }
-// GetMeetingOrganizer gets the meetingOrganizer property value. The meetingOrganizer property
+// GetMeetingOrganizer gets the meetingOrganizer property value. The identity information of the organizer of the onlineMeeting related to this transcript. Read-only.
 func (m *CallTranscript) GetMeetingOrganizer()(IdentitySetable) {
     return m.meetingOrganizer
 }
-// GetMetadataContent gets the metadataContent property value. The metadataContent property
+// GetMetadataContent gets the metadataContent property value. The time-aligned metadata of the utterances in the transcript. Read-only.
 func (m *CallTranscript) GetMetadataContent()([]byte) {
     return m.metadataContent
 }
-// GetTranscriptContentUrl gets the transcriptContentUrl property value. The transcriptContentUrl property
+// GetTranscriptContentUrl gets the transcriptContentUrl property value. The URL that can be used to access the content of the transcript. Read-only.
 func (m *CallTranscript) GetTranscriptContentUrl()(*string) {
     return m.transcriptContentUrl
 }
@@ -165,27 +165,27 @@ func (m *CallTranscript) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetContent sets the content property value. The content property
+// SetContent sets the content property value. The content of the transcript. Read-only.
 func (m *CallTranscript) SetContent(value []byte)() {
     m.content = value
 }
-// SetCreatedDateTime sets the createdDateTime property value. The createdDateTime property
+// SetCreatedDateTime sets the createdDateTime property value. Date and time at which the transcript was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *CallTranscript) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetMeetingId sets the meetingId property value. The meetingId property
+// SetMeetingId sets the meetingId property value. The unique identifier of the online meeting related to this transcript. Read-only.
 func (m *CallTranscript) SetMeetingId(value *string)() {
     m.meetingId = value
 }
-// SetMeetingOrganizer sets the meetingOrganizer property value. The meetingOrganizer property
+// SetMeetingOrganizer sets the meetingOrganizer property value. The identity information of the organizer of the onlineMeeting related to this transcript. Read-only.
 func (m *CallTranscript) SetMeetingOrganizer(value IdentitySetable)() {
     m.meetingOrganizer = value
 }
-// SetMetadataContent sets the metadataContent property value. The metadataContent property
+// SetMetadataContent sets the metadataContent property value. The time-aligned metadata of the utterances in the transcript. Read-only.
 func (m *CallTranscript) SetMetadataContent(value []byte)() {
     m.metadataContent = value
 }
-// SetTranscriptContentUrl sets the transcriptContentUrl property value. The transcriptContentUrl property
+// SetTranscriptContentUrl sets the transcriptContentUrl property value. The URL that can be used to access the content of the transcript. Read-only.
 func (m *CallTranscript) SetTranscriptContentUrl(value *string)() {
     m.transcriptContentUrl = value
 }

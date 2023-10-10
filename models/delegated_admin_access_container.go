@@ -34,7 +34,7 @@ func (m *DelegatedAdminAccessContainer) GetAccessContainerId()(*string) {
 func (m *DelegatedAdminAccessContainer) GetAccessContainerType()(*DelegatedAdminAccessContainerType) {
     return m.accessContainerType
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DelegatedAdminAccessContainer) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -114,7 +114,7 @@ func (m *DelegatedAdminAccessContainer) SetAccessContainerId(value *string)() {
 func (m *DelegatedAdminAccessContainer) SetAccessContainerType(value *DelegatedAdminAccessContainerType)() {
     m.accessContainerType = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DelegatedAdminAccessContainer) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

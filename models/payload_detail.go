@@ -46,7 +46,7 @@ func CreatePayloadDetailFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
     }
     return NewPayloadDetail(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PayloadDetail) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -157,7 +157,7 @@ func (m *PayloadDetail) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PayloadDetail) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -39,7 +39,7 @@ type WorkbookRange struct {
     rowIndex *int32
     // The worksheet containing the current range. Read-only.
     sort WorkbookRangeSortable
-    // Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
+    // Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
     text Jsonable
     // Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
     values Jsonable
@@ -328,7 +328,7 @@ func (m *WorkbookRange) GetRowIndex()(*int32) {
 func (m *WorkbookRange) GetSort()(WorkbookRangeSortable) {
     return m.sort
 }
-// GetText gets the text property value. Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
+// GetText gets the text property value. Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
 func (m *WorkbookRange) GetText()(Jsonable) {
     return m.text
 }
@@ -536,7 +536,7 @@ func (m *WorkbookRange) SetRowIndex(value *int32)() {
 func (m *WorkbookRange) SetSort(value WorkbookRangeSortable)() {
     m.sort = value
 }
-// SetText sets the text property value. Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
+// SetText sets the text property value. Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
 func (m *WorkbookRange) SetText(value Jsonable)() {
     m.text = value
 }

@@ -32,7 +32,7 @@ func CreateAccessPackageAnswerChoiceFromDiscriminatorValue(parseNode i878a80d233
 func (m *AccessPackageAnswerChoice) GetActualValue()(*string) {
     return m.actualValue
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessPackageAnswerChoice) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -143,7 +143,7 @@ func (m *AccessPackageAnswerChoice) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *AccessPackageAnswerChoice) SetActualValue(value *string)() {
     m.actualValue = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessPackageAnswerChoice) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

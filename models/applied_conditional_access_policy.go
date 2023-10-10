@@ -10,7 +10,7 @@ type AppliedConditionalAccessPolicy struct {
     additionalData map[string]any
     // Refers to the Name of the conditional access policy (example: 'Require MFA for Salesforce').
     displayName *string
-    // Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
+    // Refers to the grant controls enforced by the conditional access policy (example: 'Require multifactor authentication').
     enforcedGrantControls []string
     // Refers to the session controls enforced by the conditional access policy (example: 'Require app enforced controls').
     enforcedSessionControls []string
@@ -32,7 +32,7 @@ func NewAppliedConditionalAccessPolicy()(*AppliedConditionalAccessPolicy) {
 func CreateAppliedConditionalAccessPolicyFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAppliedConditionalAccessPolicy(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AppliedConditionalAccessPolicy) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -40,7 +40,7 @@ func (m *AppliedConditionalAccessPolicy) GetAdditionalData()(map[string]any) {
 func (m *AppliedConditionalAccessPolicy) GetDisplayName()(*string) {
     return m.displayName
 }
-// GetEnforcedGrantControls gets the enforcedGrantControls property value. Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
+// GetEnforcedGrantControls gets the enforcedGrantControls property value. Refers to the grant controls enforced by the conditional access policy (example: 'Require multifactor authentication').
 func (m *AppliedConditionalAccessPolicy) GetEnforcedGrantControls()([]string) {
     return m.enforcedGrantControls
 }
@@ -184,7 +184,7 @@ func (m *AppliedConditionalAccessPolicy) Serialize(writer i878a80d2330e89d268963
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AppliedConditionalAccessPolicy) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -192,7 +192,7 @@ func (m *AppliedConditionalAccessPolicy) SetAdditionalData(value map[string]any)
 func (m *AppliedConditionalAccessPolicy) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetEnforcedGrantControls sets the enforcedGrantControls property value. Refers to the grant controls enforced by the conditional access policy (example: 'Require multi-factor authentication').
+// SetEnforcedGrantControls sets the enforcedGrantControls property value. Refers to the grant controls enforced by the conditional access policy (example: 'Require multifactor authentication').
 func (m *AppliedConditionalAccessPolicy) SetEnforcedGrantControls(value []string)() {
     m.enforcedGrantControls = value
 }

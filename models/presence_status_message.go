@@ -9,13 +9,13 @@ import (
 type PresenceStatusMessage struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when you request the presence of another user.
+    // Time in which the status message expires.If not provided, the status message doesn't expire.expiryDateTime.dateTime shouldn't include time zone.expiryDateTime isn't available when you request the presence of another user.
     expiryDateTime DateTimeTimeZoneable
     // Status message item. The only supported format currently is message.contentType = 'text'.
     message ItemBodyable
     // The OdataType property
     odataType *string
-    // Time in which the status message was published.Read-only.publishedDateTime is not available when you request the presence of another user.
+    // Time in which the status message was published.Read-only.publishedDateTime isn't available when you request the presence of another user.
     publishedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
 // NewPresenceStatusMessage instantiates a new presenceStatusMessage and sets the default values.
@@ -29,11 +29,11 @@ func NewPresenceStatusMessage()(*PresenceStatusMessage) {
 func CreatePresenceStatusMessageFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPresenceStatusMessage(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PresenceStatusMessage) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetExpiryDateTime gets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when you request the presence of another user.
+// GetExpiryDateTime gets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message doesn't expire.expiryDateTime.dateTime shouldn't include time zone.expiryDateTime isn't available when you request the presence of another user.
 func (m *PresenceStatusMessage) GetExpiryDateTime()(DateTimeTimeZoneable) {
     return m.expiryDateTime
 }
@@ -90,7 +90,7 @@ func (m *PresenceStatusMessage) GetMessage()(ItemBodyable) {
 func (m *PresenceStatusMessage) GetOdataType()(*string) {
     return m.odataType
 }
-// GetPublishedDateTime gets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime is not available when you request the presence of another user.
+// GetPublishedDateTime gets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime isn't available when you request the presence of another user.
 func (m *PresenceStatusMessage) GetPublishedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.publishedDateTime
 }
@@ -128,11 +128,11 @@ func (m *PresenceStatusMessage) Serialize(writer i878a80d2330e89d26896388a3f487e
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PresenceStatusMessage) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetExpiryDateTime sets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message does not expire.expiryDateTime.dateTime should not include time zone.expiryDateTime is not available when you request the presence of another user.
+// SetExpiryDateTime sets the expiryDateTime property value. Time in which the status message expires.If not provided, the status message doesn't expire.expiryDateTime.dateTime shouldn't include time zone.expiryDateTime isn't available when you request the presence of another user.
 func (m *PresenceStatusMessage) SetExpiryDateTime(value DateTimeTimeZoneable)() {
     m.expiryDateTime = value
 }
@@ -144,7 +144,7 @@ func (m *PresenceStatusMessage) SetMessage(value ItemBodyable)() {
 func (m *PresenceStatusMessage) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetPublishedDateTime sets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime is not available when you request the presence of another user.
+// SetPublishedDateTime sets the publishedDateTime property value. Time in which the status message was published.Read-only.publishedDateTime isn't available when you request the presence of another user.
 func (m *PresenceStatusMessage) SetPublishedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.publishedDateTime = value
 }

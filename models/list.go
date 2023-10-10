@@ -13,11 +13,11 @@ type List struct {
     contentTypes []ContentTypeable
     // The displayable title of the list.
     displayName *string
-    // Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
+    // Allows access to the list as a drive resource with driveItems. Only present on document libraries.
     drive Driveable
     // All items contained in the list.
     items []ListItemable
-    // Provides additional details about the list.
+    // Contains more details about the list.
     list ListInfoable
     // The collection of long-running operations on the list.
     operations []RichLongRunningOperationable
@@ -25,7 +25,7 @@ type List struct {
     sharepointIds SharepointIdsable
     // The set of subscriptions on the list.
     subscriptions []Subscriptionable
-    // If present, indicates that this is a system-managed list. Read-only.
+    // If present, indicates that the list is system-managed. Read-only.
     system SystemFacetable
 }
 // NewList instantiates a new list and sets the default values.
@@ -53,7 +53,7 @@ func (m *List) GetContentTypes()([]ContentTypeable) {
 func (m *List) GetDisplayName()(*string) {
     return m.displayName
 }
-// GetDrive gets the drive property value. Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
+// GetDrive gets the drive property value. Allows access to the list as a drive resource with driveItems. Only present on document libraries.
 func (m *List) GetDrive()(Driveable) {
     return m.drive
 }
@@ -196,7 +196,7 @@ func (m *List) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
 func (m *List) GetItems()([]ListItemable) {
     return m.items
 }
-// GetList gets the list property value. Provides additional details about the list.
+// GetList gets the list property value. Contains more details about the list.
 func (m *List) GetList()(ListInfoable) {
     return m.list
 }
@@ -212,7 +212,7 @@ func (m *List) GetSharepointIds()(SharepointIdsable) {
 func (m *List) GetSubscriptions()([]Subscriptionable) {
     return m.subscriptions
 }
-// GetSystem gets the system property value. If present, indicates that this is a system-managed list. Read-only.
+// GetSystem gets the system property value. If present, indicates that the list is system-managed. Read-only.
 func (m *List) GetSystem()(SystemFacetable) {
     return m.system
 }
@@ -326,7 +326,7 @@ func (m *List) SetContentTypes(value []ContentTypeable)() {
 func (m *List) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetDrive sets the drive property value. Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].
+// SetDrive sets the drive property value. Allows access to the list as a drive resource with driveItems. Only present on document libraries.
 func (m *List) SetDrive(value Driveable)() {
     m.drive = value
 }
@@ -334,7 +334,7 @@ func (m *List) SetDrive(value Driveable)() {
 func (m *List) SetItems(value []ListItemable)() {
     m.items = value
 }
-// SetList sets the list property value. Provides additional details about the list.
+// SetList sets the list property value. Contains more details about the list.
 func (m *List) SetList(value ListInfoable)() {
     m.list = value
 }
@@ -350,7 +350,7 @@ func (m *List) SetSharepointIds(value SharepointIdsable)() {
 func (m *List) SetSubscriptions(value []Subscriptionable)() {
     m.subscriptions = value
 }
-// SetSystem sets the system property value. If present, indicates that this is a system-managed list. Read-only.
+// SetSystem sets the system property value. If present, indicates that the list is system-managed. Read-only.
 func (m *List) SetSystem(value SystemFacetable)() {
     m.system = value
 }

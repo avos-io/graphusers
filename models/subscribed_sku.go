@@ -14,7 +14,7 @@ type SubscribedSku struct {
     accountName *string
     // The target class for this SKU. Only SKUs with target class User are assignable. Possible values are: 'User', 'Company'.
     appliesTo *string
-    // Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
+    // Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer canceled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
     capabilityStatus *string
     // The number of licenses that have been assigned.
     consumedUnits *int32
@@ -52,7 +52,7 @@ func (m *SubscribedSku) GetAccountName()(*string) {
 func (m *SubscribedSku) GetAppliesTo()(*string) {
     return m.appliesTo
 }
-// GetCapabilityStatus gets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
+// GetCapabilityStatus gets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer canceled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
 func (m *SubscribedSku) GetCapabilityStatus()(*string) {
     return m.capabilityStatus
 }
@@ -283,7 +283,7 @@ func (m *SubscribedSku) SetAccountName(value *string)() {
 func (m *SubscribedSku) SetAppliesTo(value *string)() {
     m.appliesTo = value
 }
-// SetCapabilityStatus sets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer cancelled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
+// SetCapabilityStatus sets the capabilityStatus property value. Enabled indicates that the prepaidUnits property has at least one unit that is enabled. LockedOut indicates that the customer canceled their subscription. Possible values are: Enabled, Warning, Suspended, Deleted, LockedOut.
 func (m *SubscribedSku) SetCapabilityStatus(value *string)() {
     m.capabilityStatus = value
 }

@@ -30,7 +30,7 @@ func CreateCrossTenantAccessPolicyTargetConfigurationFromDiscriminatorValue(pars
 func (m *CrossTenantAccessPolicyTargetConfiguration) GetAccessType()(*CrossTenantAccessPolicyTargetConfigurationAccessType) {
     return m.accessType
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CrossTenantAccessPolicyTargetConfiguration) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -122,7 +122,7 @@ func (m *CrossTenantAccessPolicyTargetConfiguration) Serialize(writer i878a80d23
 func (m *CrossTenantAccessPolicyTargetConfiguration) SetAccessType(value *CrossTenantAccessPolicyTargetConfigurationAccessType)() {
     m.accessType = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CrossTenantAccessPolicyTargetConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

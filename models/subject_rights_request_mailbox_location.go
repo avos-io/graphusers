@@ -42,7 +42,7 @@ func CreateSubjectRightsRequestMailboxLocationFromDiscriminatorValue(parseNode i
     }
     return NewSubjectRightsRequestMailboxLocation(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SubjectRightsRequestMailboxLocation) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -81,7 +81,7 @@ func (m *SubjectRightsRequestMailboxLocation) Serialize(writer i878a80d2330e89d2
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *SubjectRightsRequestMailboxLocation) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -7,7 +7,7 @@ import (
 // EmailAuthenticationMethodConfiguration 
 type EmailAuthenticationMethodConfiguration struct {
     AuthenticationMethodConfiguration
-    // Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview will automatically have email OTP enabled beginning in October 2021.
+    // Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview have email OTP enabled beginning in October 2021.
     allowExternalIdToUseEmailOtp *ExternalEmailOtpState
     // A collection of groups that are enabled to use the authentication method.
     includeTargets []AuthenticationMethodTargetable
@@ -25,7 +25,7 @@ func NewEmailAuthenticationMethodConfiguration()(*EmailAuthenticationMethodConfi
 func CreateEmailAuthenticationMethodConfigurationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewEmailAuthenticationMethodConfiguration(), nil
 }
-// GetAllowExternalIdToUseEmailOtp gets the allowExternalIdToUseEmailOtp property value. Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview will automatically have email OTP enabled beginning in October 2021.
+// GetAllowExternalIdToUseEmailOtp gets the allowExternalIdToUseEmailOtp property value. Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview have email OTP enabled beginning in October 2021.
 func (m *EmailAuthenticationMethodConfiguration) GetAllowExternalIdToUseEmailOtp()(*ExternalEmailOtpState) {
     return m.allowExternalIdToUseEmailOtp
 }
@@ -91,7 +91,7 @@ func (m *EmailAuthenticationMethodConfiguration) Serialize(writer i878a80d2330e8
     }
     return nil
 }
-// SetAllowExternalIdToUseEmailOtp sets the allowExternalIdToUseEmailOtp property value. Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview will automatically have email OTP enabled beginning in October 2021.
+// SetAllowExternalIdToUseEmailOtp sets the allowExternalIdToUseEmailOtp property value. Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn't use public preview have email OTP enabled beginning in October 2021.
 func (m *EmailAuthenticationMethodConfiguration) SetAllowExternalIdToUseEmailOtp(value *ExternalEmailOtpState)() {
     m.allowExternalIdToUseEmailOtp = value
 }

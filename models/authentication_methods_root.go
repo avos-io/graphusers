@@ -7,7 +7,7 @@ import (
 // AuthenticationMethodsRoot 
 type AuthenticationMethodsRoot struct {
     Entity
-    // Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+    // Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
     userRegistrationDetails []UserRegistrationDetailsable
 }
 // NewAuthenticationMethodsRoot instantiates a new authenticationMethodsRoot and sets the default values.
@@ -42,7 +42,7 @@ func (m *AuthenticationMethodsRoot) GetFieldDeserializers()(map[string]func(i878
     }
     return res
 }
-// GetUserRegistrationDetails gets the userRegistrationDetails property value. Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+// GetUserRegistrationDetails gets the userRegistrationDetails property value. Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
 func (m *AuthenticationMethodsRoot) GetUserRegistrationDetails()([]UserRegistrationDetailsable) {
     return m.userRegistrationDetails
 }
@@ -66,7 +66,7 @@ func (m *AuthenticationMethodsRoot) Serialize(writer i878a80d2330e89d26896388a3f
     }
     return nil
 }
-// SetUserRegistrationDetails sets the userRegistrationDetails property value. Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multi-factor authentication, self-service password reset, and passwordless authentication).
+// SetUserRegistrationDetails sets the userRegistrationDetails property value. Represents the state of a user's authentication methods, including which methods are registered and which features the user is registered and capable of (such as multifactor authentication, self-service password reset, and passwordless authentication).
 func (m *AuthenticationMethodsRoot) SetUserRegistrationDetails(value []UserRegistrationDetailsable)() {
     m.userRegistrationDetails = value
 }

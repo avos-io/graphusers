@@ -50,7 +50,7 @@ func CreateAccessReviewInstanceDecisionItemResourceFromDiscriminatorValue(parseN
     }
     return NewAccessReviewInstanceDecisionItemResource(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessReviewInstanceDecisionItemResource) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -149,7 +149,7 @@ func (m *AccessReviewInstanceDecisionItemResource) Serialize(writer i878a80d2330
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessReviewInstanceDecisionItemResource) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

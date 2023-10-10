@@ -58,10 +58,10 @@ func NewUserItemRequestBuilder(rawUrl string, requestAdapter i2ae4187f7daee26337
     urlParams["request-raw-url"] = rawUrl
     return NewUserItemRequestBuilderInternal(urlParams, requestAdapter)
 }
-// Delete delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems. This API is supported in the following national cloud deployments.
+// Delete deletes a user.
 // [Find more info here]
 // 
-// [Find more info here]: https://learn.microsoft.com/graph/api/user-delete?view=graph-rest-1.0
+// [Find more info here]: https://learn.microsoft.com/graph/api/intune-onboarding-user-delete?view=graph-rest-1.0
 func (m *UserItemRequestBuilder) Delete(ctx context.Context, requestConfiguration *UserItemRequestBuilderDeleteRequestConfiguration)(error) {
     requestInfo, err := m.ToDeleteRequestInformation(ctx, requestConfiguration);
     if err != nil {
@@ -103,10 +103,10 @@ func (m *UserItemRequestBuilder) Get(ctx context.Context, requestConfiguration *
 func (m *UserItemRequestBuilder) MemberOf()(*ItemMemberOfRequestBuilder) {
     return NewItemMemberOfRequestBuilderInternal(m.BaseRequestBuilder.PathParameters, m.BaseRequestBuilder.RequestAdapter)
 }
-// Patch update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. This API is supported in the following national cloud deployments.
+// Patch update the properties of a user object.
 // [Find more info here]
 // 
-// [Find more info here]: https://learn.microsoft.com/graph/api/user-update?view=graph-rest-1.0
+// [Find more info here]: https://learn.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0
 func (m *UserItemRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Userable, requestConfiguration *UserItemRequestBuilderPatchRequestConfiguration)(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Userable, error) {
     requestInfo, err := m.ToPatchRequestInformation(ctx, body, requestConfiguration);
     if err != nil {
@@ -125,7 +125,7 @@ func (m *UserItemRequestBuilder) Patch(ctx context.Context, body i43734bed85aefb
     }
     return res.(i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Userable), nil
 }
-// ToDeleteRequestInformation delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems. This API is supported in the following national cloud deployments.
+// ToDeleteRequestInformation deletes a user.
 func (m *UserItemRequestBuilder) ToDeleteRequestInformation(ctx context.Context, requestConfiguration *UserItemRequestBuilderDeleteRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate
@@ -153,7 +153,7 @@ func (m *UserItemRequestBuilder) ToGetRequestInformation(ctx context.Context, re
     }
     return requestInfo, nil
 }
-// ToPatchRequestInformation update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage. This API is supported in the following national cloud deployments.
+// ToPatchRequestInformation update the properties of a user object.
 func (m *UserItemRequestBuilder) ToPatchRequestInformation(ctx context.Context, body i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Userable, requestConfiguration *UserItemRequestBuilderPatchRequestConfiguration)(*i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.RequestInformation, error) {
     requestInfo := i2ae4187f7daee263371cb1c977df639813ab50ffa529013b7437480d1ec0158f.NewRequestInformation()
     requestInfo.UrlTemplate = m.BaseRequestBuilder.UrlTemplate

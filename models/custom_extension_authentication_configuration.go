@@ -40,7 +40,7 @@ func CreateCustomExtensionAuthenticationConfigurationFromDiscriminatorValue(pars
     }
     return NewCustomExtensionAuthenticationConfiguration(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CustomExtensionAuthenticationConfiguration) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -79,7 +79,7 @@ func (m *CustomExtensionAuthenticationConfiguration) Serialize(writer i878a80d23
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CustomExtensionAuthenticationConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

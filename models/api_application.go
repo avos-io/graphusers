@@ -37,7 +37,7 @@ func CreateApiApplicationFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 func (m *ApiApplication) GetAcceptMappedClaims()(*bool) {
     return m.acceptMappedClaims
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ApiApplication) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -206,7 +206,7 @@ func (m *ApiApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *ApiApplication) SetAcceptMappedClaims(value *bool)() {
     m.acceptMappedClaims = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ApiApplication) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

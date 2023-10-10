@@ -36,7 +36,7 @@ func (m *CalendarSharingMessageAction) GetAction()(*CalendarSharingAction) {
 func (m *CalendarSharingMessageAction) GetActionType()(*CalendarSharingActionType) {
     return m.actionType
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CalendarSharingMessageAction) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -138,7 +138,7 @@ func (m *CalendarSharingMessageAction) SetAction(value *CalendarSharingAction)()
 func (m *CalendarSharingMessageAction) SetActionType(value *CalendarSharingActionType)() {
     m.actionType = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *CalendarSharingMessageAction) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -40,7 +40,7 @@ func CreateBookingCustomerInformationBaseFromDiscriminatorValue(parseNode i878a8
     }
     return NewBookingCustomerInformationBase(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *BookingCustomerInformationBase) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -79,7 +79,7 @@ func (m *BookingCustomerInformationBase) Serialize(writer i878a80d2330e89d268963
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *BookingCustomerInformationBase) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

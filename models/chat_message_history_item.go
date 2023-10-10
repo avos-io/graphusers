@@ -33,7 +33,7 @@ func CreateChatMessageHistoryItemFromDiscriminatorValue(parseNode i878a80d2330e8
 func (m *ChatMessageHistoryItem) GetActions()(*ChatMessageActions) {
     return m.actions
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ChatMessageHistoryItem) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -133,7 +133,7 @@ func (m *ChatMessageHistoryItem) Serialize(writer i878a80d2330e89d26896388a3f487
 func (m *ChatMessageHistoryItem) SetActions(value *ChatMessageActions)() {
     m.actions = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ChatMessageHistoryItem) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
