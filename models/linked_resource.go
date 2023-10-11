@@ -7,11 +7,11 @@ import (
 // LinkedResource 
 type LinkedResource struct {
     Entity
-    // Field indicating the app name of the source that is sending the linkedResource.
+    // The app name of the source that sends the linkedResource.
     applicationName *string
-    // Field indicating the title of the linkedResource.
+    // The title of the linkedResource.
     displayName *string
-    // Id of the object that is associated with this task on the third-party/partner system.
+    // ID of the object that is associated with this task on the third-party/partner system.
     externalId *string
     // Deep link to the linkedResource.
     webUrl *string
@@ -27,15 +27,15 @@ func NewLinkedResource()(*LinkedResource) {
 func CreateLinkedResourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewLinkedResource(), nil
 }
-// GetApplicationName gets the applicationName property value. Field indicating the app name of the source that is sending the linkedResource.
+// GetApplicationName gets the applicationName property value. The app name of the source that sends the linkedResource.
 func (m *LinkedResource) GetApplicationName()(*string) {
     return m.applicationName
 }
-// GetDisplayName gets the displayName property value. Field indicating the title of the linkedResource.
+// GetDisplayName gets the displayName property value. The title of the linkedResource.
 func (m *LinkedResource) GetDisplayName()(*string) {
     return m.displayName
 }
-// GetExternalId gets the externalId property value. Id of the object that is associated with this task on the third-party/partner system.
+// GetExternalId gets the externalId property value. ID of the object that is associated with this task on the third-party/partner system.
 func (m *LinkedResource) GetExternalId()(*string) {
     return m.externalId
 }
@@ -120,15 +120,15 @@ func (m *LinkedResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetApplicationName sets the applicationName property value. Field indicating the app name of the source that is sending the linkedResource.
+// SetApplicationName sets the applicationName property value. The app name of the source that sends the linkedResource.
 func (m *LinkedResource) SetApplicationName(value *string)() {
     m.applicationName = value
 }
-// SetDisplayName sets the displayName property value. Field indicating the title of the linkedResource.
+// SetDisplayName sets the displayName property value. The title of the linkedResource.
 func (m *LinkedResource) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetExternalId sets the externalId property value. Id of the object that is associated with this task on the third-party/partner system.
+// SetExternalId sets the externalId property value. ID of the object that is associated with this task on the third-party/partner system.
 func (m *LinkedResource) SetExternalId(value *string)() {
     m.externalId = value
 }

@@ -10,7 +10,7 @@ type AccessReviewInactiveUsersQueryScope struct {
     // Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access review instance's start date. If this property is not specified, it's assigned the default value PT0S.
     inactiveDuration *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
 }
-// NewAccessReviewInactiveUsersQueryScope instantiates a new AccessReviewInactiveUsersQueryScope and sets the default values.
+// NewAccessReviewInactiveUsersQueryScope instantiates a new accessReviewInactiveUsersQueryScope and sets the default values.
 func NewAccessReviewInactiveUsersQueryScope()(*AccessReviewInactiveUsersQueryScope) {
     m := &AccessReviewInactiveUsersQueryScope{
         AccessReviewQueryScope: *NewAccessReviewQueryScope(),

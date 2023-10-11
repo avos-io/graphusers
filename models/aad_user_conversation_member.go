@@ -16,7 +16,7 @@ type AadUserConversationMember struct {
     // The guid of the user.
     userId *string
 }
-// NewAadUserConversationMember instantiates a new AadUserConversationMember and sets the default values.
+// NewAadUserConversationMember instantiates a new aadUserConversationMember and sets the default values.
 func NewAadUserConversationMember()(*AadUserConversationMember) {
     m := &AadUserConversationMember{
         ConversationMember: *NewConversationMember(),

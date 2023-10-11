@@ -14,7 +14,7 @@ type X509CertificateAuthenticationMethodConfiguration struct {
     // A collection of groups that are enabled to use the authentication method.
     includeTargets []AuthenticationMethodTargetable
 }
-// NewX509CertificateAuthenticationMethodConfiguration instantiates a new X509CertificateAuthenticationMethodConfiguration and sets the default values.
+// NewX509CertificateAuthenticationMethodConfiguration instantiates a new x509CertificateAuthenticationMethodConfiguration and sets the default values.
 func NewX509CertificateAuthenticationMethodConfiguration()(*X509CertificateAuthenticationMethodConfiguration) {
     m := &X509CertificateAuthenticationMethodConfiguration{
         AuthenticationMethodConfiguration: *NewAuthenticationMethodConfiguration(),
@@ -56,7 +56,9 @@ func (m *X509CertificateAuthenticationMethodConfiguration) GetFieldDeserializers
         if val != nil {
             res := make([]X509CertificateUserBindingable, len(val))
             for i, v := range val {
-                res[i] = v.(X509CertificateUserBindingable)
+                if v != nil {
+                    res[i] = v.(X509CertificateUserBindingable)
+                }
             }
             m.SetCertificateUserBindings(res)
         }
@@ -70,7 +72,9 @@ func (m *X509CertificateAuthenticationMethodConfiguration) GetFieldDeserializers
         if val != nil {
             res := make([]AuthenticationMethodTargetable, len(val))
             for i, v := range val {
-                res[i] = v.(AuthenticationMethodTargetable)
+                if v != nil {
+                    res[i] = v.(AuthenticationMethodTargetable)
+                }
             }
             m.SetIncludeTargets(res)
         }
@@ -97,7 +101,9 @@ func (m *X509CertificateAuthenticationMethodConfiguration) Serialize(writer i878
     if m.GetCertificateUserBindings() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCertificateUserBindings()))
         for i, v := range m.GetCertificateUserBindings() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("certificateUserBindings", cast)
         if err != nil {
@@ -107,7 +113,9 @@ func (m *X509CertificateAuthenticationMethodConfiguration) Serialize(writer i878
     if m.GetIncludeTargets() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetIncludeTargets()))
         for i, v := range m.GetIncludeTargets() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("includeTargets", cast)
         if err != nil {

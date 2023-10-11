@@ -14,7 +14,7 @@ type ResultInfo struct {
     message *string
     // The OdataType property
     odataType *string
-    // The result sub-code.
+    // The result subcode.
     subcode *int32
 }
 // NewResultInfo instantiates a new resultInfo and sets the default values.
@@ -28,7 +28,7 @@ func NewResultInfo()(*ResultInfo) {
 func CreateResultInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewResultInfo(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ResultInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -89,7 +89,7 @@ func (m *ResultInfo) GetMessage()(*string) {
 func (m *ResultInfo) GetOdataType()(*string) {
     return m.odataType
 }
-// GetSubcode gets the subcode property value. The result sub-code.
+// GetSubcode gets the subcode property value. The result subcode.
 func (m *ResultInfo) GetSubcode()(*int32) {
     return m.subcode
 }
@@ -127,7 +127,7 @@ func (m *ResultInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ResultInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -143,7 +143,7 @@ func (m *ResultInfo) SetMessage(value *string)() {
 func (m *ResultInfo) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetSubcode sets the subcode property value. The result sub-code.
+// SetSubcode sets the subcode property value. The result subcode.
 func (m *ResultInfo) SetSubcode(value *int32)() {
     m.subcode = value
 }

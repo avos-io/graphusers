@@ -10,7 +10,7 @@ type Initiator struct {
     // Type of initiator. Possible values are: user, application, system, unknownFutureValue.
     initiatorType *InitiatorType
 }
-// NewInitiator instantiates a new Initiator and sets the default values.
+// NewInitiator instantiates a new initiator and sets the default values.
 func NewInitiator()(*Initiator) {
     m := &Initiator{
         Identity: *NewIdentity(),

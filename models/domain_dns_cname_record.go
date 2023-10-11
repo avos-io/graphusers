@@ -10,7 +10,7 @@ type DomainDnsCnameRecord struct {
     // The canonical name of the CNAME record. Used to configure the CNAME record at the DNS host.
     canonicalName *string
 }
-// NewDomainDnsCnameRecord instantiates a new DomainDnsCnameRecord and sets the default values.
+// NewDomainDnsCnameRecord instantiates a new domainDnsCnameRecord and sets the default values.
 func NewDomainDnsCnameRecord()(*DomainDnsCnameRecord) {
     m := &DomainDnsCnameRecord{
         DomainDnsRecord: *NewDomainDnsRecord(),

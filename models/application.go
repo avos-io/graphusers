@@ -17,13 +17,13 @@ type Application struct {
     appId *string
     // Unique identifier of the applicationTemplate. Supports $filter (eq, not, ne).
     applicationTemplateId *string
-    // The appManagementPolicies property
+    // The appManagementPolicy applied to this application.
     appManagementPolicies []AppManagementPolicyable
     // The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.
     appRoles []AppRoleable
     // Specifies the certification status of the application.
     certification Certificationable
-    // The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.
+    // The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Supports $filter (/$count eq 0, /$count ne 0). Read-only.
     createdOnBehalfOf DirectoryObjectable
@@ -33,7 +33,7 @@ type Application struct {
     description *string
     // Specifies whether Microsoft has disabled the registered application. Possible values are: null (default value), NotDisabled, and DisabledDueToViolationOfServicesAgreement (reasons may include suspicious, abusive, or malicious activity, or a violation of the Microsoft Services Agreement).  Supports $filter (eq, ne, not).
     disabledByMicrosoftStatus *string
-    // The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+    // The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
     displayName *string
     // Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0).
     extensionProperties []ExtensionPropertyable
@@ -61,7 +61,7 @@ type Application struct {
     oauth2RequirePostResponse *bool
     // Application developers can configure optional claims in their Azure AD applications to specify the claims that are sent to their application by the Microsoft security token service. For more information, see How to: Provide optional claims to your app.
     optionalClaims OptionalClaimsable
-    // Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+    // Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
     owners []DirectoryObjectable
     // Specifies parental control settings for an application.
     parentalControlSettings ParentalControlSettingsable
@@ -71,7 +71,7 @@ type Application struct {
     publicClient PublicClientApplicationable
     // The verified publisher domain for the application. Read-only. For more information, see How to: Configure an application's publisher domain. Supports $filter (eq, ne, ge, le, startsWith).
     publisherDomain *string
-    // The requestSignatureVerification property
+    // Specifies whether this application requires Azure AD to verify the signed authentication requests.
     requestSignatureVerification RequestSignatureVerificationable
     // Specifies the resources that the application needs to access. This property also specifies the set of delegated permissions and application roles that it needs for each of those resources. This configuration of access to the required resources drives the consent experience. No more than 50 resource services (APIs) can be configured. Beginning mid-October 2021, the total number of required permissions must not exceed 400. For more information, see Limits on requested permissions per app. Not nullable. Supports $filter (eq, not, ge, le).
     requiredResourceAccess []RequiredResourceAccessable
@@ -79,11 +79,15 @@ type Application struct {
     samlMetadataUrl *string
     // References application or service contact information from a Service or Asset Management database. Nullable.
     serviceManagementReference *string
+    // Specifies whether sensitive properties of a multi-tenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
+    servicePrincipalLockConfiguration ServicePrincipalLockConfigurationable
     // Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
     signInAudience *string
     // Specifies settings for a single-page application, including sign out URLs and redirect URIs for authorization codes and access tokens.
     spa SpaApplicationable
-    // Custom strings that can be used to categorize and identify the application. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+    // Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
+    synchronization Synchronizationable
+    // Custom strings that can be used to categorize and identify the application. Not nullable. Strings added here will also appear in the tags property of any associated service principals.Supports $filter (eq, not, ge, le, startsWith) and $search.
     tags []string
     // Specifies the keyId of a public key from the keyCredentials collection. When configured, Azure AD encrypts all the tokens it emits by using the key this property points to. The application code that receives the encrypted token must use the matching private key to decrypt the token before it can be used for the signed-in user.
     tokenEncryptionKeyId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
@@ -96,7 +100,7 @@ type Application struct {
     // Specifies settings for a web application.
     web WebApplicationable
 }
-// NewApplication instantiates a new Application and sets the default values.
+// NewApplication instantiates a new application and sets the default values.
 func NewApplication()(*Application) {
     m := &Application{
         DirectoryObject: *NewDirectoryObject(),
@@ -125,7 +129,7 @@ func (m *Application) GetAppId()(*string) {
 func (m *Application) GetApplicationTemplateId()(*string) {
     return m.applicationTemplateId
 }
-// GetAppManagementPolicies gets the appManagementPolicies property value. The appManagementPolicies property
+// GetAppManagementPolicies gets the appManagementPolicies property value. The appManagementPolicy applied to this application.
 func (m *Application) GetAppManagementPolicies()([]AppManagementPolicyable) {
     return m.appManagementPolicies
 }
@@ -137,7 +141,7 @@ func (m *Application) GetAppRoles()([]AppRoleable) {
 func (m *Application) GetCertification()(Certificationable) {
     return m.certification
 }
-// GetCreatedDateTime gets the createdDateTime property value. The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.
+// GetCreatedDateTime gets the createdDateTime property value. The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
 func (m *Application) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
@@ -157,7 +161,7 @@ func (m *Application) GetDescription()(*string) {
 func (m *Application) GetDisabledByMicrosoftStatus()(*string) {
     return m.disabledByMicrosoftStatus
 }
-// GetDisplayName gets the displayName property value. The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+// GetDisplayName gets the displayName property value. The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
 func (m *Application) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -180,7 +184,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]AddInable, len(val))
             for i, v := range val {
-                res[i] = v.(AddInable)
+                if v != nil {
+                    res[i] = v.(AddInable)
+                }
             }
             m.SetAddIns(res)
         }
@@ -224,7 +230,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]AppManagementPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(AppManagementPolicyable)
+                if v != nil {
+                    res[i] = v.(AppManagementPolicyable)
+                }
             }
             m.SetAppManagementPolicies(res)
         }
@@ -238,7 +246,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]AppRoleable, len(val))
             for i, v := range val {
-                res[i] = v.(AppRoleable)
+                if v != nil {
+                    res[i] = v.(AppRoleable)
+                }
             }
             m.SetAppRoles(res)
         }
@@ -322,7 +332,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]ExtensionPropertyable, len(val))
             for i, v := range val {
-                res[i] = v.(ExtensionPropertyable)
+                if v != nil {
+                    res[i] = v.(ExtensionPropertyable)
+                }
             }
             m.SetExtensionProperties(res)
         }
@@ -336,7 +348,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]FederatedIdentityCredentialable, len(val))
             for i, v := range val {
-                res[i] = v.(FederatedIdentityCredentialable)
+                if v != nil {
+                    res[i] = v.(FederatedIdentityCredentialable)
+                }
             }
             m.SetFederatedIdentityCredentials(res)
         }
@@ -360,7 +374,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]HomeRealmDiscoveryPolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(HomeRealmDiscoveryPolicyable)
+                if v != nil {
+                    res[i] = v.(HomeRealmDiscoveryPolicyable)
+                }
             }
             m.SetHomeRealmDiscoveryPolicies(res)
         }
@@ -374,7 +390,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIdentifierUris(res)
         }
@@ -418,7 +436,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]KeyCredentialable, len(val))
             for i, v := range val {
-                res[i] = v.(KeyCredentialable)
+                if v != nil {
+                    res[i] = v.(KeyCredentialable)
+                }
             }
             m.SetKeyCredentials(res)
         }
@@ -472,7 +492,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]DirectoryObjectable, len(val))
             for i, v := range val {
-                res[i] = v.(DirectoryObjectable)
+                if v != nil {
+                    res[i] = v.(DirectoryObjectable)
+                }
             }
             m.SetOwners(res)
         }
@@ -496,7 +518,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]PasswordCredentialable, len(val))
             for i, v := range val {
-                res[i] = v.(PasswordCredentialable)
+                if v != nil {
+                    res[i] = v.(PasswordCredentialable)
+                }
             }
             m.SetPasswordCredentials(res)
         }
@@ -540,7 +564,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]RequiredResourceAccessable, len(val))
             for i, v := range val {
-                res[i] = v.(RequiredResourceAccessable)
+                if v != nil {
+                    res[i] = v.(RequiredResourceAccessable)
+                }
             }
             m.SetRequiredResourceAccess(res)
         }
@@ -566,6 +592,16 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
+    res["servicePrincipalLockConfiguration"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateServicePrincipalLockConfigurationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetServicePrincipalLockConfiguration(val.(ServicePrincipalLockConfigurationable))
+        }
+        return nil
+    }
     res["signInAudience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -586,6 +622,16 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         return nil
     }
+    res["synchronization"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateSynchronizationFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetSynchronization(val.(Synchronizationable))
+        }
+        return nil
+    }
     res["tags"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfPrimitiveValues("string")
         if err != nil {
@@ -594,7 +640,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTags(res)
         }
@@ -618,7 +666,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]TokenIssuancePolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(TokenIssuancePolicyable)
+                if v != nil {
+                    res[i] = v.(TokenIssuancePolicyable)
+                }
             }
             m.SetTokenIssuancePolicies(res)
         }
@@ -632,7 +682,9 @@ func (m *Application) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]TokenLifetimePolicyable, len(val))
             for i, v := range val {
-                res[i] = v.(TokenLifetimePolicyable)
+                if v != nil {
+                    res[i] = v.(TokenLifetimePolicyable)
+                }
             }
             m.SetTokenLifetimePolicies(res)
         }
@@ -704,7 +756,7 @@ func (m *Application) GetOauth2RequirePostResponse()(*bool) {
 func (m *Application) GetOptionalClaims()(OptionalClaimsable) {
     return m.optionalClaims
 }
-// GetOwners gets the owners property value. Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+// GetOwners gets the owners property value. Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
 func (m *Application) GetOwners()([]DirectoryObjectable) {
     return m.owners
 }
@@ -724,7 +776,7 @@ func (m *Application) GetPublicClient()(PublicClientApplicationable) {
 func (m *Application) GetPublisherDomain()(*string) {
     return m.publisherDomain
 }
-// GetRequestSignatureVerification gets the requestSignatureVerification property value. The requestSignatureVerification property
+// GetRequestSignatureVerification gets the requestSignatureVerification property value. Specifies whether this application requires Azure AD to verify the signed authentication requests.
 func (m *Application) GetRequestSignatureVerification()(RequestSignatureVerificationable) {
     return m.requestSignatureVerification
 }
@@ -740,6 +792,10 @@ func (m *Application) GetSamlMetadataUrl()(*string) {
 func (m *Application) GetServiceManagementReference()(*string) {
     return m.serviceManagementReference
 }
+// GetServicePrincipalLockConfiguration gets the servicePrincipalLockConfiguration property value. Specifies whether sensitive properties of a multi-tenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
+func (m *Application) GetServicePrincipalLockConfiguration()(ServicePrincipalLockConfigurationable) {
+    return m.servicePrincipalLockConfiguration
+}
 // GetSignInAudience gets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
 func (m *Application) GetSignInAudience()(*string) {
     return m.signInAudience
@@ -748,7 +804,11 @@ func (m *Application) GetSignInAudience()(*string) {
 func (m *Application) GetSpa()(SpaApplicationable) {
     return m.spa
 }
-// GetTags gets the tags property value. Custom strings that can be used to categorize and identify the application. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+// GetSynchronization gets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
+func (m *Application) GetSynchronization()(Synchronizationable) {
+    return m.synchronization
+}
+// GetTags gets the tags property value. Custom strings that can be used to categorize and identify the application. Not nullable. Strings added here will also appear in the tags property of any associated service principals.Supports $filter (eq, not, ge, le, startsWith) and $search.
 func (m *Application) GetTags()([]string) {
     return m.tags
 }
@@ -781,7 +841,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetAddIns() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAddIns()))
         for i, v := range m.GetAddIns() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("addIns", cast)
         if err != nil {
@@ -809,7 +871,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetAppManagementPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppManagementPolicies()))
         for i, v := range m.GetAppManagementPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appManagementPolicies", cast)
         if err != nil {
@@ -819,7 +883,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetAppRoles() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAppRoles()))
         for i, v := range m.GetAppRoles() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("appRoles", cast)
         if err != nil {
@@ -871,7 +937,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetExtensionProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensionProperties()))
         for i, v := range m.GetExtensionProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("extensionProperties", cast)
         if err != nil {
@@ -881,7 +949,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetFederatedIdentityCredentials() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFederatedIdentityCredentials()))
         for i, v := range m.GetFederatedIdentityCredentials() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("federatedIdentityCredentials", cast)
         if err != nil {
@@ -897,7 +967,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetHomeRealmDiscoveryPolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetHomeRealmDiscoveryPolicies()))
         for i, v := range m.GetHomeRealmDiscoveryPolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("homeRealmDiscoveryPolicies", cast)
         if err != nil {
@@ -931,7 +1003,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetKeyCredentials() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetKeyCredentials()))
         for i, v := range m.GetKeyCredentials() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("keyCredentials", cast)
         if err != nil {
@@ -965,7 +1039,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetOwners() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOwners()))
         for i, v := range m.GetOwners() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("owners", cast)
         if err != nil {
@@ -981,7 +1057,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetPasswordCredentials() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPasswordCredentials()))
         for i, v := range m.GetPasswordCredentials() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("passwordCredentials", cast)
         if err != nil {
@@ -1009,7 +1087,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetRequiredResourceAccess() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRequiredResourceAccess()))
         for i, v := range m.GetRequiredResourceAccess() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("requiredResourceAccess", cast)
         if err != nil {
@@ -1029,6 +1109,12 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
+        err = writer.WriteObjectValue("servicePrincipalLockConfiguration", m.GetServicePrincipalLockConfiguration())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteStringValue("signInAudience", m.GetSignInAudience())
         if err != nil {
             return err
@@ -1036,6 +1122,12 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     {
         err = writer.WriteObjectValue("spa", m.GetSpa())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("synchronization", m.GetSynchronization())
         if err != nil {
             return err
         }
@@ -1055,7 +1147,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetTokenIssuancePolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenIssuancePolicies()))
         for i, v := range m.GetTokenIssuancePolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tokenIssuancePolicies", cast)
         if err != nil {
@@ -1065,7 +1159,9 @@ func (m *Application) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetTokenLifetimePolicies() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTokenLifetimePolicies()))
         for i, v := range m.GetTokenLifetimePolicies() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("tokenLifetimePolicies", cast)
         if err != nil {
@@ -1102,7 +1198,7 @@ func (m *Application) SetAppId(value *string)() {
 func (m *Application) SetApplicationTemplateId(value *string)() {
     m.applicationTemplateId = value
 }
-// SetAppManagementPolicies sets the appManagementPolicies property value. The appManagementPolicies property
+// SetAppManagementPolicies sets the appManagementPolicies property value. The appManagementPolicy applied to this application.
 func (m *Application) SetAppManagementPolicies(value []AppManagementPolicyable)() {
     m.appManagementPolicies = value
 }
@@ -1114,7 +1210,7 @@ func (m *Application) SetAppRoles(value []AppRoleable)() {
 func (m *Application) SetCertification(value Certificationable)() {
     m.certification = value
 }
-// SetCreatedDateTime sets the createdDateTime property value. The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderBy.
+// SetCreatedDateTime sets the createdDateTime property value. The date and time the application was registered. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.  Supports $filter (eq, ne, not, ge, le, in, and eq on null values) and $orderby.
 func (m *Application) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
@@ -1134,7 +1230,7 @@ func (m *Application) SetDescription(value *string)() {
 func (m *Application) SetDisabledByMicrosoftStatus(value *string)() {
     m.disabledByMicrosoftStatus = value
 }
-// SetDisplayName sets the displayName property value. The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.
+// SetDisplayName sets the displayName property value. The display name for the application. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderby.
 func (m *Application) SetDisplayName(value *string)() {
     m.displayName = value
 }
@@ -1190,7 +1286,7 @@ func (m *Application) SetOauth2RequirePostResponse(value *bool)() {
 func (m *Application) SetOptionalClaims(value OptionalClaimsable)() {
     m.optionalClaims = value
 }
-// SetOwners sets the owners property value. Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+// SetOwners sets the owners property value. Directory objects that are owners of the application. Read-only. Nullable. Supports $expand, $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1), and $select nested in $expand.
 func (m *Application) SetOwners(value []DirectoryObjectable)() {
     m.owners = value
 }
@@ -1210,7 +1306,7 @@ func (m *Application) SetPublicClient(value PublicClientApplicationable)() {
 func (m *Application) SetPublisherDomain(value *string)() {
     m.publisherDomain = value
 }
-// SetRequestSignatureVerification sets the requestSignatureVerification property value. The requestSignatureVerification property
+// SetRequestSignatureVerification sets the requestSignatureVerification property value. Specifies whether this application requires Azure AD to verify the signed authentication requests.
 func (m *Application) SetRequestSignatureVerification(value RequestSignatureVerificationable)() {
     m.requestSignatureVerification = value
 }
@@ -1226,6 +1322,10 @@ func (m *Application) SetSamlMetadataUrl(value *string)() {
 func (m *Application) SetServiceManagementReference(value *string)() {
     m.serviceManagementReference = value
 }
+// SetServicePrincipalLockConfiguration sets the servicePrincipalLockConfiguration property value. Specifies whether sensitive properties of a multi-tenant application should be locked for editing after the application is provisioned in a tenant. Nullable. null by default.
+func (m *Application) SetServicePrincipalLockConfiguration(value ServicePrincipalLockConfigurationable)() {
+    m.servicePrincipalLockConfiguration = value
+}
 // SetSignInAudience sets the signInAudience property value. Specifies the Microsoft accounts that are supported for the current application. The possible values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount (default), and PersonalMicrosoftAccount. See more in the table. The value of this object also limits the number of permissions an app can request. For more information, see Limits on requested permissions per app. The value for this property has implications on other app object properties. As a result, if you change this property, you may need to change other properties first. For more information, see Validation differences for signInAudience.Supports $filter (eq, ne, not).
 func (m *Application) SetSignInAudience(value *string)() {
     m.signInAudience = value
@@ -1234,7 +1334,11 @@ func (m *Application) SetSignInAudience(value *string)() {
 func (m *Application) SetSpa(value SpaApplicationable)() {
     m.spa = value
 }
-// SetTags sets the tags property value. Custom strings that can be used to categorize and identify the application. Not nullable. Supports $filter (eq, not, ge, le, startsWith).
+// SetSynchronization sets the synchronization property value. Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
+func (m *Application) SetSynchronization(value Synchronizationable)() {
+    m.synchronization = value
+}
+// SetTags sets the tags property value. Custom strings that can be used to categorize and identify the application. Not nullable. Strings added here will also appear in the tags property of any associated service principals.Supports $filter (eq, not, ge, le, startsWith) and $search.
 func (m *Application) SetTags(value []string)() {
     m.tags = value
 }
@@ -1297,8 +1401,10 @@ type Applicationable interface {
     GetRequiredResourceAccess()([]RequiredResourceAccessable)
     GetSamlMetadataUrl()(*string)
     GetServiceManagementReference()(*string)
+    GetServicePrincipalLockConfiguration()(ServicePrincipalLockConfigurationable)
     GetSignInAudience()(*string)
     GetSpa()(SpaApplicationable)
+    GetSynchronization()(Synchronizationable)
     GetTags()([]string)
     GetTokenEncryptionKeyId()(*i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)
     GetTokenIssuancePolicies()([]TokenIssuancePolicyable)
@@ -1340,8 +1446,10 @@ type Applicationable interface {
     SetRequiredResourceAccess(value []RequiredResourceAccessable)()
     SetSamlMetadataUrl(value *string)()
     SetServiceManagementReference(value *string)()
+    SetServicePrincipalLockConfiguration(value ServicePrincipalLockConfigurationable)()
     SetSignInAudience(value *string)()
     SetSpa(value SpaApplicationable)()
+    SetSynchronization(value Synchronizationable)()
     SetTags(value []string)()
     SetTokenEncryptionKeyId(value *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID)()
     SetTokenIssuancePolicies(value []TokenIssuancePolicyable)()

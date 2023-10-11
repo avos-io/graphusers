@@ -12,7 +12,7 @@ type WindowsUpdateActiveHoursInstall struct {
     // Active Hours Start
     activeHoursStart *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly
 }
-// NewWindowsUpdateActiveHoursInstall instantiates a new WindowsUpdateActiveHoursInstall and sets the default values.
+// NewWindowsUpdateActiveHoursInstall instantiates a new windowsUpdateActiveHoursInstall and sets the default values.
 func NewWindowsUpdateActiveHoursInstall()(*WindowsUpdateActiveHoursInstall) {
     m := &WindowsUpdateActiveHoursInstall{
         WindowsUpdateInstallScheduleType: *NewWindowsUpdateInstallScheduleType(),

@@ -7,7 +7,7 @@ import (
 // WorkbookRange 
 type WorkbookRange struct {
     Entity
-    // Represents the range reference in A1-style. Address value will contain the Sheet reference (e.g. Sheet1!A1:B4). Read-only.
+    // Represents the range reference in A1-style. Address value contains the Sheet reference (for example, Sheet1!A1:B4). Read-only.
     address *string
     // Represents range reference for the specified range in the language of the user. Read-only.
     addressLocal *string
@@ -39,16 +39,16 @@ type WorkbookRange struct {
     rowIndex *int32
     // The worksheet containing the current range. Read-only.
     sort WorkbookRangeSortable
-    // Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+    // Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
     text Jsonable
-    // Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+    // Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
     values Jsonable
     // Represents the type of data of each cell. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error. Read-only.
     valueTypes Jsonable
     // The worksheet containing the current range. Read-only.
     worksheet WorkbookWorksheetable
 }
-// NewWorkbookRange instantiates a new WorkbookRange and sets the default values.
+// NewWorkbookRange instantiates a new workbookRange and sets the default values.
 func NewWorkbookRange()(*WorkbookRange) {
     m := &WorkbookRange{
         Entity: *NewEntity(),
@@ -59,7 +59,7 @@ func NewWorkbookRange()(*WorkbookRange) {
 func CreateWorkbookRangeFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookRange(), nil
 }
-// GetAddress gets the address property value. Represents the range reference in A1-style. Address value will contain the Sheet reference (e.g. Sheet1!A1:B4). Read-only.
+// GetAddress gets the address property value. Represents the range reference in A1-style. Address value contains the Sheet reference (for example, Sheet1!A1:B4). Read-only.
 func (m *WorkbookRange) GetAddress()(*string) {
     return m.address
 }
@@ -328,11 +328,11 @@ func (m *WorkbookRange) GetRowIndex()(*int32) {
 func (m *WorkbookRange) GetSort()(WorkbookRangeSortable) {
     return m.sort
 }
-// GetText gets the text property value. Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+// GetText gets the text property value. Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
 func (m *WorkbookRange) GetText()(Jsonable) {
     return m.text
 }
-// GetValues gets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+// GetValues gets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
 func (m *WorkbookRange) GetValues()(Jsonable) {
     return m.values
 }
@@ -472,7 +472,7 @@ func (m *WorkbookRange) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetAddress sets the address property value. Represents the range reference in A1-style. Address value will contain the Sheet reference (e.g. Sheet1!A1:B4). Read-only.
+// SetAddress sets the address property value. Represents the range reference in A1-style. Address value contains the Sheet reference (for example, Sheet1!A1:B4). Read-only.
 func (m *WorkbookRange) SetAddress(value *string)() {
     m.address = value
 }
@@ -536,11 +536,11 @@ func (m *WorkbookRange) SetRowIndex(value *int32)() {
 func (m *WorkbookRange) SetSort(value WorkbookRangeSortable)() {
     m.sort = value
 }
-// SetText sets the text property value. Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+// SetText sets the text property value. Text values of the specified range. The Text value doesn't depend on the cell width. The # sign substitution that happens in Excel UI doesn't affect the text value returned by the API. Read-only.
 func (m *WorkbookRange) SetText(value Jsonable)() {
     m.text = value
 }
-// SetValues sets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+// SetValues sets the values property value. Represents the raw values of the specified range. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
 func (m *WorkbookRange) SetValues(value Jsonable)() {
     m.values = value
 }

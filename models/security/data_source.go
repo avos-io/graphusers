@@ -13,7 +13,7 @@ type DataSource struct {
     createdBy i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.IdentitySetable
     // The date and time the dataSource was created.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // The display name of the dataSource. This will be the name of the SharePoint site.
+    // The display name of the dataSource and is the name of the SharePoint site.
     displayName *string
     // The hold status of the dataSource.The possible values are: notApplied, applied, applying, removing, partial
     holdStatus *DataSourceHoldStatus
@@ -59,7 +59,7 @@ func (m *DataSource) GetCreatedBy()(i43734bed85aefb0f6a3d313be76230963d1e26491f6
 func (m *DataSource) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
-// GetDisplayName gets the displayName property value. The display name of the dataSource. This will be the name of the SharePoint site.
+// GetDisplayName gets the displayName property value. The display name of the dataSource and is the name of the SharePoint site.
 func (m *DataSource) GetDisplayName()(*string) {
     return m.displayName
 }
@@ -153,7 +153,7 @@ func (m *DataSource) SetCreatedBy(value i43734bed85aefb0f6a3d313be76230963d1e264
 func (m *DataSource) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
-// SetDisplayName sets the displayName property value. The display name of the dataSource. This will be the name of the SharePoint site.
+// SetDisplayName sets the displayName property value. The display name of the dataSource and is the name of the SharePoint site.
 func (m *DataSource) SetDisplayName(value *string)() {
     m.displayName = value
 }

@@ -61,7 +61,7 @@ type EducationAssignment struct {
     // The deep link URL for the given assignment.
     webUrl *string
 }
-// NewEducationAssignment instantiates a new EducationAssignment and sets the default values.
+// NewEducationAssignment instantiates a new educationAssignment and sets the default values.
 func NewEducationAssignment()(*EducationAssignment) {
     m := &EducationAssignment{
         Entity: *NewEntity(),
@@ -213,7 +213,9 @@ func (m *EducationAssignment) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationCategoryable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationCategoryable)
+                if v != nil {
+                    res[i] = v.(EducationCategoryable)
+                }
             }
             m.SetCategories(res)
         }
@@ -347,7 +349,9 @@ func (m *EducationAssignment) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationAssignmentResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationAssignmentResourceable)
+                if v != nil {
+                    res[i] = v.(EducationAssignmentResourceable)
+                }
             }
             m.SetResources(res)
         }
@@ -391,7 +395,9 @@ func (m *EducationAssignment) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]EducationSubmissionable, len(val))
             for i, v := range val {
-                res[i] = v.(EducationSubmissionable)
+                if v != nil {
+                    res[i] = v.(EducationSubmissionable)
+                }
             }
             m.SetSubmissions(res)
         }
@@ -494,7 +500,9 @@ func (m *EducationAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetCategories() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCategories()))
         for i, v := range m.GetCategories() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("categories", cast)
         if err != nil {
@@ -546,7 +554,9 @@ func (m *EducationAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResources()))
         for i, v := range m.GetResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("resources", cast)
         if err != nil {
@@ -562,7 +572,9 @@ func (m *EducationAssignment) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetSubmissions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSubmissions()))
         for i, v := range m.GetSubmissions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("submissions", cast)
         if err != nil {

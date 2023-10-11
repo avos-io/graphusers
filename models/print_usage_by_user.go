@@ -10,7 +10,7 @@ type PrintUsageByUser struct {
     // The UPN of the user represented by these statistics.
     userPrincipalName *string
 }
-// NewPrintUsageByUser instantiates a new PrintUsageByUser and sets the default values.
+// NewPrintUsageByUser instantiates a new printUsageByUser and sets the default values.
 func NewPrintUsageByUser()(*PrintUsageByUser) {
     m := &PrintUsageByUser{
         PrintUsage: *NewPrintUsage(),

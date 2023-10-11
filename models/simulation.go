@@ -24,20 +24,38 @@ type Simulation struct {
     description *string
     // Display name of the attack simulation and training campaign. Supports $filter and $orderby.
     displayName *string
+    // The durationInDays property
+    durationInDays *int32
+    // The endUserNotificationSetting property
+    endUserNotificationSetting EndUserNotificationSettingable
+    // The excludedAccountTarget property
+    excludedAccountTarget AccountTargetContentable
+    // The includedAccountTarget property
+    includedAccountTarget AccountTargetContentable
     // Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
     isAutomated *bool
+    // The landingPage property
+    landingPage LandingPageable
     // Identity of the user who most recently modified the attack simulation and training campaign.
     lastModifiedBy EmailIdentityable
     // Date and time of the most recent modification of the attack simulation and training campaign.
     lastModifiedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.
     launchDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // The loginPage property
+    loginPage LoginPageable
+    // The oAuthConsentAppDetail property
+    oAuthConsentAppDetail OAuthConsentAppDetailable
+    // The payload property
+    payload Payloadable
     // Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
     payloadDeliveryPlatform *PayloadDeliveryPlatform
     // Report of the attack simulation and training campaign.
     report SimulationReportable
     // Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.
     status *SimulationStatus
+    // The trainingSetting property
+    trainingSetting TrainingSettingable
 }
 // NewSimulation instantiates a new simulation and sets the default values.
 func NewSimulation()(*Simulation) {
@@ -81,6 +99,18 @@ func (m *Simulation) GetDescription()(*string) {
 // GetDisplayName gets the displayName property value. Display name of the attack simulation and training campaign. Supports $filter and $orderby.
 func (m *Simulation) GetDisplayName()(*string) {
     return m.displayName
+}
+// GetDurationInDays gets the durationInDays property value. The durationInDays property
+func (m *Simulation) GetDurationInDays()(*int32) {
+    return m.durationInDays
+}
+// GetEndUserNotificationSetting gets the endUserNotificationSetting property value. The endUserNotificationSetting property
+func (m *Simulation) GetEndUserNotificationSetting()(EndUserNotificationSettingable) {
+    return m.endUserNotificationSetting
+}
+// GetExcludedAccountTarget gets the excludedAccountTarget property value. The excludedAccountTarget property
+func (m *Simulation) GetExcludedAccountTarget()(AccountTargetContentable) {
+    return m.excludedAccountTarget
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *Simulation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
@@ -165,6 +195,46 @@ func (m *Simulation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["durationInDays"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetInt32Value()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDurationInDays(val)
+        }
+        return nil
+    }
+    res["endUserNotificationSetting"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateEndUserNotificationSettingFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetEndUserNotificationSetting(val.(EndUserNotificationSettingable))
+        }
+        return nil
+    }
+    res["excludedAccountTarget"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccountTargetContentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetExcludedAccountTarget(val.(AccountTargetContentable))
+        }
+        return nil
+    }
+    res["includedAccountTarget"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAccountTargetContentFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetIncludedAccountTarget(val.(AccountTargetContentable))
+        }
+        return nil
+    }
     res["isAutomated"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetBoolValue()
         if err != nil {
@@ -172,6 +242,16 @@ func (m *Simulation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         if val != nil {
             m.SetIsAutomated(val)
+        }
+        return nil
+    }
+    res["landingPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateLandingPageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLandingPage(val.(LandingPageable))
         }
         return nil
     }
@@ -205,6 +285,36 @@ func (m *Simulation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["loginPage"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateLoginPageFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetLoginPage(val.(LoginPageable))
+        }
+        return nil
+    }
+    res["oAuthConsentAppDetail"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateOAuthConsentAppDetailFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetOAuthConsentAppDetail(val.(OAuthConsentAppDetailable))
+        }
+        return nil
+    }
+    res["payload"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreatePayloadFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetPayload(val.(Payloadable))
+        }
+        return nil
+    }
     res["payloadDeliveryPlatform"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetEnumValue(ParsePayloadDeliveryPlatform)
         if err != nil {
@@ -235,11 +345,29 @@ func (m *Simulation) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
+    res["trainingSetting"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateTrainingSettingFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetTrainingSetting(val.(TrainingSettingable))
+        }
+        return nil
+    }
     return res
+}
+// GetIncludedAccountTarget gets the includedAccountTarget property value. The includedAccountTarget property
+func (m *Simulation) GetIncludedAccountTarget()(AccountTargetContentable) {
+    return m.includedAccountTarget
 }
 // GetIsAutomated gets the isAutomated property value. Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
 func (m *Simulation) GetIsAutomated()(*bool) {
     return m.isAutomated
+}
+// GetLandingPage gets the landingPage property value. The landingPage property
+func (m *Simulation) GetLandingPage()(LandingPageable) {
+    return m.landingPage
 }
 // GetLastModifiedBy gets the lastModifiedBy property value. Identity of the user who most recently modified the attack simulation and training campaign.
 func (m *Simulation) GetLastModifiedBy()(EmailIdentityable) {
@@ -253,6 +381,18 @@ func (m *Simulation) GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a
 func (m *Simulation) GetLaunchDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.launchDateTime
 }
+// GetLoginPage gets the loginPage property value. The loginPage property
+func (m *Simulation) GetLoginPage()(LoginPageable) {
+    return m.loginPage
+}
+// GetOAuthConsentAppDetail gets the oAuthConsentAppDetail property value. The oAuthConsentAppDetail property
+func (m *Simulation) GetOAuthConsentAppDetail()(OAuthConsentAppDetailable) {
+    return m.oAuthConsentAppDetail
+}
+// GetPayload gets the payload property value. The payload property
+func (m *Simulation) GetPayload()(Payloadable) {
+    return m.payload
+}
 // GetPayloadDeliveryPlatform gets the payloadDeliveryPlatform property value. Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
 func (m *Simulation) GetPayloadDeliveryPlatform()(*PayloadDeliveryPlatform) {
     return m.payloadDeliveryPlatform
@@ -264,6 +404,10 @@ func (m *Simulation) GetReport()(SimulationReportable) {
 // GetStatus gets the status property value. Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.
 func (m *Simulation) GetStatus()(*SimulationStatus) {
     return m.status
+}
+// GetTrainingSetting gets the trainingSetting property value. The trainingSetting property
+func (m *Simulation) GetTrainingSetting()(TrainingSettingable) {
+    return m.trainingSetting
 }
 // Serialize serializes information the current object
 func (m *Simulation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
@@ -322,7 +466,37 @@ func (m *Simulation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
+        err = writer.WriteInt32Value("durationInDays", m.GetDurationInDays())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("endUserNotificationSetting", m.GetEndUserNotificationSetting())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("excludedAccountTarget", m.GetExcludedAccountTarget())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("includedAccountTarget", m.GetIncludedAccountTarget())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err = writer.WriteBoolValue("isAutomated", m.GetIsAutomated())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("landingPage", m.GetLandingPage())
         if err != nil {
             return err
         }
@@ -345,6 +519,24 @@ func (m *Simulation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
             return err
         }
     }
+    {
+        err = writer.WriteObjectValue("loginPage", m.GetLoginPage())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("oAuthConsentAppDetail", m.GetOAuthConsentAppDetail())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("payload", m.GetPayload())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetPayloadDeliveryPlatform() != nil {
         cast := (*m.GetPayloadDeliveryPlatform()).String()
         err = writer.WriteStringValue("payloadDeliveryPlatform", &cast)
@@ -361,6 +553,12 @@ func (m *Simulation) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     if m.GetStatus() != nil {
         cast := (*m.GetStatus()).String()
         err = writer.WriteStringValue("status", &cast)
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("trainingSetting", m.GetTrainingSetting())
         if err != nil {
             return err
         }
@@ -399,9 +597,29 @@ func (m *Simulation) SetDescription(value *string)() {
 func (m *Simulation) SetDisplayName(value *string)() {
     m.displayName = value
 }
+// SetDurationInDays sets the durationInDays property value. The durationInDays property
+func (m *Simulation) SetDurationInDays(value *int32)() {
+    m.durationInDays = value
+}
+// SetEndUserNotificationSetting sets the endUserNotificationSetting property value. The endUserNotificationSetting property
+func (m *Simulation) SetEndUserNotificationSetting(value EndUserNotificationSettingable)() {
+    m.endUserNotificationSetting = value
+}
+// SetExcludedAccountTarget sets the excludedAccountTarget property value. The excludedAccountTarget property
+func (m *Simulation) SetExcludedAccountTarget(value AccountTargetContentable)() {
+    m.excludedAccountTarget = value
+}
+// SetIncludedAccountTarget sets the includedAccountTarget property value. The includedAccountTarget property
+func (m *Simulation) SetIncludedAccountTarget(value AccountTargetContentable)() {
+    m.includedAccountTarget = value
+}
 // SetIsAutomated sets the isAutomated property value. Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.
 func (m *Simulation) SetIsAutomated(value *bool)() {
     m.isAutomated = value
+}
+// SetLandingPage sets the landingPage property value. The landingPage property
+func (m *Simulation) SetLandingPage(value LandingPageable)() {
+    m.landingPage = value
 }
 // SetLastModifiedBy sets the lastModifiedBy property value. Identity of the user who most recently modified the attack simulation and training campaign.
 func (m *Simulation) SetLastModifiedBy(value EmailIdentityable)() {
@@ -415,6 +633,18 @@ func (m *Simulation) SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3a
 func (m *Simulation) SetLaunchDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.launchDateTime = value
 }
+// SetLoginPage sets the loginPage property value. The loginPage property
+func (m *Simulation) SetLoginPage(value LoginPageable)() {
+    m.loginPage = value
+}
+// SetOAuthConsentAppDetail sets the oAuthConsentAppDetail property value. The oAuthConsentAppDetail property
+func (m *Simulation) SetOAuthConsentAppDetail(value OAuthConsentAppDetailable)() {
+    m.oAuthConsentAppDetail = value
+}
+// SetPayload sets the payload property value. The payload property
+func (m *Simulation) SetPayload(value Payloadable)() {
+    m.payload = value
+}
 // SetPayloadDeliveryPlatform sets the payloadDeliveryPlatform property value. Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.
 func (m *Simulation) SetPayloadDeliveryPlatform(value *PayloadDeliveryPlatform)() {
     m.payloadDeliveryPlatform = value
@@ -426,6 +656,10 @@ func (m *Simulation) SetReport(value SimulationReportable)() {
 // SetStatus sets the status property value. Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.
 func (m *Simulation) SetStatus(value *SimulationStatus)() {
     m.status = value
+}
+// SetTrainingSetting sets the trainingSetting property value. The trainingSetting property
+func (m *Simulation) SetTrainingSetting(value TrainingSettingable)() {
+    m.trainingSetting = value
 }
 // Simulationable 
 type Simulationable interface {
@@ -439,13 +673,22 @@ type Simulationable interface {
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetDescription()(*string)
     GetDisplayName()(*string)
+    GetDurationInDays()(*int32)
+    GetEndUserNotificationSetting()(EndUserNotificationSettingable)
+    GetExcludedAccountTarget()(AccountTargetContentable)
+    GetIncludedAccountTarget()(AccountTargetContentable)
     GetIsAutomated()(*bool)
+    GetLandingPage()(LandingPageable)
     GetLastModifiedBy()(EmailIdentityable)
     GetLastModifiedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetLaunchDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetLoginPage()(LoginPageable)
+    GetOAuthConsentAppDetail()(OAuthConsentAppDetailable)
+    GetPayload()(Payloadable)
     GetPayloadDeliveryPlatform()(*PayloadDeliveryPlatform)
     GetReport()(SimulationReportable)
     GetStatus()(*SimulationStatus)
+    GetTrainingSetting()(TrainingSettingable)
     SetAttackTechnique(value *SimulationAttackTechnique)()
     SetAttackType(value *SimulationAttackType)()
     SetAutomationId(value *string)()
@@ -454,11 +697,20 @@ type Simulationable interface {
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetDescription(value *string)()
     SetDisplayName(value *string)()
+    SetDurationInDays(value *int32)()
+    SetEndUserNotificationSetting(value EndUserNotificationSettingable)()
+    SetExcludedAccountTarget(value AccountTargetContentable)()
+    SetIncludedAccountTarget(value AccountTargetContentable)()
     SetIsAutomated(value *bool)()
+    SetLandingPage(value LandingPageable)()
     SetLastModifiedBy(value EmailIdentityable)()
     SetLastModifiedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetLaunchDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetLoginPage(value LoginPageable)()
+    SetOAuthConsentAppDetail(value OAuthConsentAppDetailable)()
+    SetPayload(value Payloadable)()
     SetPayloadDeliveryPlatform(value *PayloadDeliveryPlatform)()
     SetReport(value SimulationReportable)()
     SetStatus(value *SimulationStatus)()
+    SetTrainingSetting(value TrainingSettingable)()
 }

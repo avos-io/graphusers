@@ -14,7 +14,7 @@ type CrossCloudAzureActiveDirectoryTenant struct {
     // The ID of the Azure Active Directory tenant. Read only.
     tenantId *string
 }
-// NewCrossCloudAzureActiveDirectoryTenant instantiates a new CrossCloudAzureActiveDirectoryTenant and sets the default values.
+// NewCrossCloudAzureActiveDirectoryTenant instantiates a new crossCloudAzureActiveDirectoryTenant and sets the default values.
 func NewCrossCloudAzureActiveDirectoryTenant()(*CrossCloudAzureActiveDirectoryTenant) {
     m := &CrossCloudAzureActiveDirectoryTenant{
         IdentitySource: *NewIdentitySource(),

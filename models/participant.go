@@ -19,6 +19,8 @@ type Participant struct {
     metadata *string
     // Information about whether the participant has recording capability.
     recordingInfo RecordingInfoable
+    // Indicates the reason or reasons media content from this participant is restricted.
+    restrictedExperience OnlineMeetingRestrictedable
 }
 // NewParticipant instantiates a new participant and sets the default values.
 func NewParticipant()(*Participant) {
@@ -72,7 +74,9 @@ func (m *Participant) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]MediaStreamable, len(val))
             for i, v := range val {
-                res[i] = v.(MediaStreamable)
+                if v != nil {
+                    res[i] = v.(MediaStreamable)
+                }
             }
             m.SetMediaStreams(res)
         }
@@ -95,6 +99,16 @@ func (m *Participant) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         if val != nil {
             m.SetRecordingInfo(val.(RecordingInfoable))
+        }
+        return nil
+    }
+    res["restrictedExperience"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateOnlineMeetingRestrictedFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetRestrictedExperience(val.(OnlineMeetingRestrictedable))
         }
         return nil
     }
@@ -124,6 +138,10 @@ func (m *Participant) GetMetadata()(*string) {
 func (m *Participant) GetRecordingInfo()(RecordingInfoable) {
     return m.recordingInfo
 }
+// GetRestrictedExperience gets the restrictedExperience property value. Indicates the reason or reasons media content from this participant is restricted.
+func (m *Participant) GetRestrictedExperience()(OnlineMeetingRestrictedable) {
+    return m.restrictedExperience
+}
 // Serialize serializes information the current object
 func (m *Participant) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     err := m.Entity.Serialize(writer)
@@ -151,7 +169,9 @@ func (m *Participant) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     if m.GetMediaStreams() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetMediaStreams()))
         for i, v := range m.GetMediaStreams() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("mediaStreams", cast)
         if err != nil {
@@ -166,6 +186,12 @@ func (m *Participant) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     {
         err = writer.WriteObjectValue("recordingInfo", m.GetRecordingInfo())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err = writer.WriteObjectValue("restrictedExperience", m.GetRestrictedExperience())
         if err != nil {
             return err
         }
@@ -196,6 +222,10 @@ func (m *Participant) SetMetadata(value *string)() {
 func (m *Participant) SetRecordingInfo(value RecordingInfoable)() {
     m.recordingInfo = value
 }
+// SetRestrictedExperience sets the restrictedExperience property value. Indicates the reason or reasons media content from this participant is restricted.
+func (m *Participant) SetRestrictedExperience(value OnlineMeetingRestrictedable)() {
+    m.restrictedExperience = value
+}
 // Participantable 
 type Participantable interface {
     Entityable
@@ -206,10 +236,12 @@ type Participantable interface {
     GetMediaStreams()([]MediaStreamable)
     GetMetadata()(*string)
     GetRecordingInfo()(RecordingInfoable)
+    GetRestrictedExperience()(OnlineMeetingRestrictedable)
     SetInfo(value ParticipantInfoable)()
     SetIsInLobby(value *bool)()
     SetIsMuted(value *bool)()
     SetMediaStreams(value []MediaStreamable)()
     SetMetadata(value *string)()
     SetRecordingInfo(value RecordingInfoable)()
+    SetRestrictedExperience(value OnlineMeetingRestrictedable)()
 }

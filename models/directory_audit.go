@@ -8,19 +8,19 @@ import (
 // DirectoryAudit 
 type DirectoryAudit struct {
     Entity
-    // Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+    // Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ge, le) and $orderby.
     activityDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For full list, see Azure AD activity list.
+    // Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For a list of activities logged, refer to Azure AD audit log categories and activities. Supports $filter (eq, startswith).
     activityDisplayName *string
     // Indicates additional details on the activity.
     additionalDetails []KeyValueable
-    // Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement.
+    // Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement. For a list of categories for activities logged, refer to Azure AD audit log categories and activities.
     category *string
-    // Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services.
+    // Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services. Supports $filter (eq).
     correlationId *string
     // The initiatedBy property
     initiatedBy AuditActivityInitiatorable
-    // Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management.
+    // Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management. Supports $filter (eq).
     loggedByService *string
     // Indicates the type of operation that was performed. The possible values include but are not limited to the following: Add, Assign, Update, Unassign, and Delete.
     operationType *string
@@ -28,7 +28,7 @@ type DirectoryAudit struct {
     result *OperationResult
     // Indicates the reason for failure if the result is failure or timeout.
     resultReason *string
-    // Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other.
+    // Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other. Supports $filter (eq) for id and displayName; and $filter (startswith) for displayName.
     targetResources []TargetResourceable
 }
 // NewDirectoryAudit instantiates a new directoryAudit and sets the default values.
@@ -42,11 +42,11 @@ func NewDirectoryAudit()(*DirectoryAudit) {
 func CreateDirectoryAuditFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewDirectoryAudit(), nil
 }
-// GetActivityDateTime gets the activityDateTime property value. Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+// GetActivityDateTime gets the activityDateTime property value. Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ge, le) and $orderby.
 func (m *DirectoryAudit) GetActivityDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.activityDateTime
 }
-// GetActivityDisplayName gets the activityDisplayName property value. Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For full list, see Azure AD activity list.
+// GetActivityDisplayName gets the activityDisplayName property value. Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For a list of activities logged, refer to Azure AD audit log categories and activities. Supports $filter (eq, startswith).
 func (m *DirectoryAudit) GetActivityDisplayName()(*string) {
     return m.activityDisplayName
 }
@@ -54,11 +54,11 @@ func (m *DirectoryAudit) GetActivityDisplayName()(*string) {
 func (m *DirectoryAudit) GetAdditionalDetails()([]KeyValueable) {
     return m.additionalDetails
 }
-// GetCategory gets the category property value. Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement.
+// GetCategory gets the category property value. Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement. For a list of categories for activities logged, refer to Azure AD audit log categories and activities.
 func (m *DirectoryAudit) GetCategory()(*string) {
     return m.category
 }
-// GetCorrelationId gets the correlationId property value. Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services.
+// GetCorrelationId gets the correlationId property value. Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services. Supports $filter (eq).
 func (m *DirectoryAudit) GetCorrelationId()(*string) {
     return m.correlationId
 }
@@ -93,7 +93,9 @@ func (m *DirectoryAudit) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]KeyValueable, len(val))
             for i, v := range val {
-                res[i] = v.(KeyValueable)
+                if v != nil {
+                    res[i] = v.(KeyValueable)
+                }
             }
             m.SetAdditionalDetails(res)
         }
@@ -177,7 +179,9 @@ func (m *DirectoryAudit) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]TargetResourceable, len(val))
             for i, v := range val {
-                res[i] = v.(TargetResourceable)
+                if v != nil {
+                    res[i] = v.(TargetResourceable)
+                }
             }
             m.SetTargetResources(res)
         }
@@ -189,7 +193,7 @@ func (m *DirectoryAudit) GetFieldDeserializers()(map[string]func(i878a80d2330e89
 func (m *DirectoryAudit) GetInitiatedBy()(AuditActivityInitiatorable) {
     return m.initiatedBy
 }
-// GetLoggedByService gets the loggedByService property value. Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management.
+// GetLoggedByService gets the loggedByService property value. Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management. Supports $filter (eq).
 func (m *DirectoryAudit) GetLoggedByService()(*string) {
     return m.loggedByService
 }
@@ -205,7 +209,7 @@ func (m *DirectoryAudit) GetResult()(*OperationResult) {
 func (m *DirectoryAudit) GetResultReason()(*string) {
     return m.resultReason
 }
-// GetTargetResources gets the targetResources property value. Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other.
+// GetTargetResources gets the targetResources property value. Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other. Supports $filter (eq) for id and displayName; and $filter (startswith) for displayName.
 func (m *DirectoryAudit) GetTargetResources()([]TargetResourceable) {
     return m.targetResources
 }
@@ -230,7 +234,9 @@ func (m *DirectoryAudit) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetAdditionalDetails() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAdditionalDetails()))
         for i, v := range m.GetAdditionalDetails() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("additionalDetails", cast)
         if err != nil {
@@ -283,7 +289,9 @@ func (m *DirectoryAudit) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetTargetResources() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTargetResources()))
         for i, v := range m.GetTargetResources() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("targetResources", cast)
         if err != nil {
@@ -292,11 +300,11 @@ func (m *DirectoryAudit) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetActivityDateTime sets the activityDateTime property value. Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+// SetActivityDateTime sets the activityDateTime property value. Indicates the date and time the activity was performed. The Timestamp type is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports $filter (eq, ge, le) and $orderby.
 func (m *DirectoryAudit) SetActivityDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.activityDateTime = value
 }
-// SetActivityDisplayName sets the activityDisplayName property value. Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For full list, see Azure AD activity list.
+// SetActivityDisplayName sets the activityDisplayName property value. Indicates the activity name or the operation name (examples: 'Create User' and 'Add member to group'). For a list of activities logged, refer to Azure AD audit log categories and activities. Supports $filter (eq, startswith).
 func (m *DirectoryAudit) SetActivityDisplayName(value *string)() {
     m.activityDisplayName = value
 }
@@ -304,11 +312,11 @@ func (m *DirectoryAudit) SetActivityDisplayName(value *string)() {
 func (m *DirectoryAudit) SetAdditionalDetails(value []KeyValueable)() {
     m.additionalDetails = value
 }
-// SetCategory sets the category property value. Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement.
+// SetCategory sets the category property value. Indicates which resource category that's targeted by the activity. For example: UserManagement, GroupManagement, ApplicationManagement, RoleManagement. For a list of categories for activities logged, refer to Azure AD audit log categories and activities.
 func (m *DirectoryAudit) SetCategory(value *string)() {
     m.category = value
 }
-// SetCorrelationId sets the correlationId property value. Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services.
+// SetCorrelationId sets the correlationId property value. Indicates a unique ID that helps correlate activities that span across various services. Can be used to trace logs across services. Supports $filter (eq).
 func (m *DirectoryAudit) SetCorrelationId(value *string)() {
     m.correlationId = value
 }
@@ -316,7 +324,7 @@ func (m *DirectoryAudit) SetCorrelationId(value *string)() {
 func (m *DirectoryAudit) SetInitiatedBy(value AuditActivityInitiatorable)() {
     m.initiatedBy = value
 }
-// SetLoggedByService sets the loggedByService property value. Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management.
+// SetLoggedByService sets the loggedByService property value. Indicates information on which service initiated the activity (For example: Self-service Password Management, Core Directory, B2C, Invited Users, Microsoft Identity Manager, Privileged Identity Management. Supports $filter (eq).
 func (m *DirectoryAudit) SetLoggedByService(value *string)() {
     m.loggedByService = value
 }
@@ -332,7 +340,7 @@ func (m *DirectoryAudit) SetResult(value *OperationResult)() {
 func (m *DirectoryAudit) SetResultReason(value *string)() {
     m.resultReason = value
 }
-// SetTargetResources sets the targetResources property value. Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other.
+// SetTargetResources sets the targetResources property value. Indicates information on which resource was changed due to the activity. Target Resource Type can be User, Device, Directory, App, Role, Group, Policy or Other. Supports $filter (eq) for id and displayName; and $filter (startswith) for displayName.
 func (m *DirectoryAudit) SetTargetResources(value []TargetResourceable)() {
     m.targetResources = value
 }

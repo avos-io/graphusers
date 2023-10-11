@@ -34,7 +34,7 @@ type Room struct {
     // Specifies the name of the video device in the room.
     videoDeviceName *string
 }
-// NewRoom instantiates a new Room and sets the default values.
+// NewRoom instantiates a new room and sets the default values.
 func NewRoom()(*Room) {
     m := &Room{
         Place: *NewPlace(),
@@ -192,7 +192,9 @@ func (m *Room) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTags(res)
         }

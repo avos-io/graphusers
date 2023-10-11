@@ -12,7 +12,7 @@ type AccessReviewStage struct {
     decisions []AccessReviewInstanceDecisionItemable
     // The date and time in ISO 8601 format and UTC time when the review stage is scheduled to end. This property is the cumulative total of the durationInDays for all stages. Read-only.
     endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers will be notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist.
+    // This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a user's manager doesn't exist.
     fallbackReviewers []AccessReviewReviewerScopeable
     // This collection of access review scopes is used to define who the reviewers are. For examples of options for assigning reviewers, see Assign reviewers to your access review definition using the Microsoft Graph API.
     reviewers []AccessReviewReviewerScopeable
@@ -40,7 +40,7 @@ func (m *AccessReviewStage) GetDecisions()([]AccessReviewInstanceDecisionItemabl
 func (m *AccessReviewStage) GetEndDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.endDateTime
 }
-// GetFallbackReviewers gets the fallbackReviewers property value. This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers will be notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist.
+// GetFallbackReviewers gets the fallbackReviewers property value. This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a user's manager doesn't exist.
 func (m *AccessReviewStage) GetFallbackReviewers()([]AccessReviewReviewerScopeable) {
     return m.fallbackReviewers
 }
@@ -55,7 +55,9 @@ func (m *AccessReviewStage) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]AccessReviewInstanceDecisionItemable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewInstanceDecisionItemable)
+                if v != nil {
+                    res[i] = v.(AccessReviewInstanceDecisionItemable)
+                }
             }
             m.SetDecisions(res)
         }
@@ -79,7 +81,9 @@ func (m *AccessReviewStage) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]AccessReviewReviewerScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewReviewerScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewReviewerScopeable)
+                }
             }
             m.SetFallbackReviewers(res)
         }
@@ -93,7 +97,9 @@ func (m *AccessReviewStage) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]AccessReviewReviewerScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewReviewerScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewReviewerScopeable)
+                }
             }
             m.SetReviewers(res)
         }
@@ -142,7 +148,9 @@ func (m *AccessReviewStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     if m.GetDecisions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDecisions()))
         for i, v := range m.GetDecisions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("decisions", cast)
         if err != nil {
@@ -158,7 +166,9 @@ func (m *AccessReviewStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     if m.GetFallbackReviewers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetFallbackReviewers()))
         for i, v := range m.GetFallbackReviewers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("fallbackReviewers", cast)
         if err != nil {
@@ -168,7 +178,9 @@ func (m *AccessReviewStage) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     if m.GetReviewers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReviewers()))
         for i, v := range m.GetReviewers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("reviewers", cast)
         if err != nil {
@@ -197,7 +209,7 @@ func (m *AccessReviewStage) SetDecisions(value []AccessReviewInstanceDecisionIte
 func (m *AccessReviewStage) SetEndDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.endDateTime = value
 }
-// SetFallbackReviewers sets the fallbackReviewers property value. This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers will be notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner does not exist, or manager is specified as reviewer but a user's manager does not exist.
+// SetFallbackReviewers sets the fallbackReviewers property value. This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are notified to take action if no users are found from the list of reviewers specified. This could occur when either the group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a user's manager doesn't exist.
 func (m *AccessReviewStage) SetFallbackReviewers(value []AccessReviewReviewerScopeable)() {
     m.fallbackReviewers = value
 }

@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// IosLobAppAssignmentSettings 
+// IosLobAppAssignmentSettings contains properties used to assign an iOS LOB mobile app to a group.
 type IosLobAppAssignmentSettings struct {
     MobileAppAssignmentSettings
     // When TRUE, indicates that the app can be uninstalled by the user. When FALSE, indicates that the app cannot be uninstalled by the user. By default, this property is set to null which internally is treated as TRUE.
@@ -14,7 +14,7 @@ type IosLobAppAssignmentSettings struct {
     // This is the unique identifier (Id) of the VPN Configuration to apply to the app.
     vpnConfigurationId *string
 }
-// NewIosLobAppAssignmentSettings instantiates a new IosLobAppAssignmentSettings and sets the default values.
+// NewIosLobAppAssignmentSettings instantiates a new iosLobAppAssignmentSettings and sets the default values.
 func NewIosLobAppAssignmentSettings()(*IosLobAppAssignmentSettings) {
     m := &IosLobAppAssignmentSettings{
         MobileAppAssignmentSettings: *NewMobileAppAssignmentSettings(),

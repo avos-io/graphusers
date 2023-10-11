@@ -10,7 +10,7 @@ type EducationAssignmentPointsGrade struct {
     // Number of points a teacher is giving this submission object.
     points *float32
 }
-// NewEducationAssignmentPointsGrade instantiates a new EducationAssignmentPointsGrade and sets the default values.
+// NewEducationAssignmentPointsGrade instantiates a new educationAssignmentPointsGrade and sets the default values.
 func NewEducationAssignmentPointsGrade()(*EducationAssignmentPointsGrade) {
     m := &EducationAssignmentPointsGrade{
         EducationAssignmentGrade: *NewEducationAssignmentGrade(),

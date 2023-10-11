@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// Windows10TeamGeneralConfiguration 
+// Windows10TeamGeneralConfiguration this topic provides descriptions of the declared methods, properties and relationships exposed by the windows10TeamGeneralConfiguration resource.
 type Windows10TeamGeneralConfiguration struct {
     DeviceConfiguration
     // Indicates whether or not to Block Azure Operational Insights.
@@ -48,7 +48,7 @@ type Windows10TeamGeneralConfiguration struct {
     // Possible values for welcome screen meeting information.
     welcomeScreenMeetingInformation *WelcomeScreenMeetingInformation
 }
-// NewWindows10TeamGeneralConfiguration instantiates a new Windows10TeamGeneralConfiguration and sets the default values.
+// NewWindows10TeamGeneralConfiguration instantiates a new windows10TeamGeneralConfiguration and sets the default values.
 func NewWindows10TeamGeneralConfiguration()(*Windows10TeamGeneralConfiguration) {
     m := &Windows10TeamGeneralConfiguration{
         DeviceConfiguration: *NewDeviceConfiguration(),

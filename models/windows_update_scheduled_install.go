@@ -12,7 +12,7 @@ type WindowsUpdateScheduledInstall struct {
     // Scheduled Install Time during day
     scheduledInstallTime *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly
 }
-// NewWindowsUpdateScheduledInstall instantiates a new WindowsUpdateScheduledInstall and sets the default values.
+// NewWindowsUpdateScheduledInstall instantiates a new windowsUpdateScheduledInstall and sets the default values.
 func NewWindowsUpdateScheduledInstall()(*WindowsUpdateScheduledInstall) {
     m := &WindowsUpdateScheduledInstall{
         WindowsUpdateInstallScheduleType: *NewWindowsUpdateInstallScheduleType(),

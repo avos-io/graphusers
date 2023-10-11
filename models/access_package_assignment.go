@@ -12,6 +12,8 @@ type AccessPackageAssignment struct {
     accessPackage AccessPackageable
     // Read-only. Supports $filter (eq) on the id property and $expand query parameters.
     assignmentPolicy AccessPackageAssignmentPolicyable
+    // Information about all the custom extension calls that were made during the access package assignment workflow.
+    customExtensionCalloutInstances []CustomExtensionCalloutInstanceable
     // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
     expiredDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // When the access assignment is to be in place. Read-only.
@@ -42,6 +44,10 @@ func (m *AccessPackageAssignment) GetAccessPackage()(AccessPackageable) {
 func (m *AccessPackageAssignment) GetAssignmentPolicy()(AccessPackageAssignmentPolicyable) {
     return m.assignmentPolicy
 }
+// GetCustomExtensionCalloutInstances gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+func (m *AccessPackageAssignment) GetCustomExtensionCalloutInstances()([]CustomExtensionCalloutInstanceable) {
+    return m.customExtensionCalloutInstances
+}
 // GetExpiredDateTime gets the expiredDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *AccessPackageAssignment) GetExpiredDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.expiredDateTime
@@ -66,6 +72,22 @@ func (m *AccessPackageAssignment) GetFieldDeserializers()(map[string]func(i878a8
         }
         if val != nil {
             m.SetAssignmentPolicy(val.(AccessPackageAssignmentPolicyable))
+        }
+        return nil
+    }
+    res["customExtensionCalloutInstances"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateCustomExtensionCalloutInstanceFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]CustomExtensionCalloutInstanceable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(CustomExtensionCalloutInstanceable)
+                }
+            }
+            m.SetCustomExtensionCalloutInstances(res)
         }
         return nil
     }
@@ -155,6 +177,18 @@ func (m *AccessPackageAssignment) Serialize(writer i878a80d2330e89d26896388a3f48
             return err
         }
     }
+    if m.GetCustomExtensionCalloutInstances() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCustomExtensionCalloutInstances()))
+        for i, v := range m.GetCustomExtensionCalloutInstances() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("customExtensionCalloutInstances", cast)
+        if err != nil {
+            return err
+        }
+    }
     {
         err = writer.WriteTimeValue("expiredDateTime", m.GetExpiredDateTime())
         if err != nil {
@@ -196,6 +230,10 @@ func (m *AccessPackageAssignment) SetAccessPackage(value AccessPackageable)() {
 func (m *AccessPackageAssignment) SetAssignmentPolicy(value AccessPackageAssignmentPolicyable)() {
     m.assignmentPolicy = value
 }
+// SetCustomExtensionCalloutInstances sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+func (m *AccessPackageAssignment) SetCustomExtensionCalloutInstances(value []CustomExtensionCalloutInstanceable)() {
+    m.customExtensionCalloutInstances = value
+}
 // SetExpiredDateTime sets the expiredDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
 func (m *AccessPackageAssignment) SetExpiredDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.expiredDateTime = value
@@ -222,6 +260,7 @@ type AccessPackageAssignmentable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAccessPackage()(AccessPackageable)
     GetAssignmentPolicy()(AccessPackageAssignmentPolicyable)
+    GetCustomExtensionCalloutInstances()([]CustomExtensionCalloutInstanceable)
     GetExpiredDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetSchedule()(EntitlementManagementScheduleable)
     GetState()(*AccessPackageAssignmentState)
@@ -229,6 +268,7 @@ type AccessPackageAssignmentable interface {
     GetTarget()(AccessPackageSubjectable)
     SetAccessPackage(value AccessPackageable)()
     SetAssignmentPolicy(value AccessPackageAssignmentPolicyable)()
+    SetCustomExtensionCalloutInstances(value []CustomExtensionCalloutInstanceable)()
     SetExpiredDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetSchedule(value EntitlementManagementScheduleable)()
     SetState(value *AccessPackageAssignmentState)()

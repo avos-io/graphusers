@@ -60,7 +60,7 @@ func NewPrintJobConfiguration()(*PrintJobConfiguration) {
 func CreatePrintJobConfigurationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewPrintJobConfiguration(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PrintJobConfiguration) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -159,7 +159,9 @@ func (m *PrintJobConfiguration) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]PrintFinishing, len(val))
             for i, v := range val {
-                res[i] = *(v.(*PrintFinishing))
+                if v != nil {
+                    res[i] = *(v.(*PrintFinishing))
+                }
             }
             m.SetFinishings(res)
         }
@@ -263,7 +265,9 @@ func (m *PrintJobConfiguration) GetFieldDeserializers()(map[string]func(i878a80d
         if val != nil {
             res := make([]IntegerRangeable, len(val))
             for i, v := range val {
-                res[i] = v.(IntegerRangeable)
+                if v != nil {
+                    res[i] = v.(IntegerRangeable)
+                }
             }
             m.SetPageRanges(res)
         }
@@ -463,7 +467,9 @@ func (m *PrintJobConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487e
     if m.GetPageRanges() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPageRanges()))
         for i, v := range m.GetPageRanges() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("pageRanges", cast)
         if err != nil {
@@ -498,7 +504,7 @@ func (m *PrintJobConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487e
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *PrintJobConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -38,7 +38,7 @@ type UnifiedRoleEligibilityScheduleRequest struct {
     // Ticket details linked to the role eligibility request including details of the ticket number and ticket system. Optional.
     ticketInfo TicketInfoable
 }
-// NewUnifiedRoleEligibilityScheduleRequest instantiates a new UnifiedRoleEligibilityScheduleRequest and sets the default values.
+// NewUnifiedRoleEligibilityScheduleRequest instantiates a new unifiedRoleEligibilityScheduleRequest and sets the default values.
 func NewUnifiedRoleEligibilityScheduleRequest()(*UnifiedRoleEligibilityScheduleRequest) {
     m := &UnifiedRoleEligibilityScheduleRequest{
         Request: *NewRequest(),

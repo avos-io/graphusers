@@ -10,7 +10,7 @@ type PrintService struct {
     // Endpoints that can be used to access the service. Read-only. Nullable.
     endpoints []PrintServiceEndpointable
 }
-// NewPrintService instantiates a new PrintService and sets the default values.
+// NewPrintService instantiates a new printService and sets the default values.
 func NewPrintService()(*PrintService) {
     m := &PrintService{
         Entity: *NewEntity(),
@@ -36,7 +36,9 @@ func (m *PrintService) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]PrintServiceEndpointable, len(val))
             for i, v := range val {
-                res[i] = v.(PrintServiceEndpointable)
+                if v != nil {
+                    res[i] = v.(PrintServiceEndpointable)
+                }
             }
             m.SetEndpoints(res)
         }
@@ -53,7 +55,9 @@ func (m *PrintService) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetEndpoints() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetEndpoints()))
         for i, v := range m.GetEndpoints() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("endpoints", cast)
         if err != nil {

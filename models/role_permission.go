@@ -24,7 +24,7 @@ func NewRolePermission()(*RolePermission) {
 func CreateRolePermissionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewRolePermission(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RolePermission) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -49,7 +49,9 @@ func (m *RolePermission) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]ResourceActionable, len(val))
             for i, v := range val {
-                res[i] = v.(ResourceActionable)
+                if v != nil {
+                    res[i] = v.(ResourceActionable)
+                }
             }
             m.SetResourceActions(res)
         }
@@ -76,7 +78,9 @@ func (m *RolePermission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetResourceActions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResourceActions()))
         for i, v := range m.GetResourceActions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("resourceActions", cast)
         if err != nil {
@@ -91,7 +95,7 @@ func (m *RolePermission) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RolePermission) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

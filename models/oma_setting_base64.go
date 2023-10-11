@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// OmaSettingBase64 
+// OmaSettingBase64 oMA Settings Base64 definition.
 type OmaSettingBase64 struct {
     OmaSetting
     // File name associated with the Value property (.cer
@@ -12,7 +12,7 @@ type OmaSettingBase64 struct {
     // Value. (Base64 encoded string)
     value *string
 }
-// NewOmaSettingBase64 instantiates a new OmaSettingBase64 and sets the default values.
+// NewOmaSettingBase64 instantiates a new omaSettingBase64 and sets the default values.
 func NewOmaSettingBase64()(*OmaSettingBase64) {
     m := &OmaSettingBase64{
         OmaSetting: *NewOmaSetting(),

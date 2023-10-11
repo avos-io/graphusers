@@ -26,7 +26,7 @@ func NewMimeContent()(*MimeContent) {
 func CreateMimeContentFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewMimeContent(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MimeContent) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -49,7 +49,7 @@ func (m *MimeContent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -69,8 +69,8 @@ func (m *MimeContent) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
 func (m *MimeContent) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. Indicates the content mime type.
-func (m *MimeContent) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Indicates the content mime type.
+func (m *MimeContent) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // GetValue gets the value property value. The byte array that contains the actual content.
@@ -86,7 +86,7 @@ func (m *MimeContent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -105,7 +105,7 @@ func (m *MimeContent) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MimeContent) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -113,8 +113,8 @@ func (m *MimeContent) SetAdditionalData(value map[string]any)() {
 func (m *MimeContent) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. Indicates the content mime type.
-func (m *MimeContent) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Indicates the content mime type.
+func (m *MimeContent) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SetValue sets the value property value. The byte array that contains the actual content.
@@ -126,9 +126,9 @@ type MimeContentable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetValue()([]byte)
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetValue(value []byte)()
 }

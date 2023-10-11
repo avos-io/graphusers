@@ -20,11 +20,13 @@ type MailClusterEvidence struct {
     // Uniform resource name (URN) of the automated investigation where the cluster was identified.
     urn *string
 }
-// NewMailClusterEvidence instantiates a new MailClusterEvidence and sets the default values.
+// NewMailClusterEvidence instantiates a new mailClusterEvidence and sets the default values.
 func NewMailClusterEvidence()(*MailClusterEvidence) {
     m := &MailClusterEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.mailClusterEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateMailClusterEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -84,7 +86,9 @@ func (m *MailClusterEvidence) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetNetworkMessageIds(res)
         }

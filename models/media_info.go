@@ -10,9 +10,9 @@ type MediaInfo struct {
     additionalData map[string]any
     // The OdataType property
     odataType *string
-    // Optional. Used to uniquely identity the resource. If passed in, the prompt uri will be cached against this resourceId as a key.
+    // Optional. Used to uniquely identity the resource. If passed in, the prompt uri is against this resourceId as a key.
     resourceId *string
-    // Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16KHz) sampling rate.
+    // Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16 KHz) sampling rate.
     uri *string
 }
 // NewMediaInfo instantiates a new mediaInfo and sets the default values.
@@ -26,7 +26,7 @@ func NewMediaInfo()(*MediaInfo) {
 func CreateMediaInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewMediaInfo(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MediaInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -69,11 +69,11 @@ func (m *MediaInfo) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
 func (m *MediaInfo) GetOdataType()(*string) {
     return m.odataType
 }
-// GetResourceId gets the resourceId property value. Optional. Used to uniquely identity the resource. If passed in, the prompt uri will be cached against this resourceId as a key.
+// GetResourceId gets the resourceId property value. Optional. Used to uniquely identity the resource. If passed in, the prompt uri is against this resourceId as a key.
 func (m *MediaInfo) GetResourceId()(*string) {
     return m.resourceId
 }
-// GetUri gets the uri property value. Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16KHz) sampling rate.
+// GetUri gets the uri property value. Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16 KHz) sampling rate.
 func (m *MediaInfo) GetUri()(*string) {
     return m.uri
 }
@@ -105,7 +105,7 @@ func (m *MediaInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *MediaInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -113,11 +113,11 @@ func (m *MediaInfo) SetAdditionalData(value map[string]any)() {
 func (m *MediaInfo) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetResourceId sets the resourceId property value. Optional. Used to uniquely identity the resource. If passed in, the prompt uri will be cached against this resourceId as a key.
+// SetResourceId sets the resourceId property value. Optional. Used to uniquely identity the resource. If passed in, the prompt uri is against this resourceId as a key.
 func (m *MediaInfo) SetResourceId(value *string)() {
     m.resourceId = value
 }
-// SetUri sets the uri property value. Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16KHz) sampling rate.
+// SetUri sets the uri property value. Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16 KHz) sampling rate.
 func (m *MediaInfo) SetUri(value *string)() {
     m.uri = value
 }

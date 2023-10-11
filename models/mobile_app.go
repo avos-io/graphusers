@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// MobileApp 
+// MobileApp an abstract class containing the base properties for Intune mobile apps. Note: Listing mobile apps with `$expand=assignments` has been deprecated. Instead get the list of apps without the `$expand` query on `assignments`. Then, perform the expansion on individual applications.
 type MobileApp struct {
     Entity
     // The list of group assignments for this mobile app.
@@ -39,7 +39,7 @@ type MobileApp struct {
     // Indicates the publishing state of an app.
     publishingState *MobileAppPublishingState
 }
-// NewMobileApp instantiates a new MobileApp and sets the default values.
+// NewMobileApp instantiates a new mobileApp and sets the default values.
 func NewMobileApp()(*MobileApp) {
     m := &MobileApp{
         Entity: *NewEntity(),
@@ -72,8 +72,12 @@ func CreateMobileAppFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
                         return NewIosStoreApp(), nil
                     case "#microsoft.graph.iosVppApp":
                         return NewIosVppApp(), nil
+                    case "#microsoft.graph.macOSDmgApp":
+                        return NewMacOSDmgApp(), nil
                     case "#microsoft.graph.macOSLobApp":
                         return NewMacOSLobApp(), nil
+                    case "#microsoft.graph.macOSMicrosoftDefenderApp":
+                        return NewMacOSMicrosoftDefenderApp(), nil
                     case "#microsoft.graph.macOSMicrosoftEdgeApp":
                         return NewMacOSMicrosoftEdgeApp(), nil
                     case "#microsoft.graph.macOSOfficeSuiteApp":
@@ -98,6 +102,8 @@ func CreateMobileAppFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f
                         return NewWebApp(), nil
                     case "#microsoft.graph.win32LobApp":
                         return NewWin32LobApp(), nil
+                    case "#microsoft.graph.windowsAppX":
+                        return NewWindowsAppX(), nil
                     case "#microsoft.graph.windowsMicrosoftEdgeApp":
                         return NewWindowsMicrosoftEdgeApp(), nil
                     case "#microsoft.graph.windowsMobileMSI":
@@ -147,7 +153,9 @@ func (m *MobileApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]MobileAppAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(MobileAppAssignmentable)
+                if v != nil {
+                    res[i] = v.(MobileAppAssignmentable)
+                }
             }
             m.SetAssignments(res)
         }
@@ -161,7 +169,9 @@ func (m *MobileApp) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2689
         if val != nil {
             res := make([]MobileAppCategoryable, len(val))
             for i, v := range val {
-                res[i] = v.(MobileAppCategoryable)
+                if v != nil {
+                    res[i] = v.(MobileAppCategoryable)
+                }
             }
             m.SetCategories(res)
         }
@@ -344,7 +354,9 @@ func (m *MobileApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignments()))
         for i, v := range m.GetAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignments", cast)
         if err != nil {
@@ -354,7 +366,9 @@ func (m *MobileApp) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c0
     if m.GetCategories() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCategories()))
         for i, v := range m.GetCategories() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("categories", cast)
         if err != nil {

@@ -10,7 +10,7 @@ type AccessPackageAnswerString struct {
     // The value stored on the requestor's user profile, if this answer is configured to be stored as a specific attribute.
     value *string
 }
-// NewAccessPackageAnswerString instantiates a new AccessPackageAnswerString and sets the default values.
+// NewAccessPackageAnswerString instantiates a new accessPackageAnswerString and sets the default values.
 func NewAccessPackageAnswerString()(*AccessPackageAnswerString) {
     m := &AccessPackageAnswerString{
         AccessPackageAnswer: *NewAccessPackageAnswer(),

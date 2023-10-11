@@ -16,7 +16,7 @@ type EducationTeamsAppResource struct {
     // URL for the app resource that can be opened in the browser.
     webUrl *string
 }
-// NewEducationTeamsAppResource instantiates a new EducationTeamsAppResource and sets the default values.
+// NewEducationTeamsAppResource instantiates a new educationTeamsAppResource and sets the default values.
 func NewEducationTeamsAppResource()(*EducationTeamsAppResource) {
     m := &EducationTeamsAppResource{
         EducationResource: *NewEducationResource(),

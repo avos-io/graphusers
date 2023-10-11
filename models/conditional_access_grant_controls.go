@@ -8,6 +8,8 @@ import (
 type ConditionalAccessGrantControls struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
+    // The authenticationStrength property
+    authenticationStrength AuthenticationStrengthPolicyable
     // List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.
     builtInControls []ConditionalAccessGrantControl
     // List of custom controls IDs required by the policy. For more information, see Custom controls.
@@ -30,9 +32,13 @@ func NewConditionalAccessGrantControls()(*ConditionalAccessGrantControls) {
 func CreateConditionalAccessGrantControlsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewConditionalAccessGrantControls(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessGrantControls) GetAdditionalData()(map[string]any) {
     return m.additionalData
+}
+// GetAuthenticationStrength gets the authenticationStrength property value. The authenticationStrength property
+func (m *ConditionalAccessGrantControls) GetAuthenticationStrength()(AuthenticationStrengthPolicyable) {
+    return m.authenticationStrength
 }
 // GetBuiltInControls gets the builtInControls property value. List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.
 func (m *ConditionalAccessGrantControls) GetBuiltInControls()([]ConditionalAccessGrantControl) {
@@ -45,6 +51,16 @@ func (m *ConditionalAccessGrantControls) GetCustomAuthenticationFactors()([]stri
 // GetFieldDeserializers the deserialization information for the current model
 func (m *ConditionalAccessGrantControls) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := make(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error))
+    res["authenticationStrength"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetObjectValue(CreateAuthenticationStrengthPolicyFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAuthenticationStrength(val.(AuthenticationStrengthPolicyable))
+        }
+        return nil
+    }
     res["builtInControls"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetCollectionOfEnumValues(ParseConditionalAccessGrantControl)
         if err != nil {
@@ -53,7 +69,9 @@ func (m *ConditionalAccessGrantControls) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]ConditionalAccessGrantControl, len(val))
             for i, v := range val {
-                res[i] = *(v.(*ConditionalAccessGrantControl))
+                if v != nil {
+                    res[i] = *(v.(*ConditionalAccessGrantControl))
+                }
             }
             m.SetBuiltInControls(res)
         }
@@ -67,7 +85,9 @@ func (m *ConditionalAccessGrantControls) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetCustomAuthenticationFactors(res)
         }
@@ -101,7 +121,9 @@ func (m *ConditionalAccessGrantControls) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTermsOfUse(res)
         }
@@ -123,6 +145,12 @@ func (m *ConditionalAccessGrantControls) GetTermsOfUse()([]string) {
 }
 // Serialize serializes information the current object
 func (m *ConditionalAccessGrantControls) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
+    {
+        err := writer.WriteObjectValue("authenticationStrength", m.GetAuthenticationStrength())
+        if err != nil {
+            return err
+        }
+    }
     if m.GetBuiltInControls() != nil {
         err := writer.WriteCollectionOfStringValues("builtInControls", SerializeConditionalAccessGrantControl(m.GetBuiltInControls()))
         if err != nil {
@@ -161,9 +189,13 @@ func (m *ConditionalAccessGrantControls) Serialize(writer i878a80d2330e89d268963
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessGrantControls) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
+}
+// SetAuthenticationStrength sets the authenticationStrength property value. The authenticationStrength property
+func (m *ConditionalAccessGrantControls) SetAuthenticationStrength(value AuthenticationStrengthPolicyable)() {
+    m.authenticationStrength = value
 }
 // SetBuiltInControls sets the builtInControls property value. List of values of built-in controls required by the policy. Possible values: block, mfa, compliantDevice, domainJoinedDevice, approvedApplication, compliantApplication, passwordChange, unknownFutureValue.
 func (m *ConditionalAccessGrantControls) SetBuiltInControls(value []ConditionalAccessGrantControl)() {
@@ -189,11 +221,13 @@ func (m *ConditionalAccessGrantControls) SetTermsOfUse(value []string)() {
 type ConditionalAccessGrantControlsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
+    GetAuthenticationStrength()(AuthenticationStrengthPolicyable)
     GetBuiltInControls()([]ConditionalAccessGrantControl)
     GetCustomAuthenticationFactors()([]string)
     GetOdataType()(*string)
     GetOperator()(*string)
     GetTermsOfUse()([]string)
+    SetAuthenticationStrength(value AuthenticationStrengthPolicyable)()
     SetBuiltInControls(value []ConditionalAccessGrantControl)()
     SetCustomAuthenticationFactors(value []string)()
     SetOdataType(value *string)()

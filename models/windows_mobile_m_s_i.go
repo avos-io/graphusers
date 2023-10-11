@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// WindowsMobileMSI 
+// WindowsMobileMSI contains properties and inherited properties for Windows Mobile MSI Line Of Business apps.
 type WindowsMobileMSI struct {
     MobileLobApp
     // The command line.
@@ -16,7 +16,7 @@ type WindowsMobileMSI struct {
     // The product version of Windows Mobile MSI Line of Business (LoB) app.
     productVersion *string
 }
-// NewWindowsMobileMSI instantiates a new WindowsMobileMSI and sets the default values.
+// NewWindowsMobileMSI instantiates a new windowsMobileMSI and sets the default values.
 func NewWindowsMobileMSI()(*WindowsMobileMSI) {
     m := &WindowsMobileMSI{
         MobileLobApp: *NewMobileLobApp(),

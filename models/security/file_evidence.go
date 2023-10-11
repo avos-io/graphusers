@@ -14,11 +14,13 @@ type FileEvidence struct {
     // A unique identifier assigned to a device by Microsoft Defender for Endpoint.
     mdeDeviceId *string
 }
-// NewFileEvidence instantiates a new FileEvidence and sets the default values.
+// NewFileEvidence instantiates a new fileEvidence and sets the default values.
 func NewFileEvidence()(*FileEvidence) {
     m := &FileEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.fileEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateFileEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

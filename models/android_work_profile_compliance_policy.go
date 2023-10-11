@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// AndroidWorkProfileCompliancePolicy 
+// AndroidWorkProfileCompliancePolicy this class contains compliance settings for Android Work Profile.
 type AndroidWorkProfileCompliancePolicy struct {
     DeviceCompliancePolicy
     // Require that devices have enabled device threat protection.
@@ -50,7 +50,7 @@ type AndroidWorkProfileCompliancePolicy struct {
     // Require encryption on Android devices.
     storageRequireEncryption *bool
 }
-// NewAndroidWorkProfileCompliancePolicy instantiates a new AndroidWorkProfileCompliancePolicy and sets the default values.
+// NewAndroidWorkProfileCompliancePolicy instantiates a new androidWorkProfileCompliancePolicy and sets the default values.
 func NewAndroidWorkProfileCompliancePolicy()(*AndroidWorkProfileCompliancePolicy) {
     m := &AndroidWorkProfileCompliancePolicy{
         DeviceCompliancePolicy: *NewDeviceCompliancePolicy(),

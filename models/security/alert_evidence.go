@@ -9,17 +9,19 @@ import (
 type AlertEvidence struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The time the evidence was created and added to the alert.
+    // The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // Detailed description of the entity role/s in an alert. Values are free-form.
+    detailedRoles []string
     // The OdataType property
     odataType *string
     // The remediationStatus property
     remediationStatus *EvidenceRemediationStatus
     // Details about the remediation status.
     remediationStatusDetails *string
-    // The role/s that an evidence entity represents in an alert, e.g., an IP address that is associated with an attacker will have the evidence role 'Attacker'.
+    // The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
     roles []EvidenceRole
-    // Array of custom tags associated with an evidence instance, for example to denote a group of devices, high value assets, etc.
+    // Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
     tags []string
     // The verdict property
     verdict *EvidenceVerdict
@@ -45,16 +47,46 @@ func CreateAlertEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
             }
             if mappingValue != nil {
                 switch *mappingValue {
+                    case "#microsoft.graph.security.amazonResourceEvidence":
+                        return NewAmazonResourceEvidence(), nil
                     case "#microsoft.graph.security.analyzedMessageEvidence":
                         return NewAnalyzedMessageEvidence(), nil
+                    case "#microsoft.graph.security.azureResourceEvidence":
+                        return NewAzureResourceEvidence(), nil
+                    case "#microsoft.graph.security.blobContainerEvidence":
+                        return NewBlobContainerEvidence(), nil
+                    case "#microsoft.graph.security.blobEvidence":
+                        return NewBlobEvidence(), nil
                     case "#microsoft.graph.security.cloudApplicationEvidence":
                         return NewCloudApplicationEvidence(), nil
+                    case "#microsoft.graph.security.containerEvidence":
+                        return NewContainerEvidence(), nil
+                    case "#microsoft.graph.security.containerImageEvidence":
+                        return NewContainerImageEvidence(), nil
+                    case "#microsoft.graph.security.containerRegistryEvidence":
+                        return NewContainerRegistryEvidence(), nil
                     case "#microsoft.graph.security.deviceEvidence":
                         return NewDeviceEvidence(), nil
                     case "#microsoft.graph.security.fileEvidence":
                         return NewFileEvidence(), nil
+                    case "#microsoft.graph.security.googleCloudResourceEvidence":
+                        return NewGoogleCloudResourceEvidence(), nil
                     case "#microsoft.graph.security.ipEvidence":
                         return NewIpEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesClusterEvidence":
+                        return NewKubernetesClusterEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesControllerEvidence":
+                        return NewKubernetesControllerEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesNamespaceEvidence":
+                        return NewKubernetesNamespaceEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesPodEvidence":
+                        return NewKubernetesPodEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesSecretEvidence":
+                        return NewKubernetesSecretEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesServiceAccountEvidence":
+                        return NewKubernetesServiceAccountEvidence(), nil
+                    case "#microsoft.graph.security.kubernetesServiceEvidence":
+                        return NewKubernetesServiceEvidence(), nil
                     case "#microsoft.graph.security.mailboxEvidence":
                         return NewMailboxEvidence(), nil
                     case "#microsoft.graph.security.mailClusterEvidence":
@@ -79,13 +111,17 @@ func CreateAlertEvidenceFromDiscriminatorValue(parseNode i878a80d2330e89d2689638
     }
     return NewAlertEvidence(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AlertEvidence) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetCreatedDateTime gets the createdDateTime property value. The time the evidence was created and added to the alert.
+// GetCreatedDateTime gets the createdDateTime property value. The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AlertEvidence) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
+}
+// GetDetailedRoles gets the detailedRoles property value. Detailed description of the entity role/s in an alert. Values are free-form.
+func (m *AlertEvidence) GetDetailedRoles()([]string) {
+    return m.detailedRoles
 }
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AlertEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
@@ -97,6 +133,22 @@ func (m *AlertEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         }
         if val != nil {
             m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["detailedRoles"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfPrimitiveValues("string")
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]string, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
+            }
+            m.SetDetailedRoles(res)
         }
         return nil
     }
@@ -138,7 +190,9 @@ func (m *AlertEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]EvidenceRole, len(val))
             for i, v := range val {
-                res[i] = *(v.(*EvidenceRole))
+                if v != nil {
+                    res[i] = *(v.(*EvidenceRole))
+                }
             }
             m.SetRoles(res)
         }
@@ -152,7 +206,9 @@ func (m *AlertEvidence) GetFieldDeserializers()(map[string]func(i878a80d2330e89d
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTags(res)
         }
@@ -182,11 +238,11 @@ func (m *AlertEvidence) GetRemediationStatus()(*EvidenceRemediationStatus) {
 func (m *AlertEvidence) GetRemediationStatusDetails()(*string) {
     return m.remediationStatusDetails
 }
-// GetRoles gets the roles property value. The role/s that an evidence entity represents in an alert, e.g., an IP address that is associated with an attacker will have the evidence role 'Attacker'.
+// GetRoles gets the roles property value. The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
 func (m *AlertEvidence) GetRoles()([]EvidenceRole) {
     return m.roles
 }
-// GetTags gets the tags property value. Array of custom tags associated with an evidence instance, for example to denote a group of devices, high value assets, etc.
+// GetTags gets the tags property value. Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
 func (m *AlertEvidence) GetTags()([]string) {
     return m.tags
 }
@@ -198,6 +254,12 @@ func (m *AlertEvidence) GetVerdict()(*EvidenceVerdict) {
 func (m *AlertEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.SerializationWriter)(error) {
     {
         err := writer.WriteTimeValue("createdDateTime", m.GetCreatedDateTime())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetDetailedRoles() != nil {
+        err := writer.WriteCollectionOfStringValues("detailedRoles", m.GetDetailedRoles())
         if err != nil {
             return err
         }
@@ -248,13 +310,17 @@ func (m *AlertEvidence) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AlertEvidence) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetCreatedDateTime sets the createdDateTime property value. The time the evidence was created and added to the alert.
+// SetCreatedDateTime sets the createdDateTime property value. The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *AlertEvidence) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
+}
+// SetDetailedRoles sets the detailedRoles property value. Detailed description of the entity role/s in an alert. Values are free-form.
+func (m *AlertEvidence) SetDetailedRoles(value []string)() {
+    m.detailedRoles = value
 }
 // SetOdataType sets the @odata.type property value. The OdataType property
 func (m *AlertEvidence) SetOdataType(value *string)() {
@@ -268,11 +334,11 @@ func (m *AlertEvidence) SetRemediationStatus(value *EvidenceRemediationStatus)()
 func (m *AlertEvidence) SetRemediationStatusDetails(value *string)() {
     m.remediationStatusDetails = value
 }
-// SetRoles sets the roles property value. The role/s that an evidence entity represents in an alert, e.g., an IP address that is associated with an attacker will have the evidence role 'Attacker'.
+// SetRoles sets the roles property value. The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.
 func (m *AlertEvidence) SetRoles(value []EvidenceRole)() {
     m.roles = value
 }
-// SetTags sets the tags property value. Array of custom tags associated with an evidence instance, for example to denote a group of devices, high value assets, etc.
+// SetTags sets the tags property value. Array of custom tags associated with an evidence instance, for example, to denote a group of devices, high-value assets, etc.
 func (m *AlertEvidence) SetTags(value []string)() {
     m.tags = value
 }
@@ -285,6 +351,7 @@ type AlertEvidenceable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.AdditionalDataHolder
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetDetailedRoles()([]string)
     GetOdataType()(*string)
     GetRemediationStatus()(*EvidenceRemediationStatus)
     GetRemediationStatusDetails()(*string)
@@ -292,6 +359,7 @@ type AlertEvidenceable interface {
     GetTags()([]string)
     GetVerdict()(*EvidenceVerdict)
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetDetailedRoles(value []string)()
     SetOdataType(value *string)()
     SetRemediationStatus(value *EvidenceRemediationStatus)()
     SetRemediationStatusDetails(value *string)()

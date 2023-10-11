@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// ManagedAndroidStoreApp 
+// ManagedAndroidStoreApp contains properties and inherited properties for Android store apps that you can manage with an Intune app protection policy.
 type ManagedAndroidStoreApp struct {
     ManagedApp
     // The Android AppStoreUrl.
@@ -14,7 +14,7 @@ type ManagedAndroidStoreApp struct {
     // The app's package ID.
     packageId *string
 }
-// NewManagedAndroidStoreApp instantiates a new ManagedAndroidStoreApp and sets the default values.
+// NewManagedAndroidStoreApp instantiates a new managedAndroidStoreApp and sets the default values.
 func NewManagedAndroidStoreApp()(*ManagedAndroidStoreApp) {
     m := &ManagedAndroidStoreApp{
         ManagedApp: *NewManagedApp(),

@@ -10,7 +10,7 @@ type InviteParticipantsOperation struct {
     // The participants to invite.
     participants []InvitationParticipantInfoable
 }
-// NewInviteParticipantsOperation instantiates a new InviteParticipantsOperation and sets the default values.
+// NewInviteParticipantsOperation instantiates a new inviteParticipantsOperation and sets the default values.
 func NewInviteParticipantsOperation()(*InviteParticipantsOperation) {
     m := &InviteParticipantsOperation{
         CommsOperation: *NewCommsOperation(),
@@ -32,7 +32,9 @@ func (m *InviteParticipantsOperation) GetFieldDeserializers()(map[string]func(i8
         if val != nil {
             res := make([]InvitationParticipantInfoable, len(val))
             for i, v := range val {
-                res[i] = v.(InvitationParticipantInfoable)
+                if v != nil {
+                    res[i] = v.(InvitationParticipantInfoable)
+                }
             }
             m.SetParticipants(res)
         }
@@ -53,7 +55,9 @@ func (m *InviteParticipantsOperation) Serialize(writer i878a80d2330e89d26896388a
     if m.GetParticipants() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetParticipants()))
         for i, v := range m.GetParticipants() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("participants", cast)
         if err != nil {

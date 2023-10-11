@@ -10,7 +10,7 @@ type CloudAppSecuritySessionControl struct {
     // Possible values are: mcasConfigured, monitorOnly, blockDownloads, unknownFutureValue. For more information, see Deploy Conditional Access App Control for featured apps.
     cloudAppSecurityType *CloudAppSecuritySessionControlType
 }
-// NewCloudAppSecuritySessionControl instantiates a new CloudAppSecuritySessionControl and sets the default values.
+// NewCloudAppSecuritySessionControl instantiates a new cloudAppSecuritySessionControl and sets the default values.
 func NewCloudAppSecuritySessionControl()(*CloudAppSecuritySessionControl) {
     m := &CloudAppSecuritySessionControl{
         ConditionalAccessSessionControl: *NewConditionalAccessSessionControl(),

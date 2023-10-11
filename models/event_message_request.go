@@ -20,7 +20,7 @@ type EventMessageRequest struct {
     // Set to true if the sender would like the invitee to send a response to the requested meeting.
     responseRequested *bool
 }
-// NewEventMessageRequest instantiates a new EventMessageRequest and sets the default values.
+// NewEventMessageRequest instantiates a new eventMessageRequest and sets the default values.
 func NewEventMessageRequest()(*EventMessageRequest) {
     m := &EventMessageRequest{
         EventMessage: *NewEventMessage(),

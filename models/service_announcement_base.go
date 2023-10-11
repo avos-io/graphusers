@@ -8,7 +8,7 @@ import (
 // ServiceAnnouncementBase 
 type ServiceAnnouncementBase struct {
     Entity
-    // Additional details about service event. This property doesn't support filters.
+    // More details about service event. This property doesn't support filters.
     details []KeyValuePairable
     // The end time of the service event.
     endDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
@@ -50,7 +50,7 @@ func CreateServiceAnnouncementBaseFromDiscriminatorValue(parseNode i878a80d2330e
     }
     return NewServiceAnnouncementBase(), nil
 }
-// GetDetails gets the details property value. Additional details about service event. This property doesn't support filters.
+// GetDetails gets the details property value. More details about service event. This property doesn't support filters.
 func (m *ServiceAnnouncementBase) GetDetails()([]KeyValuePairable) {
     return m.details
 }
@@ -69,7 +69,9 @@ func (m *ServiceAnnouncementBase) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]KeyValuePairable, len(val))
             for i, v := range val {
-                res[i] = v.(KeyValuePairable)
+                if v != nil {
+                    res[i] = v.(KeyValuePairable)
+                }
             }
             m.SetDetails(res)
         }
@@ -138,7 +140,9 @@ func (m *ServiceAnnouncementBase) Serialize(writer i878a80d2330e89d26896388a3f48
     if m.GetDetails() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDetails()))
         for i, v := range m.GetDetails() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("details", cast)
         if err != nil {
@@ -171,7 +175,7 @@ func (m *ServiceAnnouncementBase) Serialize(writer i878a80d2330e89d26896388a3f48
     }
     return nil
 }
-// SetDetails sets the details property value. Additional details about service event. This property doesn't support filters.
+// SetDetails sets the details property value. More details about service event. This property doesn't support filters.
 func (m *ServiceAnnouncementBase) SetDetails(value []KeyValuePairable)() {
     m.details = value
 }

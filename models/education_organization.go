@@ -13,10 +13,10 @@ type EducationOrganization struct {
     displayName *string
     // Source where this organization was created from. Possible values are: sis, manual.
     externalSource *EducationExternalSource
-    // The name of the external source this resources was generated from.
+    // The name of the external source this resource was generated from.
     externalSourceDetail *string
 }
-// NewEducationOrganization instantiates a new EducationOrganization and sets the default values.
+// NewEducationOrganization instantiates a new educationOrganization and sets the default values.
 func NewEducationOrganization()(*EducationOrganization) {
     m := &EducationOrganization{
         Entity: *NewEntity(),
@@ -57,7 +57,7 @@ func (m *EducationOrganization) GetDisplayName()(*string) {
 func (m *EducationOrganization) GetExternalSource()(*EducationExternalSource) {
     return m.externalSource
 }
-// GetExternalSourceDetail gets the externalSourceDetail property value. The name of the external source this resources was generated from.
+// GetExternalSourceDetail gets the externalSourceDetail property value. The name of the external source this resource was generated from.
 func (m *EducationOrganization) GetExternalSourceDetail()(*string) {
     return m.externalSourceDetail
 }
@@ -151,7 +151,7 @@ func (m *EducationOrganization) SetDisplayName(value *string)() {
 func (m *EducationOrganization) SetExternalSource(value *EducationExternalSource)() {
     m.externalSource = value
 }
-// SetExternalSourceDetail sets the externalSourceDetail property value. The name of the external source this resources was generated from.
+// SetExternalSourceDetail sets the externalSourceDetail property value. The name of the external source this resource was generated from.
 func (m *EducationOrganization) SetExternalSourceDetail(value *string)() {
     m.externalSourceDetail = value
 }

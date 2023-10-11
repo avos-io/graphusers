@@ -10,7 +10,7 @@ type DomainDnsTxtRecord struct {
     // Value used when configuring the text property at the DNS host.
     text *string
 }
-// NewDomainDnsTxtRecord instantiates a new DomainDnsTxtRecord and sets the default values.
+// NewDomainDnsTxtRecord instantiates a new domainDnsTxtRecord and sets the default values.
 func NewDomainDnsTxtRecord()(*DomainDnsTxtRecord) {
     m := &DomainDnsTxtRecord{
         DomainDnsRecord: *NewDomainDnsRecord(),

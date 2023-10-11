@@ -48,9 +48,9 @@ type Organization struct {
     privacyProfile PrivacyProfileable
     // Not nullable.
     provisionedPlans []ProvisionedPlanable
-    // The securityComplianceNotificationMails property
+    // Not nullable.
     securityComplianceNotificationMails []string
-    // The securityComplianceNotificationPhones property
+    // Not nullable.
     securityComplianceNotificationPhones []string
     // State name of the address for the organization.
     state *string
@@ -63,7 +63,7 @@ type Organization struct {
     // The collection of domains associated with this tenant. Not nullable.
     verifiedDomains []VerifiedDomainable
 }
-// NewOrganization instantiates a new Organization and sets the default values.
+// NewOrganization instantiates a new organization and sets the default values.
 func NewOrganization()(*Organization) {
     m := &Organization{
         DirectoryObject: *NewDirectoryObject(),
@@ -131,7 +131,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]AssignedPlanable, len(val))
             for i, v := range val {
-                res[i] = v.(AssignedPlanable)
+                if v != nil {
+                    res[i] = v.(AssignedPlanable)
+                }
             }
             m.SetAssignedPlans(res)
         }
@@ -155,7 +157,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetBusinessPhones(res)
         }
@@ -169,7 +173,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]CertificateBasedAuthConfigurationable, len(val))
             for i, v := range val {
-                res[i] = v.(CertificateBasedAuthConfigurationable)
+                if v != nil {
+                    res[i] = v.(CertificateBasedAuthConfigurationable)
+                }
             }
             m.SetCertificateBasedAuthConfiguration(res)
         }
@@ -243,7 +249,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]Extensionable, len(val))
             for i, v := range val {
-                res[i] = v.(Extensionable)
+                if v != nil {
+                    res[i] = v.(Extensionable)
+                }
             }
             m.SetExtensions(res)
         }
@@ -257,7 +265,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetMarketingNotificationEmails(res)
         }
@@ -341,7 +351,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]ProvisionedPlanable, len(val))
             for i, v := range val {
-                res[i] = v.(ProvisionedPlanable)
+                if v != nil {
+                    res[i] = v.(ProvisionedPlanable)
+                }
             }
             m.SetProvisionedPlans(res)
         }
@@ -355,7 +367,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetSecurityComplianceNotificationMails(res)
         }
@@ -369,7 +383,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetSecurityComplianceNotificationPhones(res)
         }
@@ -403,7 +419,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetTechnicalNotificationMails(res)
         }
@@ -427,7 +445,9 @@ func (m *Organization) GetFieldDeserializers()(map[string]func(i878a80d2330e89d2
         if val != nil {
             res := make([]VerifiedDomainable, len(val))
             for i, v := range val {
-                res[i] = v.(VerifiedDomainable)
+                if v != nil {
+                    res[i] = v.(VerifiedDomainable)
+                }
             }
             m.SetVerifiedDomains(res)
         }
@@ -471,11 +491,11 @@ func (m *Organization) GetPrivacyProfile()(PrivacyProfileable) {
 func (m *Organization) GetProvisionedPlans()([]ProvisionedPlanable) {
     return m.provisionedPlans
 }
-// GetSecurityComplianceNotificationMails gets the securityComplianceNotificationMails property value. The securityComplianceNotificationMails property
+// GetSecurityComplianceNotificationMails gets the securityComplianceNotificationMails property value. Not nullable.
 func (m *Organization) GetSecurityComplianceNotificationMails()([]string) {
     return m.securityComplianceNotificationMails
 }
-// GetSecurityComplianceNotificationPhones gets the securityComplianceNotificationPhones property value. The securityComplianceNotificationPhones property
+// GetSecurityComplianceNotificationPhones gets the securityComplianceNotificationPhones property value. Not nullable.
 func (m *Organization) GetSecurityComplianceNotificationPhones()([]string) {
     return m.securityComplianceNotificationPhones
 }
@@ -508,7 +528,9 @@ func (m *Organization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetAssignedPlans() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignedPlans()))
         for i, v := range m.GetAssignedPlans() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignedPlans", cast)
         if err != nil {
@@ -530,7 +552,9 @@ func (m *Organization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetCertificateBasedAuthConfiguration() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCertificateBasedAuthConfiguration()))
         for i, v := range m.GetCertificateBasedAuthConfiguration() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("certificateBasedAuthConfiguration", cast)
         if err != nil {
@@ -576,7 +600,9 @@ func (m *Organization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetExtensions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetExtensions()))
         for i, v := range m.GetExtensions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("extensions", cast)
         if err != nil {
@@ -636,7 +662,9 @@ func (m *Organization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetProvisionedPlans() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProvisionedPlans()))
         for i, v := range m.GetProvisionedPlans() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("provisionedPlans", cast)
         if err != nil {
@@ -682,7 +710,9 @@ func (m *Organization) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e
     if m.GetVerifiedDomains() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetVerifiedDomains()))
         for i, v := range m.GetVerifiedDomains() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("verifiedDomains", cast)
         if err != nil {
@@ -771,11 +801,11 @@ func (m *Organization) SetPrivacyProfile(value PrivacyProfileable)() {
 func (m *Organization) SetProvisionedPlans(value []ProvisionedPlanable)() {
     m.provisionedPlans = value
 }
-// SetSecurityComplianceNotificationMails sets the securityComplianceNotificationMails property value. The securityComplianceNotificationMails property
+// SetSecurityComplianceNotificationMails sets the securityComplianceNotificationMails property value. Not nullable.
 func (m *Organization) SetSecurityComplianceNotificationMails(value []string)() {
     m.securityComplianceNotificationMails = value
 }
-// SetSecurityComplianceNotificationPhones sets the securityComplianceNotificationPhones property value. The securityComplianceNotificationPhones property
+// SetSecurityComplianceNotificationPhones sets the securityComplianceNotificationPhones property value. Not nullable.
 func (m *Organization) SetSecurityComplianceNotificationPhones(value []string)() {
     m.securityComplianceNotificationPhones = value
 }

@@ -14,7 +14,7 @@ type TeamsAppUpgradedEventMessageDetail struct {
     // Unique identifier of the teamsApp.
     teamsAppId *string
 }
-// NewTeamsAppUpgradedEventMessageDetail instantiates a new TeamsAppUpgradedEventMessageDetail and sets the default values.
+// NewTeamsAppUpgradedEventMessageDetail instantiates a new teamsAppUpgradedEventMessageDetail and sets the default values.
 func NewTeamsAppUpgradedEventMessageDetail()(*TeamsAppUpgradedEventMessageDetail) {
     m := &TeamsAppUpgradedEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

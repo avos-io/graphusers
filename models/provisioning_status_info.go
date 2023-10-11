@@ -8,7 +8,7 @@ import (
 type ProvisioningStatusInfo struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The errorInformation property
+    // If status isn't success/ skipped details for the error are contained in this.
     errorInformation ProvisioningErrorInfoable
     // The OdataType property
     odataType *string
@@ -26,11 +26,11 @@ func NewProvisioningStatusInfo()(*ProvisioningStatusInfo) {
 func CreateProvisioningStatusInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewProvisioningStatusInfo(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ProvisioningStatusInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetErrorInformation gets the errorInformation property value. The errorInformation property
+// GetErrorInformation gets the errorInformation property value. If status isn't success/ skipped details for the error are contained in this.
 func (m *ProvisioningStatusInfo) GetErrorInformation()(ProvisioningErrorInfoable) {
     return m.errorInformation
 }
@@ -106,11 +106,11 @@ func (m *ProvisioningStatusInfo) Serialize(writer i878a80d2330e89d26896388a3f487
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ProvisioningStatusInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetErrorInformation sets the errorInformation property value. The errorInformation property
+// SetErrorInformation sets the errorInformation property value. If status isn't success/ skipped details for the error are contained in this.
 func (m *ProvisioningStatusInfo) SetErrorInformation(value ProvisioningErrorInfoable)() {
     m.errorInformation = value
 }

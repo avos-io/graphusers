@@ -32,7 +32,7 @@ func NewVerifiedDomain()(*VerifiedDomain) {
 func CreateVerifiedDomainFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewVerifiedDomain(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *VerifiedDomain) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -99,7 +99,7 @@ func (m *VerifiedDomain) GetFieldDeserializers()(map[string]func(i878a80d2330e89
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -121,8 +121,8 @@ func (m *VerifiedDomain) GetName()(*string) {
 func (m *VerifiedDomain) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. For example, Managed.
-func (m *VerifiedDomain) GetType()(*string) {
+// GetTypeEscaped gets the type property value. For example, Managed.
+func (m *VerifiedDomain) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // Serialize serializes information the current object
@@ -158,7 +158,7 @@ func (m *VerifiedDomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -171,7 +171,7 @@ func (m *VerifiedDomain) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *VerifiedDomain) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -195,8 +195,8 @@ func (m *VerifiedDomain) SetName(value *string)() {
 func (m *VerifiedDomain) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. For example, Managed.
-func (m *VerifiedDomain) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. For example, Managed.
+func (m *VerifiedDomain) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // VerifiedDomainable 
@@ -208,11 +208,11 @@ type VerifiedDomainable interface {
     GetIsInitial()(*bool)
     GetName()(*string)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     SetCapabilities(value *string)()
     SetIsDefault(value *bool)()
     SetIsInitial(value *bool)()
     SetName(value *string)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
 }

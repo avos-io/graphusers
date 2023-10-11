@@ -7,14 +7,14 @@ import (
 // EmailFileAssessmentRequest 
 type EmailFileAssessmentRequest struct {
     ThreatAssessmentRequest
-    // Base64 encoded .eml email file content. The file content cannot fetch back because it isn't stored.
+    // Base64 encoded .eml email file content. The file content can't fetch back because it isn't stored.
     contentData *string
     // The reason for mail routed to its destination. Possible values are: none, mailFlowRule, safeSender, blockedSender, advancedSpamFiltering, domainAllowList, domainBlockList, notInAddressBook, firstTimeSender, autoPurgeToInbox, autoPurgeToJunk, autoPurgeToDeleted, outbound, notJunk, junk.
     destinationRoutingReason *MailDestinationRoutingReason
     // The mail recipient whose policies are used to assess the mail.
     recipientEmail *string
 }
-// NewEmailFileAssessmentRequest instantiates a new EmailFileAssessmentRequest and sets the default values.
+// NewEmailFileAssessmentRequest instantiates a new emailFileAssessmentRequest and sets the default values.
 func NewEmailFileAssessmentRequest()(*EmailFileAssessmentRequest) {
     m := &EmailFileAssessmentRequest{
         ThreatAssessmentRequest: *NewThreatAssessmentRequest(),
@@ -27,7 +27,7 @@ func NewEmailFileAssessmentRequest()(*EmailFileAssessmentRequest) {
 func CreateEmailFileAssessmentRequestFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewEmailFileAssessmentRequest(), nil
 }
-// GetContentData gets the contentData property value. Base64 encoded .eml email file content. The file content cannot fetch back because it isn't stored.
+// GetContentData gets the contentData property value. Base64 encoded .eml email file content. The file content can't fetch back because it isn't stored.
 func (m *EmailFileAssessmentRequest) GetContentData()(*string) {
     return m.contentData
 }
@@ -101,7 +101,7 @@ func (m *EmailFileAssessmentRequest) Serialize(writer i878a80d2330e89d26896388a3
     }
     return nil
 }
-// SetContentData sets the contentData property value. Base64 encoded .eml email file content. The file content cannot fetch back because it isn't stored.
+// SetContentData sets the contentData property value. Base64 encoded .eml email file content. The file content can't fetch back because it isn't stored.
 func (m *EmailFileAssessmentRequest) SetContentData(value *string)() {
     m.contentData = value
 }

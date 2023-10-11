@@ -26,7 +26,7 @@ func NewWindowsInformationProtectionProxiedDomainCollection()(*WindowsInformatio
 func CreateWindowsInformationProtectionProxiedDomainCollectionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWindowsInformationProtectionProxiedDomainCollection(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionProxiedDomainCollection) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -65,7 +65,9 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) GetFieldDeserializ
         if val != nil {
             res := make([]ProxiedDomainable, len(val))
             for i, v := range val {
-                res[i] = v.(ProxiedDomainable)
+                if v != nil {
+                    res[i] = v.(ProxiedDomainable)
+                }
             }
             m.SetProxiedDomains(res)
         }
@@ -98,7 +100,9 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) Serialize(writer i
     if m.GetProxiedDomains() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProxiedDomains()))
         for i, v := range m.GetProxiedDomains() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("proxiedDomains", cast)
         if err != nil {
@@ -113,7 +117,7 @@ func (m *WindowsInformationProtectionProxiedDomainCollection) Serialize(writer i
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionProxiedDomainCollection) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

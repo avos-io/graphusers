@@ -18,11 +18,13 @@ type AccessPackageAssignmentRequest struct {
     completedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter.
     createdDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
+    // Information about all the custom extension calls that were made during the access package assignment workflow.
+    customExtensionCalloutInstances []CustomExtensionCalloutInstanceable
     // The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
     requestor AccessPackageSubjectable
-    // The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+    // The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property can't be changed once set.
     requestType *AccessPackageRequestType
-    // The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.
+    // The range of dates that access is to be assigned to the requestor. This property can't be changed once set.
     schedule EntitlementManagementScheduleable
     // The state of the request. The possible values are: submitted, pendingApproval, delivering, delivered, deliveryFailed, denied, scheduled, canceled, partiallyDelivered, unknownFutureValue. Read-only. Supports $filter (eq).
     state *AccessPackageRequestState
@@ -60,6 +62,10 @@ func (m *AccessPackageAssignmentRequest) GetCompletedDateTime()(*i336074805fc853
 func (m *AccessPackageAssignmentRequest) GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.createdDateTime
 }
+// GetCustomExtensionCalloutInstances gets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+func (m *AccessPackageAssignmentRequest) GetCustomExtensionCalloutInstances()([]CustomExtensionCalloutInstanceable) {
+    return m.customExtensionCalloutInstances
+}
 // GetFieldDeserializers the deserialization information for the current model
 func (m *AccessPackageAssignmentRequest) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(error)) {
     res := m.Entity.GetFieldDeserializers()
@@ -81,7 +87,9 @@ func (m *AccessPackageAssignmentRequest) GetFieldDeserializers()(map[string]func
         if val != nil {
             res := make([]AccessPackageAnswerable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessPackageAnswerable)
+                if v != nil {
+                    res[i] = v.(AccessPackageAnswerable)
+                }
             }
             m.SetAnswers(res)
         }
@@ -114,6 +122,22 @@ func (m *AccessPackageAssignmentRequest) GetFieldDeserializers()(map[string]func
         }
         if val != nil {
             m.SetCreatedDateTime(val)
+        }
+        return nil
+    }
+    res["customExtensionCalloutInstances"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateCustomExtensionCalloutInstanceFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]CustomExtensionCalloutInstanceable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(CustomExtensionCalloutInstanceable)
+                }
+            }
+            m.SetCustomExtensionCalloutInstances(res)
         }
         return nil
     }
@@ -173,11 +197,11 @@ func (m *AccessPackageAssignmentRequest) GetFieldDeserializers()(map[string]func
 func (m *AccessPackageAssignmentRequest) GetRequestor()(AccessPackageSubjectable) {
     return m.requestor
 }
-// GetRequestType gets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+// GetRequestType gets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property can't be changed once set.
 func (m *AccessPackageAssignmentRequest) GetRequestType()(*AccessPackageRequestType) {
     return m.requestType
 }
-// GetSchedule gets the schedule property value. The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.
+// GetSchedule gets the schedule property value. The range of dates that access is to be assigned to the requestor. This property can't be changed once set.
 func (m *AccessPackageAssignmentRequest) GetSchedule()(EntitlementManagementScheduleable) {
     return m.schedule
 }
@@ -204,7 +228,9 @@ func (m *AccessPackageAssignmentRequest) Serialize(writer i878a80d2330e89d268963
     if m.GetAnswers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAnswers()))
         for i, v := range m.GetAnswers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("answers", cast)
         if err != nil {
@@ -225,6 +251,18 @@ func (m *AccessPackageAssignmentRequest) Serialize(writer i878a80d2330e89d268963
     }
     {
         err = writer.WriteTimeValue("createdDateTime", m.GetCreatedDateTime())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetCustomExtensionCalloutInstances() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCustomExtensionCalloutInstances()))
+        for i, v := range m.GetCustomExtensionCalloutInstances() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("customExtensionCalloutInstances", cast)
         if err != nil {
             return err
         }
@@ -283,15 +321,19 @@ func (m *AccessPackageAssignmentRequest) SetCompletedDateTime(value *i336074805f
 func (m *AccessPackageAssignmentRequest) SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.createdDateTime = value
 }
+// SetCustomExtensionCalloutInstances sets the customExtensionCalloutInstances property value. Information about all the custom extension calls that were made during the access package assignment workflow.
+func (m *AccessPackageAssignmentRequest) SetCustomExtensionCalloutInstances(value []CustomExtensionCalloutInstanceable)() {
+    m.customExtensionCalloutInstances = value
+}
 // SetRequestor sets the requestor property value. The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
 func (m *AccessPackageAssignmentRequest) SetRequestor(value AccessPackageSubjectable)() {
     m.requestor = value
 }
-// SetRequestType sets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.
+// SetRequestType sets the requestType property value. The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property can't be changed once set.
 func (m *AccessPackageAssignmentRequest) SetRequestType(value *AccessPackageRequestType)() {
     m.requestType = value
 }
-// SetSchedule sets the schedule property value. The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.
+// SetSchedule sets the schedule property value. The range of dates that access is to be assigned to the requestor. This property can't be changed once set.
 func (m *AccessPackageAssignmentRequest) SetSchedule(value EntitlementManagementScheduleable)() {
     m.schedule = value
 }
@@ -312,6 +354,7 @@ type AccessPackageAssignmentRequestable interface {
     GetAssignment()(AccessPackageAssignmentable)
     GetCompletedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetCreatedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
+    GetCustomExtensionCalloutInstances()([]CustomExtensionCalloutInstanceable)
     GetRequestor()(AccessPackageSubjectable)
     GetRequestType()(*AccessPackageRequestType)
     GetSchedule()(EntitlementManagementScheduleable)
@@ -322,6 +365,7 @@ type AccessPackageAssignmentRequestable interface {
     SetAssignment(value AccessPackageAssignmentable)()
     SetCompletedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetCreatedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
+    SetCustomExtensionCalloutInstances(value []CustomExtensionCalloutInstanceable)()
     SetRequestor(value AccessPackageSubjectable)()
     SetRequestType(value *AccessPackageRequestType)()
     SetSchedule(value EntitlementManagementScheduleable)()

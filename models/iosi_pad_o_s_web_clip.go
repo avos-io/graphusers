@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// IosiPadOSWebClip 
+// IosiPadOSWebClip contains properties and inherited properties for iOS web apps.
 type IosiPadOSWebClip struct {
     MobileApp
     // Indicates iOS/iPadOS web clip app URL. Example: 'https://www.contoso.com'
@@ -12,7 +12,7 @@ type IosiPadOSWebClip struct {
     // Whether or not to use managed browser. When TRUE, the app will be required to be opened in Microsoft Edge. When FALSE, the app will not be required to be opened in Microsoft Edge. By default, this property is set to FALSE.
     useManagedBrowser *bool
 }
-// NewIosiPadOSWebClip instantiates a new IosiPadOSWebClip and sets the default values.
+// NewIosiPadOSWebClip instantiates a new iosiPadOSWebClip and sets the default values.
 func NewIosiPadOSWebClip()(*IosiPadOSWebClip) {
     m := &IosiPadOSWebClip{
         MobileApp: *NewMobileApp(),

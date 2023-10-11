@@ -18,7 +18,7 @@ type UnifiedRoleManagementPolicyNotificationRule struct {
     // The type of recipient of the notification. The possible values are Requestor, Approver, Admin.
     recipientType *string
 }
-// NewUnifiedRoleManagementPolicyNotificationRule instantiates a new UnifiedRoleManagementPolicyNotificationRule and sets the default values.
+// NewUnifiedRoleManagementPolicyNotificationRule instantiates a new unifiedRoleManagementPolicyNotificationRule and sets the default values.
 func NewUnifiedRoleManagementPolicyNotificationRule()(*UnifiedRoleManagementPolicyNotificationRule) {
     m := &UnifiedRoleManagementPolicyNotificationRule{
         UnifiedRoleManagementPolicyRule: *NewUnifiedRoleManagementPolicyRule(),
@@ -62,7 +62,9 @@ func (m *UnifiedRoleManagementPolicyNotificationRule) GetFieldDeserializers()(ma
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetNotificationRecipients(res)
         }

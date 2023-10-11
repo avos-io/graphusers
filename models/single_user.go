@@ -12,7 +12,7 @@ type SingleUser struct {
     // The ID of the user in Azure AD.
     userId *string
 }
-// NewSingleUser instantiates a new SingleUser and sets the default values.
+// NewSingleUser instantiates a new singleUser and sets the default values.
 func NewSingleUser()(*SingleUser) {
     m := &SingleUser{
         SubjectSet: *NewSubjectSet(),

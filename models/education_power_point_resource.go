@@ -10,7 +10,7 @@ type EducationPowerPointResource struct {
     // Location of the file on disk.
     fileUrl *string
 }
-// NewEducationPowerPointResource instantiates a new EducationPowerPointResource and sets the default values.
+// NewEducationPowerPointResource instantiates a new educationPowerPointResource and sets the default values.
 func NewEducationPowerPointResource()(*EducationPowerPointResource) {
     m := &EducationPowerPointResource{
         EducationResource: *NewEducationResource(),

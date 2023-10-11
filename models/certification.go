@@ -11,7 +11,7 @@ type Certification struct {
     additionalData map[string]any
     // URL that shows certification details for the application.
     certificationDetailsUrl *string
-    // The timestamp when the current certification for the application will expire.
+    // The timestamp when the current certification for the application expires.
     certificationExpirationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Indicates whether the application is certified by Microsoft.
     isCertifiedByMicrosoft *bool
@@ -33,7 +33,7 @@ func NewCertification()(*Certification) {
 func CreateCertificationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewCertification(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Certification) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -41,7 +41,7 @@ func (m *Certification) GetAdditionalData()(map[string]any) {
 func (m *Certification) GetCertificationDetailsUrl()(*string) {
     return m.certificationDetailsUrl
 }
-// GetCertificationExpirationDateTime gets the certificationExpirationDateTime property value. The timestamp when the current certification for the application will expire.
+// GetCertificationExpirationDateTime gets the certificationExpirationDateTime property value. The timestamp when the current certification for the application expires.
 func (m *Certification) GetCertificationExpirationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.certificationExpirationDateTime
 }
@@ -160,7 +160,7 @@ func (m *Certification) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Certification) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -168,7 +168,7 @@ func (m *Certification) SetAdditionalData(value map[string]any)() {
 func (m *Certification) SetCertificationDetailsUrl(value *string)() {
     m.certificationDetailsUrl = value
 }
-// SetCertificationExpirationDateTime sets the certificationExpirationDateTime property value. The timestamp when the current certification for the application will expire.
+// SetCertificationExpirationDateTime sets the certificationExpirationDateTime property value. The timestamp when the current certification for the application expires.
 func (m *Certification) SetCertificationExpirationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.certificationExpirationDateTime = value
 }

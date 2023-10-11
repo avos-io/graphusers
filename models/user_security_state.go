@@ -59,7 +59,7 @@ func (m *UserSecurityState) GetAadUserId()(*string) {
 func (m *UserSecurityState) GetAccountName()(*string) {
     return m.accountName
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserSecurityState) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -381,7 +381,7 @@ func (m *UserSecurityState) SetAadUserId(value *string)() {
 func (m *UserSecurityState) SetAccountName(value *string)() {
     m.accountName = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserSecurityState) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

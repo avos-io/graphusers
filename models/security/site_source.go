@@ -11,7 +11,7 @@ type SiteSource struct {
     // The site property
     site i43734bed85aefb0f6a3d313be76230963d1e26491f666899a105a0936ec1d390.Siteable
 }
-// NewSiteSource instantiates a new SiteSource and sets the default values.
+// NewSiteSource instantiates a new siteSource and sets the default values.
 func NewSiteSource()(*SiteSource) {
     m := &SiteSource{
         DataSource: *NewDataSource(),

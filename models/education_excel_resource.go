@@ -10,7 +10,7 @@ type EducationExcelResource struct {
     // Pointer to the Excel file object.
     fileUrl *string
 }
-// NewEducationExcelResource instantiates a new EducationExcelResource and sets the default values.
+// NewEducationExcelResource instantiates a new educationExcelResource and sets the default values.
 func NewEducationExcelResource()(*EducationExcelResource) {
     m := &EducationExcelResource{
         EducationResource: *NewEducationResource(),

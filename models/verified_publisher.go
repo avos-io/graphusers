@@ -33,7 +33,7 @@ func CreateVerifiedPublisherFromDiscriminatorValue(parseNode i878a80d2330e89d268
 func (m *VerifiedPublisher) GetAddedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.addedDateTime
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *VerifiedPublisher) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -132,7 +132,7 @@ func (m *VerifiedPublisher) Serialize(writer i878a80d2330e89d26896388a3f487eef27
 func (m *VerifiedPublisher) SetAddedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.addedDateTime = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *VerifiedPublisher) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

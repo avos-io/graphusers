@@ -22,7 +22,7 @@ type InternalDomainFederation struct {
     // URI that clients are redirected to when they sign out of Azure AD services. Corresponds to the LogOffUri property of the Set-MsolDomainFederationSettings MSOnline v1 PowerShell cmdlet.
     signOutUri *string
 }
-// NewInternalDomainFederation instantiates a new InternalDomainFederation and sets the default values.
+// NewInternalDomainFederation instantiates a new internalDomainFederation and sets the default values.
 func NewInternalDomainFederation()(*InternalDomainFederation) {
     m := &InternalDomainFederation{
         SamlOrWsFedProvider: *NewSamlOrWsFedProvider(),

@@ -6,12 +6,14 @@ import (
 
 // UserAccount 
 type UserAccount struct {
-    // The user account's displayed name.
+    // The displayed name of the user account.
     accountName *string
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The user object identifier in Azure AD.
+    // The user object identifier in Azure Active Directory (Azure AD).
     azureAdUserId *string
+    // The user display name in Azure AD.
+    displayName *string
     // The name of the Active Directory domain of which the user is a member.
     domainName *string
     // The OdataType property
@@ -32,17 +34,21 @@ func NewUserAccount()(*UserAccount) {
 func CreateUserAccountFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewUserAccount(), nil
 }
-// GetAccountName gets the accountName property value. The user account's displayed name.
+// GetAccountName gets the accountName property value. The displayed name of the user account.
 func (m *UserAccount) GetAccountName()(*string) {
     return m.accountName
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserAccount) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAzureAdUserId gets the azureAdUserId property value. The user object identifier in Azure AD.
+// GetAzureAdUserId gets the azureAdUserId property value. The user object identifier in Azure Active Directory (Azure AD).
 func (m *UserAccount) GetAzureAdUserId()(*string) {
     return m.azureAdUserId
+}
+// GetDisplayName gets the displayName property value. The user display name in Azure AD.
+func (m *UserAccount) GetDisplayName()(*string) {
+    return m.displayName
 }
 // GetDomainName gets the domainName property value. The name of the Active Directory domain of which the user is a member.
 func (m *UserAccount) GetDomainName()(*string) {
@@ -68,6 +74,16 @@ func (m *UserAccount) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         }
         if val != nil {
             m.SetAzureAdUserId(val)
+        }
+        return nil
+    }
+    res["displayName"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetStringValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetDisplayName(val)
         }
         return nil
     }
@@ -140,6 +156,12 @@ func (m *UserAccount) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
         }
     }
     {
+        err := writer.WriteStringValue("displayName", m.GetDisplayName())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteStringValue("domainName", m.GetDomainName())
         if err != nil {
             return err
@@ -171,17 +193,21 @@ func (m *UserAccount) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     return nil
 }
-// SetAccountName sets the accountName property value. The user account's displayed name.
+// SetAccountName sets the accountName property value. The displayed name of the user account.
 func (m *UserAccount) SetAccountName(value *string)() {
     m.accountName = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *UserAccount) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAzureAdUserId sets the azureAdUserId property value. The user object identifier in Azure AD.
+// SetAzureAdUserId sets the azureAdUserId property value. The user object identifier in Azure Active Directory (Azure AD).
 func (m *UserAccount) SetAzureAdUserId(value *string)() {
     m.azureAdUserId = value
+}
+// SetDisplayName sets the displayName property value. The user display name in Azure AD.
+func (m *UserAccount) SetDisplayName(value *string)() {
+    m.displayName = value
 }
 // SetDomainName sets the domainName property value. The name of the Active Directory domain of which the user is a member.
 func (m *UserAccount) SetDomainName(value *string)() {
@@ -205,12 +231,14 @@ type UserAccountable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAccountName()(*string)
     GetAzureAdUserId()(*string)
+    GetDisplayName()(*string)
     GetDomainName()(*string)
     GetOdataType()(*string)
     GetUserPrincipalName()(*string)
     GetUserSid()(*string)
     SetAccountName(value *string)()
     SetAzureAdUserId(value *string)()
+    SetDisplayName(value *string)()
     SetDomainName(value *string)()
     SetOdataType(value *string)()
     SetUserPrincipalName(value *string)()

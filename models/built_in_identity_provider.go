@@ -10,7 +10,7 @@ type BuiltInIdentityProvider struct {
     // The identity provider type. For a B2B scenario, possible values: AADSignup, MicrosoftAccount, EmailOTP. Required.
     identityProviderType *string
 }
-// NewBuiltInIdentityProvider instantiates a new BuiltInIdentityProvider and sets the default values.
+// NewBuiltInIdentityProvider instantiates a new builtInIdentityProvider and sets the default values.
 func NewBuiltInIdentityProvider()(*BuiltInIdentityProvider) {
     m := &BuiltInIdentityProvider{
         IdentityProviderBase: *NewIdentityProviderBase(),

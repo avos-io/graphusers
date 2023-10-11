@@ -20,7 +20,7 @@ type HostSecurityState struct {
     netBiosName *string
     // The OdataType property
     odataType *string
-    // Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+    // Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
     os *string
     // Private (not routable) IPv4 or IPv6 address (see RFC 1918) at the time of the alert.
     privateIpAddress *string
@@ -40,7 +40,7 @@ func NewHostSecurityState()(*HostSecurityState) {
 func CreateHostSecurityStateFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewHostSecurityState(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *HostSecurityState) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -173,7 +173,7 @@ func (m *HostSecurityState) GetNetBiosName()(*string) {
 func (m *HostSecurityState) GetOdataType()(*string) {
     return m.odataType
 }
-// GetOs gets the os property value. Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+// GetOs gets the os property value. Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
 func (m *HostSecurityState) GetOs()(*string) {
     return m.os
 }
@@ -259,7 +259,7 @@ func (m *HostSecurityState) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *HostSecurityState) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -287,7 +287,7 @@ func (m *HostSecurityState) SetNetBiosName(value *string)() {
 func (m *HostSecurityState) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetOs sets the os property value. Host Operating System. (For example, Windows10, MacOS, RHEL, etc.).
+// SetOs sets the os property value. Host Operating System. (For example, Windows 10, macOS, RHEL, etc.).
 func (m *HostSecurityState) SetOs(value *string)() {
     m.os = value
 }

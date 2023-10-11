@@ -25,14 +25,14 @@ type WorkbookRangeView struct {
     rowCount *int32
     // Represents a collection of range views associated with the range. Read-only. Read-only.
     rows []WorkbookRangeViewable
-    // Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+    // Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
     text Jsonable
-    // Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+    // Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
     values Jsonable
     // Represents the type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean, Error.
     valueTypes Jsonable
 }
-// NewWorkbookRangeView instantiates a new WorkbookRangeView and sets the default values.
+// NewWorkbookRangeView instantiates a new workbookRangeView and sets the default values.
 func NewWorkbookRangeView()(*WorkbookRangeView) {
     m := &WorkbookRangeView{
         Entity: *NewEntity(),
@@ -142,7 +142,9 @@ func (m *WorkbookRangeView) GetFieldDeserializers()(map[string]func(i878a80d2330
         if val != nil {
             res := make([]WorkbookRangeViewable, len(val))
             for i, v := range val {
-                res[i] = v.(WorkbookRangeViewable)
+                if v != nil {
+                    res[i] = v.(WorkbookRangeViewable)
+                }
             }
             m.SetRows(res)
         }
@@ -208,11 +210,11 @@ func (m *WorkbookRangeView) GetRowCount()(*int32) {
 func (m *WorkbookRangeView) GetRows()([]WorkbookRangeViewable) {
     return m.rows
 }
-// GetText gets the text property value. Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+// GetText gets the text property value. Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
 func (m *WorkbookRangeView) GetText()(Jsonable) {
     return m.text
 }
-// GetValues gets the values property value. Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+// GetValues gets the values property value. Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
 func (m *WorkbookRangeView) GetValues()(Jsonable) {
     return m.values
 }
@@ -277,7 +279,9 @@ func (m *WorkbookRangeView) Serialize(writer i878a80d2330e89d26896388a3f487eef27
     if m.GetRows() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRows()))
         for i, v := range m.GetRows() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("rows", cast)
         if err != nil {
@@ -340,11 +344,11 @@ func (m *WorkbookRangeView) SetRowCount(value *int32)() {
 func (m *WorkbookRangeView) SetRows(value []WorkbookRangeViewable)() {
     m.rows = value
 }
-// SetText sets the text property value. Text values of the specified range. The Text value will not depend on the cell width. The # sign substitution that happens in Excel UI will not affect the text value returned by the API. Read-only.
+// SetText sets the text property value. Text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that happens in Excel UI won't affect the text value returned by the API. Read-only.
 func (m *WorkbookRangeView) SetText(value Jsonable)() {
     m.text = value
 }
-// SetValues sets the values property value. Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contain an error will return the error string.
+// SetValues sets the values property value. Represents the raw values of the specified range view. The data returned could be of type string, number, or a boolean. Cell that contains an error returns the error string.
 func (m *WorkbookRangeView) SetValues(value Jsonable)() {
     m.values = value
 }

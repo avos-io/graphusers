@@ -8,37 +8,37 @@ import (
 // ProvisioningObjectSummary 
 type ProvisioningObjectSummary struct {
     Entity
-    // The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+    // Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
     activityDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
-    // Unique ID of this change in this cycle.
+    // Unique ID of this change in this cycle. Supports $filter (eq, contains).
     changeId *string
-    // Unique ID per job iteration.
+    // Unique ID per job iteration. Supports $filter (eq, contains).
     cycleId *string
     // Indicates how long this provisioning action took to finish. Measured in milliseconds.
     durationInMilliseconds *int32
-    // Details of who initiated this provisioning.
+    // Details of who initiated this provisioning. Supports $filter (eq, contains).
     initiatedBy Initiatorable
-    // The unique ID for the whole provisioning job.
+    // The unique ID for the whole provisioning job. Supports $filter (eq, contains).
     jobId *string
     // Details of each property that was modified in this provisioning action on this object.
     modifiedProperties []ModifiedPropertyable
-    // Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
+    // Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list. Supports $filter (eq, contains).
     provisioningAction *ProvisioningAction
     // Details of provisioning status.
     provisioningStatusInfo ProvisioningStatusInfoable
     // Details of each step in provisioning.
     provisioningSteps []ProvisioningStepable
-    // Represents the service principal used for provisioning.
+    // Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
     servicePrincipal ProvisioningServicePrincipalable
-    // Details of source object being provisioned.
+    // Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
     sourceIdentity ProvisionedIdentityable
-    // Details of source system of the object being provisioned.
+    // Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
     sourceSystem ProvisioningSystemable
-    // Details of target object being provisioned.
+    // Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
     targetIdentity ProvisionedIdentityable
-    // Details of target system of the object being provisioned.
+    // Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
     targetSystem ProvisioningSystemable
-    // Unique Azure AD tenant ID.
+    // Unique Azure AD tenant ID. Supports $filter (eq, contains).
     tenantId *string
 }
 // NewProvisioningObjectSummary instantiates a new provisioningObjectSummary and sets the default values.
@@ -52,15 +52,15 @@ func NewProvisioningObjectSummary()(*ProvisioningObjectSummary) {
 func CreateProvisioningObjectSummaryFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewProvisioningObjectSummary(), nil
 }
-// GetActivityDateTime gets the activityDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+// GetActivityDateTime gets the activityDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
 func (m *ProvisioningObjectSummary) GetActivityDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.activityDateTime
 }
-// GetChangeId gets the changeId property value. Unique ID of this change in this cycle.
+// GetChangeId gets the changeId property value. Unique ID of this change in this cycle. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetChangeId()(*string) {
     return m.changeId
 }
-// GetCycleId gets the cycleId property value. Unique ID per job iteration.
+// GetCycleId gets the cycleId property value. Unique ID per job iteration. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetCycleId()(*string) {
     return m.cycleId
 }
@@ -139,7 +139,9 @@ func (m *ProvisioningObjectSummary) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]ModifiedPropertyable, len(val))
             for i, v := range val {
-                res[i] = v.(ModifiedPropertyable)
+                if v != nil {
+                    res[i] = v.(ModifiedPropertyable)
+                }
             }
             m.SetModifiedProperties(res)
         }
@@ -173,7 +175,9 @@ func (m *ProvisioningObjectSummary) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]ProvisioningStepable, len(val))
             for i, v := range val {
-                res[i] = v.(ProvisioningStepable)
+                if v != nil {
+                    res[i] = v.(ProvisioningStepable)
+                }
             }
             m.SetProvisioningSteps(res)
         }
@@ -241,11 +245,11 @@ func (m *ProvisioningObjectSummary) GetFieldDeserializers()(map[string]func(i878
     }
     return res
 }
-// GetInitiatedBy gets the initiatedBy property value. Details of who initiated this provisioning.
+// GetInitiatedBy gets the initiatedBy property value. Details of who initiated this provisioning. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetInitiatedBy()(Initiatorable) {
     return m.initiatedBy
 }
-// GetJobId gets the jobId property value. The unique ID for the whole provisioning job.
+// GetJobId gets the jobId property value. The unique ID for the whole provisioning job. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetJobId()(*string) {
     return m.jobId
 }
@@ -253,7 +257,7 @@ func (m *ProvisioningObjectSummary) GetJobId()(*string) {
 func (m *ProvisioningObjectSummary) GetModifiedProperties()([]ModifiedPropertyable) {
     return m.modifiedProperties
 }
-// GetProvisioningAction gets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
+// GetProvisioningAction gets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetProvisioningAction()(*ProvisioningAction) {
     return m.provisioningAction
 }
@@ -265,27 +269,27 @@ func (m *ProvisioningObjectSummary) GetProvisioningStatusInfo()(ProvisioningStat
 func (m *ProvisioningObjectSummary) GetProvisioningSteps()([]ProvisioningStepable) {
     return m.provisioningSteps
 }
-// GetServicePrincipal gets the servicePrincipal property value. Represents the service principal used for provisioning.
+// GetServicePrincipal gets the servicePrincipal property value. Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
 func (m *ProvisioningObjectSummary) GetServicePrincipal()(ProvisioningServicePrincipalable) {
     return m.servicePrincipal
 }
-// GetSourceIdentity gets the sourceIdentity property value. Details of source object being provisioned.
+// GetSourceIdentity gets the sourceIdentity property value. Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) GetSourceIdentity()(ProvisionedIdentityable) {
     return m.sourceIdentity
 }
-// GetSourceSystem gets the sourceSystem property value. Details of source system of the object being provisioned.
+// GetSourceSystem gets the sourceSystem property value. Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) GetSourceSystem()(ProvisioningSystemable) {
     return m.sourceSystem
 }
-// GetTargetIdentity gets the targetIdentity property value. Details of target object being provisioned.
+// GetTargetIdentity gets the targetIdentity property value. Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) GetTargetIdentity()(ProvisionedIdentityable) {
     return m.targetIdentity
 }
-// GetTargetSystem gets the targetSystem property value. Details of target system of the object being provisioned.
+// GetTargetSystem gets the targetSystem property value. Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) GetTargetSystem()(ProvisioningSystemable) {
     return m.targetSystem
 }
-// GetTenantId gets the tenantId property value. Unique Azure AD tenant ID.
+// GetTenantId gets the tenantId property value. Unique Azure AD tenant ID. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) GetTenantId()(*string) {
     return m.tenantId
 }
@@ -334,7 +338,9 @@ func (m *ProvisioningObjectSummary) Serialize(writer i878a80d2330e89d26896388a3f
     if m.GetModifiedProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetModifiedProperties()))
         for i, v := range m.GetModifiedProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("modifiedProperties", cast)
         if err != nil {
@@ -357,7 +363,9 @@ func (m *ProvisioningObjectSummary) Serialize(writer i878a80d2330e89d26896388a3f
     if m.GetProvisioningSteps() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetProvisioningSteps()))
         for i, v := range m.GetProvisioningSteps() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("provisioningSteps", cast)
         if err != nil {
@@ -402,15 +410,15 @@ func (m *ProvisioningObjectSummary) Serialize(writer i878a80d2330e89d26896388a3f
     }
     return nil
 }
-// SetActivityDateTime sets the activityDateTime property value. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+// SetActivityDateTime sets the activityDateTime property value. Represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.  SUpports $filter (eq, gt, lt) and orderby.
 func (m *ProvisioningObjectSummary) SetActivityDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.activityDateTime = value
 }
-// SetChangeId sets the changeId property value. Unique ID of this change in this cycle.
+// SetChangeId sets the changeId property value. Unique ID of this change in this cycle. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetChangeId(value *string)() {
     m.changeId = value
 }
-// SetCycleId sets the cycleId property value. Unique ID per job iteration.
+// SetCycleId sets the cycleId property value. Unique ID per job iteration. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetCycleId(value *string)() {
     m.cycleId = value
 }
@@ -418,11 +426,11 @@ func (m *ProvisioningObjectSummary) SetCycleId(value *string)() {
 func (m *ProvisioningObjectSummary) SetDurationInMilliseconds(value *int32)() {
     m.durationInMilliseconds = value
 }
-// SetInitiatedBy sets the initiatedBy property value. Details of who initiated this provisioning.
+// SetInitiatedBy sets the initiatedBy property value. Details of who initiated this provisioning. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetInitiatedBy(value Initiatorable)() {
     m.initiatedBy = value
 }
-// SetJobId sets the jobId property value. The unique ID for the whole provisioning job.
+// SetJobId sets the jobId property value. The unique ID for the whole provisioning job. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetJobId(value *string)() {
     m.jobId = value
 }
@@ -430,7 +438,7 @@ func (m *ProvisioningObjectSummary) SetJobId(value *string)() {
 func (m *ProvisioningObjectSummary) SetModifiedProperties(value []ModifiedPropertyable)() {
     m.modifiedProperties = value
 }
-// SetProvisioningAction sets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list.
+// SetProvisioningAction sets the provisioningAction property value. Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetProvisioningAction(value *ProvisioningAction)() {
     m.provisioningAction = value
 }
@@ -442,27 +450,27 @@ func (m *ProvisioningObjectSummary) SetProvisioningStatusInfo(value Provisioning
 func (m *ProvisioningObjectSummary) SetProvisioningSteps(value []ProvisioningStepable)() {
     m.provisioningSteps = value
 }
-// SetServicePrincipal sets the servicePrincipal property value. Represents the service principal used for provisioning.
+// SetServicePrincipal sets the servicePrincipal property value. Represents the service principal used for provisioning. Supports $filter (eq) for id and name.
 func (m *ProvisioningObjectSummary) SetServicePrincipal(value ProvisioningServicePrincipalable)() {
     m.servicePrincipal = value
 }
-// SetSourceIdentity sets the sourceIdentity property value. Details of source object being provisioned.
+// SetSourceIdentity sets the sourceIdentity property value. Details of source object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) SetSourceIdentity(value ProvisionedIdentityable)() {
     m.sourceIdentity = value
 }
-// SetSourceSystem sets the sourceSystem property value. Details of source system of the object being provisioned.
+// SetSourceSystem sets the sourceSystem property value. Details of source system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) SetSourceSystem(value ProvisioningSystemable)() {
     m.sourceSystem = value
 }
-// SetTargetIdentity sets the targetIdentity property value. Details of target object being provisioned.
+// SetTargetIdentity sets the targetIdentity property value. Details of target object being provisioned. Supports $filter (eq, contains) for identityType, id, and displayName.
 func (m *ProvisioningObjectSummary) SetTargetIdentity(value ProvisionedIdentityable)() {
     m.targetIdentity = value
 }
-// SetTargetSystem sets the targetSystem property value. Details of target system of the object being provisioned.
+// SetTargetSystem sets the targetSystem property value. Details of target system of the object being provisioned. Supports $filter (eq, contains) for displayName.
 func (m *ProvisioningObjectSummary) SetTargetSystem(value ProvisioningSystemable)() {
     m.targetSystem = value
 }
-// SetTenantId sets the tenantId property value. Unique Azure AD tenant ID.
+// SetTenantId sets the tenantId property value. Unique Azure AD tenant ID. Supports $filter (eq, contains).
 func (m *ProvisioningObjectSummary) SetTenantId(value *string)() {
     m.tenantId = value
 }

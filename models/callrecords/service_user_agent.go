@@ -10,7 +10,7 @@ type ServiceUserAgent struct {
     // The role property
     role *ServiceRole
 }
-// NewServiceUserAgent instantiates a new ServiceUserAgent and sets the default values.
+// NewServiceUserAgent instantiates a new serviceUserAgent and sets the default values.
 func NewServiceUserAgent()(*ServiceUserAgent) {
     m := &ServiceUserAgent{
         UserAgent: *NewUserAgent(),

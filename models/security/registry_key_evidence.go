@@ -12,11 +12,13 @@ type RegistryKeyEvidence struct {
     // Registry key that the recorded action was applied to.
     registryKey *string
 }
-// NewRegistryKeyEvidence instantiates a new RegistryKeyEvidence and sets the default values.
+// NewRegistryKeyEvidence instantiates a new registryKeyEvidence and sets the default values.
 func NewRegistryKeyEvidence()(*RegistryKeyEvidence) {
     m := &RegistryKeyEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.registryKeyEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateRegistryKeyEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

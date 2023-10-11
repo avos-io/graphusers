@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// IosVppEBook 
+// IosVppEBook a class containing the properties for iOS Vpp eBook.
 type IosVppEBook struct {
     ManagedEBook
     // The Apple ID associated with Vpp token.
@@ -25,7 +25,7 @@ type IosVppEBook struct {
     // The Vpp token ID.
     vppTokenId *i561e97a8befe7661a44c8f54600992b4207a3a0cf6770e5559949bc276de2e22.UUID
 }
-// NewIosVppEBook instantiates a new IosVppEBook and sets the default values.
+// NewIosVppEBook instantiates a new iosVppEBook and sets the default values.
 func NewIosVppEBook()(*IosVppEBook) {
     m := &IosVppEBook{
         ManagedEBook: *NewManagedEBook(),
@@ -63,7 +63,9 @@ func (m *IosVppEBook) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetGenres(res)
         }

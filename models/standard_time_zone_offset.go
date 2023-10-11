@@ -50,7 +50,7 @@ func CreateStandardTimeZoneOffsetFromDiscriminatorValue(parseNode i878a80d2330e8
     }
     return NewStandardTimeZoneOffset(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *StandardTimeZoneOffset) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -190,7 +190,7 @@ func (m *StandardTimeZoneOffset) Serialize(writer i878a80d2330e89d26896388a3f487
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *StandardTimeZoneOffset) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

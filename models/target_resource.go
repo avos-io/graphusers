@@ -34,7 +34,7 @@ func NewTargetResource()(*TargetResource) {
 func CreateTargetResourceFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewTargetResource(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *TargetResource) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -83,7 +83,9 @@ func (m *TargetResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]ModifiedPropertyable, len(val))
             for i, v := range val {
-                res[i] = v.(ModifiedPropertyable)
+                if v != nil {
+                    res[i] = v.(ModifiedPropertyable)
+                }
             }
             m.SetModifiedProperties(res)
         }
@@ -105,7 +107,7 @@ func (m *TargetResource) GetFieldDeserializers()(map[string]func(i878a80d2330e89
             return err
         }
         if val != nil {
-            m.SetType(val)
+            m.SetTypeEscaped(val)
         }
         return nil
     }
@@ -137,8 +139,8 @@ func (m *TargetResource) GetModifiedProperties()([]ModifiedPropertyable) {
 func (m *TargetResource) GetOdataType()(*string) {
     return m.odataType
 }
-// GetType gets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
-func (m *TargetResource) GetType()(*string) {
+// GetTypeEscaped gets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
+func (m *TargetResource) GetTypeEscaped()(*string) {
     return m.typeEscaped
 }
 // GetUserPrincipalName gets the userPrincipalName property value. When type is set to User, this includes the user name that initiated the action; null for other types.
@@ -169,7 +171,9 @@ func (m *TargetResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetModifiedProperties() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetModifiedProperties()))
         for i, v := range m.GetModifiedProperties() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("modifiedProperties", cast)
         if err != nil {
@@ -183,7 +187,7 @@ func (m *TargetResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
         }
     }
     {
-        err := writer.WriteStringValue("type", m.GetType())
+        err := writer.WriteStringValue("type", m.GetTypeEscaped())
         if err != nil {
             return err
         }
@@ -202,7 +206,7 @@ func (m *TargetResource) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *TargetResource) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -226,8 +230,8 @@ func (m *TargetResource) SetModifiedProperties(value []ModifiedPropertyable)() {
 func (m *TargetResource) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetType sets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
-func (m *TargetResource) SetType(value *string)() {
+// SetTypeEscaped sets the type property value. Describes the resource type.  Example values include Application, Group, ServicePrincipal, and User.
+func (m *TargetResource) SetTypeEscaped(value *string)() {
     m.typeEscaped = value
 }
 // SetUserPrincipalName sets the userPrincipalName property value. When type is set to User, this includes the user name that initiated the action; null for other types.
@@ -243,13 +247,13 @@ type TargetResourceable interface {
     GetId()(*string)
     GetModifiedProperties()([]ModifiedPropertyable)
     GetOdataType()(*string)
-    GetType()(*string)
+    GetTypeEscaped()(*string)
     GetUserPrincipalName()(*string)
     SetDisplayName(value *string)()
     SetGroupType(value *GroupType)()
     SetId(value *string)()
     SetModifiedProperties(value []ModifiedPropertyable)()
     SetOdataType(value *string)()
-    SetType(value *string)()
+    SetTypeEscaped(value *string)()
     SetUserPrincipalName(value *string)()
 }

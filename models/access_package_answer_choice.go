@@ -32,7 +32,7 @@ func CreateAccessPackageAnswerChoiceFromDiscriminatorValue(parseNode i878a80d233
 func (m *AccessPackageAnswerChoice) GetActualValue()(*string) {
     return m.actualValue
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessPackageAnswerChoice) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -57,7 +57,9 @@ func (m *AccessPackageAnswerChoice) GetFieldDeserializers()(map[string]func(i878
         if val != nil {
             res := make([]AccessPackageLocalizedTextable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessPackageLocalizedTextable)
+                if v != nil {
+                    res[i] = v.(AccessPackageLocalizedTextable)
+                }
             }
             m.SetLocalizations(res)
         }
@@ -108,7 +110,9 @@ func (m *AccessPackageAnswerChoice) Serialize(writer i878a80d2330e89d26896388a3f
     if m.GetLocalizations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLocalizations()))
         for i, v := range m.GetLocalizations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("localizations", cast)
         if err != nil {
@@ -139,7 +143,7 @@ func (m *AccessPackageAnswerChoice) Serialize(writer i878a80d2330e89d26896388a3f
 func (m *AccessPackageAnswerChoice) SetActualValue(value *string)() {
     m.actualValue = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AccessPackageAnswerChoice) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

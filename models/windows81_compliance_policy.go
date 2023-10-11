@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// Windows81CompliancePolicy 
+// Windows81CompliancePolicy this class contains compliance settings for Windows 8.1.
 type Windows81CompliancePolicy struct {
     DeviceCompliancePolicy
     // Maximum Windows 8.1 version.
@@ -30,7 +30,7 @@ type Windows81CompliancePolicy struct {
     // Indicates whether or not to require encryption on a windows 8.1 device.
     storageRequireEncryption *bool
 }
-// NewWindows81CompliancePolicy instantiates a new Windows81CompliancePolicy and sets the default values.
+// NewWindows81CompliancePolicy instantiates a new windows81CompliancePolicy and sets the default values.
 func NewWindows81CompliancePolicy()(*Windows81CompliancePolicy) {
     m := &Windows81CompliancePolicy{
         DeviceCompliancePolicy: *NewDeviceCompliancePolicy(),

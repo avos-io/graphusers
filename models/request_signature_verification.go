@@ -8,9 +8,9 @@ import (
 type RequestSignatureVerification struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The allowedWeakAlgorithms property
+    // Specifies which weak algorithms are allowed.  The possible values are: rsaSha1, unknownFutureValue.
     allowedWeakAlgorithms *WeakAlgorithms
-    // The isSignedRequestRequired property
+    // Specifies whether signed authentication requests for this application should be required.
     isSignedRequestRequired *bool
     // The OdataType property
     odataType *string
@@ -26,11 +26,11 @@ func NewRequestSignatureVerification()(*RequestSignatureVerification) {
 func CreateRequestSignatureVerificationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewRequestSignatureVerification(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RequestSignatureVerification) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAllowedWeakAlgorithms gets the allowedWeakAlgorithms property value. The allowedWeakAlgorithms property
+// GetAllowedWeakAlgorithms gets the allowedWeakAlgorithms property value. Specifies which weak algorithms are allowed.  The possible values are: rsaSha1, unknownFutureValue.
 func (m *RequestSignatureVerification) GetAllowedWeakAlgorithms()(*WeakAlgorithms) {
     return m.allowedWeakAlgorithms
 }
@@ -69,7 +69,7 @@ func (m *RequestSignatureVerification) GetFieldDeserializers()(map[string]func(i
     }
     return res
 }
-// GetIsSignedRequestRequired gets the isSignedRequestRequired property value. The isSignedRequestRequired property
+// GetIsSignedRequestRequired gets the isSignedRequestRequired property value. Specifies whether signed authentication requests for this application should be required.
 func (m *RequestSignatureVerification) GetIsSignedRequestRequired()(*bool) {
     return m.isSignedRequestRequired
 }
@@ -106,15 +106,15 @@ func (m *RequestSignatureVerification) Serialize(writer i878a80d2330e89d26896388
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RequestSignatureVerification) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAllowedWeakAlgorithms sets the allowedWeakAlgorithms property value. The allowedWeakAlgorithms property
+// SetAllowedWeakAlgorithms sets the allowedWeakAlgorithms property value. Specifies which weak algorithms are allowed.  The possible values are: rsaSha1, unknownFutureValue.
 func (m *RequestSignatureVerification) SetAllowedWeakAlgorithms(value *WeakAlgorithms)() {
     m.allowedWeakAlgorithms = value
 }
-// SetIsSignedRequestRequired sets the isSignedRequestRequired property value. The isSignedRequestRequired property
+// SetIsSignedRequestRequired sets the isSignedRequestRequired property value. Specifies whether signed authentication requests for this application should be required.
 func (m *RequestSignatureVerification) SetIsSignedRequestRequired(value *bool)() {
     m.isSignedRequestRequired = value
 }

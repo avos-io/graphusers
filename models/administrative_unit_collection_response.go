@@ -10,7 +10,7 @@ type AdministrativeUnitCollectionResponse struct {
     // The value property
     value []AdministrativeUnitable
 }
-// NewAdministrativeUnitCollectionResponse instantiates a new AdministrativeUnitCollectionResponse and sets the default values.
+// NewAdministrativeUnitCollectionResponse instantiates a new administrativeUnitCollectionResponse and sets the default values.
 func NewAdministrativeUnitCollectionResponse()(*AdministrativeUnitCollectionResponse) {
     m := &AdministrativeUnitCollectionResponse{
         BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
@@ -32,7 +32,9 @@ func (m *AdministrativeUnitCollectionResponse) GetFieldDeserializers()(map[strin
         if val != nil {
             res := make([]AdministrativeUnitable, len(val))
             for i, v := range val {
-                res[i] = v.(AdministrativeUnitable)
+                if v != nil {
+                    res[i] = v.(AdministrativeUnitable)
+                }
             }
             m.SetValue(res)
         }
@@ -53,7 +55,9 @@ func (m *AdministrativeUnitCollectionResponse) Serialize(writer i878a80d2330e89d
     if m.GetValue() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetValue()))
         for i, v := range m.GetValue() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("value", cast)
         if err != nil {

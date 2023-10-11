@@ -11,10 +11,10 @@ type FileAttachment struct {
     contentBytes []byte
     // The ID of the attachment in the Exchange store.
     contentId *string
-    // Do not use this property as it is not supported.
+    // Don't use this property as it isn't supported.
     contentLocation *string
 }
-// NewFileAttachment instantiates a new FileAttachment and sets the default values.
+// NewFileAttachment instantiates a new fileAttachment and sets the default values.
 func NewFileAttachment()(*FileAttachment) {
     m := &FileAttachment{
         Attachment: *NewAttachment(),
@@ -35,7 +35,7 @@ func (m *FileAttachment) GetContentBytes()([]byte) {
 func (m *FileAttachment) GetContentId()(*string) {
     return m.contentId
 }
-// GetContentLocation gets the contentLocation property value. Do not use this property as it is not supported.
+// GetContentLocation gets the contentLocation property value. Don't use this property as it isn't supported.
 func (m *FileAttachment) GetContentLocation()(*string) {
     return m.contentLocation
 }
@@ -108,7 +108,7 @@ func (m *FileAttachment) SetContentBytes(value []byte)() {
 func (m *FileAttachment) SetContentId(value *string)() {
     m.contentId = value
 }
-// SetContentLocation sets the contentLocation property value. Do not use this property as it is not supported.
+// SetContentLocation sets the contentLocation property value. Don't use this property as it isn't supported.
 func (m *FileAttachment) SetContentLocation(value *string)() {
     m.contentLocation = value
 }

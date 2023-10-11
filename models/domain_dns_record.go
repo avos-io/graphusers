@@ -11,14 +11,14 @@ type DomainDnsRecord struct {
     isOptional *bool
     // Value used when configuring the name of the DNS record at the DNS host.
     label *string
-    // Indicates what type of DNS record this entity represents.The value can be one of the following: CName, Mx, Srv, Txt.
+    // Indicates what type of DNS record this entity represents. The value can be CName, Mx, Srv, or Txt.
     recordType *string
-    // Microsoft Online Service or feature that has a dependency on this DNS record.Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
+    // Microsoft Online Service or feature that has a dependency on this DNS record. Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
     supportedService *string
     // Value to use when configuring the time-to-live (ttl) property of the DNS record at the DNS host. Not nullable.
     ttl *int32
 }
-// NewDomainDnsRecord instantiates a new DomainDnsRecord and sets the default values.
+// NewDomainDnsRecord instantiates a new domainDnsRecord and sets the default values.
 func NewDomainDnsRecord()(*DomainDnsRecord) {
     m := &DomainDnsRecord{
         Entity: *NewEntity(),
@@ -118,11 +118,11 @@ func (m *DomainDnsRecord) GetIsOptional()(*bool) {
 func (m *DomainDnsRecord) GetLabel()(*string) {
     return m.label
 }
-// GetRecordType gets the recordType property value. Indicates what type of DNS record this entity represents.The value can be one of the following: CName, Mx, Srv, Txt.
+// GetRecordType gets the recordType property value. Indicates what type of DNS record this entity represents. The value can be CName, Mx, Srv, or Txt.
 func (m *DomainDnsRecord) GetRecordType()(*string) {
     return m.recordType
 }
-// GetSupportedService gets the supportedService property value. Microsoft Online Service or feature that has a dependency on this DNS record.Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
+// GetSupportedService gets the supportedService property value. Microsoft Online Service or feature that has a dependency on this DNS record. Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
 func (m *DomainDnsRecord) GetSupportedService()(*string) {
     return m.supportedService
 }
@@ -176,11 +176,11 @@ func (m *DomainDnsRecord) SetIsOptional(value *bool)() {
 func (m *DomainDnsRecord) SetLabel(value *string)() {
     m.label = value
 }
-// SetRecordType sets the recordType property value. Indicates what type of DNS record this entity represents.The value can be one of the following: CName, Mx, Srv, Txt.
+// SetRecordType sets the recordType property value. Indicates what type of DNS record this entity represents. The value can be CName, Mx, Srv, or Txt.
 func (m *DomainDnsRecord) SetRecordType(value *string)() {
     m.recordType = value
 }
-// SetSupportedService sets the supportedService property value. Microsoft Online Service or feature that has a dependency on this DNS record.Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
+// SetSupportedService sets the supportedService property value. Microsoft Online Service or feature that has a dependency on this DNS record. Can be one of the following values: null, Email, Sharepoint, EmailInternalRelayOnly, OfficeCommunicationsOnline, SharePointDefaultDomain, FullRedelegation, SharePointPublic, OrgIdAuthentication, Yammer, Intune.
 func (m *DomainDnsRecord) SetSupportedService(value *string)() {
     m.supportedService = value
 }

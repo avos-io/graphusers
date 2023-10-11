@@ -9,10 +9,10 @@ type UnifiedRoleManagementPolicyAuthenticationContextRule struct {
     UnifiedRoleManagementPolicyRule
     // The value of the authentication context claim.
     claimValue *string
-    // Whether this rule is enabled.
+    // Determines whether this rule is enabled.
     isEnabled *bool
 }
-// NewUnifiedRoleManagementPolicyAuthenticationContextRule instantiates a new UnifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.
+// NewUnifiedRoleManagementPolicyAuthenticationContextRule instantiates a new unifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.
 func NewUnifiedRoleManagementPolicyAuthenticationContextRule()(*UnifiedRoleManagementPolicyAuthenticationContextRule) {
     m := &UnifiedRoleManagementPolicyAuthenticationContextRule{
         UnifiedRoleManagementPolicyRule: *NewUnifiedRoleManagementPolicyRule(),
@@ -54,7 +54,7 @@ func (m *UnifiedRoleManagementPolicyAuthenticationContextRule) GetFieldDeseriali
     }
     return res
 }
-// GetIsEnabled gets the isEnabled property value. Whether this rule is enabled.
+// GetIsEnabled gets the isEnabled property value. Determines whether this rule is enabled.
 func (m *UnifiedRoleManagementPolicyAuthenticationContextRule) GetIsEnabled()(*bool) {
     return m.isEnabled
 }
@@ -82,7 +82,7 @@ func (m *UnifiedRoleManagementPolicyAuthenticationContextRule) Serialize(writer 
 func (m *UnifiedRoleManagementPolicyAuthenticationContextRule) SetClaimValue(value *string)() {
     m.claimValue = value
 }
-// SetIsEnabled sets the isEnabled property value. Whether this rule is enabled.
+// SetIsEnabled sets the isEnabled property value. Determines whether this rule is enabled.
 func (m *UnifiedRoleManagementPolicyAuthenticationContextRule) SetIsEnabled(value *bool)() {
     m.isEnabled = value
 }

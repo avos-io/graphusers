@@ -4,14 +4,14 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// BookingAppointment 
+// BookingAppointment represents a booked appointment of a service by a customer in a business.
 type BookingAppointment struct {
     Entity
     // Additional information that is sent to the customer when an appointment is confirmed.
     additionalInformation *string
     // The URL of the meeting to join anonymously.
     anonymousJoinWebUrl *string
-    // A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+    // A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
     customers []BookingCustomerInformationBaseable
     // The time zone of the customer. For a list of possible values, see dateTimeTimeZone.
     customerTimeZone *string
@@ -27,7 +27,7 @@ type BookingAppointment struct {
     joinWebUrl *string
     // The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.
     maximumAttendeesCount *int32
-    // If true indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.
+    // If true indicates that the bookingCustomer for this appointment doesn't wish to receive a confirmation for this appointment.
     optOutOfCustomerEmail *bool
     // The amount of time to reserve after the appointment ends, for cleaning up, as an example. The value is expressed in ISO8601 format.
     postBuffer *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ISODuration
@@ -45,7 +45,7 @@ type BookingAppointment struct {
     serviceId *string
     // The location where the service is delivered.
     serviceLocation Locationable
-    // The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it is computed from the service associated with the appointment by the serviceId property.
+    // The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it's computed from the service associated with the appointment by the serviceId property.
     serviceName *string
     // Notes from a bookingStaffMember. The value of this property is available only when reading this bookingAppointment by its ID.
     serviceNotes *string
@@ -56,7 +56,7 @@ type BookingAppointment struct {
     // The startDateTime property
     startDateTime DateTimeTimeZoneable
 }
-// NewBookingAppointment instantiates a new BookingAppointment and sets the default values.
+// NewBookingAppointment instantiates a new bookingAppointment and sets the default values.
 func NewBookingAppointment()(*BookingAppointment) {
     m := &BookingAppointment{
         Entity: *NewEntity(),
@@ -75,7 +75,7 @@ func (m *BookingAppointment) GetAdditionalInformation()(*string) {
 func (m *BookingAppointment) GetAnonymousJoinWebUrl()(*string) {
     return m.anonymousJoinWebUrl
 }
-// GetCustomers gets the customers property value. A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+// GetCustomers gets the customers property value. A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
 func (m *BookingAppointment) GetCustomers()([]BookingCustomerInformationBaseable) {
     return m.customers
 }
@@ -122,7 +122,9 @@ func (m *BookingAppointment) GetFieldDeserializers()(map[string]func(i878a80d233
         if val != nil {
             res := make([]BookingCustomerInformationBaseable, len(val))
             for i, v := range val {
-                res[i] = v.(BookingCustomerInformationBaseable)
+                if v != nil {
+                    res[i] = v.(BookingCustomerInformationBaseable)
+                }
             }
             m.SetCustomers(res)
         }
@@ -256,7 +258,9 @@ func (m *BookingAppointment) GetFieldDeserializers()(map[string]func(i878a80d233
         if val != nil {
             res := make([]BookingReminderable, len(val))
             for i, v := range val {
-                res[i] = v.(BookingReminderable)
+                if v != nil {
+                    res[i] = v.(BookingReminderable)
+                }
             }
             m.SetReminders(res)
         }
@@ -330,7 +334,9 @@ func (m *BookingAppointment) GetFieldDeserializers()(map[string]func(i878a80d233
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetStaffMemberIds(res)
         }
@@ -364,7 +370,7 @@ func (m *BookingAppointment) GetJoinWebUrl()(*string) {
 func (m *BookingAppointment) GetMaximumAttendeesCount()(*int32) {
     return m.maximumAttendeesCount
 }
-// GetOptOutOfCustomerEmail gets the optOutOfCustomerEmail property value. If true indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.
+// GetOptOutOfCustomerEmail gets the optOutOfCustomerEmail property value. If true indicates that the bookingCustomer for this appointment doesn't wish to receive a confirmation for this appointment.
 func (m *BookingAppointment) GetOptOutOfCustomerEmail()(*bool) {
     return m.optOutOfCustomerEmail
 }
@@ -400,7 +406,7 @@ func (m *BookingAppointment) GetServiceId()(*string) {
 func (m *BookingAppointment) GetServiceLocation()(Locationable) {
     return m.serviceLocation
 }
-// GetServiceName gets the serviceName property value. The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it is computed from the service associated with the appointment by the serviceId property.
+// GetServiceName gets the serviceName property value. The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it's computed from the service associated with the appointment by the serviceId property.
 func (m *BookingAppointment) GetServiceName()(*string) {
     return m.serviceName
 }
@@ -441,7 +447,9 @@ func (m *BookingAppointment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     if m.GetCustomers() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCustomers()))
         for i, v := range m.GetCustomers() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("customers", cast)
         if err != nil {
@@ -512,7 +520,9 @@ func (m *BookingAppointment) Serialize(writer i878a80d2330e89d26896388a3f487eef2
     if m.GetReminders() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetReminders()))
         for i, v := range m.GetReminders() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("reminders", cast)
         if err != nil {
@@ -577,7 +587,7 @@ func (m *BookingAppointment) SetAdditionalInformation(value *string)() {
 func (m *BookingAppointment) SetAnonymousJoinWebUrl(value *string)() {
     m.anonymousJoinWebUrl = value
 }
-// SetCustomers sets the customers property value. A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
+// SetCustomers sets the customers property value. A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.
 func (m *BookingAppointment) SetCustomers(value []BookingCustomerInformationBaseable)() {
     m.customers = value
 }
@@ -609,7 +619,7 @@ func (m *BookingAppointment) SetJoinWebUrl(value *string)() {
 func (m *BookingAppointment) SetMaximumAttendeesCount(value *int32)() {
     m.maximumAttendeesCount = value
 }
-// SetOptOutOfCustomerEmail sets the optOutOfCustomerEmail property value. If true indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.
+// SetOptOutOfCustomerEmail sets the optOutOfCustomerEmail property value. If true indicates that the bookingCustomer for this appointment doesn't wish to receive a confirmation for this appointment.
 func (m *BookingAppointment) SetOptOutOfCustomerEmail(value *bool)() {
     m.optOutOfCustomerEmail = value
 }
@@ -645,7 +655,7 @@ func (m *BookingAppointment) SetServiceId(value *string)() {
 func (m *BookingAppointment) SetServiceLocation(value Locationable)() {
     m.serviceLocation = value
 }
-// SetServiceName sets the serviceName property value. The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it is computed from the service associated with the appointment by the serviceId property.
+// SetServiceName sets the serviceName property value. The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it's computed from the service associated with the appointment by the serviceId property.
 func (m *BookingAppointment) SetServiceName(value *string)() {
     m.serviceName = value
 }

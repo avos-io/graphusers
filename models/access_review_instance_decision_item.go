@@ -18,6 +18,8 @@ type AccessReviewInstanceDecisionItem struct {
     applyResult *string
     // Result of the review. Possible values: Approve, Deny, NotReviewed, or DontKnow. Supports $select, $orderby, and $filter (eq only).
     decision *string
+    // Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
+    insights []GovernanceInsightable
     // Justification left by the reviewer when they made the decision.
     justification *string
     // Every decision item in an access review represents a principal's access to a resource. This property represents details of the principal. For example, if a decision item represents access of User 'Bob' to Group 'Sales' - The principal is 'Bob' and the resource is 'Sales'. Principals can be of two types - userIdentity and servicePrincipalIdentity. Supports $select. Read-only.
@@ -119,6 +121,22 @@ func (m *AccessReviewInstanceDecisionItem) GetFieldDeserializers()(map[string]fu
         }
         return nil
     }
+    res["insights"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetCollectionOfObjectValues(CreateGovernanceInsightFromDiscriminatorValue)
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            res := make([]GovernanceInsightable, len(val))
+            for i, v := range val {
+                if v != nil {
+                    res[i] = v.(GovernanceInsightable)
+                }
+            }
+            m.SetInsights(res)
+        }
+        return nil
+    }
     res["justification"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetStringValue()
         if err != nil {
@@ -201,6 +219,10 @@ func (m *AccessReviewInstanceDecisionItem) GetFieldDeserializers()(map[string]fu
     }
     return res
 }
+// GetInsights gets the insights property value. Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
+func (m *AccessReviewInstanceDecisionItem) GetInsights()([]GovernanceInsightable) {
+    return m.insights
+}
 // GetJustification gets the justification property value. Justification left by the reviewer when they made the decision.
 func (m *AccessReviewInstanceDecisionItem) GetJustification()(*string) {
     return m.justification
@@ -265,6 +287,18 @@ func (m *AccessReviewInstanceDecisionItem) Serialize(writer i878a80d2330e89d2689
     }
     {
         err = writer.WriteStringValue("decision", m.GetDecision())
+        if err != nil {
+            return err
+        }
+    }
+    if m.GetInsights() != nil {
+        cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetInsights()))
+        for i, v := range m.GetInsights() {
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
+        }
+        err = writer.WriteCollectionOfObjectValues("insights", cast)
         if err != nil {
             return err
         }
@@ -339,6 +373,10 @@ func (m *AccessReviewInstanceDecisionItem) SetApplyResult(value *string)() {
 func (m *AccessReviewInstanceDecisionItem) SetDecision(value *string)() {
     m.decision = value
 }
+// SetInsights sets the insights property value. Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.
+func (m *AccessReviewInstanceDecisionItem) SetInsights(value []GovernanceInsightable)() {
+    m.insights = value
+}
 // SetJustification sets the justification property value. Justification left by the reviewer when they made the decision.
 func (m *AccessReviewInstanceDecisionItem) SetJustification(value *string)() {
     m.justification = value
@@ -380,6 +418,7 @@ type AccessReviewInstanceDecisionItemable interface {
     GetAppliedDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)
     GetApplyResult()(*string)
     GetDecision()(*string)
+    GetInsights()([]GovernanceInsightable)
     GetJustification()(*string)
     GetPrincipal()(Identityable)
     GetPrincipalLink()(*string)
@@ -393,6 +432,7 @@ type AccessReviewInstanceDecisionItemable interface {
     SetAppliedDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)()
     SetApplyResult(value *string)()
     SetDecision(value *string)()
+    SetInsights(value []GovernanceInsightable)()
     SetJustification(value *string)()
     SetPrincipal(value Identityable)()
     SetPrincipalLink(value *string)()

@@ -14,11 +14,13 @@ type MailboxEvidence struct {
     // The user account of the mailbox.
     userAccount UserAccountable
 }
-// NewMailboxEvidence instantiates a new MailboxEvidence and sets the default values.
+// NewMailboxEvidence instantiates a new mailboxEvidence and sets the default values.
 func NewMailboxEvidence()(*MailboxEvidence) {
     m := &MailboxEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.mailboxEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateMailboxEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value

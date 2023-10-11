@@ -10,7 +10,7 @@ type DeviceCollectionResponse struct {
     // The value property
     value []Deviceable
 }
-// NewDeviceCollectionResponse instantiates a new DeviceCollectionResponse and sets the default values.
+// NewDeviceCollectionResponse instantiates a new deviceCollectionResponse and sets the default values.
 func NewDeviceCollectionResponse()(*DeviceCollectionResponse) {
     m := &DeviceCollectionResponse{
         BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
@@ -32,7 +32,9 @@ func (m *DeviceCollectionResponse) GetFieldDeserializers()(map[string]func(i878a
         if val != nil {
             res := make([]Deviceable, len(val))
             for i, v := range val {
-                res[i] = v.(Deviceable)
+                if v != nil {
+                    res[i] = v.(Deviceable)
+                }
             }
             m.SetValue(res)
         }
@@ -53,7 +55,9 @@ func (m *DeviceCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f4
     if m.GetValue() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetValue()))
         for i, v := range m.GetValue() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("value", cast)
         if err != nil {

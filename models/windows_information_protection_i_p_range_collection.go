@@ -26,7 +26,7 @@ func NewWindowsInformationProtectionIPRangeCollection()(*WindowsInformationProte
 func CreateWindowsInformationProtectionIPRangeCollectionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWindowsInformationProtectionIPRangeCollection(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionIPRangeCollection) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -65,7 +65,9 @@ func (m *WindowsInformationProtectionIPRangeCollection) GetFieldDeserializers()(
         if val != nil {
             res := make([]IpRangeable, len(val))
             for i, v := range val {
-                res[i] = v.(IpRangeable)
+                if v != nil {
+                    res[i] = v.(IpRangeable)
+                }
             }
             m.SetRanges(res)
         }
@@ -98,7 +100,9 @@ func (m *WindowsInformationProtectionIPRangeCollection) Serialize(writer i878a80
     if m.GetRanges() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRanges()))
         for i, v := range m.GetRanges() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("ranges", cast)
         if err != nil {
@@ -113,7 +117,7 @@ func (m *WindowsInformationProtectionIPRangeCollection) Serialize(writer i878a80
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionIPRangeCollection) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

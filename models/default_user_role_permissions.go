@@ -8,11 +8,15 @@ import (
 type DefaultUserRolePermissions struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // Indicates whether the default user role can create applications.
+    // Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Microsoft Entra admin center.
     allowedToCreateApps *bool
-    // Indicates whether the default user role can create security groups.
+    // Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Microsoft Entra admin center:  The Users can create security groups in Microsoft Entra admin centers, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.
     allowedToCreateSecurityGroups *bool
-    // Indicates whether the default user role can read other users.
+    // Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Microsoft Entra admin center.  When this setting is false, users assigned the Tenant Creator role can still create tenants.
+    allowedToCreateTenants *bool
+    // Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
+    allowedToReadBitlockerKeysForOwnedDevice *bool
+    // Indicates whether the default user role can read other users. DO NOT SET THIS VALUE TO false.
     allowedToReadOtherUsers *bool
     // The OdataType property
     odataType *string
@@ -30,19 +34,27 @@ func NewDefaultUserRolePermissions()(*DefaultUserRolePermissions) {
 func CreateDefaultUserRolePermissionsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewDefaultUserRolePermissions(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DefaultUserRolePermissions) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
-// GetAllowedToCreateApps gets the allowedToCreateApps property value. Indicates whether the default user role can create applications.
+// GetAllowedToCreateApps gets the allowedToCreateApps property value. Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Microsoft Entra admin center.
 func (m *DefaultUserRolePermissions) GetAllowedToCreateApps()(*bool) {
     return m.allowedToCreateApps
 }
-// GetAllowedToCreateSecurityGroups gets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups.
+// GetAllowedToCreateSecurityGroups gets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Microsoft Entra admin center:  The Users can create security groups in Microsoft Entra admin centers, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.
 func (m *DefaultUserRolePermissions) GetAllowedToCreateSecurityGroups()(*bool) {
     return m.allowedToCreateSecurityGroups
 }
-// GetAllowedToReadOtherUsers gets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users.
+// GetAllowedToCreateTenants gets the allowedToCreateTenants property value. Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Microsoft Entra admin center.  When this setting is false, users assigned the Tenant Creator role can still create tenants.
+func (m *DefaultUserRolePermissions) GetAllowedToCreateTenants()(*bool) {
+    return m.allowedToCreateTenants
+}
+// GetAllowedToReadBitlockerKeysForOwnedDevice gets the allowedToReadBitlockerKeysForOwnedDevice property value. Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
+func (m *DefaultUserRolePermissions) GetAllowedToReadBitlockerKeysForOwnedDevice()(*bool) {
+    return m.allowedToReadBitlockerKeysForOwnedDevice
+}
+// GetAllowedToReadOtherUsers gets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users. DO NOT SET THIS VALUE TO false.
 func (m *DefaultUserRolePermissions) GetAllowedToReadOtherUsers()(*bool) {
     return m.allowedToReadOtherUsers
 }
@@ -66,6 +78,26 @@ func (m *DefaultUserRolePermissions) GetFieldDeserializers()(map[string]func(i87
         }
         if val != nil {
             m.SetAllowedToCreateSecurityGroups(val)
+        }
+        return nil
+    }
+    res["allowedToCreateTenants"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowedToCreateTenants(val)
+        }
+        return nil
+    }
+    res["allowedToReadBitlockerKeysForOwnedDevice"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+        val, err := n.GetBoolValue()
+        if err != nil {
+            return err
+        }
+        if val != nil {
+            m.SetAllowedToReadBitlockerKeysForOwnedDevice(val)
         }
         return nil
     }
@@ -97,7 +129,9 @@ func (m *DefaultUserRolePermissions) GetFieldDeserializers()(map[string]func(i87
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetPermissionGrantPoliciesAssigned(res)
         }
@@ -128,6 +162,18 @@ func (m *DefaultUserRolePermissions) Serialize(writer i878a80d2330e89d26896388a3
         }
     }
     {
+        err := writer.WriteBoolValue("allowedToCreateTenants", m.GetAllowedToCreateTenants())
+        if err != nil {
+            return err
+        }
+    }
+    {
+        err := writer.WriteBoolValue("allowedToReadBitlockerKeysForOwnedDevice", m.GetAllowedToReadBitlockerKeysForOwnedDevice())
+        if err != nil {
+            return err
+        }
+    }
+    {
         err := writer.WriteBoolValue("allowedToReadOtherUsers", m.GetAllowedToReadOtherUsers())
         if err != nil {
             return err
@@ -153,19 +199,27 @@ func (m *DefaultUserRolePermissions) Serialize(writer i878a80d2330e89d26896388a3
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *DefaultUserRolePermissions) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetAllowedToCreateApps sets the allowedToCreateApps property value. Indicates whether the default user role can create applications.
+// SetAllowedToCreateApps sets the allowedToCreateApps property value. Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Microsoft Entra admin center.
 func (m *DefaultUserRolePermissions) SetAllowedToCreateApps(value *bool)() {
     m.allowedToCreateApps = value
 }
-// SetAllowedToCreateSecurityGroups sets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups.
+// SetAllowedToCreateSecurityGroups sets the allowedToCreateSecurityGroups property value. Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Microsoft Entra admin center:  The Users can create security groups in Microsoft Entra admin centers, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.
 func (m *DefaultUserRolePermissions) SetAllowedToCreateSecurityGroups(value *bool)() {
     m.allowedToCreateSecurityGroups = value
 }
-// SetAllowedToReadOtherUsers sets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users.
+// SetAllowedToCreateTenants sets the allowedToCreateTenants property value. Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Microsoft Entra admin center.  When this setting is false, users assigned the Tenant Creator role can still create tenants.
+func (m *DefaultUserRolePermissions) SetAllowedToCreateTenants(value *bool)() {
+    m.allowedToCreateTenants = value
+}
+// SetAllowedToReadBitlockerKeysForOwnedDevice sets the allowedToReadBitlockerKeysForOwnedDevice property value. Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.
+func (m *DefaultUserRolePermissions) SetAllowedToReadBitlockerKeysForOwnedDevice(value *bool)() {
+    m.allowedToReadBitlockerKeysForOwnedDevice = value
+}
+// SetAllowedToReadOtherUsers sets the allowedToReadOtherUsers property value. Indicates whether the default user role can read other users. DO NOT SET THIS VALUE TO false.
 func (m *DefaultUserRolePermissions) SetAllowedToReadOtherUsers(value *bool)() {
     m.allowedToReadOtherUsers = value
 }
@@ -183,11 +237,15 @@ type DefaultUserRolePermissionsable interface {
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable
     GetAllowedToCreateApps()(*bool)
     GetAllowedToCreateSecurityGroups()(*bool)
+    GetAllowedToCreateTenants()(*bool)
+    GetAllowedToReadBitlockerKeysForOwnedDevice()(*bool)
     GetAllowedToReadOtherUsers()(*bool)
     GetOdataType()(*string)
     GetPermissionGrantPoliciesAssigned()([]string)
     SetAllowedToCreateApps(value *bool)()
     SetAllowedToCreateSecurityGroups(value *bool)()
+    SetAllowedToCreateTenants(value *bool)()
+    SetAllowedToReadBitlockerKeysForOwnedDevice(value *bool)()
     SetAllowedToReadOtherUsers(value *bool)()
     SetOdataType(value *string)()
     SetPermissionGrantPoliciesAssigned(value []string)()

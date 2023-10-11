@@ -12,7 +12,7 @@ type PrincipalResourceMembershipsScope struct {
     // Defines the scopes of the resources for which access is reviewed.
     resourceScopes []AccessReviewScopeable
 }
-// NewPrincipalResourceMembershipsScope instantiates a new PrincipalResourceMembershipsScope and sets the default values.
+// NewPrincipalResourceMembershipsScope instantiates a new principalResourceMembershipsScope and sets the default values.
 func NewPrincipalResourceMembershipsScope()(*PrincipalResourceMembershipsScope) {
     m := &PrincipalResourceMembershipsScope{
         AccessReviewScope: *NewAccessReviewScope(),
@@ -36,7 +36,9 @@ func (m *PrincipalResourceMembershipsScope) GetFieldDeserializers()(map[string]f
         if val != nil {
             res := make([]AccessReviewScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewScopeable)
+                }
             }
             m.SetPrincipalScopes(res)
         }
@@ -50,7 +52,9 @@ func (m *PrincipalResourceMembershipsScope) GetFieldDeserializers()(map[string]f
         if val != nil {
             res := make([]AccessReviewScopeable, len(val))
             for i, v := range val {
-                res[i] = v.(AccessReviewScopeable)
+                if v != nil {
+                    res[i] = v.(AccessReviewScopeable)
+                }
             }
             m.SetResourceScopes(res)
         }
@@ -75,7 +79,9 @@ func (m *PrincipalResourceMembershipsScope) Serialize(writer i878a80d2330e89d268
     if m.GetPrincipalScopes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPrincipalScopes()))
         for i, v := range m.GetPrincipalScopes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("principalScopes", cast)
         if err != nil {
@@ -85,7 +91,9 @@ func (m *PrincipalResourceMembershipsScope) Serialize(writer i878a80d2330e89d268
     if m.GetResourceScopes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetResourceScopes()))
         for i, v := range m.GetResourceScopes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("resourceScopes", cast)
         if err != nil {

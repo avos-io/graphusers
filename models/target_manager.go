@@ -10,7 +10,7 @@ type TargetManager struct {
     // Manager level, between 1 and 4. The direct manager is 1.
     managerLevel *int32
 }
-// NewTargetManager instantiates a new TargetManager and sets the default values.
+// NewTargetManager instantiates a new targetManager and sets the default values.
 func NewTargetManager()(*TargetManager) {
     m := &TargetManager{
         SubjectSet: *NewSubjectSet(),

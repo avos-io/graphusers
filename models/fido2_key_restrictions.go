@@ -32,7 +32,7 @@ func CreateFido2KeyRestrictionsFromDiscriminatorValue(parseNode i878a80d2330e89d
 func (m *Fido2KeyRestrictions) GetAaGuids()([]string) {
     return m.aaGuids
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Fido2KeyRestrictions) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -51,7 +51,9 @@ func (m *Fido2KeyRestrictions) GetFieldDeserializers()(map[string]func(i878a80d2
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetAaGuids(res)
         }
@@ -136,7 +138,7 @@ func (m *Fido2KeyRestrictions) Serialize(writer i878a80d2330e89d26896388a3f487ee
 func (m *Fido2KeyRestrictions) SetAaGuids(value []string)() {
     m.aaGuids = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Fido2KeyRestrictions) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -7,10 +7,10 @@ import (
 // EducationAssignmentSettings 
 type EducationAssignmentSettings struct {
     Entity
-    // Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.
+    // Indicates whether turn-in celebration animation is shown. A value of true indicates that the animation isn't shown. Default value is false.
     submissionAnimationDisabled *bool
 }
-// NewEducationAssignmentSettings instantiates a new EducationAssignmentSettings and sets the default values.
+// NewEducationAssignmentSettings instantiates a new educationAssignmentSettings and sets the default values.
 func NewEducationAssignmentSettings()(*EducationAssignmentSettings) {
     m := &EducationAssignmentSettings{
         Entity: *NewEntity(),
@@ -36,7 +36,7 @@ func (m *EducationAssignmentSettings) GetFieldDeserializers()(map[string]func(i8
     }
     return res
 }
-// GetSubmissionAnimationDisabled gets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.
+// GetSubmissionAnimationDisabled gets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation is shown. A value of true indicates that the animation isn't shown. Default value is false.
 func (m *EducationAssignmentSettings) GetSubmissionAnimationDisabled()(*bool) {
     return m.submissionAnimationDisabled
 }
@@ -54,7 +54,7 @@ func (m *EducationAssignmentSettings) Serialize(writer i878a80d2330e89d26896388a
     }
     return nil
 }
-// SetSubmissionAnimationDisabled sets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.
+// SetSubmissionAnimationDisabled sets the submissionAnimationDisabled property value. Indicates whether turn-in celebration animation is shown. A value of true indicates that the animation isn't shown. Default value is false.
 func (m *EducationAssignmentSettings) SetSubmissionAnimationDisabled(value *bool)() {
     m.submissionAnimationDisabled = value
 }

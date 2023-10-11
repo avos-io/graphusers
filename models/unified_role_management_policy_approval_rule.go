@@ -10,7 +10,7 @@ type UnifiedRoleManagementPolicyApprovalRule struct {
     // The settings for approval of the role assignment.
     setting ApprovalSettingsable
 }
-// NewUnifiedRoleManagementPolicyApprovalRule instantiates a new UnifiedRoleManagementPolicyApprovalRule and sets the default values.
+// NewUnifiedRoleManagementPolicyApprovalRule instantiates a new unifiedRoleManagementPolicyApprovalRule and sets the default values.
 func NewUnifiedRoleManagementPolicyApprovalRule()(*UnifiedRoleManagementPolicyApprovalRule) {
     m := &UnifiedRoleManagementPolicyApprovalRule{
         UnifiedRoleManagementPolicyRule: *NewUnifiedRoleManagementPolicyRule(),

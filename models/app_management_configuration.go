@@ -8,11 +8,11 @@ import (
 type AppManagementConfiguration struct {
     // Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
     additionalData map[string]any
-    // The keyCredentials property
+    // Collection of keyCredential restrictions settings to be applied to an application or service principal.
     keyCredentials []KeyCredentialConfigurationable
     // The OdataType property
     odataType *string
-    // The passwordCredentials property
+    // Collection of password restrictions settings to be applied to an application or service principal.
     passwordCredentials []PasswordCredentialConfigurationable
 }
 // NewAppManagementConfiguration instantiates a new appManagementConfiguration and sets the default values.
@@ -26,7 +26,7 @@ func NewAppManagementConfiguration()(*AppManagementConfiguration) {
 func CreateAppManagementConfigurationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewAppManagementConfiguration(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AppManagementConfiguration) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -41,7 +41,9 @@ func (m *AppManagementConfiguration) GetFieldDeserializers()(map[string]func(i87
         if val != nil {
             res := make([]KeyCredentialConfigurationable, len(val))
             for i, v := range val {
-                res[i] = v.(KeyCredentialConfigurationable)
+                if v != nil {
+                    res[i] = v.(KeyCredentialConfigurationable)
+                }
             }
             m.SetKeyCredentials(res)
         }
@@ -65,7 +67,9 @@ func (m *AppManagementConfiguration) GetFieldDeserializers()(map[string]func(i87
         if val != nil {
             res := make([]PasswordCredentialConfigurationable, len(val))
             for i, v := range val {
-                res[i] = v.(PasswordCredentialConfigurationable)
+                if v != nil {
+                    res[i] = v.(PasswordCredentialConfigurationable)
+                }
             }
             m.SetPasswordCredentials(res)
         }
@@ -73,7 +77,7 @@ func (m *AppManagementConfiguration) GetFieldDeserializers()(map[string]func(i87
     }
     return res
 }
-// GetKeyCredentials gets the keyCredentials property value. The keyCredentials property
+// GetKeyCredentials gets the keyCredentials property value. Collection of keyCredential restrictions settings to be applied to an application or service principal.
 func (m *AppManagementConfiguration) GetKeyCredentials()([]KeyCredentialConfigurationable) {
     return m.keyCredentials
 }
@@ -81,7 +85,7 @@ func (m *AppManagementConfiguration) GetKeyCredentials()([]KeyCredentialConfigur
 func (m *AppManagementConfiguration) GetOdataType()(*string) {
     return m.odataType
 }
-// GetPasswordCredentials gets the passwordCredentials property value. The passwordCredentials property
+// GetPasswordCredentials gets the passwordCredentials property value. Collection of password restrictions settings to be applied to an application or service principal.
 func (m *AppManagementConfiguration) GetPasswordCredentials()([]PasswordCredentialConfigurationable) {
     return m.passwordCredentials
 }
@@ -90,7 +94,9 @@ func (m *AppManagementConfiguration) Serialize(writer i878a80d2330e89d26896388a3
     if m.GetKeyCredentials() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetKeyCredentials()))
         for i, v := range m.GetKeyCredentials() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("keyCredentials", cast)
         if err != nil {
@@ -106,7 +112,9 @@ func (m *AppManagementConfiguration) Serialize(writer i878a80d2330e89d26896388a3
     if m.GetPasswordCredentials() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetPasswordCredentials()))
         for i, v := range m.GetPasswordCredentials() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("passwordCredentials", cast)
         if err != nil {
@@ -121,11 +129,11 @@ func (m *AppManagementConfiguration) Serialize(writer i878a80d2330e89d26896388a3
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *AppManagementConfiguration) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
-// SetKeyCredentials sets the keyCredentials property value. The keyCredentials property
+// SetKeyCredentials sets the keyCredentials property value. Collection of keyCredential restrictions settings to be applied to an application or service principal.
 func (m *AppManagementConfiguration) SetKeyCredentials(value []KeyCredentialConfigurationable)() {
     m.keyCredentials = value
 }
@@ -133,7 +141,7 @@ func (m *AppManagementConfiguration) SetKeyCredentials(value []KeyCredentialConf
 func (m *AppManagementConfiguration) SetOdataType(value *string)() {
     m.odataType = value
 }
-// SetPasswordCredentials sets the passwordCredentials property value. The passwordCredentials property
+// SetPasswordCredentials sets the passwordCredentials property value. Collection of password restrictions settings to be applied to an application or service principal.
 func (m *AppManagementConfiguration) SetPasswordCredentials(value []PasswordCredentialConfigurationable)() {
     m.passwordCredentials = value
 }

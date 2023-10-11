@@ -10,7 +10,7 @@ type ItemAttachment struct {
     // The attached message or event. Navigation property.
     item OutlookItemable
 }
-// NewItemAttachment instantiates a new ItemAttachment and sets the default values.
+// NewItemAttachment instantiates a new itemAttachment and sets the default values.
 func NewItemAttachment()(*ItemAttachment) {
     m := &ItemAttachment{
         Attachment: *NewAttachment(),

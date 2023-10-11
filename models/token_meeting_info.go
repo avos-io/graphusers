@@ -10,7 +10,7 @@ type TokenMeetingInfo struct {
     // The token used to join the call.
     token *string
 }
-// NewTokenMeetingInfo instantiates a new TokenMeetingInfo and sets the default values.
+// NewTokenMeetingInfo instantiates a new tokenMeetingInfo and sets the default values.
 func NewTokenMeetingInfo()(*TokenMeetingInfo) {
     m := &TokenMeetingInfo{
         MeetingInfo: *NewMeetingInfo(),

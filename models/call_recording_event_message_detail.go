@@ -22,7 +22,7 @@ type CallRecordingEventMessageDetail struct {
     // Organizer of the meeting.
     meetingOrganizer IdentitySetable
 }
-// NewCallRecordingEventMessageDetail instantiates a new CallRecordingEventMessageDetail and sets the default values.
+// NewCallRecordingEventMessageDetail instantiates a new callRecordingEventMessageDetail and sets the default values.
 func NewCallRecordingEventMessageDetail()(*CallRecordingEventMessageDetail) {
     m := &CallRecordingEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

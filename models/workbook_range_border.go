@@ -7,7 +7,7 @@ import (
 // WorkbookRangeBorder 
 type WorkbookRangeBorder struct {
     Entity
-    // HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange').
+    // HTML color code representing the color of the border line, of the form #RRGGBB (for example 'FFA500') or as a named HTML color (for example 'orange').
     color *string
     // Constant value that indicates the specific side of the border. The possible values are: EdgeTop, EdgeBottom, EdgeLeft, EdgeRight, InsideVertical, InsideHorizontal, DiagonalDown, DiagonalUp. Read-only.
     sideIndex *string
@@ -27,7 +27,7 @@ func NewWorkbookRangeBorder()(*WorkbookRangeBorder) {
 func CreateWorkbookRangeBorderFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWorkbookRangeBorder(), nil
 }
-// GetColor gets the color property value. HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange').
+// GetColor gets the color property value. HTML color code representing the color of the border line, of the form #RRGGBB (for example 'FFA500') or as a named HTML color (for example 'orange').
 func (m *WorkbookRangeBorder) GetColor()(*string) {
     return m.color
 }
@@ -120,7 +120,7 @@ func (m *WorkbookRangeBorder) Serialize(writer i878a80d2330e89d26896388a3f487eef
     }
     return nil
 }
-// SetColor sets the color property value. HTML color code representing the color of the border line, of the form #RRGGBB (e.g. 'FFA500') or as a named HTML color (e.g. 'orange').
+// SetColor sets the color property value. HTML color code representing the color of the border line, of the form #RRGGBB (for example 'FFA500') or as a named HTML color (for example 'orange').
 func (m *WorkbookRangeBorder) SetColor(value *string)() {
     m.color = value
 }

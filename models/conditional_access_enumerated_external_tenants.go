@@ -7,10 +7,10 @@ import (
 // ConditionalAccessEnumeratedExternalTenants 
 type ConditionalAccessEnumeratedExternalTenants struct {
     ConditionalAccessExternalTenants
-    // The members property
+    // A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
     members []string
 }
-// NewConditionalAccessEnumeratedExternalTenants instantiates a new ConditionalAccessEnumeratedExternalTenants and sets the default values.
+// NewConditionalAccessEnumeratedExternalTenants instantiates a new conditionalAccessEnumeratedExternalTenants and sets the default values.
 func NewConditionalAccessEnumeratedExternalTenants()(*ConditionalAccessEnumeratedExternalTenants) {
     m := &ConditionalAccessEnumeratedExternalTenants{
         ConditionalAccessExternalTenants: *NewConditionalAccessExternalTenants(),
@@ -34,7 +34,9 @@ func (m *ConditionalAccessEnumeratedExternalTenants) GetFieldDeserializers()(map
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetMembers(res)
         }
@@ -42,7 +44,7 @@ func (m *ConditionalAccessEnumeratedExternalTenants) GetFieldDeserializers()(map
     }
     return res
 }
-// GetMembers gets the members property value. The members property
+// GetMembers gets the members property value. A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
 func (m *ConditionalAccessEnumeratedExternalTenants) GetMembers()([]string) {
     return m.members
 }
@@ -60,7 +62,7 @@ func (m *ConditionalAccessEnumeratedExternalTenants) Serialize(writer i878a80d23
     }
     return nil
 }
-// SetMembers sets the members property value. The members property
+// SetMembers sets the members property value. A collection of tenant IDs that define the scope of a policy targeting conditional access for guests and external users.
 func (m *ConditionalAccessEnumeratedExternalTenants) SetMembers(value []string)() {
     m.members = value
 }

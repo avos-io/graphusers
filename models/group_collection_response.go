@@ -10,7 +10,7 @@ type GroupCollectionResponse struct {
     // The value property
     value []Groupable
 }
-// NewGroupCollectionResponse instantiates a new GroupCollectionResponse and sets the default values.
+// NewGroupCollectionResponse instantiates a new groupCollectionResponse and sets the default values.
 func NewGroupCollectionResponse()(*GroupCollectionResponse) {
     m := &GroupCollectionResponse{
         BaseCollectionPaginationCountResponse: *NewBaseCollectionPaginationCountResponse(),
@@ -32,7 +32,9 @@ func (m *GroupCollectionResponse) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]Groupable, len(val))
             for i, v := range val {
-                res[i] = v.(Groupable)
+                if v != nil {
+                    res[i] = v.(Groupable)
+                }
             }
             m.SetValue(res)
         }
@@ -53,7 +55,9 @@ func (m *GroupCollectionResponse) Serialize(writer i878a80d2330e89d26896388a3f48
     if m.GetValue() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetValue()))
         for i, v := range m.GetValue() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("value", cast)
         if err != nil {

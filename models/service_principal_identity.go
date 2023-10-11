@@ -10,7 +10,7 @@ type ServicePrincipalIdentity struct {
     // The application identifier of the service principal.
     appId *string
 }
-// NewServicePrincipalIdentity instantiates a new ServicePrincipalIdentity and sets the default values.
+// NewServicePrincipalIdentity instantiates a new servicePrincipalIdentity and sets the default values.
 func NewServicePrincipalIdentity()(*ServicePrincipalIdentity) {
     m := &ServicePrincipalIdentity{
         Identity: *NewIdentity(),

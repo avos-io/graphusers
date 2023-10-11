@@ -12,7 +12,7 @@ type AttributeRuleMembers struct {
     // Determines the allowed target users for this policy. For more information about the syntax of the membership rule, see Membership Rules syntax.
     membershipRule *string
 }
-// NewAttributeRuleMembers instantiates a new AttributeRuleMembers and sets the default values.
+// NewAttributeRuleMembers instantiates a new attributeRuleMembers and sets the default values.
 func NewAttributeRuleMembers()(*AttributeRuleMembers) {
     m := &AttributeRuleMembers{
         SubjectSet: *NewSubjectSet(),

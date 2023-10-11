@@ -32,7 +32,7 @@ func CreateOptionalClaimsFromDiscriminatorValue(parseNode i878a80d2330e89d268963
 func (m *OptionalClaims) GetAccessToken()([]OptionalClaimable) {
     return m.accessToken
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *OptionalClaims) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -47,7 +47,9 @@ func (m *OptionalClaims) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]OptionalClaimable, len(val))
             for i, v := range val {
-                res[i] = v.(OptionalClaimable)
+                if v != nil {
+                    res[i] = v.(OptionalClaimable)
+                }
             }
             m.SetAccessToken(res)
         }
@@ -61,7 +63,9 @@ func (m *OptionalClaims) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]OptionalClaimable, len(val))
             for i, v := range val {
-                res[i] = v.(OptionalClaimable)
+                if v != nil {
+                    res[i] = v.(OptionalClaimable)
+                }
             }
             m.SetIdToken(res)
         }
@@ -85,7 +89,9 @@ func (m *OptionalClaims) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]OptionalClaimable, len(val))
             for i, v := range val {
-                res[i] = v.(OptionalClaimable)
+                if v != nil {
+                    res[i] = v.(OptionalClaimable)
+                }
             }
             m.SetSaml2Token(res)
         }
@@ -110,7 +116,9 @@ func (m *OptionalClaims) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetAccessToken() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAccessToken()))
         for i, v := range m.GetAccessToken() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("accessToken", cast)
         if err != nil {
@@ -120,7 +128,9 @@ func (m *OptionalClaims) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetIdToken() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetIdToken()))
         for i, v := range m.GetIdToken() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("idToken", cast)
         if err != nil {
@@ -136,7 +146,9 @@ func (m *OptionalClaims) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetSaml2Token() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetSaml2Token()))
         for i, v := range m.GetSaml2Token() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("saml2Token", cast)
         if err != nil {
@@ -155,7 +167,7 @@ func (m *OptionalClaims) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
 func (m *OptionalClaims) SetAccessToken(value []OptionalClaimable)() {
     m.accessToken = value
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *OptionalClaims) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// DeviceCompliancePolicy 
+// DeviceCompliancePolicy this is the base class for Compliance policy. Compliance policies are platform specific and individual per-platform compliance policies inherit from here. 
 type DeviceCompliancePolicy struct {
     Entity
     // The collection of assignments for this compliance policy.
@@ -33,7 +33,7 @@ type DeviceCompliancePolicy struct {
     // Version of the device configuration.
     version *int32
 }
-// NewDeviceCompliancePolicy instantiates a new DeviceCompliancePolicy and sets the default values.
+// NewDeviceCompliancePolicy instantiates a new deviceCompliancePolicy and sets the default values.
 func NewDeviceCompliancePolicy()(*DeviceCompliancePolicy) {
     m := &DeviceCompliancePolicy{
         Entity: *NewEntity(),
@@ -115,7 +115,9 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]DeviceCompliancePolicyAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceCompliancePolicyAssignmentable)
+                if v != nil {
+                    res[i] = v.(DeviceCompliancePolicyAssignmentable)
+                }
             }
             m.SetAssignments(res)
         }
@@ -149,7 +151,9 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]SettingStateDeviceSummaryable, len(val))
             for i, v := range val {
-                res[i] = v.(SettingStateDeviceSummaryable)
+                if v != nil {
+                    res[i] = v.(SettingStateDeviceSummaryable)
+                }
             }
             m.SetDeviceSettingStateSummaries(res)
         }
@@ -163,7 +167,9 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]DeviceComplianceDeviceStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceComplianceDeviceStatusable)
+                if v != nil {
+                    res[i] = v.(DeviceComplianceDeviceStatusable)
+                }
             }
             m.SetDeviceStatuses(res)
         }
@@ -207,7 +213,9 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]DeviceComplianceScheduledActionForRuleable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceComplianceScheduledActionForRuleable)
+                if v != nil {
+                    res[i] = v.(DeviceComplianceScheduledActionForRuleable)
+                }
             }
             m.SetScheduledActionsForRule(res)
         }
@@ -221,7 +229,9 @@ func (m *DeviceCompliancePolicy) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]DeviceComplianceUserStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceComplianceUserStatusable)
+                if v != nil {
+                    res[i] = v.(DeviceComplianceUserStatusable)
+                }
             }
             m.SetUserStatuses(res)
         }
@@ -278,7 +288,9 @@ func (m *DeviceCompliancePolicy) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignments()))
         for i, v := range m.GetAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignments", cast)
         if err != nil {
@@ -300,7 +312,9 @@ func (m *DeviceCompliancePolicy) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetDeviceSettingStateSummaries() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceSettingStateSummaries()))
         for i, v := range m.GetDeviceSettingStateSummaries() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceSettingStateSummaries", cast)
         if err != nil {
@@ -310,7 +324,9 @@ func (m *DeviceCompliancePolicy) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetDeviceStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceStatuses()))
         for i, v := range m.GetDeviceStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceStatuses", cast)
         if err != nil {
@@ -338,7 +354,9 @@ func (m *DeviceCompliancePolicy) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetScheduledActionsForRule() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetScheduledActionsForRule()))
         for i, v := range m.GetScheduledActionsForRule() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("scheduledActionsForRule", cast)
         if err != nil {
@@ -348,7 +366,9 @@ func (m *DeviceCompliancePolicy) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetUserStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserStatuses()))
         for i, v := range m.GetUserStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userStatuses", cast)
         if err != nil {

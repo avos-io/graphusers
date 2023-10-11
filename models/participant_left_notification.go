@@ -12,7 +12,7 @@ type ParticipantLeftNotification struct {
     // ID of the participant under the policy who has left the meeting.
     participantId *string
 }
-// NewParticipantLeftNotification instantiates a new ParticipantLeftNotification and sets the default values.
+// NewParticipantLeftNotification instantiates a new participantLeftNotification and sets the default values.
 func NewParticipantLeftNotification()(*ParticipantLeftNotification) {
     m := &ParticipantLeftNotification{
         Entity: *NewEntity(),

@@ -12,7 +12,7 @@ type WebApplication struct {
     homePageUrl *string
     // Specifies whether this web application can request tokens using the OAuth 2.0 implicit flow.
     implicitGrantSettings ImplicitGrantSettingsable
-    // Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
+    // Specifies the URL that is used by Microsoft's authorization service to log out a user using front-channel, back-channel or SAML logout protocols.
     logoutUrl *string
     // The OdataType property
     odataType *string
@@ -32,7 +32,7 @@ func NewWebApplication()(*WebApplication) {
 func CreateWebApplicationFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWebApplication(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WebApplication) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -87,7 +87,9 @@ func (m *WebApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetRedirectUris(res)
         }
@@ -101,7 +103,9 @@ func (m *WebApplication) GetFieldDeserializers()(map[string]func(i878a80d2330e89
         if val != nil {
             res := make([]RedirectUriSettingsable, len(val))
             for i, v := range val {
-                res[i] = v.(RedirectUriSettingsable)
+                if v != nil {
+                    res[i] = v.(RedirectUriSettingsable)
+                }
             }
             m.SetRedirectUriSettings(res)
         }
@@ -117,7 +121,7 @@ func (m *WebApplication) GetHomePageUrl()(*string) {
 func (m *WebApplication) GetImplicitGrantSettings()(ImplicitGrantSettingsable) {
     return m.implicitGrantSettings
 }
-// GetLogoutUrl gets the logoutUrl property value. Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
+// GetLogoutUrl gets the logoutUrl property value. Specifies the URL that is used by Microsoft's authorization service to log out a user using front-channel, back-channel or SAML logout protocols.
 func (m *WebApplication) GetLogoutUrl()(*string) {
     return m.logoutUrl
 }
@@ -168,7 +172,9 @@ func (m *WebApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     if m.GetRedirectUriSettings() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetRedirectUriSettings()))
         for i, v := range m.GetRedirectUriSettings() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("redirectUriSettings", cast)
         if err != nil {
@@ -183,7 +189,7 @@ func (m *WebApplication) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WebApplication) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -195,7 +201,7 @@ func (m *WebApplication) SetHomePageUrl(value *string)() {
 func (m *WebApplication) SetImplicitGrantSettings(value ImplicitGrantSettingsable)() {
     m.implicitGrantSettings = value
 }
-// SetLogoutUrl sets the logoutUrl property value. Specifies the URL that will be used by Microsoft's authorization service to logout an user using front-channel, back-channel or SAML logout protocols.
+// SetLogoutUrl sets the logoutUrl property value. Specifies the URL that is used by Microsoft's authorization service to log out a user using front-channel, back-channel or SAML logout protocols.
 func (m *WebApplication) SetLogoutUrl(value *string)() {
     m.logoutUrl = value
 }

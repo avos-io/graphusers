@@ -26,7 +26,7 @@ func NewWindowsInformationProtectionResourceCollection()(*WindowsInformationProt
 func CreateWindowsInformationProtectionResourceCollectionFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWindowsInformationProtectionResourceCollection(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionResourceCollection) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -65,7 +65,9 @@ func (m *WindowsInformationProtectionResourceCollection) GetFieldDeserializers()
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetResources(res)
         }
@@ -109,7 +111,7 @@ func (m *WindowsInformationProtectionResourceCollection) Serialize(writer i878a8
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *WindowsInformationProtectionResourceCollection) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

@@ -12,7 +12,7 @@ type TeamJoiningDisabledEventMessageDetail struct {
     // Unique identifier of the team.
     teamId *string
 }
-// NewTeamJoiningDisabledEventMessageDetail instantiates a new TeamJoiningDisabledEventMessageDetail and sets the default values.
+// NewTeamJoiningDisabledEventMessageDetail instantiates a new teamJoiningDisabledEventMessageDetail and sets the default values.
 func NewTeamJoiningDisabledEventMessageDetail()(*TeamJoiningDisabledEventMessageDetail) {
     m := &TeamJoiningDisabledEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

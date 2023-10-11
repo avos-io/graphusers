@@ -20,7 +20,7 @@ type WorkforceIntegration struct {
     // Workforce Integration URL for callbacks from the Shifts service.
     url *string
 }
-// NewWorkforceIntegration instantiates a new WorkforceIntegration and sets the default values.
+// NewWorkforceIntegration instantiates a new workforceIntegration and sets the default values.
 func NewWorkforceIntegration()(*WorkforceIntegration) {
     m := &WorkforceIntegration{
         ChangeTrackedEntity: *NewChangeTrackedEntity(),

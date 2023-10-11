@@ -10,7 +10,7 @@ type IPv4CidrRange struct {
     // IPv4 address in CIDR notation. Not nullable.
     cidrAddress *string
 }
-// NewIPv4CidrRange instantiates a new IPv4CidrRange and sets the default values.
+// NewIPv4CidrRange instantiates a new iPv4CidrRange and sets the default values.
 func NewIPv4CidrRange()(*IPv4CidrRange) {
     m := &IPv4CidrRange{
         IpRange: *NewIpRange(),

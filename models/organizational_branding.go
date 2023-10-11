@@ -10,7 +10,7 @@ type OrganizationalBranding struct {
     // Add different branding based on a locale.
     localizations []OrganizationalBrandingLocalizationable
 }
-// NewOrganizationalBranding instantiates a new OrganizationalBranding and sets the default values.
+// NewOrganizationalBranding instantiates a new organizationalBranding and sets the default values.
 func NewOrganizationalBranding()(*OrganizationalBranding) {
     m := &OrganizationalBranding{
         OrganizationalBrandingProperties: *NewOrganizationalBrandingProperties(),
@@ -34,7 +34,9 @@ func (m *OrganizationalBranding) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]OrganizationalBrandingLocalizationable, len(val))
             for i, v := range val {
-                res[i] = v.(OrganizationalBrandingLocalizationable)
+                if v != nil {
+                    res[i] = v.(OrganizationalBrandingLocalizationable)
+                }
             }
             m.SetLocalizations(res)
         }
@@ -55,7 +57,9 @@ func (m *OrganizationalBranding) Serialize(writer i878a80d2330e89d26896388a3f487
     if m.GetLocalizations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetLocalizations()))
         for i, v := range m.GetLocalizations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("localizations", cast)
         if err != nil {

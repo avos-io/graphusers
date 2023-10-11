@@ -10,7 +10,7 @@ type EducationSubmissionIndividualRecipient struct {
     // User ID of the user to whom the submission is assigned.
     userId *string
 }
-// NewEducationSubmissionIndividualRecipient instantiates a new EducationSubmissionIndividualRecipient and sets the default values.
+// NewEducationSubmissionIndividualRecipient instantiates a new educationSubmissionIndividualRecipient and sets the default values.
 func NewEducationSubmissionIndividualRecipient()(*EducationSubmissionIndividualRecipient) {
     m := &EducationSubmissionIndividualRecipient{
         EducationSubmissionRecipient: *NewEducationSubmissionRecipient(),

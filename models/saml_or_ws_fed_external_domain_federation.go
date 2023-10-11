@@ -10,7 +10,7 @@ type SamlOrWsFedExternalDomainFederation struct {
     // Collection of domain names of the external organizations that the tenant is federating with. Supports $filter (eq).
     domains []ExternalDomainNameable
 }
-// NewSamlOrWsFedExternalDomainFederation instantiates a new SamlOrWsFedExternalDomainFederation and sets the default values.
+// NewSamlOrWsFedExternalDomainFederation instantiates a new samlOrWsFedExternalDomainFederation and sets the default values.
 func NewSamlOrWsFedExternalDomainFederation()(*SamlOrWsFedExternalDomainFederation) {
     m := &SamlOrWsFedExternalDomainFederation{
         SamlOrWsFedProvider: *NewSamlOrWsFedProvider(),
@@ -38,7 +38,9 @@ func (m *SamlOrWsFedExternalDomainFederation) GetFieldDeserializers()(map[string
         if val != nil {
             res := make([]ExternalDomainNameable, len(val))
             for i, v := range val {
-                res[i] = v.(ExternalDomainNameable)
+                if v != nil {
+                    res[i] = v.(ExternalDomainNameable)
+                }
             }
             m.SetDomains(res)
         }
@@ -55,7 +57,9 @@ func (m *SamlOrWsFedExternalDomainFederation) Serialize(writer i878a80d2330e89d2
     if m.GetDomains() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDomains()))
         for i, v := range m.GetDomains() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("domains", cast)
         if err != nil {

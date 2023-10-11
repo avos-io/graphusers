@@ -14,7 +14,7 @@ type ProcessEvidence struct {
     imageFile FileDetailsable
     // A unique identifier assigned to a device by Microsoft Defender for Endpoint.
     mdeDeviceId *string
-    // Date and time when the parent of the process was created.
+    // Date and time when the parent of the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     parentProcessCreationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Process ID (PID) of the parent process that spawned the process.
     parentProcessId *int64
@@ -22,18 +22,20 @@ type ProcessEvidence struct {
     parentProcessImageFile FileDetailsable
     // Command line used to create the new process.
     processCommandLine *string
-    // Date and time the process was created.
+    // Date and time when the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
     processCreationDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
     // Process ID (PID) of the newly created process.
     processId *int64
     // User details of the user that ran the process.
     userAccount UserAccountable
 }
-// NewProcessEvidence instantiates a new ProcessEvidence and sets the default values.
+// NewProcessEvidence instantiates a new processEvidence and sets the default values.
 func NewProcessEvidence()(*ProcessEvidence) {
     m := &ProcessEvidence{
         AlertEvidence: *NewAlertEvidence(),
     }
+    odataTypeValue := "#microsoft.graph.security.processEvidence"
+    m.SetOdataType(&odataTypeValue)
     return m
 }
 // CreateProcessEvidenceFromDiscriminatorValue creates a new instance of the appropriate class based on discriminator value
@@ -157,7 +159,7 @@ func (m *ProcessEvidence) GetImageFile()(FileDetailsable) {
 func (m *ProcessEvidence) GetMdeDeviceId()(*string) {
     return m.mdeDeviceId
 }
-// GetParentProcessCreationDateTime gets the parentProcessCreationDateTime property value. Date and time when the parent of the process was created.
+// GetParentProcessCreationDateTime gets the parentProcessCreationDateTime property value. Date and time when the parent of the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ProcessEvidence) GetParentProcessCreationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.parentProcessCreationDateTime
 }
@@ -173,7 +175,7 @@ func (m *ProcessEvidence) GetParentProcessImageFile()(FileDetailsable) {
 func (m *ProcessEvidence) GetProcessCommandLine()(*string) {
     return m.processCommandLine
 }
-// GetProcessCreationDateTime gets the processCreationDateTime property value. Date and time the process was created.
+// GetProcessCreationDateTime gets the processCreationDateTime property value. Date and time when the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ProcessEvidence) GetProcessCreationDateTime()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.processCreationDateTime
 }
@@ -266,7 +268,7 @@ func (m *ProcessEvidence) SetImageFile(value FileDetailsable)() {
 func (m *ProcessEvidence) SetMdeDeviceId(value *string)() {
     m.mdeDeviceId = value
 }
-// SetParentProcessCreationDateTime sets the parentProcessCreationDateTime property value. Date and time when the parent of the process was created.
+// SetParentProcessCreationDateTime sets the parentProcessCreationDateTime property value. Date and time when the parent of the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ProcessEvidence) SetParentProcessCreationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.parentProcessCreationDateTime = value
 }
@@ -282,7 +284,7 @@ func (m *ProcessEvidence) SetParentProcessImageFile(value FileDetailsable)() {
 func (m *ProcessEvidence) SetProcessCommandLine(value *string)() {
     m.processCommandLine = value
 }
-// SetProcessCreationDateTime sets the processCreationDateTime property value. Date and time the process was created.
+// SetProcessCreationDateTime sets the processCreationDateTime property value. Date and time when the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
 func (m *ProcessEvidence) SetProcessCreationDateTime(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.processCreationDateTime = value
 }

@@ -20,7 +20,7 @@ type ParticipantInfo struct {
     odataType *string
     // The participant ID of the participant. Read-only.
     participantId *string
-    // The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant's current physical location. Read-only.
+    // The home region of the participant. This can be a country, a continent, or a larger geographic region. This doesn't change based on the participant's current physical location. Read-only.
     region *string
 }
 // NewParticipantInfo instantiates a new participantInfo and sets the default values.
@@ -34,7 +34,7 @@ func NewParticipantInfo()(*ParticipantInfo) {
 func CreateParticipantInfoFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewParticipantInfo(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ParticipantInfo) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -137,7 +137,7 @@ func (m *ParticipantInfo) GetOdataType()(*string) {
 func (m *ParticipantInfo) GetParticipantId()(*string) {
     return m.participantId
 }
-// GetRegion gets the region property value. The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant's current physical location. Read-only.
+// GetRegion gets the region property value. The home region of the participant. This can be a country, a continent, or a larger geographic region. This doesn't change based on the participant's current physical location. Read-only.
 func (m *ParticipantInfo) GetRegion()(*string) {
     return m.region
 }
@@ -194,7 +194,7 @@ func (m *ParticipantInfo) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ParticipantInfo) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -222,7 +222,7 @@ func (m *ParticipantInfo) SetOdataType(value *string)() {
 func (m *ParticipantInfo) SetParticipantId(value *string)() {
     m.participantId = value
 }
-// SetRegion sets the region property value. The home region of the participant. This can be a country, a continent, or a larger geographic region. This does not change based on the participant's current physical location. Read-only.
+// SetRegion sets the region property value. The home region of the participant. This can be a country, a continent, or a larger geographic region. This doesn't change based on the participant's current physical location. Read-only.
 func (m *ParticipantInfo) SetRegion(value *string)() {
     m.region = value
 }

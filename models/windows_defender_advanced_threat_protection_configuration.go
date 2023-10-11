@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// WindowsDefenderAdvancedThreatProtectionConfiguration 
+// WindowsDefenderAdvancedThreatProtectionConfiguration windows Defender AdvancedThreatProtection Configuration.
 type WindowsDefenderAdvancedThreatProtectionConfiguration struct {
     DeviceConfiguration
     // Windows Defender AdvancedThreatProtection 'Allow Sample Sharing' Rule
@@ -12,7 +12,7 @@ type WindowsDefenderAdvancedThreatProtectionConfiguration struct {
     // Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.
     enableExpeditedTelemetryReporting *bool
 }
-// NewWindowsDefenderAdvancedThreatProtectionConfiguration instantiates a new WindowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
+// NewWindowsDefenderAdvancedThreatProtectionConfiguration instantiates a new windowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
 func NewWindowsDefenderAdvancedThreatProtectionConfiguration()(*WindowsDefenderAdvancedThreatProtectionConfiguration) {
     m := &WindowsDefenderAdvancedThreatProtectionConfiguration{
         DeviceConfiguration: *NewDeviceConfiguration(),

@@ -12,7 +12,7 @@ type ConditionalAccessConditionSet struct {
     applications ConditionalAccessApplicationsable
     // Client applications (service principals and workload identities) included in and excluded from the policy. Either users or clientApplications is required.
     clientApplications ConditionalAccessClientApplicationsable
-    // Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
+    // Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync which includes EAS supported and unsupported platforms.
     clientAppTypes []ConditionalAccessClientApp
     // Devices in the policy.
     devices ConditionalAccessDevicesable
@@ -42,7 +42,7 @@ func NewConditionalAccessConditionSet()(*ConditionalAccessConditionSet) {
 func CreateConditionalAccessConditionSetFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewConditionalAccessConditionSet(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessConditionSet) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -54,7 +54,7 @@ func (m *ConditionalAccessConditionSet) GetApplications()(ConditionalAccessAppli
 func (m *ConditionalAccessConditionSet) GetClientApplications()(ConditionalAccessClientApplicationsable) {
     return m.clientApplications
 }
-// GetClientAppTypes gets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
+// GetClientAppTypes gets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync which includes EAS supported and unsupported platforms.
 func (m *ConditionalAccessConditionSet) GetClientAppTypes()([]ConditionalAccessClientApp) {
     return m.clientAppTypes
 }
@@ -93,7 +93,9 @@ func (m *ConditionalAccessConditionSet) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]ConditionalAccessClientApp, len(val))
             for i, v := range val {
-                res[i] = *(v.(*ConditionalAccessClientApp))
+                if v != nil {
+                    res[i] = *(v.(*ConditionalAccessClientApp))
+                }
             }
             m.SetClientAppTypes(res)
         }
@@ -147,7 +149,9 @@ func (m *ConditionalAccessConditionSet) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]RiskLevel, len(val))
             for i, v := range val {
-                res[i] = *(v.(*RiskLevel))
+                if v != nil {
+                    res[i] = *(v.(*RiskLevel))
+                }
             }
             m.SetServicePrincipalRiskLevels(res)
         }
@@ -161,7 +165,9 @@ func (m *ConditionalAccessConditionSet) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]RiskLevel, len(val))
             for i, v := range val {
-                res[i] = *(v.(*RiskLevel))
+                if v != nil {
+                    res[i] = *(v.(*RiskLevel))
+                }
             }
             m.SetSignInRiskLevels(res)
         }
@@ -175,7 +181,9 @@ func (m *ConditionalAccessConditionSet) GetFieldDeserializers()(map[string]func(
         if val != nil {
             res := make([]RiskLevel, len(val))
             for i, v := range val {
-                res[i] = *(v.(*RiskLevel))
+                if v != nil {
+                    res[i] = *(v.(*RiskLevel))
+                }
             }
             m.SetUserRiskLevels(res)
         }
@@ -297,7 +305,7 @@ func (m *ConditionalAccessConditionSet) Serialize(writer i878a80d2330e89d2689638
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessConditionSet) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -309,7 +317,7 @@ func (m *ConditionalAccessConditionSet) SetApplications(value ConditionalAccessA
 func (m *ConditionalAccessConditionSet) SetClientApplications(value ConditionalAccessClientApplicationsable)() {
     m.clientApplications = value
 }
-// SetClientAppTypes sets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.
+// SetClientAppTypes sets the clientAppTypes property value. Client application types included in the policy. Possible values are: all, browser, mobileAppsAndDesktopClients, exchangeActiveSync, easSupported, other. Required.  The easUnsupported enumeration member will be deprecated in favor of exchangeActiveSync which includes EAS supported and unsupported platforms.
 func (m *ConditionalAccessConditionSet) SetClientAppTypes(value []ConditionalAccessClientApp)() {
     m.clientAppTypes = value
 }

@@ -28,7 +28,7 @@ func NewWindows10NetworkProxyServer()(*Windows10NetworkProxyServer) {
 func CreateWindows10NetworkProxyServerFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewWindows10NetworkProxyServer(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Windows10NetworkProxyServer) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -61,7 +61,9 @@ func (m *Windows10NetworkProxyServer) GetFieldDeserializers()(map[string]func(i8
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExceptions(res)
         }
@@ -131,7 +133,7 @@ func (m *Windows10NetworkProxyServer) Serialize(writer i878a80d2330e89d26896388a
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *Windows10NetworkProxyServer) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

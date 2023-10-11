@@ -29,7 +29,7 @@ func NewInnerError()(*InnerError) {
 func CreateInnerErrorFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewInnerError(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *InnerError) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -37,7 +37,7 @@ func (m *InnerError) GetAdditionalData()(map[string]any) {
 func (m *InnerError) GetClientRequestId()(*string) {
     return m.clientRequestId
 }
-// GetDate gets the date property value. Date when the error occured.
+// GetDate gets the Date property value. Date when the error occured.
 func (m *InnerError) GetDate()(*i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time) {
     return m.date
 }
@@ -54,7 +54,7 @@ func (m *InnerError) GetFieldDeserializers()(map[string]func(i878a80d2330e89d268
         }
         return nil
     }
-    res["date"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
+    res["Date"] = func (n i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode) error {
         val, err := n.GetTimeValue()
         if err != nil {
             return err
@@ -103,7 +103,7 @@ func (m *InnerError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
         }
     }
     {
-        err := writer.WriteTimeValue("date", m.GetDate())
+        err := writer.WriteTimeValue("Date", m.GetDate())
         if err != nil {
             return err
         }
@@ -128,7 +128,7 @@ func (m *InnerError) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *InnerError) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -136,7 +136,7 @@ func (m *InnerError) SetAdditionalData(value map[string]any)() {
 func (m *InnerError) SetClientRequestId(value *string)() {
     m.clientRequestId = value
 }
-// SetDate sets the date property value. Date when the error occured.
+// SetDate sets the Date property value. Date when the error occured.
 func (m *InnerError) SetDate(value *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time)() {
     m.date = value
 }

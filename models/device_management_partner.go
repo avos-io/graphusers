@@ -5,7 +5,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// DeviceManagementPartner 
+// DeviceManagementPartner entity which represents a connection to device management partner.
 type DeviceManagementPartner struct {
     Entity
     // Partner display name
@@ -27,7 +27,7 @@ type DeviceManagementPartner struct {
     // DateTime in UTC when PartnerDevices will be removed
     whenPartnerDevicesWillBeRemovedDateTime *i336074805fc853987abe6f7fe3ad97a6a6f3077a16391fec744f671a015fbd7e.Time
 }
-// NewDeviceManagementPartner instantiates a new DeviceManagementPartner and sets the default values.
+// NewDeviceManagementPartner instantiates a new deviceManagementPartner and sets the default values.
 func NewDeviceManagementPartner()(*DeviceManagementPartner) {
     m := &DeviceManagementPartner{
         Entity: *NewEntity(),
@@ -63,7 +63,9 @@ func (m *DeviceManagementPartner) GetFieldDeserializers()(map[string]func(i878a8
         if val != nil {
             res := make([]DeviceManagementPartnerAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceManagementPartnerAssignmentable)
+                if v != nil {
+                    res[i] = v.(DeviceManagementPartnerAssignmentable)
+                }
             }
             m.SetGroupsRequiringPartnerEnrollment(res)
         }
@@ -188,7 +190,9 @@ func (m *DeviceManagementPartner) Serialize(writer i878a80d2330e89d26896388a3f48
     if m.GetGroupsRequiringPartnerEnrollment() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetGroupsRequiringPartnerEnrollment()))
         for i, v := range m.GetGroupsRequiringPartnerEnrollment() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("groupsRequiringPartnerEnrollment", cast)
         if err != nil {

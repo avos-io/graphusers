@@ -14,7 +14,7 @@ type AccessReviewNotificationRecipientQueryScope struct {
     // Indicates the type of query. Allowed value is MicrosoftGraph.
     queryType *string
 }
-// NewAccessReviewNotificationRecipientQueryScope instantiates a new AccessReviewNotificationRecipientQueryScope and sets the default values.
+// NewAccessReviewNotificationRecipientQueryScope instantiates a new accessReviewNotificationRecipientQueryScope and sets the default values.
 func NewAccessReviewNotificationRecipientQueryScope()(*AccessReviewNotificationRecipientQueryScope) {
     m := &AccessReviewNotificationRecipientQueryScope{
         AccessReviewNotificationRecipientScope: *NewAccessReviewNotificationRecipientScope(),

@@ -21,7 +21,7 @@ type Call struct {
     chatInfo ChatInfoable
     // The contentSharingSessions property
     contentSharingSessions []ContentSharingSessionable
-    // The direction of the call. The possible value are incoming or outgoing. Read-only.
+    // The direction of the call. The possible values are incoming or outgoing. Read-only.
     direction *CallDirection
     // Call context associated with an incoming call.
     incomingContext IncomingContextable
@@ -39,7 +39,7 @@ type Call struct {
     participants []Participantable
     // The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
     requestedModalities []Modality
-    // The result information. For example can hold termination reason. Read-only.
+    // The result information. For example, the result can hold termination reason. Read-only.
     resultInfo ResultInfoable
     // The originator of the call.
     source ParticipantInfoable
@@ -95,7 +95,7 @@ func (m *Call) GetChatInfo()(ChatInfoable) {
 func (m *Call) GetContentSharingSessions()([]ContentSharingSessionable) {
     return m.contentSharingSessions
 }
-// GetDirection gets the direction property value. The direction of the call. The possible value are incoming or outgoing. Read-only.
+// GetDirection gets the direction property value. The direction of the call. The possible values are incoming or outgoing. Read-only.
 func (m *Call) GetDirection()(*CallDirection) {
     return m.direction
 }
@@ -110,7 +110,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]AudioRoutingGroupable, len(val))
             for i, v := range val {
-                res[i] = v.(AudioRoutingGroupable)
+                if v != nil {
+                    res[i] = v.(AudioRoutingGroupable)
+                }
             }
             m.SetAudioRoutingGroups(res)
         }
@@ -154,7 +156,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]CallRouteable, len(val))
             for i, v := range val {
-                res[i] = v.(CallRouteable)
+                if v != nil {
+                    res[i] = v.(CallRouteable)
+                }
             }
             m.SetCallRoutes(res)
         }
@@ -178,7 +182,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]ContentSharingSessionable, len(val))
             for i, v := range val {
-                res[i] = v.(ContentSharingSessionable)
+                if v != nil {
+                    res[i] = v.(ContentSharingSessionable)
+                }
             }
             m.SetContentSharingSessions(res)
         }
@@ -252,7 +258,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]CommsOperationable, len(val))
             for i, v := range val {
-                res[i] = v.(CommsOperationable)
+                if v != nil {
+                    res[i] = v.(CommsOperationable)
+                }
             }
             m.SetOperations(res)
         }
@@ -266,7 +274,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]Participantable, len(val))
             for i, v := range val {
-                res[i] = v.(Participantable)
+                if v != nil {
+                    res[i] = v.(Participantable)
+                }
             }
             m.SetParticipants(res)
         }
@@ -280,7 +290,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]Modality, len(val))
             for i, v := range val {
-                res[i] = *(v.(*Modality))
+                if v != nil {
+                    res[i] = *(v.(*Modality))
+                }
             }
             m.SetRequestedModalities(res)
         }
@@ -334,7 +346,9 @@ func (m *Call) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26896388a
         if val != nil {
             res := make([]InvitationParticipantInfoable, len(val))
             for i, v := range val {
-                res[i] = v.(InvitationParticipantInfoable)
+                if v != nil {
+                    res[i] = v.(InvitationParticipantInfoable)
+                }
             }
             m.SetTargets(res)
         }
@@ -404,7 +418,7 @@ func (m *Call) GetParticipants()([]Participantable) {
 func (m *Call) GetRequestedModalities()([]Modality) {
     return m.requestedModalities
 }
-// GetResultInfo gets the resultInfo property value. The result information. For example can hold termination reason. Read-only.
+// GetResultInfo gets the resultInfo property value. The result information. For example, the result can hold termination reason. Read-only.
 func (m *Call) GetResultInfo()(ResultInfoable) {
     return m.resultInfo
 }
@@ -445,7 +459,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetAudioRoutingGroups() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAudioRoutingGroups()))
         for i, v := range m.GetAudioRoutingGroups() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("audioRoutingGroups", cast)
         if err != nil {
@@ -473,7 +489,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetCallRoutes() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetCallRoutes()))
         for i, v := range m.GetCallRoutes() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("callRoutes", cast)
         if err != nil {
@@ -489,7 +507,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetContentSharingSessions() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetContentSharingSessions()))
         for i, v := range m.GetContentSharingSessions() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("contentSharingSessions", cast)
         if err != nil {
@@ -536,7 +556,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetOperations() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetOperations()))
         for i, v := range m.GetOperations() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("operations", cast)
         if err != nil {
@@ -546,7 +568,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetParticipants() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetParticipants()))
         for i, v := range m.GetParticipants() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("participants", cast)
         if err != nil {
@@ -587,7 +611,9 @@ func (m *Call) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6c010c49
     if m.GetTargets() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetTargets()))
         for i, v := range m.GetTargets() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("targets", cast)
         if err != nil {
@@ -642,7 +668,7 @@ func (m *Call) SetChatInfo(value ChatInfoable)() {
 func (m *Call) SetContentSharingSessions(value []ContentSharingSessionable)() {
     m.contentSharingSessions = value
 }
-// SetDirection sets the direction property value. The direction of the call. The possible value are incoming or outgoing. Read-only.
+// SetDirection sets the direction property value. The direction of the call. The possible values are incoming or outgoing. Read-only.
 func (m *Call) SetDirection(value *CallDirection)() {
     m.direction = value
 }
@@ -678,7 +704,7 @@ func (m *Call) SetParticipants(value []Participantable)() {
 func (m *Call) SetRequestedModalities(value []Modality)() {
     m.requestedModalities = value
 }
-// SetResultInfo sets the resultInfo property value. The result information. For example can hold termination reason. Read-only.
+// SetResultInfo sets the resultInfo property value. The result information. For example, the result can hold termination reason. Read-only.
 func (m *Call) SetResultInfo(value ResultInfoable)() {
     m.resultInfo = value
 }

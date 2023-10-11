@@ -4,7 +4,7 @@ import (
     i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91 "github.com/microsoft/kiota-abstractions-go/serialization"
 )
 
-// SharedPCConfiguration 
+// SharedPCConfiguration this topic provides descriptions of the declared methods, properties and relationships exposed by the sharedPCConfiguration resource.
 type SharedPCConfiguration struct {
     DeviceConfiguration
     // Specifies how accounts are managed on a shared PC. Only applies when disableAccountManager is false.
@@ -32,7 +32,7 @@ type SharedPCConfiguration struct {
     // Specifies the daily start time of maintenance hour.
     maintenanceStartTime *i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.TimeOnly
 }
-// NewSharedPCConfiguration instantiates a new SharedPCConfiguration and sets the default values.
+// NewSharedPCConfiguration instantiates a new sharedPCConfiguration and sets the default values.
 func NewSharedPCConfiguration()(*SharedPCConfiguration) {
     m := &SharedPCConfiguration{
         DeviceConfiguration: *NewDeviceConfiguration(),

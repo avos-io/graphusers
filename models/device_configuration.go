@@ -149,7 +149,9 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]DeviceConfigurationAssignmentable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceConfigurationAssignmentable)
+                if v != nil {
+                    res[i] = v.(DeviceConfigurationAssignmentable)
+                }
             }
             m.SetAssignments(res)
         }
@@ -183,7 +185,9 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]SettingStateDeviceSummaryable, len(val))
             for i, v := range val {
-                res[i] = v.(SettingStateDeviceSummaryable)
+                if v != nil {
+                    res[i] = v.(SettingStateDeviceSummaryable)
+                }
             }
             m.SetDeviceSettingStateSummaries(res)
         }
@@ -197,7 +201,9 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]DeviceConfigurationDeviceStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceConfigurationDeviceStatusable)
+                if v != nil {
+                    res[i] = v.(DeviceConfigurationDeviceStatusable)
+                }
             }
             m.SetDeviceStatuses(res)
         }
@@ -241,7 +247,9 @@ func (m *DeviceConfiguration) GetFieldDeserializers()(map[string]func(i878a80d23
         if val != nil {
             res := make([]DeviceConfigurationUserStatusable, len(val))
             for i, v := range val {
-                res[i] = v.(DeviceConfigurationUserStatusable)
+                if v != nil {
+                    res[i] = v.(DeviceConfigurationUserStatusable)
+                }
             }
             m.SetUserStatuses(res)
         }
@@ -294,7 +302,9 @@ func (m *DeviceConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetAssignments() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetAssignments()))
         for i, v := range m.GetAssignments() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("assignments", cast)
         if err != nil {
@@ -316,7 +326,9 @@ func (m *DeviceConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetDeviceSettingStateSummaries() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceSettingStateSummaries()))
         for i, v := range m.GetDeviceSettingStateSummaries() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceSettingStateSummaries", cast)
         if err != nil {
@@ -326,7 +338,9 @@ func (m *DeviceConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetDeviceStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetDeviceStatuses()))
         for i, v := range m.GetDeviceStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("deviceStatuses", cast)
         if err != nil {
@@ -354,7 +368,9 @@ func (m *DeviceConfiguration) Serialize(writer i878a80d2330e89d26896388a3f487eef
     if m.GetUserStatuses() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetUserStatuses()))
         for i, v := range m.GetUserStatuses() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err = writer.WriteCollectionOfObjectValues("userStatuses", cast)
         if err != nil {

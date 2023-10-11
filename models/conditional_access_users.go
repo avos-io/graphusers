@@ -10,19 +10,19 @@ type ConditionalAccessUsers struct {
     additionalData map[string]any
     // Group IDs excluded from scope of policy.
     excludeGroups []string
-    // The excludeGuestsOrExternalUsers property
+    // Internal guests or external users excluded from the policy scope. Optionally populated.
     excludeGuestsOrExternalUsers ConditionalAccessGuestsOrExternalUsersable
     // Role IDs excluded from scope of policy.
     excludeRoles []string
     // User IDs excluded from scope of policy and/or GuestsOrExternalUsers.
     excludeUsers []string
-    // Group IDs in scope of policy unless explicitly excluded, or All.
+    // Group IDs in scope of policy unless explicitly excluded.
     includeGroups []string
-    // The includeGuestsOrExternalUsers property
+    // Internal guests or external users included in the policy scope. Optionally populated.
     includeGuestsOrExternalUsers ConditionalAccessGuestsOrExternalUsersable
-    // Role IDs in scope of policy unless explicitly excluded, or All.
+    // Role IDs in scope of policy unless explicitly excluded.
     includeRoles []string
-    // User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.
+    // User IDs in scope of policy unless explicitly excluded, None, All, or GuestsOrExternalUsers.
     includeUsers []string
     // The OdataType property
     odataType *string
@@ -38,7 +38,7 @@ func NewConditionalAccessUsers()(*ConditionalAccessUsers) {
 func CreateConditionalAccessUsersFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewConditionalAccessUsers(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessUsers) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -46,7 +46,7 @@ func (m *ConditionalAccessUsers) GetAdditionalData()(map[string]any) {
 func (m *ConditionalAccessUsers) GetExcludeGroups()([]string) {
     return m.excludeGroups
 }
-// GetExcludeGuestsOrExternalUsers gets the excludeGuestsOrExternalUsers property value. The excludeGuestsOrExternalUsers property
+// GetExcludeGuestsOrExternalUsers gets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded from the policy scope. Optionally populated.
 func (m *ConditionalAccessUsers) GetExcludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable) {
     return m.excludeGuestsOrExternalUsers
 }
@@ -69,7 +69,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExcludeGroups(res)
         }
@@ -93,7 +95,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExcludeRoles(res)
         }
@@ -107,7 +111,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetExcludeUsers(res)
         }
@@ -121,7 +127,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeGroups(res)
         }
@@ -145,7 +153,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeRoles(res)
         }
@@ -159,7 +169,9 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
         if val != nil {
             res := make([]string, len(val))
             for i, v := range val {
-                res[i] = *(v.(*string))
+                if v != nil {
+                    res[i] = *(v.(*string))
+                }
             }
             m.SetIncludeUsers(res)
         }
@@ -177,19 +189,19 @@ func (m *ConditionalAccessUsers) GetFieldDeserializers()(map[string]func(i878a80
     }
     return res
 }
-// GetIncludeGroups gets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded, or All.
+// GetIncludeGroups gets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded.
 func (m *ConditionalAccessUsers) GetIncludeGroups()([]string) {
     return m.includeGroups
 }
-// GetIncludeGuestsOrExternalUsers gets the includeGuestsOrExternalUsers property value. The includeGuestsOrExternalUsers property
+// GetIncludeGuestsOrExternalUsers gets the includeGuestsOrExternalUsers property value. Internal guests or external users included in the policy scope. Optionally populated.
 func (m *ConditionalAccessUsers) GetIncludeGuestsOrExternalUsers()(ConditionalAccessGuestsOrExternalUsersable) {
     return m.includeGuestsOrExternalUsers
 }
-// GetIncludeRoles gets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded, or All.
+// GetIncludeRoles gets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded.
 func (m *ConditionalAccessUsers) GetIncludeRoles()([]string) {
     return m.includeRoles
 }
-// GetIncludeUsers gets the includeUsers property value. User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.
+// GetIncludeUsers gets the includeUsers property value. User IDs in scope of policy unless explicitly excluded, None, All, or GuestsOrExternalUsers.
 func (m *ConditionalAccessUsers) GetIncludeUsers()([]string) {
     return m.includeUsers
 }
@@ -261,7 +273,7 @@ func (m *ConditionalAccessUsers) Serialize(writer i878a80d2330e89d26896388a3f487
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ConditionalAccessUsers) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -269,7 +281,7 @@ func (m *ConditionalAccessUsers) SetAdditionalData(value map[string]any)() {
 func (m *ConditionalAccessUsers) SetExcludeGroups(value []string)() {
     m.excludeGroups = value
 }
-// SetExcludeGuestsOrExternalUsers sets the excludeGuestsOrExternalUsers property value. The excludeGuestsOrExternalUsers property
+// SetExcludeGuestsOrExternalUsers sets the excludeGuestsOrExternalUsers property value. Internal guests or external users excluded from the policy scope. Optionally populated.
 func (m *ConditionalAccessUsers) SetExcludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)() {
     m.excludeGuestsOrExternalUsers = value
 }
@@ -281,19 +293,19 @@ func (m *ConditionalAccessUsers) SetExcludeRoles(value []string)() {
 func (m *ConditionalAccessUsers) SetExcludeUsers(value []string)() {
     m.excludeUsers = value
 }
-// SetIncludeGroups sets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded, or All.
+// SetIncludeGroups sets the includeGroups property value. Group IDs in scope of policy unless explicitly excluded.
 func (m *ConditionalAccessUsers) SetIncludeGroups(value []string)() {
     m.includeGroups = value
 }
-// SetIncludeGuestsOrExternalUsers sets the includeGuestsOrExternalUsers property value. The includeGuestsOrExternalUsers property
+// SetIncludeGuestsOrExternalUsers sets the includeGuestsOrExternalUsers property value. Internal guests or external users included in the policy scope. Optionally populated.
 func (m *ConditionalAccessUsers) SetIncludeGuestsOrExternalUsers(value ConditionalAccessGuestsOrExternalUsersable)() {
     m.includeGuestsOrExternalUsers = value
 }
-// SetIncludeRoles sets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded, or All.
+// SetIncludeRoles sets the includeRoles property value. Role IDs in scope of policy unless explicitly excluded.
 func (m *ConditionalAccessUsers) SetIncludeRoles(value []string)() {
     m.includeRoles = value
 }
-// SetIncludeUsers sets the includeUsers property value. User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.
+// SetIncludeUsers sets the includeUsers property value. User IDs in scope of policy unless explicitly excluded, None, All, or GuestsOrExternalUsers.
 func (m *ConditionalAccessUsers) SetIncludeUsers(value []string)() {
     m.includeUsers = value
 }

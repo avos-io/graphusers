@@ -12,7 +12,7 @@ type ChannelSetAsFavoriteByDefaultEventMessageDetail struct {
     // Initiator of the event.
     initiator IdentitySetable
 }
-// NewChannelSetAsFavoriteByDefaultEventMessageDetail instantiates a new ChannelSetAsFavoriteByDefaultEventMessageDetail and sets the default values.
+// NewChannelSetAsFavoriteByDefaultEventMessageDetail instantiates a new channelSetAsFavoriteByDefaultEventMessageDetail and sets the default values.
 func NewChannelSetAsFavoriteByDefaultEventMessageDetail()(*ChannelSetAsFavoriteByDefaultEventMessageDetail) {
     m := &ChannelSetAsFavoriteByDefaultEventMessageDetail{
         EventMessageDetail: *NewEventMessageDetail(),

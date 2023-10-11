@@ -32,7 +32,7 @@ func NewApprovalSettings()(*ApprovalSettings) {
 func CreateApprovalSettingsFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewApprovalSettings(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ApprovalSettings) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -65,7 +65,9 @@ func (m *ApprovalSettings) GetFieldDeserializers()(map[string]func(i878a80d2330e
         if val != nil {
             res := make([]UnifiedApprovalStageable, len(val))
             for i, v := range val {
-                res[i] = v.(UnifiedApprovalStageable)
+                if v != nil {
+                    res[i] = v.(UnifiedApprovalStageable)
+                }
             }
             m.SetApprovalStages(res)
         }
@@ -140,7 +142,9 @@ func (m *ApprovalSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     if m.GetApprovalStages() != nil {
         cast := make([]i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, len(m.GetApprovalStages()))
         for i, v := range m.GetApprovalStages() {
-            cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            if v != nil {
+                cast[i] = v.(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable)
+            }
         }
         err := writer.WriteCollectionOfObjectValues("approvalStages", cast)
         if err != nil {
@@ -179,7 +183,7 @@ func (m *ApprovalSettings) Serialize(writer i878a80d2330e89d26896388a3f487eef27b
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *ApprovalSettings) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }

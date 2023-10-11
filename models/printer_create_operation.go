@@ -12,7 +12,7 @@ type PrinterCreateOperation struct {
     // The created printer entity. Read-only.
     printer Printerable
 }
-// NewPrinterCreateOperation instantiates a new PrinterCreateOperation and sets the default values.
+// NewPrinterCreateOperation instantiates a new printerCreateOperation and sets the default values.
 func NewPrinterCreateOperation()(*PrinterCreateOperation) {
     m := &PrinterCreateOperation{
         PrintOperation: *NewPrintOperation(),

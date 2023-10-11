@@ -12,7 +12,7 @@ type RubricLevel struct {
     description EducationItemBodyable
     // The name of this rubric level.
     displayName *string
-    // Null if this is a no-points rubric; educationAssignmentPointsGradeType if it is a points rubric.
+    // Null if this is a no-points rubric; educationAssignmentPointsGradeType if it's a points rubric.
     grading EducationAssignmentGradeTypeable
     // The ID of this resource.
     levelId *string
@@ -30,7 +30,7 @@ func NewRubricLevel()(*RubricLevel) {
 func CreateRubricLevelFromDiscriminatorValue(parseNode i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.ParseNode)(i878a80d2330e89d26896388a3f487eef27b0a0e6c010c493bf80be1452208f91.Parsable, error) {
     return NewRubricLevel(), nil
 }
-// GetAdditionalData gets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// GetAdditionalData gets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RubricLevel) GetAdditionalData()(map[string]any) {
     return m.additionalData
 }
@@ -97,7 +97,7 @@ func (m *RubricLevel) GetFieldDeserializers()(map[string]func(i878a80d2330e89d26
     }
     return res
 }
-// GetGrading gets the grading property value. Null if this is a no-points rubric; educationAssignmentPointsGradeType if it is a points rubric.
+// GetGrading gets the grading property value. Null if this is a no-points rubric; educationAssignmentPointsGradeType if it's a points rubric.
 func (m *RubricLevel) GetGrading()(EducationAssignmentGradeTypeable) {
     return m.grading
 }
@@ -149,7 +149,7 @@ func (m *RubricLevel) Serialize(writer i878a80d2330e89d26896388a3f487eef27b0a0e6
     }
     return nil
 }
-// SetAdditionalData sets the additionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+// SetAdditionalData sets the AdditionalData property value. Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
 func (m *RubricLevel) SetAdditionalData(value map[string]any)() {
     m.additionalData = value
 }
@@ -161,7 +161,7 @@ func (m *RubricLevel) SetDescription(value EducationItemBodyable)() {
 func (m *RubricLevel) SetDisplayName(value *string)() {
     m.displayName = value
 }
-// SetGrading sets the grading property value. Null if this is a no-points rubric; educationAssignmentPointsGradeType if it is a points rubric.
+// SetGrading sets the grading property value. Null if this is a no-points rubric; educationAssignmentPointsGradeType if it's a points rubric.
 func (m *RubricLevel) SetGrading(value EducationAssignmentGradeTypeable)() {
     m.grading = value
 }

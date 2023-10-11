@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"flag"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -15,7 +15,7 @@ import (
 
 const (
 	zipName    = "linux-x64.zip"
-	zipBinary  = "linux-x64/kiota"
+	zipBinary  = "kiota"
 	binaryName = "kiota"
 
 	kiotaUrl = "https://api.github.com/repos/microsoft/kiota/releases/latest"
@@ -45,7 +45,7 @@ func readAndWriteZip(zf *zip.File) error {
 	}
 	defer fi.Close()
 
-	b, err := ioutil.ReadAll(fi)
+	b, err := io.ReadAll(fi)
 	if err != nil {
 		return err
 	}
@@ -104,7 +104,7 @@ func latestKiota() {
 		log.Fatal(err)
 	}
 
-	zipBody, err := ioutil.ReadAll(z.Body)
+	zipBody, err := io.ReadAll(z.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -136,7 +136,7 @@ func runKiota(name string) {
 	}
 	defer fi.Close()
 
-	b, err := ioutil.ReadAll(fi)
+	b, err := io.ReadAll(fi)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -169,7 +169,8 @@ func main() {
 
 	if apply {
 		log.Printf("Apply SDK changes")
-		_, err := exec.Command("/bin/sh", "-c", "rm -rf model/ users/ groups/ && cp -r output/* ./").Output()
+		_, err := exec.Command("/bin/sh", "-c", "rm -rf model/ users/ groups/ && cp -r output/* ./").
+			Output()
 		if err != nil {
 			log.Fatal(err)
 		}
